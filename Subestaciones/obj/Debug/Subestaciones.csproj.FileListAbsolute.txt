@@ -1,0 +1,92 @@
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.csproj.AssemblyReference.cache
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.csproj.CoreCompileInputs.cache
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\ApplicationInsights.config
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Subestaciones.dll.config
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Subestaciones.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Subestaciones.pdb
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Antlr3.Runtime.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\EntityFramework.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\EntityFramework.SqlServer.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.DependencyCollector.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.Web.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.WindowsServer.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.ApplicationInsights.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.Web.Infrastructure.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Newtonsoft.Json.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.Helpers.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.Mvc.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.Optimization.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.Razor.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.Deployment.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.Razor.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\WebGrease.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\EntityFramework.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\EntityFramework.SqlServer.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.Helpers.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.Mvc.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.Optimization.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.Razor.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.Deployment.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.Razor.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Newtonsoft.Json.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.ApplicationInsights.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.DependencyCollector.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.WindowsServer.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\bin\Microsoft.AI.Web.xml
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.csproj.CopyComplete
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.dll
+D:\Mis Proyectos Web\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.pdb
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\ApplicationInsights.config
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Subestaciones.dll.config
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Subestaciones.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Subestaciones.pdb
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Antlr3.Runtime.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\EntityFramework.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\EntityFramework.SqlServer.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.DependencyCollector.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.Web.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.WindowsServer.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.ApplicationInsights.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.Web.Infrastructure.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Newtonsoft.Json.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.Helpers.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.Mvc.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.Optimization.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.Razor.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.Deployment.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.Razor.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\WebGrease.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\EntityFramework.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\EntityFramework.SqlServer.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.Helpers.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.Mvc.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.Optimization.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.Razor.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.Deployment.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\System.Web.WebPages.Razor.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Newtonsoft.Json.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.ApplicationInsights.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.DependencyCollector.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.WindowsServer.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\bin\Microsoft.AI.Web.xml
+D:\Proyectos\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.csproj.AssemblyReference.cache
+D:\Proyectos\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.csproj.CoreCompileInputs.cache
+D:\Proyectos\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.csproj.CopyComplete
+D:\Proyectos\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.dll
+D:\Proyectos\subestacionesWeb\Subestaciones\obj\Debug\Subestaciones.pdb
