@@ -1,0 +1,125 @@
+﻿
+.jqx-grid-column-header > div > div > span[style] {
+    font-weight: bold !important;
+}
+
+.jqx-grid-columngroup-header {
+    /*font-weight: bold !important;*/
+    background-color: #000000 !important;
+    color: white;
+}
+
+.jqx-widget {
+    border-top: ridge 2px #EEEEEE !important;
+    border-bottom: ridge 2px #EEEEEE !important;
+    border-left: ridge 2px #EEEEEE !important;
+    border-right: ridge 2px #EEEEEE !important;
+}
+
+/*.jqx-widget .jqx-grid-cell {
+                background-color: Teal;
+                color: black;
+            }*/
+
+/*.cellclass {
+        }*/
+
+
+.jqx-grid-column-header > div > div > span[style] {
+    /*white-space: normal;*/
+    font-weight: bold !important;
+}
+
+.cellclass {
+    font-weight: bold !important;
+}
+
+.blackForEvaluarion {
+    color: white\9;
+    background-color: #000000\9;
+}
+
+.whiteForEvaluarion {
+    color: black\9;
+    background-color: #FFFFFF\9;
+}
+
+.fuchsiaForEvaluarion {
+    color: black\9;
+    background-color: #FF00FF\9;
+}
+
+.blueForEvaluarion {
+    color: black\9;
+    background-color: #0000FF\9;
+}
+
+.blueLightForEvaluarion {
+    color: black\9;
+    background-color: #00BFFF\9;
+}
+
+.greenForEvaluarion {
+    color: black\9;
+    background-color: #008000\9;
+}
+
+.yellowForEvaluarion {
+    color: black\9;
+    background-color: #FFFF00\9;
+}
+
+.redForEvaluarion {
+    color: white\9;
+    background-color: #FF0000\9;
+}
+
+.orangeForEvaluarion {
+    color: black\9;
+    background-color: #FF4500\9;
+}
+
+.blackForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .red:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: white;
+    background-color: #000000;
+}
+
+.whiteForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .red:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #FFFFFF;
+}
+
+.fuchsiaForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .red:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: white;
+    background-color: #FF00FF;
+}
+
+.blueForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .red:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: white;
+    background-color: #0000FF;
+}
+
+.blueLightForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .red:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: white;
+    background-color: #00BFFF;
+}
+
+.greenForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .green:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #008000;
+}
+
+.yellowForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .yellow:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: black;
+    background-color: #FFFF00;
+}
+
+.redForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .red:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: white;
+    background-color: #FF0000;
+}
+
+.orangeForEvaluarion:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected), .jqx-widget .red:not(.jqx-grid-cell-hover):not(.jqx-grid-cell-selected) {
+    color: white;
+    background-color: #FF4500;
+}

@@ -1,0 +1,127 @@
+﻿@model Subestaciones.Models.Clases.Barras
+
+@{
+    /**/
+
+    ViewBag.Title = "Barras";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar banco de capacitor</h1>
+        </div>
+    }*@
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_Barra")">Lista de barras</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-bars"></i> Detalles de la barra "@Html.DisplayFor(model => model.barra)"
+
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                @Html.AntiForgeryToken()
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.NombreSub, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.NombreSub, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.barra, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.barra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @*@Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group ">
+
+                                                    @Html.LabelFor(model => model.cond, htmlAttributes: new { @class = "control-label" })
+
+                                                    @Html.EditorFor(model => model.cond, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class=" form-group">
+                                                    @Html.LabelFor(model => model.tension, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.tension, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.corr, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.corr, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cond, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.cond, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_barra")"><i class="fa fa-list"></i> Listado de barras</a>
+                                            <a class="btn btn-warning" href="@Url.Action("Edit","Sub_barra", new { Codigosub = Model.sub, Codigobarra = Model.barra })"><i class="fa fa-list"></i>Editar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->

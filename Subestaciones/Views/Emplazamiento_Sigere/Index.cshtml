@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Subestaciones.Models.Emplazamiento_Sigere>
+
+@{
+    ViewBag.Title = "Centrales Eléctricas";
+    ViewBag.PTitle = "Centrales Eléctricas";
+}
+@section breadcrumb {
+    <li><a href="#"><i class="ti-harddrives"></i></a></li>
+    <li class="active">Centrales Eléctricas</li>
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="datatable" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Calle</th>
+                    <th>Entre calle 1</th>
+                    <th>Entre calle 2</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Codigo
+                        </td>
+                        <td>
+                            @item.Nombre
+                        </td>
+                        <td>
+                            @item.Tipo
+                        </td>
+                        <td>
+                            @item.Calle
+                        </td>
+                        <td>
+                            @item.Entrecalle1
+                        </td>
+                        <td>
+                            @item.Entrecalle2
+                        </td>
+                       
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@*<div class="row">
+    <div class="col-md-12">
+        <a href="@Url.Action("Create","BancoCapacitores")" class="btn btn-info"><i class="fa fa-plus"></i> Nuevo</a>
+    </div>
+</div>*@
+
+@section script {
+    <script src="~/Scripts/custom/datatables.js"></script>
+}
+

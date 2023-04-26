@@ -1,0 +1,51 @@
+﻿<!--Menu Superior-->
+<header id="navbar">
+    <div id="navbar-container" class="boxed">
+        <!--Logo & Nombre-->
+        <div class="navbar-header">
+            <a href="@Url.Action("Index","Portada")" class="navbar-brand">
+                <img src="~/Content/images/logo.png" alt="Logo ES-SIGERE" class="brand-icon">
+                <div class="brand-title">
+                    <span class="brand-text">&emsp;CIRCUITOS</span>
+                </div>
+            </a>
+        </div>
+        <!--Fin Logo & Nombre-->
+        <!--Navbar Dropdown-->
+        <div class="navbar-content">
+            <ul class="nav navbar-top-links">
+                <!--Navigation toogle button-->
+                <li class="tgl-menu-btn">
+                    <a class="mainnav-toggle" href="#">
+                        <i class="demo-pli-list-view"></i>
+                    </a>
+                </li>
+                <!--End Navigation toogle button-->
+            </ul>
+            <ul class="nav navbar-top-links">
+                <!--User dropdown-->
+                <li id="dropdown-user" class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                        <span class="ic-user pull-right">
+                            <i class="demo-pli-male"></i>
+                        </span>
+                        <div class="username hidden-xs">@User.Identity.Name.ToString()</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right panel-default">
+                        <ul class="head-list">
+                            <li>
+                                <a href="@Url.Action("CambiarContrasenna","Autenticacion")"> Cambiar contraseña <i class="ti-key icon-lg icon-fw pull-right"></i></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Logout","Autenticacion")"> Cerrar sesión <i class="ti-share-alt icon-lg icon-fw pull-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--End user dropdown-->
+            </ul>
+        </div>
+        <!--End Navbar Dropdown-->
+    </div>
+</header>
+<!--Fin Menu Superior-->

@@ -1,0 +1,21 @@
+﻿@model List<Subestaciones.Models.Clases.ListaTransformadores>
+<table id="datatable_TUP" class="table table-striped table-bordered table-hover">
+    <thead>
+        @*<tr>
+                <th colspan="2" style="align-content:center">Transformadores</th>
+            </tr>*@
+        <tr>
+            <th data-field="id" data-switchable="false">Código Banco</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Codigo</td>
+               
+            </tr>
+        }
+    </tbody>
+</table>

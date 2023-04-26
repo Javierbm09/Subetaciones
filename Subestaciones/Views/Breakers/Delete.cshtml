@@ -1,0 +1,96 @@
+﻿@model Subestaciones.Models.Breakers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Breakers</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumAccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CodigoBreaker)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CodigoBreaker)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.id_fabricante)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_fabricante)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.id_VoltajeN)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_VoltajeN)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Capacidad_breaker)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Capacidad_breaker)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.modelo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.modelo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa_Prov)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_EAdministrativa_Prov)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

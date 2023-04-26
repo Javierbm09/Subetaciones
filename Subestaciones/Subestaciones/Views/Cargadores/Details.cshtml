@@ -1,0 +1,120 @@
+﻿@model Subestaciones.Models.Cargadores
+
+@{
+    ViewBag.Title = "Detalles Cargador";
+    ViewBag.PTitle = "Detalles del Tipo de Cargador";
+}
+@section breadcrumb {
+    <li><a href="#"><i class="ti-layout-cta-center"></i></a></li>
+    <li><a href="@Url.Action("Index","Cargadores")">Relevadores</a></li>
+    <li class="active">Detalles</li>
+}
+<div class="row clearfix">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Tipo de Cargador</th>
+                <td>@Model.TipoCargador</td>
+            </tr>
+            <tr>
+                <th>Tensión CD</th>
+                <td>@Model.VoltajeCorrienteDirecta</td>
+            </tr>
+            <tr>
+                <th>Tensión CA</th>
+                <td>@Model.VoltajeCA</td>
+            </tr>
+            <tr>
+                <th>Corriente</th>
+                <td>@Model.Corriente</td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Funciones asociadas al relevador</div>
+            <div class="panel-body">
+                <table class="table">
+                    @foreach (var item in ViewBag.Funciones)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoCargador)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VoltajeCorrienteDirecta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VoltajeCA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Corriente)
+                        </td>
+                    </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<p>
+    <a class="btn btn-info" href="@Url.Action("Edit","Cargadores", new { id = Model.IdCargador })"><i class="fa fa-edit"></i> Editar</a>
+    <a class="btn btn-default" href="@Url.Action("Index","Cargadores")"><i class="fa fa-list"></i> Listado</a>
+</p>
+
+
+
+@*@model Subestaciones.Models.Cargadores
+
+    @{
+        ViewBag.Title = "Details";
+    }
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>Sub_NomCargadores</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoCargador)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TipoCargador)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VoltajeCorrienteDirecta)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VoltajeCorrienteDirecta)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Corriente)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Corriente)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VoltajeCA)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VoltajeCA)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IdCargador }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

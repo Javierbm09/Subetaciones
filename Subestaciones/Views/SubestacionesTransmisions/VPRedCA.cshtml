@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Subestaciones.Models.Sub_RedCorrienteAlterna>
+
+<table id="datatable_RedCA" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Nombre del Servicio</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @item.NombreServicioCA
+                    <input type="hidden" id="codigo" value="@item.Codigo" />
+                    <input type="hidden" id="idServ" value="@item.Id_RedCA" />
+                </td>
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,420 @@
+﻿@model Subestaciones.Models.Sub_CelajeSubDistribucion
+
+
+@{
+                /**/
+
+                ViewBag.Title = "Inspección de la subestación de distribución";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar banco de capacitor</h1>
+        </div>
+    }*@
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_CelajeSubDistribucion")">Lista de inspecciones</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Insertar inspecci&oacute;n de la subestaci&oacute;n de distribuci&oacute;n
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Create", "Sub_CelajeSubDistribucion", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                            {
+                                @Html.ValidationSummary(false)
+                                @Html.AntiForgeryToken()
+
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.nombreCelaje, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.realizadoPor, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.codigoSub, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos de la inspecci&oacute;n</div>
+                                            <div class="panel-body">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.codigoSub, htmlAttributes: new { @class = "control-label" })
+
+                                                        @Html.DropDownListFor(model => model.codigoSub, ViewBag.ListaSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.nombreCelaje, htmlAttributes: new { @class = "control-label" })
+
+                                                        @Html.DropDownListFor(model => model.nombreCelaje, ViewBag.tipo as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.realizadoPor, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.realizadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label" })
+
+                                                    <div class="input-group date" id="fechahora">
+                                                        <input type="text" disabled class="form-control" id="termofechahora">
+                                                        <span class="input-group-addon btn blue tooltips" disabled id="inspfechahora" data-original-title="Seleccionar fecha">
+                                                            <span class="fa fa-calendar"></span>
+                                                            @*<button class="btn green" type="button">Go!</button>*@
+                                                        </span>
+                                                    </div>
+                                                    @Html.HiddenFor(model => model.fecha)
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos generales </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.mallaTSub, htmlAttributes: new { @class = "control-label" })
+
+                                                            @Html.DropDownListFor(model => model.mallaTSub, ViewBag.mallaTS as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.hierba, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.CheckBox("hierba", htmlAttributes: new { @class = "form-control " })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.estadoCerca, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.DropDownListFor(model => model.estadoCerca, ViewBag.estadoCerca as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.pRayosAlta, htmlAttributes: new { @class = "control-label" })
+
+                                                            @Html.DropDownListFor(model => model.pRayosAlta, ViewBag.paraA as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.estadoCarteles, htmlAttributes: new { @class = "control-label" })
+
+                                                            @Html.DropDownListFor(model => model.estadoCarteles, ViewBag.estadoCarteles as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.estadoAlumbrado, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.DropDownListFor(model => model.estadoAlumbrado, ViewBag.estadoAlumbrado as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.mallaTCerca, htmlAttributes: new { @class = "control-label" })
+
+                                                            @Html.DropDownListFor(model => model.mallaTCerca, ViewBag.mallaTC as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.desordenSub, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.CheckBox("desordenSub", htmlAttributes: new { @class = "form-control " })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.estadoPuerta, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.DropDownListFor(model => model.estadoPuerta, ViewBag.estadoPuerta as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.pRayosBaja, htmlAttributes: new { @class = "control-label" })
+
+                                                            @Html.DropDownListFor(model => model.pRayosBaja, ViewBag.paraB as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.estadoCandadoPuerta, htmlAttributes: new { @class = "control-label" })
+
+                                                            @Html.DropDownListFor(model => model.estadoCandadoPuerta, ViewBag.estadoCandado as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="panel">
+                                                    <div class="panel-heading">Drop-out </div>
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                Fase A
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                Fase B
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                Fase C
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="text-stat">
+
+                                                                    Drop-Out A
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutAFaseA, ViewBag.dropAA as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutAFaseB, ViewBag.dropAB as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutAFaseC, ViewBag.dropAC as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                Drop-Out B
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutBFaseA, ViewBag.dropBA as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutBFaseB, ViewBag.dropBB as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutBFaseC, ViewBag.dropBC as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Drop-Out Bypass
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutBypassFaseA, ViewBag.dropBypassA as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutBypassFaseB, ViewBag.dropBypassB as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.dropOutBypassFaseC, ViewBag.dropBypassC as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label " for="observaciones">Observaciones</label>
+                                                    <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="observaciones" name="observaciones" rows="2"></textarea>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="observaciones" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_CelajeSubDistribucion")"><i class="fa fa-list"></i> Listado de mantenimientos</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-plus"></i> Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+    <script src=@Url.Content("~/Content/plugins/switchery/switchery.min.js")></script>
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+    <!--datepicker-->
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    @*<script src="~//assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>*@
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+
+            fecha = new Date();
+            fechaini = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0);
+            fechafin = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 23, 59);
+            $("#fechahora").datetimepicker({
+                language: 'es',
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                format: 'dd/mm/yyyy ',
+                linkFormat: 'dd/mm/yyyy ',
+                showMeridian: 1,
+                startDate: fechaini,
+                endDate: fechafin,
+                forceParse: 1,
+                startView: 2,
+                maxView: 2,
+                linkField: 'fecha'
+            }).datetimepicker('setDate', fecha);
+
+
+            var Salideros = new Switchery(document.getElementById("hierba"));
+            var Salideros = new Switchery(document.getElementById("desordenSub"));
+            function toggleSwitchery(element, estado) {
+                var estadoActual = element.is(':checked');
+                if (estadoActual != estado) {
+                    element.click();
+                }
+            }
+        });
+    </script>
+}

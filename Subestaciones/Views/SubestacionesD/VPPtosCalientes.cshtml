@@ -1,0 +1,33 @@
+﻿@model List<Subestaciones.Models.Clases.PuntosCalientes>
+
+        <table id="datatable_Ptos" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Temperatura detectada</th>
+                    <th>Defecto</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @item.Material
+                        </td>
+
+                        <td>
+                            @item.TempDetectada
+                        </td>
+                        <td>
+                            @item.Defecto
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+ 

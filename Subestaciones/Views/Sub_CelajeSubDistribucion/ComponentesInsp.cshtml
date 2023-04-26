@@ -1,0 +1,460 @@
+﻿
+@model Subestaciones.Models.Sub_CelajeSubDistribucion
+@{
+    ViewBag.Title = "Inspección de la subestación de distribución";
+}
+
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_CelajeSubDistribucion")">Inspecci&oacute;n a la subestaci&oacute;n de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Componentes de la subestaci&oacute;n de distribuci&oacute;n</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Inspecci&oacute;n a componentes de la subestaci&oacute;n de distribuci&oacute;n
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("Create", "Sub_CelajeSubDistribucion", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                        {
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken()
+
+                            <!-- BEGIN FORM-->
+                            <div class="horizontal-form">
+                                <div class="form-body">
+                                    <div class="panel">
+                                        <div class="panel-heading">Datos generales de la inspecci&oacute;n</div>
+                                        <div class="panel-body">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.codigoSub, htmlAttributes: new { @class = "control-label" })
+
+                                                    @Html.DropDownListFor(model => model.codigoSub, ViewBag.ListaSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = "disabled" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.nombreCelaje, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.nombreCelaje, new { htmlAttributes = new { @class = "form-control datepicker", @readonly = "readonly" } })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.realizadoPor, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.realizadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = "disabled" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label" })
+
+                                                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control datepicker", @readonly = "readonly" } })
+
+
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+
+                                    <div class="tabbable-line boxless tabbable-reversed ">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#tab_1" data-toggle="tab" id="tab1">Transformadores de fuerza</a>
+                                            </li>
+                                           
+                                            <li>
+                                                <a href="#tab_2" data-toggle="tab" id="tab2">Interruptores</a>
+                                            </li>
+                                           
+
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab_1">
+                                                <div id="noTransf">
+                                                    La subestaci&oacute;n no tiene transformadores declarados.
+                                                </div>
+
+                                                <div id="_VPInspTransf">
+
+                                                </div>
+                                                <a class="btn btn-default" id="AgregarInspTransf" href="@Url.Action("Create","Sub_TransformadoresSubtrCelaje", new { nombreCelaje = Model.nombreCelaje,sub= Model.codigoSub, fecha= Model.fecha, ea= Model.id_EAdministrativa})"><i class="fa fa fa-plus"></i> Nuevo</a>
+
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_2">
+
+                                                <div class="portlet-body">
+                                                    <div id="noInt">
+                                                        La subestaci&oacute;n no tiene interruptores declarados.
+                                                    </div>
+                                                    <div id="_VPInspInterrup">
+
+                                                    </div>
+                                                </div>
+
+                                                <a class="btn btn-default" id="I" href="@Url.Action("Create","Sub_CelajeSubDistInterruptor", new { nombreCelaje = Model.nombreCelaje, sub= Model.codigoSub, fechaIns= Model.fecha})"><i class="fa fa fa-plus"></i> Nuevo</a>
+
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"> </script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+    <!--datepicker-->
+    <script>
+        $(document).ready(function () {
+
+           
+            //mostrar primer tab al cargar
+            Tab(1);
+            var selectedTab = 1;
+
+            Tab(selectedTab);
+
+            //cargar contenidos de pestañas al hacer click
+            $("#tab1").click(function () { Tab(1); });
+            $("#tab2").click(function () { Tab(2); });
+          
+
+            function Tab(n) {
+                var id_nom = 0;
+                //if ($("#Id_Nomenclador").val() != "") {
+                //    var id_nom = $("#Id_Nomenclador").val();
+                //}
+                var baseUrl = $('base').attr('href');
+
+                var codSub = $("#codigoSub").val();
+                var fecha = $("#fecha").val();
+                var tipo = $("#nombreCelaje").val();
+
+                $("#modal-sm-loading").modal('show');//mostrar cargando
+                selectedTab = n;
+
+                if (n == 1) {
+                    cantTRans = "@ViewBag.cantT";
+                    if (cantTRans != 0) {
+                        $("#_VPInspTransf").load('@Url.Content("~/Sub_CelajeSubDistribucion/_VPInspTransf")', {nombre: tipo, sub: codSub, fechaM: fecha }, function () {
+
+                            var table = $("#tabla_InspTransf").DataTable({
+                                "language": {
+                                    "aria": {
+                                        "sortAscending": ": activate to sort column ascending",
+                                        "sortDescending": ": activate to sort column descending"
+                                    },
+                                    "emptyTable": "No existen transformadores declarados en esta Subestación",
+                                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "lengthMenu": "_MENU_ Registros",
+                                    "search": "Buscar:",
+                                    "zeroRecords": "No se encontraron resultados"
+                                },
+                                rows: {
+                                    _: "Seleccionados %d registros",
+                                    1: "1 Registro seleccionado"
+                                },
+                                "order": [
+                                    [0, 'asc']
+                                ],
+                                responsive: true,
+                                select: true,
+                                "pageLength": 10
+                            });
+
+                        });
+                        $("#AgregarInspTransf").show();
+                        $("#noTransf").hide();
+                    } else {
+                        swal({
+                            title: "¡Información!",
+                            text: "La subestación no tiene trasnformadores declarados.",
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonClass: "btn-primary"
+                        });
+                        $("#AgregarInspTransf").hide();
+                        $("#noTransf").show();
+
+                    }
+
+                    $("#modal-sm-loading").modal('hide');
+
+                }
+
+
+                if (n == 2) {
+                    cantInterrup = "@ViewBag.cantI";
+                    if (cantInterrup != 0) {
+                        $("#_VPInspInterrup").load('@Url.Content("~/Sub_CelajeSubDistribucion/_VPInspInterrup")', {nombre:tipo, sub: codSub, fechaM: fecha }, function () {
+
+
+                            var table = $("#tabla_InspInterr").DataTable({
+                                "language": {
+                                    "aria": {
+                                        "sortAscending": ": activate to sort column ascending",
+                                        "sortDescending": ": activate to sort column descending"
+                                    },
+                                    "emptyTable": "No existen transformadores declarados en esta Subestación",
+                                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "lengthMenu": "_MENU_ Registros",
+                                    "search": "Buscar:",
+                                    "zeroRecords": "No se encontraron resultados"
+                                },
+                                rows: {
+                                    _: "Seleccionados %d registros",
+                                    1: "1 Registro seleccionado"
+                                },
+                                "order": [
+                                    [0, 'asc']
+                                ],
+                                responsive: true,
+                                select: true,
+                                "pageLength": 10
+                            });
+                            $("#modal-sm-loading").modal('hide');
+
+                            $("#I").show();
+                            $("#noInt").hide();
+
+
+                        });
+
+                    }
+                    else {
+                        swal({
+                            title: "¡Información!",
+                            text: "La subestación no tiene interruptores declarados.",
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonClass: "btn-primary"
+                        });
+               
+                        $("#I").hide();
+                        $("#noInt").show();
+
+                    }
+
+
+
+                }
+                
+            }
+
+            $('body').on('click', '.mt-sweetalert', function () {
+                var llaves = this.id;
+                var camposLlaves = llaves.split("|");
+                var sub = camposLlaves[0];
+                var fecha = camposLlaves[1];
+                var componente = camposLlaves[2];
+                var valor = camposLlaves[3];
+                var idEA = camposLlaves[4];
+                var nomb = camposLlaves[5];
+
+
+
+                var baseUrl = $('base').attr('href');
+
+
+                //elimina desconectivo
+
+                if (valor == "desc") {
+                    swal({
+                        title: $(this).data('title'),
+                        text: $(this).data('message'),
+                        type: $(this).data('type'),
+                        allowOutsideClick: $(this).data('allow-outside-click'),
+                        showConfirmButton: $(this).data('show-confirm-button'),
+                        showCancelButton: $(this).data('show-cancel-button'),
+                        confirmButtonClass: $(this).data('confirm-button-class'),
+                        cancelButtonClass: $(this).data('cancel-button-class'),
+
+                        closeOnConfirm: $(this).data('close-on-confirm'),
+                        closeOnCancel: $(this).data('close-on-cancel'),
+                        confirmButtonText: $(this).data('confirm-button-text'),
+                        cancelButtonText: $(this).data('cancel-button-text'),
+
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url: baseUrl + 'Sub_CelajeSubDistribucion/EliminaInspInt',
+                                method: 'POST',
+                                data: { nombInps: nomb, cod: sub, fechaM: fecha, codInt: componente },
+                                success: function (data) {
+                                    if (data) {
+                                        swal({
+                                            title: "¡Eliminado!",
+                                            text: "El mantenimiento seleccionado ha sido eliminado.",
+                                            type: "success",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+
+                                        Tab(2);
+                                        var selectedTab = 2;
+
+                                        Tab(selectedTab);
+
+
+
+                                    } else {
+                                        swal({
+                                            title: "¡Cancelado!",
+                                            text: "¡No se pudo eliminar el mantenimiento!",
+                                            type: "error",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+                                    }
+                                }
+                            });
+                        } else {
+                            swal("Cancelado", "La acción de eliminar ha sido cancelada.", "error")
+                        }
+                    });
+                }
+                //elimina transformador
+
+                if (valor == "transf") {
+                    swal({
+                        title: $(this).data('title'),
+                        text: $(this).data('message'),
+                        type: $(this).data('type'),
+                        allowOutsideClick: $(this).data('allow-outside-click'),
+                        showConfirmButton: $(this).data('show-confirm-button'),
+                        showCancelButton: $(this).data('show-cancel-button'),
+                        confirmButtonClass: $(this).data('confirm-button-class'),
+                        cancelButtonClass: $(this).data('cancel-button-class'),
+
+                        closeOnConfirm: $(this).data('close-on-confirm'),
+                        closeOnCancel: $(this).data('close-on-cancel'),
+                        confirmButtonText: $(this).data('confirm-button-text'),
+                        cancelButtonText: $(this).data('cancel-button-text'),
+
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url: baseUrl + 'Sub_CelajeSubDistribucion/EliminaInspTransf',
+                                method: 'POST',
+                                data: { nombInps: nomb, cod: sub, idTransf: componente, fechaM: fecha, EA: idEA },
+                                success: function (data) {
+                                    if (data) {
+                                        swal({
+                                            title: "¡Eliminado!",
+                                            text: "La inspección seleccionada ha sido eliminada.",
+                                            type: "success",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+
+                                        Tab(1);
+                                        var selectedTab = 1;
+
+                                        Tab(selectedTab);
+
+
+                                    } else {
+                                        swal({
+                                            title: "¡Cancelado!",
+                                            text: "¡No se pudo eliminar la inspección!",
+                                            type: "error",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+                                    }
+                                }
+                            });
+                        } else {
+                            swal("Cancelado", "La acción de eliminar ha sido cancelada.", "error")
+                        }
+                    });
+                }
+
+            
+            });
+
+
+        });
+    </script>
+
+}

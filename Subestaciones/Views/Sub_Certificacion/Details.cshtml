@@ -1,0 +1,366 @@
+﻿@model Subestaciones.Models.Clases.CertificacionSubDistViewModel
+
+
+@{
+    ViewBag.Title = "Certificación de la subestación de distribución";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar banco de capacitor</h1>
+        </div>
+    }*@
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_Certificacion")">Lista de certificaciones</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Detalles certificicaci&oacute;n de la subestaci&oacute;n de distribuci&oacute;n
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Create", "Sub_Certificacion", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                            {
+                                @Html.ValidationSummary(false)
+                                @Html.AntiForgeryToken()
+
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.DCertificaciones.CodigoSub, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.DCertificaciones.Fecha, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos generales de la certificaci&oacute;n</div>
+                                            <div class="panel-body">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.DCertificaciones.CodigoSub, htmlAttributes: new { @class = "control-label" })
+
+                                                        @Html.EditorFor(model => model.DCertificaciones.CodigoSub, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.DCertificaciones.nombreOBE, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.DCertificaciones.nombreOBE, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.HiddenFor(model => model.DCertificaciones.UEB)
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    @Html.LabelFor(model => model.DCertificaciones.Fecha, htmlAttributes: new { @class = "control-label" })
+
+                                                    <div class="input-group date" id="fechahora">
+                                                        <input type="text" disabled class="form-control" id="termofechahora">
+                                                        <span class="input-group-addon btn blue tooltips" disabled id="termografiafechahora" data-original-title="Seleccionar fecha">
+                                                            <span class="fa fa-calendar"></span>
+                                                            @*<button class="btn green" type="button">Go!</button>*@
+                                                        </span>
+                                                    </div>
+                                                    @Html.HiddenFor(model => model.DCertificaciones.Fecha)
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- BEGIN ACCORDION PORTLET-->
+                                        <div class="portlet box blue">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-list-ol"></i>Aspectos
+                                                </div>
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="collapse"> </a>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="panel-group accordion" id="Aspectos">
+                                                    @{
+                    var aspectoId = "";
+                    //int j = 0;
+                    foreach (var A in ViewBag.Aspectos)
+                    {
+                        aspectoId = "aspecto_" + @A.NroAspecto.ToString();
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle accordion-toggle-styled" data-toggle="collapse" data-parent="#Aspectos" href="#@aspectoId">
+                                                    @A.NroAspecto-
+                                                    @A.NombreAspecto
+
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="@aspectoId" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div id="SubAspectos" class="panel">
+                                                    <table class="table col-md-12 compact" id="TablaSubAspectos">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    SubAspectos
+                                                                </th>
+                                                                <th>
+                                                                    Cumplimiento
+                                                                </th>
+                                                                <th>
+                                                                    Responsable
+                                                                </th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                            if (Model != null && Model.Detalles != null)
+                            {
+                                //foreach (var D in Model.Detalles)
+                                for (int j = 0; j < Model.Detalles.Count; j++)
+
+                                {
+                                    foreach (var subA in ViewBag.SubAspectos)
+                                    {
+                                        if ((Model.Detalles[j].NroAspecto == subA.NroAspecto) && (Model.Detalles[j].NroSubAspecto == subA.NroSubAspecto) && (A.NroAspecto == Model.Detalles[j].NroAspecto))
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.HiddenFor(model => Model.Detalles[j].Id_EACertificacion)
+                                                    @Html.HiddenFor(model => Model.Detalles[j].Id_CertificacionDetalles)
+                                                    @Html.HiddenFor(model => Model.Detalles[j].NumAccionCertificacion)
+                                                    @Html.DisplayFor(model => Model.Detalles[j].NroAspecto).@Html.DisplayFor(model => Model.Detalles[j].NroSubAspecto) @subA.NombreSubAspecto
+                                                    @*@subA.NroAspecto.@subA.NroSubAspecto @subA.NombreSubAspecto*@
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(model => Model.Detalles[j].Cumplimiento)
+                                                  @*  @Html.DropDownListFor(model => Model.Detalles[j].Cumplimiento, ViewBag.cumplimiento as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2", @id = "Detalles_" + j + "__Cumplimiento" })*@
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(model => Model.Detalles[j].Responsable)
+
+                                                    @*@Html.DropDownListFor(model => Model.Detalles[j].Responsable, ViewBag.responsable as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2", @id = "Detalles_Responsable_" + j })*@
+                                                </td>
+                                            </tr>
+    }
+}
+}
+}
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+}
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END ACCORDION PORTLET-->
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div id="Comision" class="panel">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h4>
+                                                                <span>
+                                                                    <strong>
+                                                                        Comisi&oacute;n
+                                                                    </strong>
+                                                                </span>
+                                                            </h4>
+                                                            <div>
+                                                                <table class="table col-md-12 compact" id="TablaComision">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>
+                                                                                Nombre
+                                                                            </th>
+                                                                            <th>
+                                                                                Cargo
+                                                                            </th>
+
+                                                                        </tr>
+
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{
+                                        if (Model != null && Model.Comision != null)
+                                        {
+
+                                            for (int i = 0; i < Model.Comision.Count; i++)
+                                            {
+                                                <tr>
+                                                    @Html.HiddenFor(model => model.Comision[i].Id_EACertificacion)
+                                                    @Html.HiddenFor(model => model.Comision[i].Id_CertificacionComision)
+                                                    @Html.HiddenFor(model => model.Comision[i].NumAccionCertificacion)
+
+
+                                                    <td>
+                                                        @Html.EditorFor(model => model.Comision[i].NombreComision, new { htmlAttributes = new { @id = "Comision_NombreComision_" + i, @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.Comision[i].NombreComision, "", new { @class = "text-danger" })
+                                                    </td>
+                                                    <td>
+                                                        @Html.EditorFor(model => model.Comision[i].CargoComision, new { htmlAttributes = new { @id = "Comision_CargoComision_" + i, @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.Comision[i].CargoComision, "", new { @class = "text-danger" })
+                                                    </td>
+                                                </tr>
+        }
+    }
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    @*<div class="row" style="padding:0px">
+                        <hr style="margin:0px" />
+                    </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div id="observaciones" class="panel">
+                                                    <div class="row">
+
+
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label " for="observaciones">Observaciones</label>
+                                                                <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="DCertificaciones.Observaciones" name="DCertificaciones.Observaciones" rows="4"></textarea>
+                                                                <span class="field-validation-valid text-danger" data-valmsg-for="observaciones" data-valmsg-replace="true"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_Certificacion")"><i class="fa fa-list"></i> Listado de certificaciones</a>
+                                            <a class="btn btn-warning" href="@Url.Action("Edit","Sub_Certificacion", new { EA = Model.DCertificaciones.Id_EAdministrativa, numAccion = Model.DCertificaciones.NumAccion})"><i class="fa fa-edit"></i> Editar</a>
+
+                                        </div>
+                                    </div>
+                                            </div>
+                                            }
+                                            <!-- END FORM-->
+                                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+
+
+}
+@section script{
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+
+    <!--datepicker-->
+    <script>
+        $(document).ready(function () {
+
+
+
+
+            valorfecha = $("#DCertificaciones_Fecha").val();
+            valorfecha = moment(valorfecha, "DD/MM/YYYY hh:mm:ss a").format("YYYY/MM/DD H:mm");
+            fechaI = new Date(valorfecha);
+            fechaini = new Date(fechaI.getFullYear(), fechaI.getMonth(), fechaI.getDate(), 0, 0);
+            fechafin = new Date(fechaI.getFullYear(), fechaI.getMonth(), fechaI.getDate(), 23, 59);
+            $("#fechahora").datetimepicker({
+                language: 'es',
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                format: 'dd/mm/yyyy ',
+                linkFormat: 'dd/mm/yyyy ',
+                showMeridian: 1,
+                startDate: fechaini,
+                endDate: fechafin,
+                forceParse: 1,
+                startView: 2,
+                maxView: 2,
+                linkField: 'DCertificaciones_Fecha'
+
+            }).datetimepicker('setDate', fechaI);
+
+            $("#DCertificaciones_CodigoSub").change(function () {
+                var url = baseUrl + "Sub_Certificacion/UEB";
+                $.ajax({
+                    url: url,
+                    method: "GET",
+                    data: {
+                        codSub: function () { return $("#DCertificaciones_CodigoSub").val() }
+                    },
+                    success: function (data) {
+
+                        $("#DCertificaciones_nombreOBE").val(data);
+                    }
+                });
+
+                var url = baseUrl + "Sub_Certificacion/idUEB";
+                $.ajax({
+                    url: url,
+                    method: "GET",
+                    data: {
+                        codSub: function () { return $("#DCertificaciones_CodigoSub").val() }
+                    },
+                    success: function (data) {
+
+                        $("#DCertificaciones_UEB").val(data);
+                    }
+                });
+            })
+        })
+    </script>
+}

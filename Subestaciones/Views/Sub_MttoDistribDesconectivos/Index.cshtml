@@ -1,0 +1,221 @@
+﻿@model IEnumerable<Subestaciones.Models.Sub_MttoDistribDesconectivos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EstLimpiezaTanque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstLimpiezaGabinete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstPintura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstAterramTanque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstAterramGabinete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PresionSF6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NroOperaciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorcDesgasteFaseA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorcDesgasteFaseB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorcDesgasteFaseC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PruebasFuncionales)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstRotulos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistContactoFaseA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistContactoFaseB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistContactoFaseC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseAET)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseBET)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseCET)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseAST)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseBST)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseCST)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseAEST)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseBEST)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislamFaseCEST)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ovservaciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimpiezaAislamiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimpiezaContactos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pintura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MttoMando)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aterramiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VerificacionCapacidad)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstLimpiezaTanque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstLimpiezaGabinete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstPintura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstAterramTanque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstAterramGabinete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PresionSF6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NroOperaciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorcDesgasteFaseA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorcDesgasteFaseB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorcDesgasteFaseC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PruebasFuncionales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstRotulos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistContactoFaseA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistContactoFaseB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistContactoFaseC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseAET)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseBET)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseCET)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseAST)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseBST)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseCST)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseAEST)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseBEST)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislamFaseCEST)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ovservaciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LimpiezaAislamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LimpiezaContactos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pintura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MttoMando)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aterramiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VerificacionCapacidad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

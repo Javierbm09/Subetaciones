@@ -1,0 +1,42 @@
+﻿@model Subestaciones.Models.Logueados
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Logueados</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PDespachar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PDespachar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRecepcionar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRecepcionar)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

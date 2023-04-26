@@ -1,0 +1,34 @@
+﻿@model Subestaciones.Models.Sub_DesconectivoSubestacion
+
+<table id="datatable_breakerPorBaja" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoDesconectivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TensionNominal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorrienteNominal)
+            </th>
+            <th>Acciones </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.ListaBreakerPorBaja)
+        {
+        <tr>
+            <td>@item.CodigoDesconectivo</td>
+            <td>@item.TensionNominal</td>
+            <td>@item.CorrienteNominal</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id_RedCA = item.RedCA, codigoSubestacion = item.CodigoSub, codigoBreaker = item.CodigoDesconectivo }) |
+                @Html.ActionLink("Delete", "Delete", new { id_RedCA = item.RedCA, codigoSubestacion = item.CodigoSub, codigoBreaker = item.CodigoDesconectivo })
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>

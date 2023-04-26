@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Subestaciones del SIGERE";
+    ViewBag.PTitle = "Portada";
+}
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>@ViewBag.PTitle</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <!-- content starts here -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <blockquote>
+                            <p class="text-justify">
+                                El Módulo Subestaciones es el encargado de llevar el control y gestión de todas las subestaciones de Distribución y Transmisión, ásí como la  adición y modificación
+                                de todos los elementos que la componen como los transformadores de corriente, los transformadores de potencial, los transformadores de potencia, desconectivos, 
+                                capacitor, barras, pararrayos, red de aire, servicios corriente alterna, servicio corriente directa y grupos electrógenos.
+                                El sistema lleva un registro de todos los mantenimientos realizados a las subestaciones, con el objetivo de mejorar y hacer óptimo este proceso, ya que manteniendo
+                                un control estricto sobre el mismo será fácil ir pasando paulatinamente de los mantenimientos, temografías y celajes. 
+                            </p>
+                            <p><a href="#" class="btn btn-primary btn-lg">Leer más &raquo;</a></p>
+                        </blockquote>
+                    </div>
+                </div>
+                <!-- content ends here -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Relevadores</h3>
+                <p class="text-justify" style="min-height: 75px;">
+                    El módulo cuenta con los nomencladores necesarios para su uso. Para crear un esquema es necesario haber creado la plantilla asociada al mismo y el relevador
+                    con sus funciones.
+                </p>
+                <p>
+                    <a class="btn btn-default" href="@Url.Action("Index","Plantillas")"> Ver Plantillas &raquo;</a>
+                    <a class="btn btn-default" href="@Url.Action("Create","Relevadores")"> Crear Relevadores &raquo;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Transformadores</h3>
+                <p class="text-justify" style="min-height: 75px;">
+                    Dentro de los nomencladores Ud. tiene la posibilidad de visualizar los distintos transformadores de corriente o potencial en existencia.
+                </p>
+                <p>
+                    <a class="btn btn-default" href="@Url.Action("Index","TransformadoresCorriente")">Ver TCs &raquo;</a>
+                    <a class="btn btn-default" href="@Url.Action("Index","TransformadoresPotencial")">Ver TPs &raquo;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Esquemas</h3>
+                <p class="text-justify" style="min-height: 75px;">
+                    Los Esquemas son la finalidad de la aplicación. En este submenú Ud podrá gestionar su trabajo con los distintos modelos de esquemas.
+                </p>
+                <p>
+                    <a class="btn btn-default" href="@Url.Action("Create","EsquemasProteccion")">Crear Esquemas &raquo;</a>
+                    <a class="btn btn-default" href="@Url.Action("Index","TransformadoresCorriente")">Ver Reportes &raquo;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

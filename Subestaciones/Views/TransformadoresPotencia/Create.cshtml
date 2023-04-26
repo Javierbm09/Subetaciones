@@ -1,0 +1,375 @@
+﻿@model Subestaciones.Models.Clases.MoverTransf
+
+@{
+    ViewBag.Title = "Mover Transformador";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar banco de capacitor</h1>
+        </div>
+    }*@
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Home")">Inicio</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Mover transformador</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="ti-stats-down"></i>Mover Transformador
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                @Html.AntiForgeryToken()
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="tabbable-line boxless tabbable-reversed ">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active">
+                                                            <a href="#tab_1" data-toggle="tab" id="tab1"> De una Subestación de distribución para un Almacén </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab_2" data-toggle="tab" id="tab2">De un Almacén para una Subestación de Distribución</a>
+                                                        </li>
+
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="tab_1">
+                                                            <div class="portlet box blue">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-recycle"></i> Mover transformador desde una subestaci&oacute;n a un almac&eacute;n
+                                                                    </div>
+                                                                    <div class="tools">
+                                                                        <a href="javascript:;" class="collapse"> </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <div id="VPMoverDesdeSubToAlm"></div>
+                                                                    @Html.Partial("VPMoverDesdeSubToAlm", Model)
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_2">
+                                                            <div class="portlet box blue">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-arrow-circle-up"></i> Mover transformador desde un almac&eacute;n a una subestaci&oacute;n
+                                                                    </div>
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <div id="VPMoverDesdeAlmToSub">
+                                                                        @Html.Partial("VPMoverDesdeAlmToSub", Model)
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/Scripts/assets/global/plugins/ladda/spin.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/ladda/ladda.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/Scripts/assets/pages/scripts/ui-buttons.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script>
+         var movio = "@ViewBag.move";
+
+         if ((movio != null) && (movio == "Si")) {
+            swal({
+                title: "¡El transformador se movió correctamente!",
+                type: "success",
+                confirmButtonText: "Aceptar",
+                confirmButtonClass: "btn-primary"
+            });
+        }
+        $(document).ready(function () {
+            inicializar_select2();
+
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            var tableTS = $("#transfEnSub").DataTable({
+                "language": {
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    },
+                    "emptyTable": "No data available in table",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                    "infoEmpty": "No entries found",
+                    "infoFiltered": "(filtered1 from _MAX_ total entries)",
+                    "lengthMenu": "_MENU_ entries",
+                    "search": "Buscar:",
+                    "zeroRecords": "No matching records found"
+                },
+                "order": [
+                    [0, 'asc']
+                ],
+                responsive: true,
+                select: 'single',
+                "pageLength": 10
+            });
+
+            var tListAlm = $("#listaAlmacenes").DataTable({
+                "language": {
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    },
+                    "emptyTable": "Ningún dato disponible en esta tabla",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "lengthMenu": "_MENU_ Registros",
+                    "search": "Buscar:",
+                    "zeroRecords": "No se encontraron resultados"
+                },
+                rows: {
+                    _: "Seleccionados %d registros",
+                    1: "1 Registro seleccionado"
+                },
+                "order": [
+                    [0, 'asc']
+                ],
+                responsive: true,
+                select: 'single',
+                "pageLength": 10
+            });
+
+            var tableTA = $("#transformadorEnAlmacen").DataTable({
+                "language": {
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    },
+                    "emptyTable": "Ningún dato disponible en esta tabla",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "lengthMenu": "_MENU_ Registros",
+                    "search": "Buscar:",
+                    "zeroRecords": "No se encontraron resultados"
+                },
+                rows: {
+                    _: "Seleccionados %d registros",
+                    1: "1 Registro seleccionado"
+                },
+                "order": [
+                    [0, 'asc']
+                ],
+                responsive: true,
+                select: 'single',
+                "pageLength": 10
+            });
+
+
+            var tListSubs = $("#listaSubestaciones").DataTable({
+                "language": {
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    },
+                    "emptyTable": "Ningún dato disponible en esta tabla",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "lengthMenu": "_MENU_ Registros",
+                    "search": "Buscar:",
+                    "zeroRecords": "No se encontraron resultados"
+                },
+                rows: {
+                    _: "Seleccionados %d registros",
+                    1: "1 Registro seleccionado"
+                },
+                "order": [
+                    [0, 'asc']
+                ],
+                responsive: true,
+                select: 'single',
+                "pageLength": 10
+            });
+
+
+
+            //seleccionar transformador en subestacion
+            $("#Seleccionar").click(function () {
+                if (tableTS.rows({ selected: true }).count() > 0) {
+                    $("#idTransformador").val($("#Codigo", ".selected").val());
+                    $("#idEA").val($("#EA", ".selected").val());
+                    $("#trasfS").val($("#Nombre", ".selected").val());
+                    $("#codS").val($("#CodigoSub", ".selected").val());
+                    $("#nombS").val($("#nombreSubS", ".selected").val());
+                    $("#tipobloqueS").val($("#tbS", ".selected").val());
+                    $("#tiposS").val($("#tsS", ".selected").val());
+                    $("#esquemabS").val($("#ebS", ".selected").val());
+                    $("#cerrar").click();
+                    //alert($("#tbS", ".selected").val());
+
+                }
+            });
+
+            // selecciona almacen
+            $("#SelecAlm").click(function () {
+                if (tListAlm.rows({ selected: true }).count() > 0) {
+
+                    $("#codAlmacen").val($("#dir", ".selected").val());
+
+                    $("#codigoA").val($("#dir", ".selected").val());
+                    $("#nomA").val($("#NombreA", ".selected").val());
+                    $("#cierraAlm").click();
+                }
+            });
+
+
+            //selecciona transformador en almacen
+            $("#SeleccionarA").click(function () {
+                if (tableTA.rows({ selected: true }).count() > 0) {
+                    $("#idTransformador").val($("#CodigoA", ".selected").val());
+                    $("#idEA").val($("#EA", ".selected").val());
+                    $("#trasfA").val($("#NombreA", ".selected").val());
+                    $("#codAlmS").val($("#codigoAlmacen", ".selected").val());
+                    $("#almacenA").val($("#AlmA", ".selected").val());
+                    $("#cerrarA").click();
+                    //alert($("#dir", ".selected").val());
+
+                }
+            });
+
+            //selecciona subestacion
+            $("#SeleccionarSub").click(function () {
+                if (tListSubs.rows({ selected: true }).count() > 0) {
+                    $("#subsA").val($("#codigoSub", ".selected").val());
+                    $("#codigo").val($("#codigoSub", ".selected").val());
+
+                    $("#nsA").val($("#nombreSub", ".selected").val());
+                    $("#tbA").val($("#tipoBA", ".selected").val());
+                    $("#tsA").val($("#tipoSA", ".selected").val());
+                    $("#ebA").val($("#esqA", ".selected").val());
+                    $("#cerrarSub").click();
+                    //alert($("#codigoSub", ".selected").val());
+
+                }
+            });
+
+            //valida no deje campos en blanco mover desde subestacion para almacen
+            $("#toAlm").click(function () {
+                var idT = $("#idTransformador").val();
+                var idA = $("#codAlmacen").val();
+
+                if ((idT == "") || ( idA== "")) {
+                    swal({
+                        title: "¡Información!",
+                        text: "Seleccione el transformador y almacén para realizar el movimiento.",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonClass: "btn-primary"
+                    });
+
+                }
+            });
+
+            //valida no deje campos en blanco mover desde almacen para subestacion
+            $("#toSub").click(function () {
+                var idT = $("#idTransformador").val();
+                var idS = $("#codigo").val();
+
+                if ((idT == "") || (idS == "")) {
+                    swal({
+                        title: "¡Información!",
+                        text: "Seleccione el transformador y subestación para realizar el movimiento.",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonClass: "btn-primary"
+                    });
+
+                }
+            });
+
+        });
+    </script>
+}

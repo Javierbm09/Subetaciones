@@ -1,0 +1,1316 @@
+﻿@model Subestaciones.Models.Clases.MttoSubDistViewModel
+
+
+@{
+    /**/
+
+    ViewBag.Title = "Mantenimiento subestación de distribución - Transformador";
+}
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","SubMttoSubDistribucions")">Mantenimiento a la subestación de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar mantenimiento al transformador</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Insertar mantenimiento de la subestaci&oacute;n de distribuci&oacute;n - Transformador
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("Create", "Sub_MttoDistTransf", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                        {
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken()
+
+                            <!-- BEGIN FORM-->
+                            <div class="horizontal-form">
+                                <div class="form-body">
+
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos del transformador
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+
+                                            <div id="_VPTransf"></div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Pruebas:
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.transf.Tap_Encontrado, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.transf.Tap_Encontrado, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.HiddenFor(model => model.transf.Fecha)
+                                                    @Html.HiddenFor(model => model.transf.Id_EATransformador)
+                                                    @Html.HiddenFor(model => model.transf.Id_Transformador)
+                                                    @Html.HiddenFor(model => model.transf.CodigoSub)
+
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.transf.Tap_Dejado, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.transf.Tap_Dejado, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.transf.TempAmbiente, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.transf.TempAmbiente, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div> <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.transf.TempTransformador, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.transf.TempTransformador, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.transf.HumedadRelativa, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.transf.HumedadRelativa, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.transf.EstadoTiempo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.transf.EstadoTiempo, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                            </div>
+                                            <div class="tabbable-line boxless tabbable-reversed ">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active">
+                                                        <a href="#tabTransf_1" data-toggle="tab" id="tabTransf1">Chequeo exterior </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_2" data-toggle="tab" id="tabTransf2">Resistencia aislamiento </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_3" data-toggle="tab" id="tabTransf3">Resistencia &oacute;hmica </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_4" data-toggle="tab" id="tabTransf4">Relaci&oacute;n transformaci&oacute;n </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_5" data-toggle="tab" id="tabTransf5">Rigidez diel&eacute;ctrica aceite(kV) </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabTransf_1">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoTanqueExpansion, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoTanqueExpansion, ViewBag.estadoTanqueExp as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoIndNivelaceite, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoIndNivelaceite, ViewBag.indicador as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2" })
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoTermometro, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoTermometro, ViewBag.term as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoBusholtz_ReleIntegral, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoBusholtz_ReleIntegral, ViewBag.rele as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoSilica, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoSilica, ViewBag.nivelAceite as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoPintura, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoPintura, ViewBag.pintura as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoBushingAlta, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoBushingAlta, ViewBag.bushingAlta as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.NivelAceite, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.NivelAceite, ViewBag.silica as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoVentilacion, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoVentilacion, ViewBag.estadosVent as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoValvulas, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoValvulas, ViewBag.estadoVal as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoConexiones, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoConexiones, ViewBag.Conex as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.AterramientoTanque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.AterramientoTanque, ViewBag.aterrTanque as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoBushingBaja, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoBushingBaja, ViewBag.bushingBaja as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.TuboExplosor, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.TuboExplosor, ViewBag.tubo as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoRadiadores, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoRadiadores, ViewBag.radiadores as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.EstadoValvulaSobrePresion, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.EstadoValvulaSobrePresion, ViewBag.valSobreP as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.SaliderosResumidores, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.SaliderosResumidores, ViewBag.salideros as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.AterramientoNeutro, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.transf.AterramientoNeutro, ViewBag.aterrNeutro as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_2">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                Nivel
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                R15s (MΩ)
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                R60s (MΩ)
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                K=R60s/R15s
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                Estado
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="text-stat">
+                                                                    Prim vs Sec+Tierra
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.ResistAislABTR15, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.ResistAislABTR60, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.KPrimVsSecTierra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.EstadoPrimVsSecTierra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                Sec vs Prim+Tierra
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.ResistAislBATR15, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.ResistAislBATR60, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.KSecVsPrimTierra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.EstadoSecVsPrimTierra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Prim+Sec vs Tierra
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.ResistAislABR15, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.ResistAislABR60, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.KPrimSecVsTierra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.EstadoPrimSecVsTierra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.transf.InstUtilizadoResistAisl, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.transf.InstUtilizadoResistAisl, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_3">
+                                                        <div class=" col-md-12" id="TablaResistO">
+
+                                                            <table style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th colspan="1"></th>
+                                                                        <th colspan="3" align="center">Primario</th>
+                                                                        <th colspan="3" align="center">Secundario</th>
+                                                                        <th colspan="3" align="center">Primario % diferencia</th>
+                                                                        <th colspan="3" align="center">Secundario % diferencia</th>
+                                                                    </tr>
+
+                                                                    <tr>
+
+                                                                        <th>Nro Tap</th>
+                                                                        <th id="FAPrim">Fase A</th>
+                                                                        <th id="FBPrim">Fase B</th>
+                                                                        <th id="FCPrim">Fase C</th>
+                                                                        <th id="FASec">Fase A</th>
+                                                                        <th id="FBSec">Fase B</th>
+                                                                        <th id="FCSec">Fase C</th>
+
+                                                                        <th id="AB">A - B</th>
+                                                                        <th id="BC">B - C</th>
+                                                                        <th id="CA">C - A</th>
+                                                                        <th id="ab">a - b</th>
+                                                                        <th id="bc">b - c</th>
+                                                                        <th id="ca">c - a</th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @{
+                                                                        if (Model != null && Model.resistO != null)
+                                                                        {
+                                                                            for (int i = 0; i < ViewBag.nroPos; i++)
+                                                                            {
+                                                                                <tr>
+
+                                                                                    <td>
+                                                                                        @Html.TextBoxFor(model => model.resistO[i].NroTap, new { @class = "col-md-2", @id = "resistO_NroTap" + i })
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.TextBoxFor(model => model.resistO[i].ResistOhmFaseAPrim, new { @class = "col-md-4", @id = "resistO_ResistOhmFaseAPrim" + i })
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.TextBoxFor(model => model.resistO[i].ResistOhmFaseBPrim, new { @class = "col-md-2", @id = "resistO_ResistOhmFaseBPrim" + i })
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.TextBoxFor(model => model.resistO[i].ResistOhmFaseCPrim, new { @class = "col-md-2", @id = "resistO_ResistOhmFaseCPrim" + i })
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.TextBoxFor(model => model.resistO[i].ResistOhmFaseASec, new { @class = "col-md-4", @id = "resistO_ResistOhmFaseASec" + i })
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.TextBoxFor(model => model.resistO[i].ResistOhmFaseBSec, new { @class = "col-md-2", @id = "resistO_ResistOhmFaseBSec" + i })
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.TextBoxFor(model => model.resistO[i].ResistOhmFaseCSec, new { @class = "col-md-2", @id = "resistO_ResistOhmFaseCSec" + i })
+                                                                                    </td>
+
+                                                                                </tr>
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_4">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Valor esperado
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.ValorEsperadoRelacTransf, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class=" col-md-6" id="TablaRelacionTransf">
+
+                                                                <table style="width:100%" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th></th>
+                                                                            <th colspan="3" align="center">Relaci&oacute;n transformaci&oacute;n</th>
+                                                                            <th colspan="3" align="center">% Diferencia</th>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th style="width:100px">Nro Tap</th>
+                                                                            <th id="FA" style="width:100px">Fase A</th>
+                                                                            <th id="FB" style="width:100px">Fase B</th>
+                                                                            <th id="FC" style="width:100px">Fase C</th>
+                                                                            <th style="width:100px">A - B</th>
+                                                                            <th style="width:100px">B - C</th>
+                                                                            <th style="width:100px">C - A</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{
+                                                                            if (Model != null && Model.relacT != null)
+                                                                            {
+                                                                                for (int i = 0; i < ViewBag.nroPos; i++)
+                                                                                {
+                                                                                    <tr>
+
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.relacT[i].NroTap, new { @class = "col-md-2", @id = "relacT_NroTap" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.relacT[i].RelacTransFaseA, new { @class = "col-md-4", @id = "relacT_RelacTransFaseA" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.relacT[i].RelacTransFaseB, new { @class = "col-md-2", @id = "relacT_RelacTransFaseB" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.relacT[i].RelacTransFaseC, new { @class = "col-md-2", @id = "relacT_RelacTransFaseC" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.relacT[i].RTdifAB, new { @class = "col-md-4", @id = "relacT_RTdifAB" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.relacT[i].RTdifBC, new { @class = "col-md-4", @id = "relacT_RTdifBC" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.relacT[i].RTdifCA, new { @class = "col-md-4", @id = "relacT_RTdifCA" + i })
+                                                                                        </td>
+
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_5">
+                                                        <div class="row">
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    Prueba 1
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.RigidezDielectricaPrueba1, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Temperatura ambiente
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.TempAmbRigidezDielectrica, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Norma utilizada
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-group">
+                                                                    @Html.DropDownListFor(model => model.transf.NormaRigidezDielectrica, ViewBag.normas as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    Prueba 2
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.RigidezDielectricaPrueba2, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Temperatura transformador
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.TempTransfRigidezDielectrica, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Instrumento utilizado
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.InstUtilRigidezDielectrica, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    Prueba 3
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.RigidezDielectricaPrueba3, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    Humedad relativa
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.HumRelatRigidezDielectrica, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    Prueba 4
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.RigidezDielectricaPrueba4, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    Prueba 5
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.RigidezDielectricaPrueba5, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    Prueba 6
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.RigidezDielectricaPrueba6, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    Promedio
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.transf.PromedioRigidezDielectrica, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label " for="Observaciones">Observaciones</label>
+                                        <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="transf_Observaciones" name="transf.Observaciones" rows="5"></textarea>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="form-actions right">
+                                        <a class="btn btn-primary" id="compo" href="@Url.Action("ComponentesMtto","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="edit" href="@Url.Action("Edit","SubMttoSubDistribucions",new {codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="detail" href="@Url.Action("Detail","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <button type="submit" name="submitButton" value="@ViewBag.valor" class="btn blue">
+                                            <i class="fa fa-plus"></i> Guardar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+    @*<script src=@Url.Content("~/Content/plugins/jquery.number.min.js")></script>*@
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            let grupo = "";
+            let id_Transf;
+            let codSub = "@ViewBag.codSub";
+            let f = "@ViewBag.fechaMtto";
+            let idEA = "@ViewBag.eaMtto";
+            let operacion = "@ViewBag.valor";
+
+            if (operacion == "Editar") {
+                $("#compo").hide();
+                $("#edit").show();
+                $("#detail").hide();
+            }
+            else if (operacion == "Detail") {
+                $("#compo").hide();
+                $("#edit").hide();
+                $("#detail").show();
+            } else  {
+                $("#compo").show();
+                $("#edit").hide();
+                $("#detail").hide();
+            }
+
+
+            cargarTablaTransformadores();
+
+            function cargarTablaTransformadores() {
+                $.ajax({
+                    url: '@Url.Action("_VPTransf", "Sub_MttoDistTransf")',
+                    method: "POST",
+                    data: { sub: codSub},
+                    success: function (data) {
+
+                        $("#_VPTransf").html(data);
+
+                        $("#Seleccionar").click(function () {
+                            if (table.rows({ selected: true }).count() > 0) {
+                                let codS = $("#sub", ".selected").val();
+                                let idea = $("#EA", ".selected").val();
+                                id_Transf = $("#id_t", ".selected").val()
+
+                                //Cargar los datos del transformador seleccionado
+                                    $.getJSON('@Url.Action("DatoTransf")', {
+                                        sub: codS, ea: idea, t: id_Transf
+                                    }, function (datos) {
+
+                                            $("#transf_Id_Transformador").val(id_Transf);
+                                            $("#transf_Id_EATransformador").val(idEA);
+                                            $("#transf_Fecha").val(f);
+                                            $("#transf_CodigoSub").val(codSub);
+
+                                            // Dándole valores a los campos de la vista parcial del tranformador
+                                            $("#nombre").val(datos['Nombre']);
+                                            $("#nEmp").val(datos['Numemp']);
+                                            $("#nSerie").val(datos['NoSerie']);
+                                            $("#Fab").val(datos['Fabricante']);
+                                            $("#Imp").val(datos['PorcientoImpedancia']);
+                                            $("#GConex").val(datos['GrupoConexion']);
+                                            $("#VP").val(datos['TensionPrimaria']);
+                                            $("#VS").val(datos['TensionSecundaria']);
+                                            $("#cap").val(datos['capacidad']);
+                                            $("#nPos").val(datos['NroPosiciones']);
+                                            $("#pesoT").val(datos['PesoTotal']);
+                                            $("#pesoA").val(datos['PesoAceite']);
+                                            cant = datos['NroPosiciones'];
+                                            grupo = datos['GrupoConexion'];
+
+                                            if ((grupo == 'D/yn -1') || (grupo == 'D/yn -5') || (grupo == 'D/yn -7') || (grupo == 'D/yn -11')) {
+
+                                                $("#FAPrim").text("A-B");
+                                                $("#FBPrim").text("B-C");
+                                                $("#FCPrim").text("C-A");
+                                                $("#FASec").text("a-n");
+                                                $("#FBSec").text("b-n");
+                                                $("#FCSec").text("c-n");
+
+                                            }
+
+                                            if ((grupo == 'Yn/d - 1') || (grupo == 'Yn/d - 5') || (grupo == 'Yn/d - 7') || (grupo == 'Yn/d - 11')) {
+
+                                                $("#FAPrim").text("A-N");
+                                                $("#FBPrim").text("B-N");
+                                                $("#FCPrim").text("C-N");
+                                                $("#FASec").text("a-b");
+                                                $("#FBSec").text("b-c");
+                                                $("#FCSec").text("c-a");
+
+                                            }
+
+                                            if ((grupo == 'YnYn -0/d - 1') || (grupo == 'YnYn -0/d - 11')) {
+
+                                                $("#FAPrim").text("A-N");
+                                                $("#FBPrim").text("B-N");
+                                                $("#FCPrim").text("C-N");
+                                                $("#FASec").text("a-n");
+                                                $("#FBSec").text("b-n");
+                                                $("#FCSec").text("c-n");
+
+                                            }
+
+                                            if (grupo == 'D/d - 0') {
+
+                                                $("#FAPrim").text("A-B");
+                                                $("#FBPrim").text("B-C");
+                                                $("#FCPrim").text("C-A");
+                                                $("#FASec").text("a-b");
+                                                $("#FBSec").text("b-c");
+                                                $("#FCSec").text("c-a");
+
+                                            }
+
+                                            if (grupo == 'D/yn -1') {
+
+                                                $("#FA").text("H1-H3,x1-x0");
+                                                $("#FB").text("H2-H1, x2-x0");
+                                                $("#FC").text("H3-H2,x3-x0");
+
+                                            }
+
+                                            if (grupo == 'D/yn -5') {
+
+                                                $("#FA").text("H1-H3,x3-x0");
+                                                $("#FB").text("H2-H1, x1-x0");
+                                                $("#FC").text("H3-H2,x2-x0");
+
+                                            }
+
+                                            if (grupo == 'D/yn -7') {
+
+                                                $("#FA").text("H1-H3,x1-x0");
+                                                $("#FB").text("H2-H1,x2-x0");
+                                                $("#FC").text("H3-H2,x3-x0");
+
+                                            }
+
+                                            if (grupo == 'D/yn -11') {
+
+                                                $("#FA").text("H1-H3,x0-x1");
+                                                $("#FB").text("H2-H1,x0-x2");
+                                                $("#FC").text("H3-H2,x0-x3");
+
+                                            }
+
+                                            if (grupo == 'Yn/d - 1') {
+
+                                                $("#FA").text("H1-H0,x1-x2");
+                                                $("#FB").text("H2-H0,x2-x3");
+                                                $("#FC").text("H3-H0,x3-x1");
+
+                                            }
+
+                                            if (grupo == 'Yn/d - 5') {
+
+                                                $("#FA").text("H1-H0,x3-x1");
+                                                $("#FB").text("H2-H0,x1-x2");
+                                                $("#FC").text("H3-H0,x2-x3");
+
+                                            }
+
+                                            if (grupo == 'Yn/d - 7') {
+
+                                                $("#FA").text("H1-H0,x2-x1");
+                                                $("#FB").text("H2-H0,x3-x2");
+                                                $("#FC").text("H3-H0,x1-x2");
+
+                                            }
+
+                                            if (grupo == 'Yn/d - 11') {
+
+                                                $("#FA").text("H1-H0,x1-x3");
+                                                $("#FB").text("H2-H0,x2-x1");
+                                                $("#FC").text("H3-H0,x3-x2");
+
+                                            }
+
+                                            if ((grupo == 'YYnYn -0/d - 11') || (grupo == 'YnYn -0/d - 1')) {
+
+                                                $("#FA").text("H1-H0,x1-x0");
+                                                $("#FB").text("H2-H0,x2-x0");
+                                                $("#FC").text("H3-H0,x3-x0");
+
+                                            }
+
+                                            if (grupo == 'D/d - 0') {
+
+                                                $("#FA").text("H1-H3,x1-x3");
+                                                $("#FB").text("H2-H1,x2-x1");
+                                                $("#FC").text("H3-H2,x3-x2");
+
+                                            }
+
+                                            for (i = 0; i < cant; i++) {
+
+                                                llenarTabla();
+
+                                            }
+
+                                    });
+
+                                $("#cerrar").click();
+
+                            }
+                        });
+
+
+                        var table = $("#datatable_transformadores").DataTable({
+                            "language": {
+                                "aria": {
+                                    "sortAscending": ": activate to sort column ascending",
+                                    "sortDescending": ": activate to sort column descending"
+                                },
+                                "emptyTable": "No existen transformadores declarados en esta Subestación",
+                                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                "lengthMenu": "_MENU_ Registros",
+                                "search": "Buscar:",
+                                "zeroRecords": "No se encontraron resultados"
+                            },
+                            rows: {
+                                _: "Seleccionados %d registros",
+                                1: "1 Registro seleccionado"
+                            },
+                            "order": [
+                                [0, 'asc']
+                            ],
+                            responsive: true,
+                            select: true,
+                            "pageLength": 10
+                        });
+                    }
+                });
+            };
+
+            function llenarTabla() {
+
+                //Aqui cargo los valores para la tabla resistencia ohmica
+
+                var nombreNroTap = "resistO[" + i + "].NroTap";
+                var idNroTap = "resistO_NroTap" + i;
+                var nroTapText = "#" + idNroTap;
+
+                var nombrePrimFA = "resistO[" + i + "].ResistOhmFaseAPrim";
+                var idPrimFA = "resistO_ResistOhmFaseAPrim" + i;
+                var PrimFAText = "#" + idPrimFA;
+
+                var nombrePrimFB = "resistO[" + i + "].ResistOhmFaseBPrim";
+                var idPrimFB = "resistO_ResistOhmFaseBPrim" + i;
+                var PrimFBText = "#" + idPrimFB;
+
+                var nombrePrimFC = "resistO[" + i + "].ResistOhmFaseCPrim";
+                var idPrimFC = "resistO_ResistOhmFaseCPrim" + i;
+                var PrimFCText = "#" + idPrimFC;
+
+                var nombreSecFA = "resistO[" + i + "].ResistOhmFaseASec";
+                var idSecFA = "resistO_ResistOhmFaseASec" + i;
+                var SecFAText = "#" + idSecFA;
+
+                var nombreSecFB = "resistO[" + i + "].ResistOhmFaseBSec";
+                var idSecFB = "resistO_ResistOhmFaseBSec" + i;
+                var SecFBText = "#" + idSecFB;
+
+                var nombreSecFC = "resistO[" + i + "].ResistOhmFaseCSec";
+                var idSecFC = "resistO_ResistOhmFaseCSec" + i;
+                var SecFCText = "#" + idSecFC;
+
+
+                var nombreDifAB = "resistO[" + i + "].difAB";
+                var idDifAB = "resistO_difAB" + i;
+                var rDifABText = "#" + idDifAB;
+
+                var nombreDifBC = "resistO[" + i + "].difBC";
+                var idDifBC = "resistO_difBC" + i;
+                var rDifBCText = "#" + idDifBC;
+
+
+                var nombreDifCA = "resistO[" + i + "].difCA";
+                var idDifCA = "resistO_difCA" + i;
+                var rDifCAText = "#" + idDifCA;
+
+
+                var nombreDifab = "resistO[" + i + "].difab";
+                var idDifab = "resistO_difab" + i;
+                var rDifabText = "#" + idDifab;
+
+
+                var nombreDifbc = "resistO[" + i + "].difbc";
+                var idDifbc = "resistO_difbc" + i;
+                var rDifbcText = "#" + idDifbc;
+
+
+                var nombreDifca = "resistO[" + i + "].difca";
+                var idDifca = "resistO_difca" + i;
+                var rDifcaText = "#" + idDifca;
+
+
+                //Variables para mostrar los datos en el append de la tabla resistencia ohmica
+                //Estos valores se pasan al enviar el formulario
+                var inputCodSub = '<input class="CodSub" type="hidden" name="resistO[' + i + '].CodigoSub" >';
+                var inputFecha = '<input class="fechamtto" type="hidden" name="resistO[' + i + '].Fecha" >';
+                var inputEA = '<input class="ideamtto" type="hidden" name="resistO[' + i + '].Id_EATransformador" >';
+                var inputT = '<input class="idtmtto" type="hidden" name="resistO[' + i + '].Id_Transformador" >';
+
+
+                var tap = '<td><input text name="' + nombreNroTap + '" id="' + idNroTap + '" class="form-control"></text></td>';  //value="' +  i +'"
+                var resistFAPrim = '<td><input text name="' + nombrePrimFA + '" id="' + idPrimFA + '" class="form-control"></text></td>';
+                var resistFBPrim = '<td><input text name="' + nombrePrimFB + '" id="' + idPrimFB + '" class="form-control"></text></td>';
+                var resistFCPrim = '<td><input text name="' + nombrePrimFC + '" id="' + idPrimFC + '" class="form-control"></text></td>';
+                var resistFASec = '<td><input text name="' + nombreSecFA + '" id="' + idSecFA + '" class="form-control" ></text></td>';
+                var resistFBSec = '<td><input text name="' + nombreSecFB + '" id="' + idSecFB + '" class="form-control" ></text></td>';
+                var resistFCSec = '<td><input text name="' + nombreSecFC + '" id="' + idSecFC + '" class="form-control" </text></td>';
+                var diferenciaAB = '<td><input text name="' + nombreDifAB + '" id="' + idDifAB + '" class="form-control"></text></td>';
+                var diferenciaBC = '<td><input text name="' + nombreDifBC + '" id="' + idDifBC + '" class="form-control"></text></td>';
+                var diferenciaCA = '<td><input text name="' + nombreDifCA + '" id="' + idDifCA + '" class="form-control"></text></td>';
+                var diferenciaab = '<td><input text name="' + nombreDifab + '" id="' + idDifab + '" class="form-control"></text></td>';
+                var diferenciabc = '<td><input text name="' + nombreDifbc + '" id="' + idDifbc + '" class="form-control"></text></td>';
+                var diferenciaca = '<td><input text name="' + nombreDifca + '" id="' + idDifca + '" class="form-control"</text></td>';
+
+
+                $("#TablaResistO tbody").append('<tr>' +  tap + resistFAPrim + resistFBPrim + resistFCPrim + resistFASec + resistFBSec + resistFCSec +
+                    diferenciaAB + diferenciaBC + diferenciaCA + diferenciaab + diferenciabc + diferenciaca + inputCodSub + inputFecha + inputEA + inputT + '</tr>');
+
+                $(rDifABText).attr("disabled", true);
+                $(rDifBCText).attr("disabled", true);
+                $(rDifCAText).attr("disabled", true);
+                $(rDifabText).attr("disabled", true);
+                $(rDifbcText).attr("disabled", true);
+                $(rDifcaText).attr("disabled", true);
+                $(nroTapText).attr("disabled", true);
+                $(nroTapText).val(i + 1);
+
+                //End tabla resistecia ohmica
+
+                //Cálculo de diferencias
+                $(PrimFAText).change(function () {
+
+                    calculoDifResistenciaO();
+
+                });
+                $(PrimFBText).change(function () {
+
+                    calculoDifResistenciaO();
+
+                });
+                $(PrimFCText).change(function () {
+
+                    calculoDifResistenciaO();
+
+                });
+                $(SecFAText).change(function () {
+
+                    calculoDifResistenciaO();
+
+                });
+                $(SecFBText).change(function () {
+
+                    calculoDifResistenciaO();
+
+                });
+                $(SecFCText).change(function () {
+
+                    calculoDifResistenciaO();
+
+                });
+
+                function calculoDifResistenciaO() {
+                    if (($(PrimFAText).val() != 0) && ($(PrimFBText).val() != 0)) {
+                        $(rDifABText).val(($(PrimFBText).val() / $(PrimFAText).val() * 100) - 100);
+                    }
+                    if (($(PrimFBText).val() != 0) && ($(PrimFCText).val() != 0)) {
+                        $(rDifBCText).val(($(PrimFCText).val() / $(PrimFBText).val() * 100) - 100);
+                    }
+                    if (($(PrimFCText).val() != 0) && ($(PrimFAText).val() != 0)) {
+                        $(rDifCAText).val(($(PrimFAText).val() / $(PrimFCText).val() * 100) - 100);
+                    }
+                    if (($(SecFAText).val() != 0) && ($(SecFBText).val() != 0)) {
+                        $(rDifabText).val(($(SecFBText).val() / $(SecFAText).val() * 100) - 100);
+                    }
+                    if (($(SecFBText).val() != 0) && ($(SecFCText).val() != 0)) {
+                        $(rDifbcText).val(($(SecFCText).val() / $(SecFBText).val() * 100) - 100);
+                    }
+                    if (($(SecFAText).val() != 0) && ($(SecFCText).val() != 0)) {
+                        $(rDifcaText).val(($(SecFAText).val() / $(SecFCText).val() * 100) - 100);
+                    }
+                }
+
+                //End calculo de diferencias
+
+                //Aqui cargo los valores para la tabla relacion transformacion
+
+                var nroTapRT = "relacT[" + i + "].NroTap";
+                var idTapRT = "relacT_NroTap" + i;
+                var nroTapRTText = "#" + idTapRT;
+
+                var relaTransfFA = "relacT[" + i + "].RelacTransFaseA";
+                var idRelacTransFA = "relacT_RelacTransFaseA" + i;
+                var relaTransfFAText = "#" + idRelacTransFA;
+
+                var relaTransfFB = "relacT[" + i + "].RelacTransFaseB";
+                var idRelacTransFB = "relacT_RelacTransFaseB" + i;
+                var relaTransfFBText = "#" + idRelacTransFB;
+
+
+                var relaTransfFC = "relacT[" + i + "].RelacTransFaseC";
+                var idRelacTransFC = "relacT_RelacTransFaseC" + i;
+                var relaTransfFCText = "#" + idRelacTransFC;
+
+
+                var RTDifAB = "relacT[" + i + "].RTdifAB";
+                var idRTDifAB = "relacT_RTdifAB" + i;
+                var RTDifABText = "#" + idRTDifAB;
+
+                var RTDifBC = "relacT[" + i + "].RTdifBC";
+                var idRTDifBC = "relacT_RTdifBC" + i;
+                var RTDifBCText = "#" + idRTDifBC;
+
+                var RTDifCA = "relacT[" + i + "].RTdifCA";
+                var idRTDifCA = "relacT_RTdifCA" + i;
+                var RTDifCAText = "#" + idRTDifCA;
+
+                //Variables para mostrar los datos en el append de la tabla relacion transf
+                var inputCodSubRT = '<input class="CodSub" type="hidden" name="relacT[' + i + '].CodigoSub" >';
+                var inputFechaRT = '<input class="fechamtto" type="hidden" name="relacT[' + i + '].Fecha" >';
+                var inputEART = '<input class="ideamtto" type="hidden" name="relacT[' + i + '].Id_EATransformador" >';
+                var inputTRT = '<input class="idtmtto" type="hidden" name="relacT[' + i + '].Id_Transformador" >';
+
+                var tapRT = '<td><input text name="' + nroTapRT + '" id="' + idTapRT + '" class="form-control"></text></td>';
+                var relaTFA = '<td><input text name="' + relaTransfFA + '" id="' + idRelacTransFA + '" class="form-control"></text></td>';
+                var relaTFB = '<td><input text name="' + relaTransfFB + '" id="' + idRelacTransFB + '" class="form-control"></text></td>';
+                var relaTFC = '<td><input text name="' + relaTransfFC + '" id="' + idRelacTransFC + '" class="form-control"></text></td>';
+                var relaTdiferenciaAB = '<td><input text name="' + RTDifAB + '" id="' + idRTDifAB + '" class="form-control"></text></td>';
+                var relaTdiferenciaBC = '<td><input text name="' + RTDifBC + '" id="' + idRTDifBC + '" class="form-control"></text></td>';
+                var relaTdiferenciaCA = '<td><input text name="' + RTDifCA + '" id="' + idRTDifCA + '" class="form-control"></text></td>';
+
+
+                $("#TablaRelacionTransf tbody").append('<tr>' + tapRT + relaTFA + relaTFB + relaTFC + relaTdiferenciaAB + relaTdiferenciaBC + relaTdiferenciaCA + inputCodSubRT + inputFechaRT + inputEART + inputTRT + '</tr>');
+
+                $(RTDifABText).attr("disabled", true);
+                $(RTDifBCText).attr("disabled", true);
+                $(RTDifCAText).attr("disabled", true);
+                $(nroTapRTText).attr("disabled", true);
+                $(nroTapRTText).val(i + 1);
+
+                //End tabla relacion transformacion
+
+                //Cálculo de diferencias
+                $(relaTransfFAText).change(function () {
+
+                    calculoDifRelacionTransformacion();
+
+                });
+                $(relaTransfFBText).change(function () {
+
+                    calculoDifRelacionTransformacion();
+
+                });
+                $(relaTransfFCText).change(function () {
+
+                    calculoDifRelacionTransformacion();
+
+                });
+
+                function calculoDifRelacionTransformacion() {
+                    if (($(relaTransfFAText).val() != 0) && ($(relaTransfFBText).val() != 0)) {
+                        $(RTDifABText).val(($(relaTransfFBText).val() / $(relaTransfFAText).val() * 100) - 100);
+                    }
+                    if (($(relaTransfFBText).val() != 0) && ($(relaTransfFCText).val() != 0)) {
+                        $(RTDifBCText).val(($(relaTransfFCText).val() / $(relaTransfFBText).val() * 100) - 100);
+                    }
+                    if (($(relaTransfFAText).val() != 0) && ($(relaTransfFCText).val() != 0)) {
+                        $(RTDifCAText).val(($(relaTransfFAText).val() / $(relaTransfFCText).val() * 100) - 100);
+                    }
+                }
+            }
+
+            //Colores del estado
+            function MostrarResultadoen(resultado, elemento) {
+                //elemento.number(resultado, 2);
+                if (resultado <= 1) {
+                    elemento.css("background-color", "red");
+                }
+                else if (resultado > 1 && resultado <= 1.25) {
+                    elemento.css("background-color", "orange");
+                }
+                else if (resultado > 1.25 && resultado <= 2) {
+                    elemento.css("background-color", "lightgreen");
+                }
+                else {
+                    elemento.css("background-color", "green");
+                }
+            }
+
+            //Funcion para calcular resistencia de aislamiento
+            function CalcularResistAisl() {
+                if (($("#transf_ResistAislABTR15").val() != "") && ($("#transf_ResistAislABTR60").val() != "") && ($("#transf_ResistAislABTR60").val() > 0)) {
+                    $("#transf_KPrimVsSecTierra").val(($("#transf_ResistAislABTR60").val() / $("#transf_ResistAislABTR15").val()));
+                    if ($("#transf_KPrimVsSecTierra").val() != null) {
+                        MostrarResultadoen($("#transf_KPrimVsSecTierra").val(), $("#transf_EstadoPrimVsSecTierra"));
+                    }
+                    $("#transf_EstadoPrimVsSecTierra").val(AsignaEstado($("#transf_KPrimVsSecTierra").val()));
+                }// else seria poner los colores por defecto del editor K
+
+                if (($("#transf_ResistAislBATR15").val() != "") && ($("#transf_ResistAislBATR60").val() != "") && ($("#transf_ResistAislBATR60").val() > 0)) {
+                    $("#transf_KSecVsPrimTierra").val(($("#transf_ResistAislBATR60").val() / $("#transf_ResistAislBATR15").val()));
+                    if ($("#transf_KSecVsPrimTierra").val() != null) {
+                        MostrarResultadoen($("#transf_KSecVsPrimTierra").val(), $("#transf_EstadoSecVsPrimTierra"));
+                    }
+                    $("#transf_EstadoSecVsPrimTierra").val(AsignaEstado($("#transf_KSecVsPrimTierra").val()));
+
+                }// else seria poner los colores por defecto del editor K
+
+                if (($("#transf_ResistAislABR15").val() != "") && ($("#transf_ResistAislABR60").val() != "") && ($("#transf_ResistAislABR60").val() > 0)) {
+                    $("#transf_KPrimSecVsTierra").val(($("#transf_ResistAislABR60").val() / $("#transf_ResistAislABR15").val()));
+                    if ($("#transf_KPrimSecVsTierra").val() != null) {
+                        MostrarResultadoen($("#transf_KPrimSecVsTierra").val(), $("#transf_EstadoPrimSecVsTierra"));
+                    }
+                    $("#transf_EstadoPrimSecVsTierra").val(AsignaEstado($("#transf_KPrimSecVsTierra").val()));
+
+                }// else seria poner los colores por defecto del editor K
+
+            }
+
+            function AsignaEstado(valor) {
+                if (valor <= 1) {
+                    return ("Peligroso");
+                } else if ((valor > 1) && (valor <= 1.25)) {
+                    return ("Discutible");
+                } else if ((valor > 1.25) && (valor <= 2)) {
+                    return ("Bueno");
+                } else if (valor > 2) {
+                    return ("Excelente");
+                } else {
+                    return ("");
+                }
+            }
+
+            $(document).on("change", "#transf_ResistAislABTR15", function () {
+                CalcularResistAisl();
+            });
+            $(document).on("change", "#transf_ResistAislABTR60", function () {
+                CalcularResistAisl();
+            });
+            $(document).on("change", "#transf_ResistAislBATR15", function () {
+                CalcularResistAisl();
+            });
+            $(document).on("change", "#transf_ResistAislBATR60", function () {
+                CalcularResistAisl();
+            });
+            $(document).on("change", "#transf_ResistAislABR15", function () {
+                CalcularResistAisl();
+            });
+            $(document).on("change", "#transf_ResistAislABR60", function () {
+                CalcularResistAisl();
+            });
+
+            //Calcular promedio de riguidez dielectrica
+            function calculaPromedio() {
+                prueba1 = $("#transf_RigidezDielectricaPrueba1").val();
+                prueba2 = $("#transf_RigidezDielectricaPrueba2").val();
+                prueba3 = $("#transf_RigidezDielectricaPrueba3").val();
+                prueba4 = $("#transf_RigidezDielectricaPrueba4").val();
+                prueba5 = $("#transf_RigidezDielectricaPrueba5").val();
+                prueba6 = $("#transf_RigidezDielectricaPrueba6").val();
+                total = (prueba1 * 1 + prueba2 * 1 + prueba3 * 1 + prueba4 * 1 + prueba5 * 1 + prueba6 * 1);
+                if (total != 0) $("#transf_PromedioRigidezDielectrica").val(total / 6);
+            }
+
+            $(document).on("change", "#transf_RigidezDielectricaPrueba1", function () {
+                calculaPromedio();
+            });
+            $(document).on("change", "#transf_RigidezDielectricaPrueba2", function () {
+                calculaPromedio();
+            });
+            $(document).on("change", "#transf_RigidezDielectricaPrueba3", function () {
+                calculaPromedio();
+            });
+            $(document).on("change", "#transf_RigidezDielectricaPrueba4", function () {
+                calculaPromedio();
+            });
+            $(document).on("change", "#transf_RigidezDielectricaPrueba5", function () {
+                calculaPromedio();
+            });
+            $(document).on("change", "#transf_RigidezDielectricaPrueba6", function () {
+                calculaPromedio();
+            });
+
+            $("#form").submit(function () {
+                $(".CodSub").each(function (indice, valuie) { $(this).val(codSub); });
+                $(".fechamtto").each(function (indice, valuie) { $(this).val(f); });
+                $(".ideamtto").each(function (indice, valuie) { $(this).val(idEA); });
+                $(".idtmtto").each(function (indice, valuie) { $(this).val(id_Transf); });
+                return true;
+            });
+
+        });
+
+    </script>
+}

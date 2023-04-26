@@ -1,0 +1,483 @@
+﻿@model Subestaciones.Models.Clases.Sub_MttoTransformadoresUsoPlantaViewModel
+
+@{
+    ViewBag.Title = "Mantenimiento de los transformadores de Uso Planta";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_MttoTransformadoresUsoPlanta")">Lista de mantenimientos</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Insertar mantenimiento de los transformadores de uso planta
+                            </div>
+                        </div>
+
+                        <div class="portlet-body form">
+
+                            @using (Html.BeginForm("Create", "Sub_MttoTransformadoresUsoPlanta", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                            {
+
+                                @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+
+                                    <div class="form-body">
+
+                                        <div class="row" style="text-align: center; font-size:20px">
+                                            @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.MensajeExistenciaMtto, "", new { @class = "text-danger", @id="Mensaje" })
+
+                                            @Html.HiddenFor(model => model.sub_MttoTransUsoP.Id_EATransformador, new { @id = "Id_EATransformador" })
+                                            @Html.HiddenFor(model => model.sub_MttoTransUsoP.Id_Eadministrativa, new { @id = "Id_EATransformador" })
+
+                                            @Html.HiddenFor(model => model.sub_MttoTransUsoP.Id_Transformador, new { @id = "Id_Transformador" })
+                                        </div>
+
+                                        <div class="panel">
+                                            <div class="panel-heading" style="background-color: #99999959"><strong>Datos del mantenimiento</strong></div>
+                                            <div class="panel-body">
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="cargarNombreSub">
+                                                        @Html.LabelFor(model => model.subestacionesTrans.NombreSubestacion, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="NombreSub" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.sub_MttoTransUsoP.CodigoSub, htmlAttributes: new { @class = "control-label" })
+
+                                                        @Html.DropDownListFor(model => model.sub_MttoTransUsoP.CodigoSub, ViewBag.ListaSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @id = "codSubTrans" })
+                                                        @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.CodigoSub, "", new { @class = "text-danger" })
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.bancosTransformadores.Codigo, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.bancosTransformadores.Codigo, ViewBag.banco as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @id = "codigoBanco" })
+                                                        @Html.ValidationMessageFor(model => model.bancosTransformadores.Codigo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-heading" style="background-color: #99999959"><strong>Datos generales</strong> </div>
+                                            <div class="panel-body">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.sub_MttoTransUsoP.TipoMantenimiento, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.sub_MttoTransUsoP.TipoMantenimiento, ViewBag.TiposMtto as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.TipoMantenimiento, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.sub_MttoTransUsoP.EjecutadoPor, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EjecutadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EjecutadoPor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.Fecha, htmlAttributes: new { @class = "control-label" })
+
+                                                    <div class="input-group date" id="fechahora">
+                                                        <input type="text" disabled class="form-control" id="termofechahora">
+                                                        <span class="input-group-addon btn blue tooltips" disabled id="termografiafechahora" data-original-title="Seleccionar fecha">
+                                                            <span class="fa fa-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                    @Html.HiddenFor(model => model.sub_MttoTransUsoP.Fecha)
+                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.Fecha, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.sub_MttoTransUsoP.Mantenido, htmlAttributes: new { @class = "control-label " })
+                                                        <br />
+                                                        @Html.EditorFor(model => model.sub_MttoTransUsoP.Mantenido.Value, new
+                                                        {
+                                                            htmlAttributes = new
+                                                            {
+                                                                Name = "sub_MttoTransUsoP.Mantenido",
+                                                                @id = "sub_MttoTransUsoP_Mantenido",
+                                                                @class = "form-control js-switch"
+                                                            }
+                                                        })
+                                                        @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.Mantenido, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-heading" style="background-color: #99999959"><strong>Datos del mantenimiento al transformador</strong></div>
+                                            <div class="panel-body">
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="cargarDatosMtto">
+                                                        @Html.LabelFor(model => model.transformadores.Numemp, htmlAttributes: new { @class = "control-label" })
+
+                                                        @Html.DropDownListFor(model => model.transformadores.Numemp, ViewBag.numEmpresa as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @id = "numEmpresa" })
+                                                        @Html.ValidationMessageFor(model => model.transformadores.Numemp, "", new { @class = "text-danger" })
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="noSerie">
+                                                        @Html.LabelFor(model => model.dTUsoP.NoSerie, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="noSerieInp" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="fabricante">
+                                                        @Html.LabelFor(model => model.dTUsoP.Fabricante, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="fabricanteInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="tension">
+                                                        @Html.LabelFor(model => model.dTUsoP.Tension, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="tensionInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="impedancia">
+                                                        @Html.LabelFor(model => model.dTUsoP.Impedancia, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="impedanciaInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="capacidad">
+                                                        @Html.LabelFor(model => model.dTUsoP.Capacidad, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="capacidadInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="pesoAislante">
+                                                        @Html.LabelFor(model => model.dTUsoP.PesoAislante, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="pesoAislanteInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="peso">
+                                                        @Html.LabelFor(model => model.dTUsoP.Peso, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="pesoInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="tapEncontrado">
+                                                        @Html.LabelFor(model => model.dTUsoP.TapEncontrado, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="tapEncontradoInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="tapDejado">
+                                                        @Html.LabelFor(model => model.dTUsoP.TapDejado, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="tapDejadoInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="polaridadGrupo">
+                                                        @Html.LabelFor(model => model.dTUsoP.PolaridadGrupo, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="polaridadGrupoInput" type="text" class="form-control" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="panel-heading" style="background-color: #99999959"><strong>Pruebas:</strong></div>
+                                                <div class="panel">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group" id="tempAmbiente">
+                                                            @Html.LabelFor(model => model.sub_MttoTransUsoP.TempAmbiente, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.sub_MttoTransUsoP.TempAmbiente, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.TempAmbiente, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group" id="tempTransformador">
+                                                            @Html.LabelFor(model => model.sub_MttoTransUsoP.TempTransformador, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.sub_MttoTransUsoP.TempTransformador, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.TempTransformador, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group" id="humedadRelativa">
+                                                            @Html.LabelFor(model => model.sub_MttoTransUsoP.HumedadRelativa, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.sub_MttoTransUsoP.HumedadRelativa, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.HumedadRelativa, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group" id="estadoTiempo">
+                                                            @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoTiempo, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.sub_MttoTransUsoP.EstadoTiempo, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoTiempo, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label " for="Observaciones">Observaciones</label>
+                                                <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="sub_MttoTransUsoP_Observaciones" name="sub_MttoTransUsoP.Observaciones" rows="5"></textarea>
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_MttoTransformadoresUsoPlanta")"><i class="fa fa-list"></i> Listado de mantenimientos</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-plus"></i> Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+
+}
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src=@Url.Content("~/Content/plugins/switchery/switchery.min.js")></script>
+
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+    <!--datepicker-->
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            fecha = new Date();
+            fechaini = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0);
+            fechafin = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 23, 59);
+
+            $("#fechahora").datetimepicker({
+                language: 'es',
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                dateFormat: 'dd/mm/yyyy',
+                linkFormat: 'dd/mm/yyyy',
+                showMeridian: 1,
+                startDate: fechaini,
+                endDate: fechafin,
+                forceParse: 1,
+                startView: 2,
+                maxView: 2
+            }).datetimepicker('setDate', fecha);
+
+            $('.js-switch').bootstrapSwitch({
+                onText: "Si",
+                offText: "No"
+            });
+
+
+            $("#codSubTrans").change(function () {
+                $("#NombreSub").val("");
+                $("#codigoBanco").val("");
+                $("#numEmpresa").val("");
+                $("#noSerieInp").val("");
+                $("#fabricanteInput").val("");
+                $("#tensionInput").val("");
+                $("#impedanciaInput").val("");
+                $("#capacidadInput").val("");
+                $("#pesoAislanteInput").val("");
+                $("#pesoInput").val("");
+                $("#tapEncontradoInput").val("");
+                $("#tapDejadoInput").val("");
+                $("#polaridadGrupoInput").val("");
+                cargarTUsoPlanta();
+            });
+
+            $("#codigoBanco").change(function () {
+                cargarNumEmpresa();
+            });
+
+            function cargarTUsoPlanta() {
+                var sub = $("#codSubTrans").val();
+                if (sub != "") {
+                    $.ajax({
+                        url: '@Url.Action("Cargar_transformador_usoPlanta", "Sub_MttoTransformadoresUsoPlanta")',
+                        method: "POST",
+                        data: { codSubTrans: sub },
+                        success: function (data) {
+                            $('#codigoBanco').html(data);
+                            $(".select2").select2({
+                                placeholder: "Seleccione un elemento de la lista",
+                            });
+                        }
+                    });
+                }
+            }
+
+            $("#codSubTrans").change(function () {
+                var sub = $("#codSubTrans").val();
+                if (sub != "") {
+                    $.ajax({
+                        url: '@Url.Action("Cargar_NombreSub", "Sub_MttoTransformadoresUsoPlanta")',
+                        type: "POST",
+                        datatype: "json",
+                        data: { codSubTrans: sub },
+                        success: function (data) {
+                            $("#NombreSub").val(data[0].NombreSubestacion);
+                        }
+                    });
+                } else {
+                    $("#NombreSub").val("");
+                }
+            });
+
+            function cargarNumEmpresa() {
+                var codigo = $("#codigoBanco").val();
+                if (codigo != "") {
+                    $.ajax({
+                        url: '@Url.Action("Cargar_NumEmpresa", "Sub_MttoTransformadoresUsoPlanta")',
+                        method: "POST",
+                        data: { codigoBanco: codigo },
+                        success: function (data) {
+                            $('#numEmpresa').html(data);
+                            $(".select2").select2({
+                                placeholder: "Seleccione un elemento de la lista",
+                            });
+                        }
+                    });
+                }
+            }
+
+            $("#cargarDatosMtto").change(function () {
+                var NE = $("#numEmpresa").val();
+                if (NE != "") {
+                    $.ajax({
+                        url: '@Url.Action("Cargar_datos_MttoTUP", "Sub_MttoTransformadoresUsoPlanta")',
+                        type: "POST",
+                        datatype: "json",
+                        data: { numEmpresa: NE },
+                        success: function (data) {
+                            $("#noSerieInp").val(data[0].NoSerie);
+                            $("#fabricanteInput").val(data[0].Fabricante);
+                            $("#tensionInput").val(data[0].Tension);
+                            $("#impedanciaInput").val(data[0].Impedancia);
+                            $("#capacidadInput").val(data[0].Capacidad);
+                            $("#pesoAislanteInput").val(data[0].PesoAislante);
+                            $("#pesoInput").val(data[0].Peso);
+                            $("#tapEncontradoInput").val(data[0].TapEncontrado);
+                            $("#tapDejadoInput").val(data[0].TapDejado);
+                            $("#polaridadGrupoInput").val(data[0].PolaridadGrupo);
+                            $("#Id_EATransformador").val(data[0].Id_EAdministrativa);
+                            $("#Id_Transformador").val(data[0].Id_Transformador);
+                        }
+                    });
+                } else {
+                    $("#noSerieInp").val("");
+                    $("#fabricanteInput").val("");
+                    $("#tensionInput").val("");
+                    $("#impedanciaInput").val("");
+                    $("#capacidadInput").val("");
+                    $("#pesoAislanteInput").val("");
+                    $("#pesoInput").val("");
+                    $("#tapEncontradoInput").val("");
+                    $("#tapDejadoInput").val("");
+                    $("#polaridadGrupoInput").val("");
+                }
+            });
+
+            let valorfecha = $("#termofechahora").val();
+            let newfecha = valorfecha.split(" ")[0];
+            let diafecha = newfecha.split("/")[0];
+            let mesfecha = newfecha.split("/")[1];
+            let annofecha = newfecha.split("/")[2];
+            let finalFecha = `${annofecha}-${mesfecha}-${diafecha}`;
+
+            let nombreSubest = $("#NombreSub").val();
+
+            $("#form").submit(function () {
+
+                $('#sub_MttoTransUsoP_Fecha').val(finalFecha);
+            });
+
+        });
+    </script>
+}

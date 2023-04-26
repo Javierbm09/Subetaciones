@@ -1,0 +1,529 @@
+﻿@model Subestaciones.Models.Clases.Sub_MttoBateriasEstacionariasViewModel
+
+@{
+    ViewBag.Title = "Detalles del mantenimiento de la baterías estacionarías";
+}
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_MttoBateriasEstacionarias")">Lista de mantenimientos</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Detalles del mantenimiento de la batería estacionaría
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Details", "Sub_MttoBateriasEstacionarias", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                            {
+                                @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="text-align: center; font-size:20px">
+                                            @Html.ValidationMessageFor(model => model.Sub_MBE.MensajeExistenciaMtto, "", new { @class = "text-danger" })
+
+                                            @Html.HiddenFor(model => model.Sub_MBE.id_Bateria, new { @id = "id_Bateria" })
+                                            @Html.HiddenFor(model => model.Sub_MBE.EA_RedCD, new { @id = "EA_RedCD" })
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos generales del mantenimiento</div>
+                                            <div class="panel-body">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Sub_MBE.subestacion, htmlAttributes: new { @class = "control-label" })
+
+                                                        @Html.DropDownListFor(model => model.Sub_MBE.subestacion, ViewBag.ListaSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @id = "codSub", @disabled = true })
+                                                        @Html.ValidationMessageFor(model => model.Sub_MBE.subestacion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Sub_MBE.TipoMtto, htmlAttributes: new { @class = "control-label" })
+
+                                                        @Html.DropDownListFor(model => model.Sub_MBE.TipoMtto, ViewBag.TiposMtto as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                        @Html.ValidationMessageFor(model => model.Sub_MBE.TipoMtto, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Sub_MBE.RealizadoPor, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.Sub_MBE.RealizadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                        @Html.ValidationMessageFor(model => model.Sub_MBE.RealizadoPor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.Sub_MBE.fechaMtto, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Sub_MBE.fechaMtto, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Sub_MBE.Mantenido, htmlAttributes: new { @class = "control-label " })
+                                                        <br />
+                                                        @Html.EditorFor(model => model.Sub_MBE.Mantenido.Value, new
+                                                        {
+                                                            htmlAttributes = new
+                                                            {
+                                                                Name = "Sub_MBE.Mantenido",
+                                                                @id = "Sub_MBE_Mantenido",
+                                                                @class = "form-control js-switch",
+                                                                @readonly = "readonly"
+                                                            }
+                                                        })
+                                                        @Html.ValidationMessageFor(model => model.Sub_MBE.Mantenido, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos de chapa del banco  de baterías</div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group" id="cargarBB">
+                                                            @Html.LabelFor(model => model.DatosCBBVM.TipoBateria, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.DatosCBBVM.TipoBateria, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group" id="cargarCapacidad">
+                                                            @Html.LabelFor(model => model.DatosCBBVM.TensionBateria, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.DatosCBBVM.TensionBateria, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group" id="cargarClase">
+                                                            @Html.LabelFor(model => model.DatosCBBVM.ClaseBateria, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.DatosCBBVM.ClaseBateria, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group" id="cargarClase">
+                                                            @Html.LabelFor(model => model.DatosCBBVM.CapacidadBateria, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.DatosCBBVM.CapacidadBateria, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group" id="cargarClase">
+                                                            @Html.LabelFor(model => model.DatosCBBVM.NombreServicioCD, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.DatosCBBVM.NombreServicioCD, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos generales del mantenimiento a baterías estacionarías</div>
+
+                                            <div class="panel-body">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.EstadoExtVasos, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.Sub_MBE.EstadoExtVasos, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.EstadoAprieteBornes, htmlAttributes: new { @class = "control-label" })
+                                                            <div class="radio">
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.EstadoAprieteBornes, 1)
+                                                                    Sí
+                                                                </label>
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.EstadoAprieteBornes, 0)
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.Sub_MBE.EstadoAprieteBornes, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.LimpiezaBornes, htmlAttributes: new { @class = "control-label" })
+                                                            <div class="radio">
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.LimpiezaBornes, 1)
+                                                                    Sí
+                                                                </label>
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.LimpiezaBornes, 0)
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.Sub_MBE.LimpiezaBornes, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.AprieteBornes, htmlAttributes: new { @class = "control-label" })
+                                                            <div class="radio">
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.AprieteBornes, 1)
+                                                                    Sí
+                                                                </label>
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.AprieteBornes, 0)
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.Sub_MBE.AprieteBornes, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.AplicacionVaselina, htmlAttributes: new { @class = "control-label" })
+                                                            <div class="radio">
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.AplicacionVaselina, 1)
+                                                                    Sí
+                                                                </label>
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.AplicacionVaselina, 0)
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.Sub_MBE.AplicacionVaselina, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.LimpiezaPanelBaterias, htmlAttributes: new { @class = "control-label" })
+                                                            <div class="radio">
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.LimpiezaPanelBaterias, 1)
+                                                                    Sí
+                                                                </label>
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.LimpiezaPanelBaterias, 0)
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.Sub_MBE.LimpiezaPanelBaterias, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.LimpiezaPanelCargador, htmlAttributes: new { @class = "control-label" })
+                                                            <div class="radio">
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.LimpiezaPanelCargador, 1)
+                                                                    Sí
+                                                                </label>
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.LimpiezaPanelCargador, 0)
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.Sub_MBE.LimpiezaPanelCargador, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.AterramientoPaneles, htmlAttributes: new { @class = "control-label" })
+                                                            <div class="radio">
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.AterramientoPaneles, 1)
+                                                                    Sí
+                                                                </label>
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.Sub_MBE.AterramientoPaneles, 0)
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                            @Html.ValidationMessageFor(model => model.Sub_MBE.AterramientoPaneles, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Sub_MBE.NivelElectrolito, htmlAttributes: new { @class = "control-label" })
+
+                                                            @Html.DropDownListFor(model => model.Sub_MBE.NivelElectrolito, ViewBag.nivel as IEnumerable<SelectListItem>,
+    "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label " for="Observaciones">Observaciones</label>
+                                                <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="Sub_MBE_Observaciones" name="Sub_MBE.Observaciones" rows="5" disabled>@ViewBag.Observaciones</textarea>
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel">
+                                            <div class="tabbable-line boxless tabbable-reversed ">
+                                                <ul class="nav nav-tabs">
+                                                    <li>
+                                                        <a href="#tabTransf_2" data-toggle="tab" id="tabTransf2">Datos de los vasos </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_3" data-toggle="tab" id="tabTransf3">Instrumentos utilizados durante el mantenimiento </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabTransf_2">
+                                                        <div class="panel-body">
+                                                            <div class=" col-md-12" id="TablaSub_MBEV">
+
+                                                                <table style="width:50%" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Nro. Vasos</th>
+                                                                            <th id="densidad">Densidad (mg/cm3)</th>
+                                                                            <th id="voltaje">Voltaje (V)</th>
+                                                                            <th id="temp">Temperatura (°C)</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{
+                                                                            if (Model != null && Model.Sub_MBEV != null)
+                                                                            {
+                                                                                for (int i = 0; i < ViewBag.nroVasos; i++)
+                                                                                {
+                                                                                    <tr>
+
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.Sub_MBEV[i].nroVaso, new { @class = "col-md-2 form-control", @id = "Sub_MBEV_nroVaso" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.Sub_MBEV[i].densidad, new { @class = "col-md-2 form-control", @id = "Sub_MBEV_densidad" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.Sub_MBEV[i].voltaje, new { @class = "col-md-2 form-control", @id = "Sub_MBEV_voltaje" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.Sub_MBEV[i].temperatura, new { @class = "col-md-2 form-control", @id = "Sub_MBEV_temperatura" + i })
+                                                                                        </td>
+
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_3">
+                                                        <div class="panel-body">
+                                                            <div id="TablaInstrumentosBateriasEstacionarias"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_MttoBateriasEstacionarias")"><i class="fa fa-list"></i> Listado de mantenimientos</a>
+                                            <a class="btn btn-warning" href="@Url.Action("Edit","Sub_MttoBateriasEstacionarias", new {id_MBE = Model.DatosCBBVM.id_MttoBatEstacionarias, id_Bateria = Model.DatosCBBVM.Id_Bateria, redEA = Model.DatosCBBVM.EA_RedCD, cod = Model.Sub_MBE.subestacion } )" class="btn btn-warning mt-sweetalert btn-xs" title="Editar"><i class="fa fa-pencil"></i> Editar</a>
+                                            @*<a class="btn btn-warning" href="@Url.Action("Edit","Sub_MttoBateriasEstacionarias", new { id_MBE = Model.Sub_MBEI.id_MttoBatEstacionarias, id_Bateria = Model.Sub_MBEI.id_Bateria, redEA = Model.Sub_MBEI.EA_RedCD, cod = Model.Sub_MBE.subestacion })"><i class="fa fa-pencil"></i> Editar</a>*@
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.orange.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.energyblue.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.windowsphone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.highcontrast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.light.css" rel="stylesheet" type="text/css" />
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src=@Url.Content("~/Content/plugins/switchery/switchery.min.js")></script>
+
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+    <!--datepicker-->
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    @*<script src="~//assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>*@
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcore.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxbuttons.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxscrollbar.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxmenu.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxwindow.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxpanel.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.aggregates.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.grouping.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdropdownlist.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxlistbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.columnsresize.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.filter.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/localization.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxnumberinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcombobox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
+
+    <script>
+        var idMBE = @ViewBag.IdMttoBE;
+        var idB = @ViewBag.IdBateria;
+        var ea_red = @ViewBag.RedEA;
+
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            fecha = new Date();
+            fechaini = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0);
+            fechafin = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 23, 59);
+
+            $("#fechahora").datetimepicker({
+                language: 'es',
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                dateFormat: 'dd/mm/yyyy',
+                linkFormat: 'dd/mm/yyyy',
+                showMeridian: 1,
+                startDate: fechaini,
+                endDate: fechafin,
+                forceParse: 1,
+                startView: 2,
+                maxView: 2
+            }).datetimepicker('setDate', fecha);
+
+            $('.js-switch').bootstrapSwitch({
+                onText: "Si",
+                offText: "No"
+            });
+
+            $('.radio :input').prop('disabled', true);
+
+
+            for (i = 0; i < @ViewBag.NroVasos; i++) {
+                llenarTabla();
+            }
+
+            function llenarTabla() {
+
+                //var nombreNroVaso = "Sub_MBEV[" + i + "].nroVaso";
+                var idNroVaso = "Sub_MBEV_nroVaso" + i;
+                var nroVasoText = "#" + idNroVaso;
+
+                //var nombreDensidad = "Sub_MBEV[" + i + "].densidad";
+                var idDensidad = "Sub_MBEV_densidad" + i;
+                var DensidadText = "#" + idDensidad;
+
+                //var nombreVoltaje = "Sub_MBEV[" + i + "].voltaje";
+                var idVoltaje = "Sub_MBEV_voltaje" + i;
+                var VoltajeText = "#" + idVoltaje;
+
+                //var nombreTemperatura = "Sub_MBEV[" + i + "].temperatura";
+                var idTemperatura = "Sub_MBEV_temperatura" + i;
+                var TemperaturaText = "#" + idTemperatura;
+
+                $(nroVasoText).attr("disabled", true);
+                $(DensidadText).attr("disabled", true);
+                $(VoltajeText).attr("disabled", true);
+                $(TemperaturaText).attr("disabled", true);
+            }
+
+        });
+
+    </script>
+
+    <script src="~/Scripts/js/jsTablaInstrumentosBateriasEstacionariasDetails.js"></script>
+}

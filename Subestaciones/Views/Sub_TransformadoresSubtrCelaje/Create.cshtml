@@ -1,0 +1,282 @@
+﻿@model Subestaciones.Models.Sub_TransformadoresSubtrCelaje
+
+
+@{
+    ViewBag.Title = "Inspección subestación de distribución - Transformador";
+}
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_CelajeSubDistribucion")">Inspecci&oacute;n a la subestación de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Inspecci&oacute;n al transformador de fuerza</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Inspecci&oacute;n de la subestaci&oacute;n de distribuci&oacute;n - Transformador de fuerza
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("Create", "Sub_TransformadoresSubtrCelaje", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                        {
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken()
+
+                            <!-- BEGIN FORM-->
+                            <div class="horizontal-form">
+                                <div class="form-body">
+
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos del transformador
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+
+                                            <div id="_VPTransf"></div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Inspecci&oacute;n:
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.nAceite, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.nAceite, ViewBag.aceite as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.HiddenFor(model => model.fecha)
+                                                    @Html.HiddenFor(model => model.Id_EAdministrativa)
+                                                    @Html.HiddenFor(model => model.Id_Transformador)
+                                                    @Html.HiddenFor(model => model.codigoSub)
+                                                    @Html.HiddenFor(model => model.nombreCelaje)
+
+
+
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.pintura, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.pintura, ViewBag.estpintura as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.aterramiento, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.aterramiento, ViewBag.aterr as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div> <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.bushing, htmlAttributes: new { @class = "control-label" })
+                                                      @Html.DropDownListFor(model => model.bushing, ViewBag.bush as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    @Html.LabelFor(model => model.temperaturaReal, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.temperaturaReal, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label " for="observaciones">Observaciones</label>
+                                                <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="observaciones" name="observaciones" rows="2"></textarea>
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="observaciones" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="form-actions right">
+                                        <a class="btn btn-primary" id="compo" href="@Url.Action("ComponentesInsp","Sub_CelajeSubDistribucion",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaInsp })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="edit" href="@Url.Action("Edit","Sub_CelajeSubDistribucion",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fechaIns = ViewBag.fechaInsp })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="detail" href="@Url.Action("Detail","Sub_CelajeSubDistribucion",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaInsp })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <button type="submit" name="submitButton" value="@ViewBag.valor" class="btn blue">
+                                            <i class="fa fa-plus"></i> Guardar
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"> </script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")">    </script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+            var grupo = "";
+            var codSub = "@ViewBag.codSub";
+            var f = "@ViewBag.fechaInsp";
+            var tipo = "@ViewBag.nomb"
+            var operacion = "@ViewBag.valor"
+
+            if (operacion == "Editar") {
+                $("#compo").hide();
+                $("#edit").show();
+                $("#detail").hide();
+            }
+            else if (operacion == "Detail") {
+                $("#compo").hide();
+                $("#edit").hide();
+                $("#detail").show();
+            } else  {
+                $("#compo").show();
+                $("#edit").hide();
+                $("#detail").hide();
+            }
+
+            $("#fecha").val(f);
+            //$("#transf_Id_EATransformador").val(idEA);
+            $("#codigoSub").val(codSub);
+            $("#nombreCelaje").val(tipo);
+
+            cargarTablaTransformadores();
+            function cargarTablaTransformadores() {
+                $.ajax({
+                    url: '@Url.Action("_VPTransf", "Sub_TransformadoresSubtrCelaje")',
+                    method: "POST",
+                    data: { sub: codSub },
+                    success: function (data) {
+
+                        $("#_VPTransf").html(data);
+
+                        $("#Seleccionar").click(function () {
+                            if (table.rows({ selected: true }).count() > 0) {
+                                codS = $("#sub", ".selected").val();
+                                idea = $("#EA", ".selected").val();
+                                id_t = $("#id_t", ".selected").val()
+                                //cargar los datos del transformador seleccionado
+                                $.getJSON('@Url.Action("DatoTransf")', {
+                                    sub: codS, ea: idea, t: id_t
+                                }, function (datos) {
+
+                                    $("#transf").val(datos['Nombre']);
+                                    $("#Id_Transformador").val(id_t);
+                                    //$("#transf_Id_Transformador").val(id_t);
+                                    $("#Id_EAdministrativa").val(idea);
+                                    //$("#transf_Id_EATransformador").val(idea);
+                                    //$("#transf_Fecha").val(f);
+                                    $("#Subestacion").val(codS);
+                                    //$("#transf_CodigoSub").val(datos['Subestacion']);
+                                    $("#nEmp").val(datos['Numemp']);
+                                    $("#nSerie").val(datos['NoSerie']);
+                                    $("#Fab").val(datos['Fabricante']);
+                                    $("#Imp").val(datos['PorcientoImpedancia']);
+                                    $("#GConex").val(datos['GrupoConexion']);
+                                    $("#VP").val(datos['TensionPrimaria']);
+                                    $("#VS").val(datos['TensionSecundaria']);
+                                    $("#cap").val(datos['capacidad']);
+                                    $("#nPos").val(datos['NroPosiciones']);
+                                    $("#pesoT").val(datos['PesoTotal']);
+                                    $("#pesoA").val(datos['PesoAceite']);
+                                    cant = datos['NroPosiciones'];
+                                    grupo = datos['GrupoConexion'];
+                                });
+                                $("#cerrar").click();
+                            }
+                        });
+
+                        var table = $("#datatable_transformadores").DataTable({
+                            "language": {
+                                "aria": {
+                                    "sortAscending": ": activate to sort column ascending",
+                                    "sortDescending": ": activate to sort column descending"
+                                },
+                                "emptyTable": "No existen transformadores declarados en esta Subestación",
+                                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                "lengthMenu": "_MENU_ Registros",
+                                "search": "Buscar:",
+                                "zeroRecords": "No se encontraron resultados"
+                            },
+                            rows: {
+                                _: "Seleccionados %d registros",
+                                1: "1 Registro seleccionado"
+                            },
+                            "order": [
+                                [0, 'asc']
+                            ],
+                            responsive: true,
+                            select: true,
+                            "pageLength": 10
+                        });
+                    }
+
+                });
+            }
+        });
+    </script>
+}
+

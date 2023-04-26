@@ -1,0 +1,7 @@
+﻿@model  Subestaciones.Models.Clases.TransformadoresViewModel
+
+@Html.LabelFor(model => model.Numemp, htmlAttributes: new { @class = "control-label" })
+
+@Html.DropDownListFor(model => model.Numemp, ViewBag.numEmpresa as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @id = "numEmpresa" })
+

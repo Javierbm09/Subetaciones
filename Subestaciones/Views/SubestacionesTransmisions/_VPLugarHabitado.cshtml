@@ -1,0 +1,6 @@
+﻿@model Subestaciones.Models.Clases.SubestacionesTransViewModel
+
+
+@Html.LabelFor(model => model.TSubestaciones.BarrioPueblo)
+@Html.DropDownListFor(model => model.TSubestaciones.BarrioPueblo, ViewBag.LH as SelectList,
+    "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })

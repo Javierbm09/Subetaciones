@@ -1,0 +1,192 @@
+﻿@model Subestaciones.Models.Inst_Nomenclador_Desconectivos
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Inst_Nomenclador_Desconectivos</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Administrativa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Administrativa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumAccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa_Prov)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_EAdministrativa_Prov)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_ModeloDesconectivo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_ModeloDesconectivo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Fabricante)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Fabricante)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Tension)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Tension)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Corriente)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Corriente)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Cortocircuito)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Cortocircuito)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_ApertCable)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_ApertCable)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Bil)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Bil)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_SecuenciaOperacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_SecuenciaOperacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_MedioExtinsion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_MedioExtinsion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Aislamiento)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Aislamiento)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_PresionGas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_PresionGas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PesoGas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PesoGas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PesoInterruptor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PesoInterruptor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PesoGabinete)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PesoGabinete)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PesoTotal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PesoTotal)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tanque)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tanque)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

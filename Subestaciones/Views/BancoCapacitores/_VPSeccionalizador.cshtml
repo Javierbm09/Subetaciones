@@ -1,0 +1,9 @@
+﻿@model Subestaciones.Models.BancoCapacitores
+
+@Html.LabelFor(model => model.Seccionalizador)
+@Html.DropDownListFor(model => model.Seccionalizador, ViewBag.Secc as SelectList,
+    "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+@*@Html.DropDownList("Elemento_Electrico", null, "", htmlAttributes: new { @class = "select2_single form-control" })*@
+
+
+

@@ -1,0 +1,62 @@
+﻿@model List<Subestaciones.Models.Clases.Termografias>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="datatable_termografia" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Temperatura Ambiente</th>
+                    <th>Transferencia Línea</th>
+                    <th>Ejecutado por</th>
+                    <th>Ejecutado</th>
+                    <th>Elemento</th>
+                    <th>Descripción</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @item.Fecha
+                            <input type="hidden" id="idEAdm" value="@item.idEA" />
+                            <input type="hidden" id="numA" value="@item.numA" />
+                        </td>
+
+                        <td>
+                            @item.TempAmbiente
+                        </td>
+
+                        <td>
+                            @item.TransfLinea
+                        </td>
+                        <td>
+                            @item.EjecutadoPor
+                        </td>
+                        <td>
+                            @item.Ejecutado
+                        </td>
+
+                        <td>
+                            @item.Elemento
+                        </td>
+                        <td>
+                            @item.Designacion
+                        </td>
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+</div>
+</div>

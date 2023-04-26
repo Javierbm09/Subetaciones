@@ -1,0 +1,105 @@
+﻿@model Subestaciones.Models.Clases.Barras
+<div class="row">
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.barra, htmlAttributes: new { @class = "control-label" })
+        <div class="input-group " id="SA">
+            @{
+                var value = Model != null ? Model.barra : "";
+            }
+
+            <input type="text" disabled class="form-control" id="idb" value="@value">
+            <span class="input-group-addon btn blue tooltips" id="subestacionesA" data-original-title="Seleccionar desconectivo">
+                <span class="fa fa-search" href="#basic1" data-toggle="modal"></span>
+                @*<button class="btn green"  type="button" id="listaTransf">Go!</button>*@
+                @*<span class="btn blue btn-outline sbold" href="#basic" data-toggle="modal">Conductores </span>*@
+            </span>
+        </div>
+        @Html.HiddenFor(model => model.barra)
+
+    </div>
+    @*@Html.HiddenFor(model => model.Id_Transformador)*@
+    @*@Html.HiddenFor(model => model.Id_EAdministrativa)*@
+    @Html.HiddenFor(model => model.sub)
+
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.tension, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.tension, new { htmlAttributes = new { @class = "form-control", @id = "t", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.cond, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.cond, new { htmlAttributes = new { @class = "form-control", @id = "c", @readonly = "readonly" } })
+    </div>
+
+
+</div>
+
+
+
+<div class="modal" id="basic1" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Barras en subestaci&oacute;n</h4>
+            </div>
+
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table" id="datatable_barra" style="cursor:pointer">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                C&oacute;digo barra
+                            </th>
+                            <th>
+                                Tensi&oacute;n
+                            </th>
+                            <th>
+                                Conductor
+                            </th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.listadoBarra)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <input type="hidden" value=@item.sub id="codsub">
+                                    <input type="hidden" value=@item.barra id="idBarra">
+                                    <input type="hidden" value=@item.tension id="volt">
+                                    <input type="hidden" value=@item.cond id="conduct">
+
+
+                                    @item.barra
+                                </td>
+                                <td>
+                                    @item.tension
+                                </td>
+                                <td>
+                                    @item.cond
+                                </td>
+                                
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="SeleccionarB">Seleccionar</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button" id="cerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

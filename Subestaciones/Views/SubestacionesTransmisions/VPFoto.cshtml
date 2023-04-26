@@ -1,0 +1,21 @@
+﻿@model List<Subestaciones.Models.Clases.Termografias>
+
+@foreach (var item in Model)
+{
+    String imgSrc = "";
+    if (item.Foto != null)
+    {
+        var base64 = Convert.ToBase64String(item.Foto);
+        imgSrc = String.Format("data:image/jpeg;base64,{0}", base64);
+
+        <tr>
+            <td>
+                <img class="ImgFoto" alt="Version 1" src='@imgSrc' height=300 width=300
+                     data-target="#myModal" data-toggle="modal" />
+            </td>
+
+        </tr>
+
+    }
+
+}

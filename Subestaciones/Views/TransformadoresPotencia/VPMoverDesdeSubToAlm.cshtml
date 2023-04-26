@@ -1,0 +1,330 @@
+﻿@model Subestaciones.Models.Clases.MoverTransf
+
+<div class="row">
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.NombreTransformador, htmlAttributes: new { @class = "control-label" })
+        <div class="input-group " id="TS">
+            <input type="text" disabled class="form-control" id="trasfS">
+            <span class="input-group-addon btn blue tooltips" id="transfSub" data-original-title="Seleccionar transformador">
+                <span class="fa fa-calendar" href="#basic" data-toggle="modal"></span>
+                @*<button class="btn green"  type="button">Go!</button>*@
+                @*<span class="btn blue btn-outline sbold" href="#basic" data-toggle="modal">Conductores </span>*@
+            </span>
+        </div>
+        @Html.HiddenFor(model => model.idTransformador)
+        @Html.HiddenFor(model => model.idEA)
+
+        @*@Html.DropDownListFor(model => model.NombreTransformador, ViewBag.TrasnfEnSub as SelectList,
+        "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })*@
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.codAlmacen, htmlAttributes: new { @class = "control-label" })
+        <div class="input-group " id="TS">
+            <input type="text" disabled class="form-control" id="codigoA">
+            <span class="input-group-addon btn blue tooltips" id="codA" data-original-title="Seleccionar almacen">
+                <span class="fa fa-calendar" href="#almacenes" data-toggle="modal"></span>
+                @*<button class="btn green"  type="button">Go!</button>*@
+                @*<span class="btn blue btn-outline sbold" href="#basic" data-toggle="modal">Conductores </span>*@
+            </span>
+        </div>
+        @Html.HiddenFor(model => model.codAlmacen)
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.codSub, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.codSub, new { htmlAttributes = new { @class = "form-control", @id = "codS", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.almacen, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.almacen, new { htmlAttributes = new { @class = "form-control", @id = "nomA", @readonly = "readonly" } })
+    </div>
+
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.nombresubestacion, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.nombresubestacion, new { htmlAttributes = new { @class = "form-control", @id = "nombS", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-6">
+        <button class="btn blue mt-ladda-btn ladda-button btn-outline" name="submitButton" id="toAlm" type="submit" value="ParaAlmacen" data-style="slide-right" data-spinner-color="#333">
+            <span class="ladda-label">
+                <i class="icon-login"></i> Mover a almac&eacute;n
+            </span>
+            <span class="ladda-spinner"></span>
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.tipoBloque, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.tipoBloque, new { htmlAttributes = new { @class = "form-control", @id = "tipobloqueS", @readonly = "readonly" } })
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.tipoSalida, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.tipoSalida, new { htmlAttributes = new { @class = "form-control", @id = "tiposS", @readonly = "readonly" } })
+    </div>
+
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.esquemaBaja, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.esquemaBaja, new { htmlAttributes = new { @class = "form-control", @id = "esquemabS", @readonly = "readonly" } })
+    </div>
+
+</div>
+
+
+<div class="modal" id="basic" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Transformadores en subestaciones</h4>
+            </div>
+
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table" id="transfEnSub" style="cursor:pointer">
+                    <thead>
+                        <tr>
+                            <th>
+                                Transformador
+                            </th>
+                            <th>
+                                C&oacute;digo subestaci&oacute;n
+                            </th>
+                            <th>
+                                Subestaci&oacute;n
+                            </th>
+                            <th>
+                                Sucursal
+                            </th>
+                            <th>
+                                OBE
+                            </th>
+                            <th>
+                                N&uacute;m empresa
+                            </th>
+                            <th>
+                                Capacidad
+                            </th>
+                            <th>
+                                Voltaje
+                            </th>
+                            <th>
+                                Voltaje Secundario
+                            </th>
+                            <th>
+                                Voltaje Terciario
+                            </th>
+                            <th>
+                                Fabricante
+                            </th>
+                            <th>
+                                Tipo bloque
+                            </th>
+                            <th>
+                                Tipo salida
+                            </th>
+                            <th>
+                                Esquema por baja
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.TrasnfEnSub)
+                        {
+                            <tr>
+
+                                <td>
+                                    <input type="hidden" value=@item.idTransformador id="Codigo">
+                                    <input type="hidden" value=@item.idEA id="EA">
+                                    <input type="hidden" value=@item.NombreTransformador id="Nombre">
+                                    @item.NombreTransformador
+                                </td>
+                                <td>
+                                    <input type="hidden" value=@item.codigo id="CodigoSub">
+
+                                    @item.codigo
+                                </td>
+                                <td>
+                                    <input type="hidden" value=@item.nombresubestacion id="nombreSubS">
+
+                                    @item.nombresubestacion
+                                </td>
+                                <td>
+                                    @item.Sucursal
+                                </td>
+                                <td>
+                                    @item.OBE
+                                </td>
+                                <td>
+                                    @item.Numemp
+                                </td>
+                                <td>
+                                    @item.Capacidad
+                                </td>
+                                <td>
+                                    @item.Voltaje
+                                </td>
+                                <td>
+                                    @item.Volt_Secund
+                                </td>
+                                <td>
+                                    @item.Volt_Terc
+                                </td>
+                                <td>
+                                    @item.Fabricante
+                                </td>
+                                <td>
+                                    <input type="hidden" value=@item.tipoBloque id="tbS">
+                                    @item.tipoBloque
+                                </td>
+                                <td>
+                                    <input type="hidden" value=@item.tipoSalida id="tsS">
+                                    @item.tipoSalida
+                                </td>
+                                <td>
+                                    <input type="hidden" value=@item.esquemaBaja id="ebS">
+                                    @item.esquemaBaja
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="Seleccionar">Seleccionar</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button" id="cerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="almacenes" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Almacenes</h4>
+            </div>
+
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table" id="listaAlmacenes" style="cursor:pointer">
+                    <thead>
+                        <tr>
+                            <th>
+                                C&oacute;digo
+                            </th>
+                            <th>
+                                Almac&eacute;n
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.Almacenes)
+                        {
+                            <tr>
+
+                                <td>
+                                    <input type="hidden" value=@item.Dir_Calle id="dir">
+                                    @item.Dir_Calle
+                                </td>
+                                <td>
+                                    <input type="hidden" value=@item.Nombre id="NombreA">
+
+                                    @item.Nombre
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="SelecAlm">Seleccionar</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button" id="cierraAlm">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="almacenes" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Almacenes</h4>
+            </div>
+
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table" id="listaAlmacenes" style="cursor:pointer">
+                    <thead>
+                        <tr>
+                            <th>
+                                C&oacute;digo
+                            </th>
+                            <th>
+                                Almac&eacute;n
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.Almacenes)
+                        {
+                            <tr>
+
+                                <td>
+                                    <input type="hidden" value=@item.Dir_Calle id="dir">
+                                    @item.Dir_Calle
+                                </td>
+                                <td>
+                                    <input type="hidden" value=@item.Nombre id="NombreA">
+
+                                    @item.Nombre
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="SelecAlm">Seleccionar</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button" id="cierraAlm">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

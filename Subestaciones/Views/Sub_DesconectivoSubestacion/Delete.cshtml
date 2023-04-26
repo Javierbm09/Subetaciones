@@ -1,0 +1,26 @@
+﻿@model Subestaciones.Models.Sub_DesconectivoSubestacion
+
+<h2>Delete</h2>
+@using (Html.BeginForm("Delete", "Sub_DesconectivoSubestacion", FormMethod.Post, new { id = "popupForm" }))
+{
+    @Html.HiddenFor(a => a.CodigoDesconectivo)
+    <div class="form-group">
+        <label>Codigo</label>
+        <p>@Model.CodigoDesconectivo</p>        
+    </div>
+
+    <div class="form-group">
+        <label>Tension Nominal</label>
+        <p>@Model.TensionNominal</p>
+    </div>
+
+    <div class="form-group">
+        <label>Corriente Nominal</label>
+        <p>@Model.CorrienteNominal</p>
+    </div>
+    <div>
+        <input type="submit" value="Eliminar" />
+    </div>
+
+
+}

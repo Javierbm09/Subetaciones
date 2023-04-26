@@ -1,0 +1,691 @@
+﻿@model Subestaciones.Models.Clases.TransformadorTransmision
+
+
+@{
+    ViewBag.Title = "Transformadores de transmisión";
+}
+
+<!-- BEGIN PAGE CONTENT INNER -->
+
+<div class="page-content-inner">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-gift"></i>Detalles transformador de potencia "@Html.DisplayFor(model => model.Nombre)"
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id_EAdministrativa)
+                        @Html.HiddenFor(model => model.Id_Transformador)
+                        @Html.HiddenFor(model => model.NumAccion)
+                        <!-- BEGIN FORM-->
+                        <div class="horizontal-form">
+                            <div class="form-body">
+                                <div class="tab-base panel-bordered-default">
+                                    <!--Nav Tabs-->
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#tab-1" aria-expanded="true">Datos generales</a>
+                                        </li>
+                                        <li class="">
+                                            <a data-toggle="tab" href="#tab-bushing" aria-expanded="false">Bushing</a>
+                                        </li>
+
+                                    </ul>
+                                    <!--Tabs Content-->
+
+                                    <div class="tab-content">
+                                        <div id="tab-1" class="tab-pane fade active in">
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Codigo, ViewBag.ListaSub as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+                                            </div>
+                                            <div class="panel" id="bloques">
+                                                <div class="panel-title">Bloque de transformación</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+
+                                                        <div class="form-group col-md-4">
+                                                            @Html.LabelFor(model => model.Bloque, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.HiddenFor(model => model.Id_Bloque)
+                                                            @Html.EditorFor(model => model.Bloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            @Html.LabelFor(model => model.esquema, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.esquema, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            @Html.LabelFor(model => model.sectorCliente, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.sectorCliente, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="form-group col-md-4">
+                                                            @Html.LabelFor(model => model.tensionTerciarioBloque, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.tensionTerciarioBloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            @Html.LabelFor(model => model.tensionSalida, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.tensionSalida, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            @Html.LabelFor(model => model.cliente, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.cliente, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="display:none">
+                                                @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.NumeroInventario, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.GrupoConexion, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.NumeroInventario, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.NumeroInventario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.GrupoConexion, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.GrupoConexion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3" id="fechaInst">
+                                                    @Html.LabelFor(model => model.FechaDeInstalado, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.FechaDeInstalado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Numemp, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Numemp, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Enfriamiento, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Enfriamiento, ViewBag.Enfriam as SelectList, "", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Frecuencia, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Frecuencia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div><div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.idFabricante, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.idFabricante, ViewBag.fab as SelectList, "", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.NoSerie, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.NoSerie, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Capacidad, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Capacidad, ViewBag.capacidad as SelectList, "", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div><div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.MaxTemperatura, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.MaxTemperatura, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.CorrientePrimaria, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.CorrientePrimaria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.CorrienteSecundaria, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.CorrienteTerciaria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.CorrienteTerciaria, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.CorrienteTerciaria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.AnnoFabricacion, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.AnnoFabricacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Id_VoltajePrim, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Id_VoltajePrim, ViewBag.voltPrim as SelectList,
+                                                         "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Id_Voltaje_Secun, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Id_Voltaje_Secun, ViewBag.voltSec as SelectList,
+                                                         "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.VoltajeTerciario, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.VoltajeTerciario, ViewBag.voltTerc as SelectList,
+                                                         "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div><div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.VoltajeImpulso, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.VoltajeImpulso, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PesoAceite, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PesoAceite, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PesoTotal, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PesoTotal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PesoNucleo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PesoNucleo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div><div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PesoTansporte, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PesoTansporte, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PerdidasBajoCarga, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PerdidasBajoCarga, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PerdidasVacio, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PerdidasVacio, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PorcientoImpedancia, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PorcientoImpedancia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div><div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.EstadoOperativo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.EstadoOperativo, ViewBag.EO as SelectList,
+                                                         "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.NumFase, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.NumFase, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.CantRadiadores, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.CantRadiadores, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.CantVentiladores, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.CantVentiladores, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.TuboExplosor, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.TuboExplosor, ViewBag.TuboExp as SelectList, "", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.ValvulaSobrePresion, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.ValvulaSobrePresion, ViewBag.valvulasobre as SelectList, "", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.TieneTermosifones, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.TieneTermosifones, ViewBag.term as SelectList, "", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.CantTermosifones, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.CantTermosifones, new { htmlAttributes = new { @class = "form-control", @type = "number", @disabled = true } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.NivelRadioInterf, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.NivelRadioInterf, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PorcientoZccPS, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PorcientoZccPS, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PorcientoZccST, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PorcientoZccST, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.PorcientoZccPT, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.PorcientoZccPT, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                </div>
+                                            </div>
+                                            <div class="tab-base panel-bordered-default">
+                                                <!--Nav Tabs-->
+                                                <ul class="nav nav-tabs">
+
+                                                    <li class="active">
+                                                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true">Datos de la Regulación del Voltaje </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a data-toggle="tab" href="#demo-lft-tab-2" aria-expanded="false">Termómetros</a>
+                                                    </li>
+                                                </ul>
+                                                <!--Tabs Content-->
+                                                <div class="tab-content">
+                                                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <!-- BEGIN Portlet PORTLET DATOS regulacion voltaje primario-->
+                                                                <div class="portlet light">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <span class="caption-subject bold"> Regulaci&oacute;n del voltaje primario</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.TipoRegVoltaje, htmlAttributes: new { @class = "control-label" })
+                                                                                @Html.DropDownListFor(model => model.TipoRegVoltaje, ViewBag.RegV as SelectList, "", htmlAttributes: new { @class = "form-control select2", @disabled = true })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            @Html.LabelFor(model => model.NroPosiciones, htmlAttributes: new { @class = "control-label" })
+                                                                            @Html.EditorFor(model => model.NroPosiciones, new { htmlAttributes = new { @class = "form-control", @type = "number", @disabled = true } })
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            @Html.LabelFor(model => model.PosicionTrabajo, htmlAttributes: new { @class = "control-label" })
+                                                                            @Html.EditorFor(model => model.PosicionTrabajo, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            @Html.LabelFor(model => model.TipoCajaMando, htmlAttributes: new { @class = "control-label" })
+                                                                            @Html.EditorFor(model => model.TipoCajaMando, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END Portlet PORTLET regulacion voltaje primario-->
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <!-- BEGIN Portlet PORTLET DATOS regulacion voltaje secundario-->
+                                                                <div class="portlet light">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <span class="caption-subject bold"> Regulaci&oacute;n del voltaje secundario</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+
+                                                                        <div class="form-group col-md-3">
+                                                                            @Html.LabelFor(model => model.RegVoltajeSecNroPos, htmlAttributes: new { @class = "control-label" })
+                                                                            @Html.EditorFor(model => model.RegVoltajeSecNroPos, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            @Html.LabelFor(model => model.RegVoltajeSecPosTrab, htmlAttributes: new { @class = "control-label" })
+                                                                            @Html.EditorFor(model => model.RegVoltajeSecPosTrab, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END Portlet PORTLET regulacion voltaje secundario-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="demo-lft-tab-2" class="tab-pane fade ">
+                                                        <div class="col-md-12">
+
+                                                            <div id="TablaTermometro"></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label " for="Observaciones">Observaciones</label>
+                                                    <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="Observaciones" name="Observaciones" rows="2" readonly="true"></textarea>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="tab-bushing" class="tab-pane fade">
+                                            <!-- BEGIN Portlet PORTLET DATOS Bushing Primario-->
+                                            <div class="portlet light">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <span class="caption-subject bold"> Bushing Primario</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.Label("Tipo", htmlAttributes: new { @class = "control-label bold" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Serie", htmlAttributes: new { @class = "control-label bold" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Un (kV)", htmlAttributes: new { @class = "control-label bold" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("In (A)", htmlAttributes: new { @class = "control-label bold" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Fase A", htmlAttributes: new { @class = "control-label bold" })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseATipo, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseASerie, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseAUn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseAIn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Fase B", htmlAttributes: new { @class = "control-label bold" })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseBTipo, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseBSerie, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseBUn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseBIn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Fase C", htmlAttributes: new { @class = "control-label bold" })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseCTipo, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseCSerie, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseCUn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseCIn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Neutro", htmlAttributes: new { @class = "control-label bold" })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingPrimFaseNeutroTipo, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- END Portlet PORTLET Bushing Primario-->
+                                            <!-- BEGIN Portlet PORTLET DATOS Bushing Secundario-->
+                                            <div class="portlet light">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <span class="caption-subject bold">Bushing Secundario</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Fases", htmlAttributes: new { @class = "control-label bold" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingSecFasesTipo, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingSecFasesUn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingSecFasesIn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Neutro", htmlAttributes: new { @class = "control-label bold" })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingSecNeutroTipo, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END Portlet PORTLET Bushing Secundario-->
+                                            <!-- BEGIN Portlet PORTLET DATOS Bushing Terciario-->
+                                            <div class="portlet light">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <span class="caption-subject bold"> Bushing Terciario</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.Label("Fases", htmlAttributes: new { @class = "control-label bold" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingTercFasesTipo, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingTercFasesUn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                @Html.EditorFor(model => model.BushingTercFasesIn, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END Portlet PORTLET Bushing Terciario-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <a class="btn btn-primary" href="@Url.Action("Index","TransformadoresTransmisions",new { ubicado=@ViewBag.ubicado })"><i class="fa fa-list"></i> Listado de transformadores transmisi&oacute;n</a>
+                                    <a class="btn btn-warning" href="@Url.Action("Edit", new { EA=Model.Id_EAdministrativa, Id_Transformador=Model.Id_Transformador, ubicado=@ViewBag.ubicado})"><i class="fa fa-edit"></i>Editar</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT INNER -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.orange.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.energyblue.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.windowsphone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.highcontrast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.light.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/EstiloTabla/tablaStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+
+    <link href="~/Content/EstiloTabla/tablaStyle.css" rel="stylesheet" type="text/css" />
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcore.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxbuttons.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxscrollbar.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxmenu.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxwindow.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxpanel.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.aggregates.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.grouping.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdropdownlist.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxlistbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.columnsresize.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.filter.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/localization.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxnumberinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcombobox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
+
+    <script>
+    transf = $("#Id_Transformador").val();
+
+    $(document).ready(function () {
+        inicializar_select2();
+
+        function inicializar_select2() {
+            $(".select2").select2({
+                placeholder: ""
+            });
+        }
+        /**/
+        var ub = "@ViewBag.ubicado";
+    /**/
+
+    if (ub == "TTA") {
+        $("#bloques").hide();
+        $("#fechaInst").hide();
+    }
+
+    if (ub == "TT") {
+        $("#bloques").show();
+        $("#fechaInst").show();
+    }
+});
+    </script>
+    <script src="~/Scripts/js/TransformadoresPotencia/jsDetallesTermometros.js"></script>
+
+}

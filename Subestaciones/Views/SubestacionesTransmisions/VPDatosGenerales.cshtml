@@ -1,0 +1,228 @@
+﻿@model Subestaciones.Models.Clases.SubestacionesTransViewModel
+
+
+
+<div class="form">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Codigo, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.TSubestaciones.Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Codigo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.CodigoAntiguo, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.TSubestaciones.CodigoAntiguo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.CodigoAntiguo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.TipoSub, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.TSubestaciones.TipoSub, ViewBag.TiposSubs as SelectList, "", htmlAttributes: new { @class = "select2_single form-control ", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.TipoSub, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.NombreSubestacion, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.NombreSubestacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.NombreSubestacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.NumeroSalidas, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.NumeroSalidas, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.NumeroSalidas, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Tipo_Terceros, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.TSubestaciones.Tipo_Terceros, ViewBag.TipoTercero as SelectList, "", htmlAttributes: new { @class = "select2_single form-control ", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Tipo_Terceros, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.TipoSub, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.TipoSub, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.TipoSub, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.EstadoOperativo, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.EstadoOperativo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.EstadoOperativo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.VoltajePrimario, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.TSubestaciones.VoltajePrimario, ViewBag.VoltajeNominalAlta as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "select2_single form-control ", @disabled = "disabled" })
+                @*@Html.EditorFor(model => model.TSubestaciones.VoltajeNominal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                @Html.ValidationMessageFor(model => model.TSubestaciones.VoltajePrimario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Sucursal, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.TSubestaciones.Sucursal, ViewBag.Sucursales as SelectList, "", htmlAttributes: new { @class = "select2_single form-control ", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Sucursal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Calle, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.Calle, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Calle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Numero, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.Numero, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Numero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.BarrioPueblo, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.BarrioPueblo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.BarrioPueblo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Entrecalle1, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.Entrecalle1, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Entrecalle1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Entrecalle2, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.Entrecalle2, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Entrecalle2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Largo, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.Largo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Largo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Ancho, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.Ancho, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Ancho, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Latitud, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.Latitud, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Latitud, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.Longitud, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.Longitud, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.Longitud, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TSubestaciones.FechaPuestaMarcha, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.TSubestaciones.FechaPuestaMarcha, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TSubestaciones.FechaPuestaMarcha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+        <div class="tab-base panel-bordered-default">
+
+            <!--Nav Tabs-->
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="false">Bloques de Transformación</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#demo-lft-tab-2" aria-expanded="true">Líneas</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#demo-lft-tab-3" aria-expanded="false">Circuitos por Baja</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#demo-lft-tab-4" aria-expanded="true">Transformadores</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#demo-lft-tab-5" aria-expanded="true">Centrales Eléctricas</a>
+                </li>
+
+            </ul>
+
+            <!--Tabs Content-->
+            <div class="tab-content">
+                <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                    <div id="TablaBloques1"></div>
+                  
+                </div>
+
+                <div id="demo-lft-tab-2" class="tab-pane fade ">
+                    <div id="Lineas"></div>
+
+                </div>
+
+                <div id="demo-lft-tab-3" class="tab-pane fade ">
+                    <div id="TablaCircuitoBaja"></div>
+
+                </div>
+
+                <div id="demo-lft-tab-4" class="tab-pane fade ">
+                    <div id="TablaTransf"></div>
+
+                </div>
+                <div id="demo-lft-tab-5" class="tab-pane fade ">
+                    <div id="TablaCentralesE"></div>
+
+                </div>
+
+            </div>
+        </div>
+
+</div>
+
+<script>
+    var codSub = $("#listaSubestaciones").val();
+
+</script>
+
+<script src="~/Scripts/js/jsDetallesSubTableBloques.js"></script>
+<script src="~/Scripts/js/jsTablaLineasSubT.js"></script>
+<script src="~/Scripts/js/jsDetallesSubTableCircuitosBaja.js"></script>
+<script src="~/Scripts/js/jsDetalleSubDCentralesElectricas.js"></script>
+<script src="~/Scripts/js/jsTablaTransformadoresTrans.js"></script>

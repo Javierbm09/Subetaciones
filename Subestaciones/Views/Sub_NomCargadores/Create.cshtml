@@ -1,0 +1,134 @@
+﻿@model Subestaciones.Models.Sub_NomCargadores
+@{ViewBag.Title = "Nomenclador cargadores";}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar tipos de cargadores</h1>
+        </div>
+    }*@
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_NomCargadores")">Nomenclador cargadores</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar tipo de cargador</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    @*<div class="tabbable-line boxless tabbable-reversed">*@
+                    @*<div class="tab-content">*@
+                    @*<div class="tab-pane" id="tab_1">*@
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>Insertar tipo de cargador
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.AntiForgeryToken()
+
+                                <!-- BEGIN FORM-->
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.TipoCargador, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.VoltajeCorrienteDirecta, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Corriente, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.VoltajeCA, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TipoCargador, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.TipoCargador, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.TipoCargador, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.VoltajeCorrienteDirecta, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.VoltajeCorrienteDirecta, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.VoltajeCorrienteDirecta, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                     @Html.LabelFor(model => model.Corriente, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.Corriente, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.Corriente, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.VoltajeCA, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.VoltajeCA, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.VoltajeCA, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index")"><i class="fa fa-list"></i>Listado</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-check"></i> Insertar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+}
+
+@section script{
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+        });
+    </script>
+}

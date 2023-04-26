@@ -1,0 +1,183 @@
+﻿@model Subestaciones.Models.Clases.MttosBarrasSubDist
+
+@{
+    ViewBag.Title = "Mantenimiento subestación de distribución - Barras";
+
+}
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","SubMttoSubDistribucions")">Mantenimiento a la subestación de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles mantenimiento a barras</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Detalles mantenimiento de la subestaci&oacute;n de distribuci&oacute;n - Barra
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("Create", "Sub_MttoDistBarra", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                        {
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken()
+
+                            <!-- BEGIN FORM-->
+                            <div class="horizontal-form">
+                                <div class="form-body">
+                                    @Html.HiddenFor(model => model.Fecha)
+                                    @Html.HiddenFor(model => model.CodigoSub)
+                                    @Html.HiddenFor(model => model.CodigoBarra)
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos de la barra
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.CodigoBarra, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.CodigoBarra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group ">
+                                                        @Html.LabelFor(model => model.voltaje, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.voltaje, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Conductor, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Conductor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos del mantenimiento
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+
+
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.EstadoBarra, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.EstadoBarra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group ">
+                                                        @Html.LabelFor(model => model.EstadoPuentes, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.EstadoPuentes, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Conexiones, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Conexiones, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions right">
+                                        <a class="btn btn-primary" id="compo" href="@Url.Action("ComponentesMtto","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="edit" href="@Url.Action("Edit","SubMttoSubDistribucions",new {codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="detail" href="@Url.Action("Detail","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-warning" href="@Url.Action("Edit","Sub_MttoDistBarra", new { subcodigo = Model.CodigoSub, fecha = Model.Fecha, barra = Model.CodigoBarra ,  valor = ViewBag.valor })"><i class="fa fa-list"></i>Editar</a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section script{
+    <script>
+        $(document).ready(function () {
+
+
+             var operacion = "@ViewBag.valor"
+
+            if (operacion == "Editar") {
+                $("#compo").hide();
+                $("#edit").show();
+                $("#detail").hide();
+            }
+            else if (operacion == "Detail") {
+                $("#compo").hide();
+                $("#edit").hide();
+                $("#detail").show();
+            } else  {
+                $("#compo").show();
+                $("#edit").hide();
+                $("#detail").hide();
+             }
+
+
+
+
+        });
+
+    </script>
+}

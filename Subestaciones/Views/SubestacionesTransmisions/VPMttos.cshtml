@@ -1,0 +1,59 @@
+﻿@model List<Subestaciones.Models.Clases.Mttos>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="tabla_mttos" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Mantenimiento</th>
+                    <th>Fecha</th>
+                    <th>Realizado Por</th>
+                    <th>Voltaje Primario</th>
+                    <th>Voltaje Secundario</th>
+                    <th>Capacidad Ventilador</th>
+                    <th>Agua Destilación</th>
+                    <th>Nivel Aceite</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @item.Nombre
+                        </td>
+
+                        <td>
+                            @item.Fecha
+                        </td>
+                        <td>
+                            @item.RealizadoPor
+                        </td>
+                        <td>
+                            @item.VoltajePrimario
+                        </td>
+
+                        <td>
+                            @item.VoltajeSecundario
+                        </td>
+                        <td>
+                            @item.CapacidadVentilador
+                        </td>
+                        <td>
+                            @item.AguaDestilacion
+                        </td>
+                        <td>
+                            @item.NivelAceite
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

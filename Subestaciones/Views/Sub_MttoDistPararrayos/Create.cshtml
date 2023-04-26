@@ -1,0 +1,282 @@
+﻿@model Subestaciones.Models.Sub_MttoDistPararrayos
+@{
+    ViewBag.Title = "Mantenimiento subestación de distribución - Pararrayos";
+
+}
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","SubMttoSubDistribucions")">Mantenimiento a la subestación de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar mantenimiento a pararrayos</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Insertar mantenimiento de la subestaci&oacute;n de distribuci&oacute;n - pararrayos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("Create", "Sub_MttoDistPararrayos", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                        {
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken()
+
+                            <!-- BEGIN FORM-->
+                            <div class="horizontal-form">
+                                <div class="form-body">
+                                    @Html.HiddenFor(model => model.Fecha)
+                                    @Html.HiddenFor(model => model.CodigoSub)
+                                    @Html.HiddenFor(model => model.Id_AdminPararrayo)
+                                    @Html.HiddenFor(model => model.Id_Pararrayo)
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos del pararrayos
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div id="_VPPara"></div>
+
+                                          
+                                        </div>
+                                    </div>
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos del mantenimiento
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+                                            
+
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.Estado, ViewBag.estP as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group ">
+                                                        @Html.LabelFor(model => model.Aislamiento, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Aislamiento, new { htmlAttributes = new { @class = "form-control" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.EstAterramiento, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.EstAterramiento, ViewBag.aterr as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-actions right">
+                                        <a class="btn btn-primary" id="compo" href="@Url.Action("ComponentesMtto","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="edit" href="@Url.Action("Edit","SubMttoSubDistribucions",new {codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="detail" href="@Url.Action("Detail","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <button type="submit" name="submitButton" value="@ViewBag.valor" class="btn blue">
+                                            <i class="fa fa-plus"></i> Guardar
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")">    </script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            var codSub = "@ViewBag.codSub";
+            var f = "@ViewBag.fechaMtto";
+            var idEA = "@ViewBag.eaMtto"
+            $("#Fecha").val(f);
+            $("#CodigoSub").val(codSub);
+
+             
+
+            var operacion = "@ViewBag.valor"
+
+            if (operacion == "Editar") {
+                $("#compo").hide();
+                $("#edit").show();
+                $("#detail").hide();
+            }
+            else if (operacion == "Detail") {
+                $("#compo").hide();
+                $("#edit").hide();
+                $("#detail").show();
+            } else  {
+                $("#compo").show();
+                $("#edit").hide();
+                $("#detail").hide();
+            }
+
+            cargarTablaPararrayos();
+
+            function cargarTablaPararrayos() {
+                    $.ajax({
+                        url: '@Url.Action("_VPPara", "Sub_MttoDistPararrayos")',
+                        method: "POST",
+                        data: { sub: codSub},
+                        success: function (data) {
+
+                            $("#_VPPara").html(data);
+
+
+                            $("#SeleccionarB").click(function () {
+                                if (table.rows({ selected: true }).count() > 0) {
+                                    codS = $("#codsub", ".selected").val();
+                                    para = $("#idPara", ".selected").val();
+                                    $("#EP").val($("#CE", ".selected").val());
+                                    $("#fase").val($("#faseT", ".selected").val());
+                                    $("#volt").val($("#tensionN", ".selected").val());
+                                    $("#volt").val($("#tensionN", ".selected").val());
+                                    $("#corr").val($("#corrN", ".selected").val());
+                                    $("#fab").val($("#fabric", ".selected").val());
+                                    $("#tipo").val($("#tipoEquipo", ".selected").val());
+                                    $("#Id_Pararrayo").val(para);
+                                    $("#Id_AdminPararrayo").val($("#EA", ".selected").val());
+
+                                    @*//cargar los datos del transformador seleccionado
+                                    $.getJSON('@Url.Action("DatoBarra")', {
+                                        sub: codS,
+                                        codBarra: barra
+                                    }, function (datos) {
+                                        $("#idBarra").val(datos['barra']);
+
+                                        //$("#CodigoSub").val(datos['CodigoSub']);
+                                        $("#volt").val(datos['tension']);
+                                        $("#conduct").val(datos['cond']);
+
+                                        });*@
+
+                                        $("#cerrar").click();
+
+
+                                    }
+
+                        });
+
+
+                            var table = $("#datatable_para").DataTable({
+                                "language": {
+                                    "aria": {
+                                        "sortAscending": ": activate to sort column ascending",
+                                        "sortDescending": ": activate to sort column descending"
+                                    },
+                                    "emptyTable": "No existen transformadores declarados en esta Subestación",
+                                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "lengthMenu": "_MENU_ Registros",
+                                    "search": "Buscar:",
+                                    "zeroRecords": "No se encontraron resultados"
+                                },
+                                rows: {
+                                    _: "Seleccionados %d registros",
+                                    1: "1 Registro seleccionado"
+                                },
+                                "order": [
+                                    [0, 'asc']
+                                ],
+                                responsive: true,
+                                select: true,
+                                "pageLength": 10
+                            });
+
+                        }
+                    });
+            };
+
+
+        });
+
+    </script>
+}
+
+

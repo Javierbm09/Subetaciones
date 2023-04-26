@@ -1,0 +1,23 @@
+﻿@model Subestaciones.Models.NomencladorTension
+
+@{
+    ViewBag.Title = "Detalles Tensión";
+    ViewBag.PTitle = "Detalles del Nomenclador de Tensión de Red de Corriente Directa";
+}
+@section breadcrumb {
+    <li><a href="#"><i class="ti-layout-cta-center"></i></a></li>
+    <li><a href="@Url.Action("Index","NomencladorTension")">Tensión</a></li>
+    <li class="active">Detalles</li>
+}
+<table class="table">
+    <tr>
+        <th>Tensión</th>
+        <td>@Html.DisplayFor(model => model.tension)</td>
+    </tr>
+    
+</table>
+
+<hr />
+<p>
+    <a class="btn btn-default" href="@Url.Action("Index","NomencladorTension")"><i class="fa fa-list"></i> Listado</a>
+</p>

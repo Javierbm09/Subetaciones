@@ -1,0 +1,155 @@
+﻿@model IEnumerable<Subestaciones.Models.Inst_Nomenclador_Desconectivos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Administrativa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa_Prov)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_ModeloDesconectivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Fabricante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Tension)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Corriente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Cortocircuito)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_ApertCable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Bil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_SecuenciaOperacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_MedioExtinsion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Aislamiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_PresionGas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PesoGas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PesoInterruptor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PesoGabinete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PesoTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tanque)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Administrativa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumAccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_EAdministrativa_Prov)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_ModeloDesconectivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Fabricante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Tension)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Corriente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Cortocircuito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_ApertCable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Bil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_SecuenciaOperacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_MedioExtinsion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Aislamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_PresionGas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PesoGas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PesoInterruptor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PesoGabinete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PesoTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tanque)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id_Nomenclador }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id_Nomenclador }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id_Nomenclador })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

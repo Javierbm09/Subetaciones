@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Subestaciones.Models.Sub_Baterias>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_EAdministrativa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumAccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadVasos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voltaje_Vasos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Densisdad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_ServicioCDBat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PesoCadaVaso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VoltajeFlotacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantElectVasos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantElect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantVasosPilotos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MesFab)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnnoFab)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fabricante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VoltajeEcualizanteCargaBat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TiempoCargaBat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PeriodicidadCargaBat)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_EAdministrativa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumAccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadVasos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voltaje_Vasos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Densisdad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_ServicioCDBat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PesoCadaVaso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VoltajeFlotacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantElectVasos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantElect)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantVasosPilotos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MesFab)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnoFab)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fabricante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VoltajeEcualizanteCargaBat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TiempoCargaBat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PeriodicidadCargaBat)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Bateria }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Bateria }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Bateria })
+        </td>
+    </tr>
+}
+
+</table>

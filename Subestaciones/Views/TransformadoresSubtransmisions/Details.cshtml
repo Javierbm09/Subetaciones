@@ -1,0 +1,393 @@
+﻿@model Subestaciones.Models.Clases.TransformadorSubtransmision
+
+@{
+    ViewBag.Title = "Transformadores de subtransmisión";
+}
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","TransformadoresSubtransmisions",new { ubicado=@ViewBag.ubicado })">Transformador de potencia en subestaci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles del transformador</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>Detalles transformador de potencia
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Id_EAdministrativa)
+                                @Html.HiddenFor(model => model.Id_Transformador)
+                                @Html.HiddenFor(model => model.NumAccion)
+
+                                <!-- BEGIN FORM-->
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row" style="display:none">
+                                                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                                        @Html.ValidationMessageFor(model => model.NumeroInventario, "", new { @class = "text-danger" })
+                                                        @Html.ValidationMessageFor(model => model.GrupoConexion, "", new { @class = "text-danger" })
+                                                        @Html.ValidationMessageFor(model => model.Subestacion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group" @*style="padding-bottom:30px"*@ id="Subestaciones">
+                                                        @Html.LabelFor(model => model.Subestacion, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Subestacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    </div>
+                                                    <div class="panel" id="bloques">
+                                                        <div class="panel-title">Bloque de transformación</div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+
+                                                                <div class="form-group col-md-4">
+                                                                    @Html.LabelFor(model => model.Bloque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.HiddenFor(model => model.Id_Bloque)
+                                                                    @Html.EditorFor(model => model.Bloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    @Html.LabelFor(model => model.esquemaBloque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.esquemaBloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    @Html.LabelFor(model => model.sectorClienteBloque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.sectorClienteBloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+
+                                                                <div class="form-group col-md-2">
+                                                                    @Html.LabelFor(model => model.tensionTerciarioBloque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.tensionTerciarioBloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                                </div>
+                                                                <div class="form-group col-md-2">
+                                                                    @Html.LabelFor(model => model.tensionSalidaBloque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.tensionSalidaBloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    @Html.LabelFor(model => model.tipoSalidaBloque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.tipoSalidaBloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    @Html.LabelFor(model => model.clienteBloque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.clienteBloque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.NumeroInventario, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.NumeroInventario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div><div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.GrupoConexion, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.GrupoConexion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                        </div>
+                                                        <div class="form-group col-md-3" id="fechaInst">
+                                                            @Html.LabelFor(model => model.FechaDeInstalado, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.FechaDeInstalado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.Numemp, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.Numemp, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.Enfriamiento, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.Enfriamiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            @*@Html.DropDownListFor(model => model.Enfriamiento, ViewBag.Enfriam as SelectList, "", htmlAttributes: new { @class = "form-control select2" })*@
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.Frecuencia, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.Frecuencia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div><div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.Fabricante, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.Fabricante, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.NoSerie, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.NoSerie, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.capacidad, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.capacidad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div><div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.MaxTemperatura, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.MaxTemperatura, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.NumFase, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.NumFase, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.CorrientePrimaria, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.CorrientePrimaria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.CorrienteSecundaria, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.CorrienteSecundaria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div><div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.AnnoFabricacion, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.AnnoFabricacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.voltajePrimario, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.voltajePrimario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.TensionSecundaria, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.TensionSecundaria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            @* @Html.DropDownListFor(model => model.Id_Voltaje_Secun, ViewBag.voltSec as SelectList, "", htmlAttributes: new { @class = "form-control select2" })*@
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.TensionTerciario, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.TensionTerciario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            @*@Html.DropDownListFor(model => model.VoltajeTerciario, ViewBag.voltTerc as SelectList, "", htmlAttributes: new { @class = "form-control select2" })*@
+                                                        </div><div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.TensionImpulso, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.TensionImpulso, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.PesoAceite, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.PesoAceite, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.PesoTotal, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.PesoTotal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.PesoNucleo, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.PesoNucleo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div><div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.PesoTansporte, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.PesoTansporte, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.PerdidasBajoCarga, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.PerdidasBajoCarga, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.PerdidasVacio, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.PerdidasVacio, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.PorcientoImpedancia, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.PorcientoImpedancia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div><div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.EstadoOperativo, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.EstadoOperativo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            @* @Html.DropDownListFor(model => model.EstadoOperativo, ViewBag.EO as SelectList, "", htmlAttributes: new { @class = "form-control select2" })*@
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.CantRadiadores, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.CantRadiadores, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.CantVentiladores, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.CantVentiladores, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.TuboExplosor, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.TuboExplosor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            @* @Html.DropDownListFor(model => model.TuboExplosor, ViewBag.TuboExp as SelectList, "", htmlAttributes: new { @class = "form-control select2" })*@
+                                                        </div><div class="form-group col-md-3">
+                                                            @Html.LabelFor(model => model.ValvulaSobrePresion, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.ValvulaSobrePresion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            @*@Html.DropDownListFor(model => model.ValvulaSobrePresion, ViewBag.valvulasobre as SelectList, "", htmlAttributes: new { @class = "form-control select2" })*@
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <div class="panel-bordered-primary">
+                                                                <div class="panel-title">
+                                                                    Datos de la Regulaci&oacute;n del Voltaje
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.TipoRegVoltaje, htmlAttributes: new { @class = "control-label" })
+                                                                                @Html.EditorFor(model => model.TipoRegVoltaje, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                                @*@Html.DropDownListFor(model => model.TipoRegVoltaje, ViewBag.RegV as SelectList, "", htmlAttributes: new { @class = "form-control select2" })*@
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group col-md-6">
+                                                                            @Html.LabelFor(model => model.NroPosiciones, htmlAttributes: new { @class = "control-label" })
+                                                                            @Html.EditorFor(model => model.NroPosiciones, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="form-group col-md-6">
+                                                                            @Html.LabelFor(model => model.PosicionTrabajo, htmlAttributes: new { @class = "control-label" })
+                                                                            @Html.EditorFor(model => model.PosicionTrabajo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                        </div>
+                                                                        <div class="form-group col-md-6">
+                                                                            @Html.LabelFor(model => model.TipoCajaMando, htmlAttributes: new { @class = "control-label" })
+                                                                            @Html.EditorFor(model => model.TipoCajaMando, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="panel-title">
+                                                                Termom&eacute;tros
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <div id="TablaTermometro"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label " for="Observaciones">Observaciones</label>
+                                                                <textarea class="form-control" readonly="readonly" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud m&aacute;xima de 750." data-val-length-max="750" id="Observaciones" name="Observaciones" rows="2"></textarea>
+                                                                <span class="field-validation-valid text-danger" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-actions right">
+                                                        <a class="btn btn-primary" href="@Url.Action("Index","TransformadoresSubtransmisions",new { ubicado = @ViewBag.ubicado })"><i class="fa fa-list"></i>Listado de transformadores</a>
+                                                        <a class="btn btn-warning" href="@Url.Action("Edit", new { EA = Model.Id_EAdministrativa, Id_Transformador = Model.Id_Transformador, ubicado = @ViewBag.ubicado})"><i class="fa fa-edit"></i>Editar</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.orange.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.energyblue.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.windowsphone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.highcontrast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.light.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/EstiloTabla/tablaStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+
+    <link href="~/Content/EstiloTabla/tablaStyle.css" rel="stylesheet" type="text/css" />
+}
+
+@section script {
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcore.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxbuttons.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxscrollbar.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxmenu.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxwindow.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxpanel.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.aggregates.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.grouping.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdropdownlist.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxlistbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.columnsresize.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.filter.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/localization.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxnumberinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcombobox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
+
+    <script>
+        transf = $("#Id_Transformador").val();
+
+    $(document).ready(function () {
+        var ub = "@ViewBag.ubicado";
+            if (ub == "TSA"){
+                $("#bloques").hide();
+                $("#fechaInst").hide();
+            }
+            if (ub == "TS") {
+                $("#fechaInst").show();
+                $("#bloques").show();
+            }
+    });
+    </script>
+    <script src="~/Scripts/js/TransformadoresPotencia/jsDetallesTermometros.js"></script>
+
+}

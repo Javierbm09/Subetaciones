@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Subestaciones.Models.Sub_CelajeSubDistInterruptor>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Salidero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NAceite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pintura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cuentaOP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estadoBateria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.candadoGabinete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipoInterruptor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salidero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAceite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pintura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cuentaOP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estadoBateria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.candadoGabinete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoInterruptor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_EAdministrativa)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

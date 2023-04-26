@@ -1,0 +1,302 @@
+﻿@model Subestaciones.Models.Sub_MttoDistribDesconectivos
+
+<div class="panel" id="datosInt">
+    <div class="panel-heading">
+        Interruptor/Recerrador
+    </div>
+    <div class="tools">
+        <a href="javascript:;" class="collapse"> </a>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EstLimpiezaTanque, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.EstLimpiezaTanque, ViewBag.limpTanque as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EstAterramTanque, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.EstAterramTanque, ViewBag.aterrTanque as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.EstPintura, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.EstPintura, ViewBag.pintura as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PresionSF6, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.PresionSF6, ViewBag.presion as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EstRotulos, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.EstRotulos, ViewBag.rotulos as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PruebasFuncionales, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.PruebasFuncionales, ViewBag.pruebas as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EstLimpiezaGabinete, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.EstLimpiezaGabinete, ViewBag.limpGab as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EstAterramGabinete, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.EstAterramGabinete, ViewBag.aterrGab as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.NroOperaciones, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.NroOperaciones, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PorcDesgasteFaseA, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PorcDesgasteFaseA, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PorcDesgasteFaseB, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PorcDesgasteFaseB, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PorcDesgasteFaseC, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PorcDesgasteFaseC, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="panel" id="datosCuchillas">
+    <div class="panel-heading">
+        Cuchilla
+    </div>
+    <div class="tools">
+        <a href="javascript:;" class="collapse"> </a>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LimpiezaAislamiento, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.LimpiezaAislamiento, ViewBag.limpAisl as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LimpiezaContactos, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.LimpiezaContactos, ViewBag.limpCont as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.Pintura, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.Pintura, ViewBag.pinturaCuchilla as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2" id="mando">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MttoMando, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.MttoMando, ViewBag.mttoMando as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2" id="verif">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VerificacionCapacidad, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.VerificacionCapacidad, ViewBag.verifCap as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Aterramiento, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.Aterramiento, ViewBag.aterr as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PruebasFuncionales, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.PruebasFuncionales, ViewBag.pruebasCuchillas as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+   
+</div>
+
+<div class="row" id="tablaResist">
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading">
+                Resistencia de Contacto(µΩ)
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"> </a>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        Fase A
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistContactoFaseA, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Fase B
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistContactoFaseB, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Fase C
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistContactoFaseC, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="panel">
+            <div class="panel-heading">
+                Resistencia de Aislamiento(GΩ)
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"> </a>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-3">
+                        E - T(entrada tierra)
+                    </div>
+                    <div class="col-md-3">
+                        S - T(salida tierra)
+                    </div>
+                    <div class="col-md-4">
+                        ES - T(entrada+salida tierra)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        Fase A
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseAET, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseAST, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseAEST, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        Fase B
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseBET, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseBST, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseBEST, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        Fase C
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseCET, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseCST, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ResistAislamFaseCEST, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

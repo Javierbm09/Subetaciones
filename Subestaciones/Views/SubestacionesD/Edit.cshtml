@@ -1,0 +1,1313 @@
+﻿@model Subestaciones.Models.Clases.SubestacionesDistViewModel
+
+@{
+    ViewBag.Title = "Editar subestación de distribución";
+}
+
+@section pagetitle{
+    <div class="page-title">
+        <h1>Subestaci&oacute;n de distribuci&oacute;n</h1>
+    </div>
+}
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","SubestacionesD")">Subestaciones de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Editar </span>
+            </li>
+
+
+
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div id="bootstrap_alerts_SubestacionInsertada"> </div>
+
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>Editar subestaci&oacute;n de distribuci&oacute;n @Html.DisplayFor(model => model.DSubestaciones.Codigo) @Html.DisplayFor(model => model.DSubestaciones.NombreSubestacion)
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Edit", "SubestacionesD", FormMethod.Post, htmlAttributes: new { @id = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(false)
+                                @Html.Hidden("DSubestaciones.Id_EAdministrativa", Model.DSubestaciones.Id_EAdministrativa)
+                                @Html.Hidden("DSubestaciones.NumAccion", Model.DSubestaciones.NumAccion)
+                                @Html.Hidden("DSubestaciones.CodAntiguo", Model.DSubestaciones.Codigo)
+
+
+                                <!-- BEGIN FORM-->
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Codigo, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Codigo, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Codigo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.CodigoAntiguo, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.DSubestaciones.CodigoAntiguo, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.CodigoAntiguo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.TipoSub, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.DSubestaciones.TipoSub, ViewBag.TiposSubs as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.TipoSub, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.NombreSubestacion, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.NombreSubestacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.NombreSubestacion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.NumeroSalidas, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.NumeroSalidas, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.NumeroSalidas, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Tipo_Terceros, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.DSubestaciones.Tipo_Terceros, ViewBag.TipoTercero as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Tipo_Terceros, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.TipoSubestacion, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.DSubestaciones.TipoSubestacion, ViewBag.EsquemasXAlta as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.TipoSubestacion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.EstadoOperativo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.DSubestaciones.EstadoOperativo, ViewBag.EstadosOperativos as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.EstadoOperativo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.VoltajeNominal, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.DSubestaciones.VoltajeNominal, ViewBag.VoltajeNominalAlta as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2", @disabled = "disabled" })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.VoltajeNominal, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Sucursal, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.DSubestaciones.Sucursal, ViewBag.Sucursales as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Sucursal, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Calle, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Calle, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Calle, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Numero, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Numero, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Numero, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group" id="cargarLugarHabitado">
+                                                    @Html.LabelFor(model => model.DSubestaciones.BarrioPueblo)
+                                                    @Html.DropDownList("LH", null, "", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                                @*<div class="form-group">
+                                                        @Html.LabelFor(model => model.DSubestaciones.BarrioPueblo, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.DSubestaciones.BarrioPueblo, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.DSubestaciones.BarrioPueblo, "", new { @class = "text-danger" })
+                                                    </div>*@
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Entrecalle1, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Entrecalle1, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Entrecalle1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Entrecalle2, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Entrecalle2, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Entrecalle2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Largo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Largo, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Largo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Ancho, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Ancho, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Ancho, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Latitud, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Latitud, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Latitud, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.Longitud, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.Longitud, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.Longitud, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DSubestaciones.FechaPuestaMarcha, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.DSubestaciones.FechaPuestaMarcha, new { htmlAttributes = new { @class = "form-control datepicker", @id = "fechaPuestaMarcha" } })
+                                                    @Html.ValidationMessageFor(model => model.DSubestaciones.FechaPuestaMarcha, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tabbable-line boxless tabbable-reversed">
+
+                                            <!--Nav Tabs-->
+                                            <ul class="nav nav-tabs">
+                                                <li class="active">
+                                                    <a data-toggle="tab" href="#demo-lft-tab-1" id="tab1" aria-expanded="false">Circuitos por Alta </a>
+
+                                                </li>
+
+                                                <li class="">
+                                                    <a data-toggle="tab" href="#demo-lft-tab-3" id="tab3" aria-expanded="false">Bloques de Transformación</a>
+                                                </li>
+
+                                            </ul>
+
+                                            <!--Tabs Content-->
+                                            <div class="tab-content">
+
+                                                <div id="demo-lft-tab-1" class="tab-pane active in ">
+
+                                                    @*prueba con jqgrid*@
+                                                    <div id="bootstrap_alerts_Circuitos"> </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.Label("Circuito", htmlAttributes: new { @class = "control-label " })
+                                                                <select id="_circuito" class="form-control">
+                                                                    <option value="0">Seleccione un elemento</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.Label("Seccionalizador", htmlAttributes: new { @class = "control-label " })
+
+                                                            <div class="form-group">
+                                                                <select id="_seccionalizador" class="form-control">
+                                                                    <option value="0">Seleccione un elemento</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <p>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <a class="btn blue" href="javascript:;" id="_insertarCircuitosAction"><i class="fa fa-angle-right"></i> Insertar</a>
+                                                                </div>
+                                                            </div>
+                                                        </p>
+                                                    </div>
+                                                    <div id="TablaCircuitosAlta1"></div>
+                                                    <div id="popEditaCircuito">
+                                                        <div>Editar circuito</div>
+                                                        <div style="overflow: hidden;">
+                                                            <table>
+                                                                <tr hidden>
+                                                                    <td hidden><input id="sub" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Circuito:</td>
+                                                                    <td>
+                                                                        <select id="IdCircuito" class="form-control">
+                                                                            <option value="0">Seleccione un elemento</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Seccionalizador:</td>
+                                                                    <td>
+                                                                        <select id="IdSecc" class="form-control">
+                                                                            <option value="0">Seleccione un elemento</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right"></td>
+                                                                    <td style="padding-top: 10px;" align="right"><input style="margin-right: 5px;" type="button" id="SaveCircuito" value="Guardar" /><input id="CancelCircuito" type="button" value="Cancelar" /></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="demo-lft-tab-3" class="tab-pane fade ">
+
+
+
+                                                    @*prueba con jqgrid*@
+                                                    <div id="bootstrap_alerts_Bloques"> </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.Label("Tipo bloque", htmlAttributes: new { @class = "control-label " })
+                                                                <select id="_tipoBloque" class="form-control">
+                                                                    <option value="0">Seleccione un elemento</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.Label("Tipo salida", htmlAttributes: new { @class = "control-label " })
+                                                            <div class="form-group">
+                                                                <select id="_tipoSalida" class="form-control">
+                                                                    <option value="0">Seleccione un elemento</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.Label("Esquema por baja", htmlAttributes: new { @class = "control-label " })
+                                                                <select id="_esquemaBaja" class="form-control">
+                                                                    <option value="0">Seleccione un elemento</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.Label("Tensión salida", htmlAttributes: new { @class = "control-label " })
+                                                            <div class="form-group">
+                                                                <select id="_tensionSalida" class="form-control">
+                                                                    <option value="0">Seleccione un elemento</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.Label("Tensión terciaria", htmlAttributes: new { @class = "control-label " })
+                                                            <div class="form-group">
+                                                                <select id="_tensionTerciaria" class="form-control">
+                                                                    <option value="0">Seleccione un elemento</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.Label("Sector cliente", htmlAttributes: new { @class = "control-label " })
+                                                                <select id="_sectorCliente" class="form-control">
+                                                                    <option value="0">Seleccione un elemento</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.Label("Cliente", htmlAttributes: new { @class = "control-label " })
+                                                            <input type="text" class="form-control" style="width:100%" id="_Cliente" placeholder="Insertar cliente" />
+
+                                                        </div>
+
+                                                        <div class="col-md-2" id="checkP">
+                                                            @Html.Label("Priorizado", htmlAttributes: new { @class = "control-label " })
+                                                            @*@Html.CheckBox("Priorizado", htmlAttributes: new { @class = "form-control " })*@
+
+                                                            <input id="_Priorizado" type="checkbox" class="js-switch" style="width:100%" />
+                                                        </div>
+                                                        <p>
+                                                            <div class="col-md-1">
+                                                                <div class="form-group">
+                                                                    <a class="btn blue" href="javascript:;" id="_insertarBloqueAction"><i class="fa fa-angle-right"></i> Insertar</a>
+                                                                </div>
+                                                            </div>
+                                                        </p>
+                                                    </div>
+                                                    <div id="TablaBloques1"></div>
+                                                    <div id="popEditaSecc">
+                                                        <div>Editar  bloque de transforamción</div>
+                                                        <div style="overflow: hidden;">
+                                                            <table>
+                                                                <tr hidden>
+                                                                    <td hidden><input id="_sub" /></td>
+                                                                </tr>
+                                                                <tr hidden>
+                                                                    <td hidden><input id="_Id_bloque" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Tipo bloque:</td>
+                                                                    <td>
+                                                                        <select id="_EditaTipobloque" class="form-control">
+                                                                            <option value="0">Seleccione un elemento</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Tipo salida:</td>
+                                                                    <td>
+                                                                        <select id="_EditaTipoSalida" class="form-control">
+                                                                            <option value="0">Seleccione un elemento</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Esquema por baja:</td>
+                                                                    <td>
+                                                                        <select id="_EditaEsquemaPorBaja" class="form-control">
+                                                                            <option value="0">Seleccione un elemento</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Voltaje secundario:</td>
+                                                                    <td>
+                                                                        <select id="_EditaVoltajeSecundario" class="form-control">
+                                                                            <option value="0">Seleccione un elemento</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Voltaje terciario:</td>
+                                                                    <td>
+                                                                        <select id="_EditaVoltajeTerciario" class="form-control">
+                                                                            <option value="0">Seleccione un elemento</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Sector:</td>
+                                                                    <td>
+                                                                        <select id="_EditaSector" class="form-control">
+                                                                            <option value="0">Seleccione un elemento</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Cliente:</td>
+                                                                    <td><input id="_editaCliente" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right">Priorizado:</td>
+                                                                    <td><input id="_editaPriorizado" /></td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right"></td>
+                                                                    <td style="padding-top: 10px;" align="right"><input style="margin-right: 5px;" type="button" id="SaveSecc" value="Guardar" /><input id="CancelSecc" type="button" value="Cancelar" /></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index")"><i class="fa fa-list"></i>Listado</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-check"></i> Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+
+@section styles{
+    <link href='~/Content/plugins/switchery/switchery.min.css' rel='stylesheet' type='text/css'>
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.orange.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.energyblue.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.windowsphone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.highcontrast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.light.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/EstiloTabla/tablaStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+
+    <link href="~/Content/EstiloTabla/tablaStyle.css" rel="stylesheet" type="text/css" />
+}
+
+@section script{
+    <script src="~/Content/plugins/switchery/switchery.min.js"></script>
+    @Html.Partial("~/Views/Shared/_Validacion.cshtml")
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcore.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxbuttons.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxscrollbar.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxmenu.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxwindow.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxpanel.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.aggregates.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.grouping.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdropdownlist.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxlistbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.columnsresize.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.filter.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/localization.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxnumberinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcombobox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
+
+    <script>
+        var codSub = $("#DSubestaciones_Codigo").val();
+        var EA = $("#DSubestaciones_Id_EAdministrativa").val();
+        var numA = $("#DSubestaciones_NumAccion").val();
+
+        $(document).ready(function () {
+
+            var insertado = "@ViewBag.Inserto";
+
+            if ((insertado != null) && (insertado == "Si")) {
+
+                swal({
+
+                    title: "¡La subestación fue insertada!",
+                    text: "¡Ahora puede gestionar los datos de sus circuitos y bloques de transformación!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonClass: "btn-primary"
+                });
+            }
+
+            $("#DSubestaciones_TipoSub").change(function () {
+                var TipoSub = $("#DSubestaciones_TipoSub").val();
+
+                  var dataBloques = $("#TablaBloques1").jqxGrid('getdatainformation');
+                  var cantBloques = dataBloques.rowscount;
+
+                if ((TipoSub != "") && (TipoSub != "Múltiples Bloques") && (cantBloques > 1)) {
+
+                    $("#DSubestaciones_TipoSub").val("Múltiples Bloques").trigger("change");
+
+                    swal({
+                        title: "¡Información!",
+                        text: "No puede cambiar el tipo de subestación de múltiples bloques a " + TipoSub + ", pues existe más de un bloque.",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonClass: "btn-primary"
+                    });
+                }
+            });
+
+            inicializar_select2();
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            if ($('#fechaPuestaMarcha').val() != "") {
+                let fecha = $('#fechaPuestaMarcha').val();
+                let date = fecha.split(' ')[0];
+                let dia = date.split('/')[0];
+                let mes = date.split('/')[1];
+                let anno = date.split('/')[2];
+                $('#fechaPuestaMarcha').val(`${anno}/${mes}/${dia}`);
+            }
+
+            $('.datepicker').datepicker({
+                language: 'es',
+                autoclose: 1,
+                todayHighlight: 1,
+                format: 'yyyy/mm/dd',
+                minDate: 0
+            });
+
+            $("#DSubestaciones_Sucursal").change(function () {
+                    cargarLugar_Habitado();
+            });
+
+            function cargarLugar_Habitado() {
+                var sub = $("#DSubestaciones_Sucursal").val();
+                if ( sub != "") {
+                    $.ajax({
+                        url: '@Url.Action("CargarLugarHabitado")',
+                        method: "POST",
+                        data: { id_sucursal: sub },
+                        success: function (data) {
+                            $('#cargarLugarHabitado').html(data);
+                            $(".select2").select2({
+                                placeholder: "Seleccione un elemento de la lista",
+                                allowClear: true
+                            });
+                        }
+                    });
+                }
+            }
+
+            /**/
+            function toggleSwitchery(element, estado) {
+                var estadoActual = element.is(':checked');
+                if (estadoActual != estado) {
+                    element.click();
+                }
+            };
+
+            cargarCircuitos();
+
+             ///listado de circuitos
+            function cargarCircuitos() {
+
+                $("#_circuito option").remove();
+                $.getJSON('@Url.Action("ObtenerCircuitos")', function (data) {
+                    $("#_circuito").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_circuito").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado de seleccionalizadores
+            $("#_circuito").change(function ()
+            {
+                /**/
+                $.getJSON('@Url.Action("ObtenerSeccionalizadores")',
+                    {
+                        CodCircuito: function ()
+                        {
+                            return $("#_circuito").val()
+                           }
+                    },
+                    function (datos)
+                    {
+                        $("#_seccionalizador" + ' option').remove();
+                        for (var i = 0; i < datos.length; i++)
+                        {
+                            $("#_seccionalizador").append('<option value="' + datos[i].Value + '">' + datos[i].Text + '</option');
+                        }
+                    });
+            });
+
+
+            ///////////////////insertar circuito
+            $("#_insertarCircuitosAction").on('click', function () {
+                var circuito = $("#_circuito option:selected").val();
+                var seccionalizador = $('#_seccionalizador option:selected').text();
+
+                var datosValidos = true;
+                var nombreCampo = "";
+                if (circuito == "" || circuito == null || circuito == 0) {
+                    nombreCampo = "circuito";
+                    datosValidos = false;
+                }
+                //if (seccionalizador == "" || seccionalizador == null) {
+                //    nombreCampo = "seccionalizador";
+                //    datosValidos = false;
+                //}
+
+
+                if (!datosValidos) {
+                    App.alert({
+                        container: "#bootstrap_alerts_Circuitos", // alerts parent container(by default placed after the page breadcrumbs)
+                        place: "prepend", // append or prepent in container
+                        type: "danger",  // alert's type
+                        message: "Debe insertar " + nombreCampo + ".",  // alert's message
+                        close: 1, // make alert closable
+                        reset: 1, // close all previouse alerts first
+                        focus: 1, // auto scroll to the alert after shown
+                        closeInSeconds: 5,//, // auto close after defined seconds
+                        icon: "fa fa-danger" // put icon before the message
+                    });
+                } else {
+
+                    $.ajax({
+                        cache: false,
+                        dataType: 'json',
+                        url: baseUrl + "SubestacionesD/InsertarCircuitoAlta",
+                        data: { sub: codSub, circuito: circuito, seccionalizador: seccionalizador },
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            $("#TablaCircuitosAlta1").jqxGrid('updatebounddata');
+                            $("#_seccionalizador").val("");
+                            $("#_circuito").val("");
+                            App.alert({
+                                container: "#bootstrap_alerts_Circuitos", // alerts parent container(by default placed after the page breadcrumbs)
+                                place: "prepend", // append or prepent in container
+                                type: "success",  // alert's type
+                                message: "La información se guardó correctamente.",  // alert's message
+                                close: 1, // make alert closable
+                                reset: 1, // close all previouse alerts first
+                                focus: 1, // auto scroll to the alert after shown
+                                closeInSeconds: 5,//, // auto close after defined seconds
+                                icon: "fa fa-success" // put icon before the message
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            switch (jqXHR.status) {
+                                case 409:
+                                    App.alert({
+                                        container: "#bootstrap_alerts_Circuitos", // alerts parent container(by default placed after the page breadcrumbs)
+                                        place: "prepend", // append or prepent in container
+                                        type: "danger",  // alert's type
+                                        message: "Ya existe el circuito en la subestación.",  // alert's message
+                                        close: 1, // make alert closable
+                                        reset: 1, // close all previouse alerts first
+                                        focus: 1, // auto scroll to the alert after shown
+                                        closeInSeconds: 5,//, // auto close after defined seconds
+                                        icon: "fa fa-danger" // put icon before the message
+                                    });
+                                    break;
+                                case 400:
+                                    App.alert({
+                                        container: "#bootstrap_alerts_Circuitos", // alerts parent container(by default placed after the page breadcrumbs)
+                                        place: "prepend", // append or prepent in container
+                                        type: "danger",  // alert's type
+                                        message: "Ocurrió un error al insertar el circuito.",  // alert's message
+                                        close: 1, // make alert closable
+                                        reset: 1, // close all previouse alerts first
+                                        focus: 1, // auto scroll to the alert after shown
+                                        closeInSeconds: 5,//, // auto close after defined seconds
+                                        icon: "fa fa-danger" // put icon before the message
+                                    });
+                                    break;
+                                default:
+                            }
+                            //commit(false);
+                        }
+                    });
+
+                }
+            });
+
+            cargarCirctuiosEditar();
+
+            //////////////////editar circuito
+            function cargarCirctuiosEditar() {
+
+                $("#IdCircuito option").remove();
+                $.getJSON('@Url.Action("ObtenerCircuitos")', function (data) {
+                    $("#IdCircuito").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#IdCircuito").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado de seleccionalizadores
+            $("#IdCircuito").change(function ()
+            {
+                /**/
+                $.getJSON('@Url.Action("ObtenerSeccionalizadores")',
+                    {
+                        CodCircuito: function ()
+                        {
+                            return $("#IdCircuito").val()
+                           }
+                    },
+                    function (datos)
+                    {
+                        $("#IdSecc" + ' option').remove();
+                        for (var i = 0; i < datos.length; i++)
+                        {
+                            $("#IdSecc").append('<option value="' + datos[i].Value + '">' + datos[i].Text + '</option');
+                        }
+                    });
+            });
+
+
+            $("#IdCircuito").jqxInput({ theme: 'energyblue' });
+            $("#IdSecc").jqxInput({ theme: 'energyblue' });
+
+
+            $("#IdCircuito").width(150);
+            $("#IdCircuito").height(23);
+            $("#IdSecc").width(150);
+            $("#IdSecc").height(23);
+
+
+
+
+            $("#popEditaCircuito").jqxWindow({
+                width: 350, height: 230, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#CancelCircuito"), modalOpacity: 0.01
+            });
+
+            $("#popEditaCircuito").on('open', function () {
+                circuitoOld = $("#IdCircuito option:selected").val();
+            });
+
+            $("#CancelCircuito").jqxButton({ theme: 'energyblue' });
+            $("#SaveCircuito").jqxButton({ theme: 'energyblue' });
+
+            $("#SaveCircuito").click(function () {
+                if (editrow >= 0) {
+
+                    var row = {
+                        sub: $("#sub").val(), circuitoAnterior: circuitoOld, circuito: $("#IdCircuito option:selected").val(), seccionalizador: $("#IdSecc option:selected").val()
+                    };
+                    var rowID = $('#TablaCircuitosAlta1').jqxGrid('getrowid', editrow);
+                    $('#TablaCircuitosAlta1').jqxGrid('updaterow', rowID, row);
+                    //$("#TablaIndicadorTablaHoja").jqxGrid('updatebounddata');
+
+                    $("#popEditaCircuito").jqxWindow('hide');
+                }
+            });
+
+
+
+            ////bloques de transformacion
+            $("#tab1").click(function () {
+
+
+            cargarTipoBloques();
+            cargarTipoSalida();
+            cargarEsquemaBaja();
+            cargarTensionSalida();
+            cargarTensionTerciaria();
+            $("#_sectorCliente").attr("disabled", true);
+            $("#_Cliente").attr("disabled", true);
+            $("#_Priorizado").attr("disabled", true);
+            //var check = new Switchery(document.getElementById("_Priorizado"));
+
+
+            ///listado de tipo bloques
+            function cargarTipoBloques() {
+
+                $("#_tipoBloque option").remove();
+                $.getJSON('@Url.Action("ObtenerTipoBloque")', function (data) {
+                    $("#_tipoBloque").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_tipoBloque").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado tipo de salida
+            function cargarTipoSalida() {
+
+                $("#_tipoSalida option").remove();
+                $.getJSON('@Url.Action("ObtenerTipoSalida")', function (data) {
+                    $("#_tipoSalida").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_tipoSalida").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+
+            //habilitando los campos de sector y priorizado en dependencia del tipo de salida si es exclusiva se habilitan de lo contrario no
+             $("#_tipoSalida").change(function () {
+                 tipoSalida = $("#_tipoSalida").val()
+
+                if (tipoSalida == "Exclusiva") {
+
+                    $.getJSON('@Url.Action("ObtenerSector")', function (data) {
+                        $("#_sectorCliente" + ' option').remove();
+
+                         //$("#_sectorCliente").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_sectorCliente").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+                    $("#_sectorCliente").attr("disabled", false);
+                    $("#_Priorizado").attr("disabled", false);
+                    $("#_Cliente").attr("disabled", false);
+
+                }
+                else {
+                    $("#_sectorCliente").attr("disabled", true);
+                    $("#_Priorizado").attr("disabled", true);
+                    $("#_Cliente").attr("disabled", true);
+
+                }
+            });
+
+
+             ///listado esquema por baja
+            function cargarEsquemaBaja() {
+
+                $("#_esquemaBaja option").remove();
+                $.getJSON('@Url.Action("ObtenerEsquemaBaja")', function (data) {
+                    $("#_esquemaBaja").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_esquemaBaja").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado tension salida
+            function cargarTensionSalida() {
+
+                $("#_tensionSalida option").remove();
+                $.getJSON('@Url.Action("ObtenerVoltajeSec")', function (data) {
+                    $("#_tensionSalida").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_tensionSalida").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado tension terciaria
+            function cargarTensionTerciaria() {
+
+                $("#_tensionTerciaria option").remove();
+                $.getJSON('@Url.Action("ObtenerVoltajeSec")', function (data) {
+                $("#_tensionTerciaria").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_tensionTerciaria").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            });
+
+
+
+            ///////////////////insertar bloque de transformacion
+            $("#_insertarBloqueAction").on('click', function () {
+                var checkPriorizado = document.getElementById('_Priorizado');
+
+                var tipoBloque = $("#_tipoBloque option:selected").val();
+                var tipoSalida = $("#_tipoSalida option:selected").val();
+                var esquemaBaja = $("#_esquemaBaja option:selected").val();
+                var tensionSalida = $("#_tensionSalida option:selected").val();
+                var tensionTerciaria = $("#_tensionTerciaria option:selected").val();
+                var sectorCliente = $("#_sectorCliente option:selected").val();
+                var Cliente = $("#_Cliente").val();
+                var Priorizado = checkPriorizado.checked;
+
+                var dataBloques = $("#TablaBloques1").jqxGrid('getdatainformation');
+                var cantBloques = dataBloques.rowscount;
+
+                var datosValidos = true;
+                var nombreCampo = "";
+                /*para definir cantidad de bloques según el tipo de subestación, si es multimples bloques mas de 1*/
+                var TipoSub = $("#DSubestaciones_TipoSub").val();
+                if (TipoSub == "") {
+                    nombreCampo = "Debe especificar el tipo de subestación."
+                    datosValidos = false;
+
+                    swal({
+                        title: "¡Información!",
+                        text: "Debe especificar el tipo de subestación.",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonClass: "btn-primary"
+                    });
+                } else {
+                    if ((TipoSub != "Múltiples Bloques") && (cantBloques >=1)) {
+                        var nombreCampo = "Solo puede insertar un bloque para el tipo de subestación " + TipoSub + "."
+                        datosValidos = false;
+
+                        swal({
+                            title: "¡Información!",
+                            text: "Solo puede insertar un bloque para el tipo de subestación " + TipoSub + ".",
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonClass: "btn-primary"
+                        });
+                        $("#_tipoBloque").val("");
+                        $("#_tipoSalida").val("");
+                        $("#_esquemaBaja").val("");
+                        $("#_tensionSalida").val("");
+                        $("#_tensionTerciaria").val("");
+                        $("#_sectorCliente").val("");
+                        $("#_Cliente").val("");
+                    }
+                }
+                if (tipoBloque == "" || tipoBloque == null || tipoBloque == 0) {
+                    nombreCampo = "Debe insertar el valor Tipo bloque.";
+                    datosValidos = false;
+                } else
+                    if (tipoSalida == "" || tipoSalida == null || tipoSalida == 0) {
+                        nombreCampo = "Debe insertar el valor Tipo salida.";
+                    datosValidos = false;
+                } else
+                if (esquemaBaja == "" || esquemaBaja == null ) {
+                    nombreCampo = "Debe insertar el valor Esquema por baja.";
+                    datosValidos = false;
+                }
+
+
+                if (!datosValidos) {
+                    App.alert({
+                        container: "#bootstrap_alerts_Bloques", // alerts parent container(by default placed after the page breadcrumbs)
+                        place: "prepend", // append or prepent in container
+                        type: "danger",  // alert's type
+                        message:  nombreCampo ,  // alert's message
+                        close: 1, // make alert closable
+                        reset: 1, // close all previouse alerts first
+                        focus: 1, // auto scroll to the alert after shown
+                        closeInSeconds: 5,//, // auto close after defined seconds
+                        icon: "fa fa-danger" // put icon before the message
+                    });
+                } else {
+                    $.ajax({
+                        cache: false,
+                        dataType: 'json',
+                        url: baseUrl + "SubestacionesD/InsertarBloque",
+                        data: { sub: codSub, tipoBloque: tipoBloque, tipoSalida: tipoSalida, esquema: esquemaBaja, priorizado: Priorizado, VS: tensionSalida, VT: tensionTerciaria, sector: sectorCliente, Cliente: Cliente, EA: EA, numA: numA },
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            $("#TablaBloques1").jqxGrid('updatebounddata');
+                            $("#_tipoBloque").val("");
+                            $("#_tipoSalida").val("");
+                            $("#_esquemaBaja").val("");
+                            $("#_tensionSalida").val("");
+                            $("#_tensionTerciaria").val("");
+                            $("#_sectorCliente").val("");
+                            $("#_Cliente").val("");
+                            //cantBloques++;
+                            //$("#_Priorizado").check("false");
+                            App.alert({
+                                container: "#bootstrap_alerts_Bloques", // alerts parent container(by default placed after the page breadcrumbs)
+                                place: "prepend", // append or prepent in container
+                                type: "success",  // alert's type
+                                message: "La información se guardó correctamente.",  // alert's message
+                                close: 1, // make alert closable
+                                reset: 1, // close all previouse alerts first
+                                focus: 1, // auto scroll to the alert after shown
+                                closeInSeconds: 5,//, // auto close after defined seconds
+                                icon: "fa fa-success" // put icon before the message
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            switch (jqXHR.status) {
+                                case 409:
+                                    App.alert({
+                                        container: "#bootstrap_alerts_Bloques", // alerts parent container(by default placed after the page breadcrumbs)
+                                        place: "prepend", // append or prepent in container
+                                        type: "danger",  // alert's type
+                                        message: "Ya existe el circuito en la subestación.",  // alert's message
+                                        close: 1, // make alert closable
+                                        reset: 1, // close all previouse alerts first
+                                        focus: 1, // auto scroll to the alert after shown
+                                        closeInSeconds: 5,//, // auto close after defined seconds
+                                        icon: "fa fa-danger" // put icon before the message
+                                    });
+                                    break;
+                                case 400:
+                                    App.alert({
+                                        container: "#bootstrap_alerts_Bloques", // alerts parent container(by default placed after the page breadcrumbs)
+                                        place: "prepend", // append or prepent in container
+                                        type: "danger",  // alert's type
+                                        message: "Ocurrió un error al insertar el bloque.",  // alert's message
+                                        close: 1, // make alert closable
+                                        reset: 1, // close all previouse alerts first
+                                        focus: 1, // auto scroll to the alert after shown
+                                        closeInSeconds: 5,//, // auto close after defined seconds
+                                        icon: "fa fa-danger" // put icon before the message
+                                    });
+                                    break;
+                                default:
+                            }
+                            //commit(false);
+                        }
+                    });
+                }
+
+            });
+
+
+
+            //////////////////editar bloque de transformación
+
+
+
+            $("#_EditaTipobloque").jqxInput({ theme: 'energyblue' });
+            $("#_EditaTipoSalida").jqxInput({ theme: 'energyblue' });
+            $("#_EditaEsquemaPorBaja").jqxInput({ theme: 'energyblue' });
+            $("#_EditaVoltajeSecundario").jqxInput({ theme: 'energyblue' });
+            $("#_EditaVoltajeTerciario").jqxInput({ theme: 'energyblue' });
+            $("#_EditaSector").jqxInput({ theme: 'energyblue' });
+            $("#_editaCliente").jqxInput({ theme: 'energyblue' });
+            $("#_editaPriorizado").jqxInput({ theme: 'energyblue' });
+
+
+            $("#_EditaTipobloque").width(150);
+            $("#_EditaTipobloque").height(23);
+            $("#_EditaTipoSalida").width(150);
+            $("#_EditaTipoSalida").height(23);
+            $("#_EditaEsquemaPorBaja").width(150);
+            $("#_EditaEsquemaPorBaja").height(23);
+            $("#_EditaVoltajeSecundario").width(150);
+            $("#_EditaVoltajeSecundario").height(23);
+            $("#_EditaVoltajeTerciario").width(150);
+            $("#_EditaVoltajeTerciario").height(23);
+            $("#_EditaSector").width(150);
+            $("#_EditaSector").height(23);
+            $("#_editaCliente").width(150);
+            $("#_editaCliente").height(23);
+            $("#_editaPriorizado").width(150);
+            $("#_editaPriorizado").height(23);
+
+            cargarTipoBloquesEditar();
+            cargarTipoSalidaEditar();
+            cargarEsquemaBajaEditar();
+            cargarTensionSalidaEditar();
+            cargarTensionTerciariaEditar();
+            cargarSectorEditar();
+
+            $("#_sectorCliente").attr("disabled", true);
+            $("#_Cliente").attr("disabled", true);
+            $("#_Priorizado").attr("disabled", true);
+
+
+            ///listado de tipo bloques
+            function cargarTipoBloquesEditar() {
+
+                $("#_EditaTipobloque option").remove();
+                $.getJSON('@Url.Action("ObtenerTipoBloque")', function (data) {
+                    $("#_EditaTipobloque").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_EditaTipobloque").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado tipo de salida
+            function cargarTipoSalidaEditar() {
+
+                $("#_EditaTipoSalida option").remove();
+                $.getJSON('@Url.Action("ObtenerTipoSalida")', function (data) {
+                    $("#_EditaTipoSalida").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_EditaTipoSalida").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+              ///listado esquema por baja
+            function cargarEsquemaBajaEditar() {
+
+                $("#_EditaEsquemaPorBaja option").remove();
+                $.getJSON('@Url.Action("ObtenerEsquemaBaja")', function (data) {
+                    $("#_EditaEsquemaPorBaja").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_EditaEsquemaPorBaja").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado tension salida
+            function cargarTensionSalidaEditar() {
+
+                $("#_EditaVoltajeSecundario option").remove();
+                $.getJSON('@Url.Action("ObtenerVoltajeSec")', function (data) {
+                    $("#_EditaVoltajeSecundario").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_EditaVoltajeSecundario").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado tension terciaria
+            function cargarTensionTerciariaEditar() {
+
+                $("#_EditaVoltajeTerciario option").remove();
+                $.getJSON('@Url.Action("ObtenerVoltajeSec")', function (data) {
+                    $("#_EditaVoltajeTerciario").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_EditaVoltajeTerciario").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            ///listado sectores editar
+            function cargarSectorEditar() {
+
+                $("#_EditaSector option").remove();
+                $.getJSON('@Url.Action("ObtenerSector")', function (data) {
+                    $("#_EditaSector").append('<option value=""></option');
+                    for (var i = 0; i < data.length; i++) {
+                        $("#_EditaSector").append('<option value="' + data[i].Value + '">' + data[i].Text + '</option');
+
+                    }
+
+                });
+            }
+
+            //habilitando los campos de sector y priorizado en dependencia del tipo de salida si es exclusiva se habilitan de lo contrario no
+            $("#_EditaTipoSalida").change(function () {
+                tipoSalida = $("#_EditaTipoSalida").val()
+
+                if (tipoSalida == "Exclusiva") {
+
+                    $("#_EditaSector").attr("disabled", false);
+                    $("#_editaPriorizado").attr("disabled", false);
+                    $("#_editaCliente").attr("disabled", false);
+
+                }
+                else {
+                    $("#_EditaSector").attr("disabled", true);
+                    $("#_editaPriorizado").attr("disabled", true);
+                    $("#_editaCliente").attr("disabled", true);
+                    $("#_EditaSector").val("");
+                    $("#_editaPriorizado").val("");
+                    $("#_editaCliente").val("");
+
+                }
+            });
+
+
+
+
+            $("#popEditaSecc").jqxWindow({
+                width: 350, height: 330, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#CancelSecc"), modalOpacity: 0.01
+
+
+            });
+
+            $("#popEditaSecc").on('open', function () {
+
+
+            });
+
+            $("#CancelSecc").jqxButton({ theme: 'energyblue' });
+            $("#SaveSecc").jqxButton({ theme: 'energyblue' });
+
+            $("#SaveSecc").click(function () {
+                if (editrow >= 0) {
+
+                    var row = {
+                        Codigo: $("#_sub").val(), Id_bloque: $("#_Id_bloque").val(), tipobloque: $("#_EditaTipobloque option:selected").val(), idEsquemaPorBaja: $("#_EditaEsquemaPorBaja option:selected").val(), idVoltajeSecundario: $("#_EditaVoltajeSecundario option:selected").val(), idVoltajeTerciario: $("#_EditaVoltajeTerciario option:selected").val(), TipoSalida: $("#_EditaTipoSalida option:selected").val(), idSector: $("#_EditaSector option:selected").val(), Cliente: $("#_editaCliente").val(), Priorizado: $("#_editaPriorizado").val(),
+                    };
+                    var rowID = $('#TablaBloques1').jqxGrid('getrowid', editrow);
+                    $('#TablaBloques1').jqxGrid('updaterow', rowID, row);
+                    //$("#TablaIndicadorTablaHoja").jqxGrid('updatebounddata');
+
+                    $("#popEditaSecc").jqxWindow('hide');
+                }
+            });
+
+
+            $("#form").submit(function () {
+                    var sub = $("#DSubestaciones_Codigo").val();
+                    $(".CodSub").each(function (indice, valuie) { $(this).val(sub); });
+                    return true;
+            });
+        });
+
+
+    </script>
+
+    <script src="~/Scripts/js/jsTablaCIrcuitosAltaSubD.js"></script>
+    <script src="~/Scripts/js/jsTablaBloquesTransformacion.js"></script>
+
+}

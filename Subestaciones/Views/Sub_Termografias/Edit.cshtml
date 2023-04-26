@@ -1,0 +1,487 @@
+﻿@model Subestaciones.Models.Clases.TermografiasViewModel
+
+@{
+
+    ViewBag.Title = "Termografías";
+    String imgSrc = "";
+    if (Model.termografias.Imagen != null)
+    {
+        var base64 = Convert.ToBase64String(Model.termografias.Imagen);
+        imgSrc = String.Format("data:image/jpeg;base64,{0}", base64);
+    }
+
+    String imgSrcT = "";
+    if (Model.termografias.ImagenTermografica != null)
+    {
+        var base64 = Convert.ToBase64String(Model.termografias.ImagenTermografica);
+        imgSrcT = String.Format("data:image/jpeg;base64,{0}", base64);
+    }
+
+}
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_Termografias")">Lista de termograf&iacute;as</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Detalles termograf&iacute;a
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Edit", "Sub_Termografias", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @Html.ValidationSummary(false)
+                                @Html.HiddenFor(model => model.termografias.Id_EAdministrativa)
+                                @Html.HiddenFor(model => model.termografias.NumAccion)
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.termografias.Subestacion, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.termografias.fecha, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.termografias.EjecutadaPor, "", new { @class = "text-danger" })
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.termografias.Subestacion, htmlAttributes: new { @class = "control-label" })
+
+                                                    @Html.DropDownListFor(model => model.termografias.Subestacion, ViewBag.ListaSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                @Html.LabelFor(model => model.termografias.fecha, htmlAttributes: new { @class = "control-label" })
+
+                                                <div class="input-group date" id="fechahora">
+                                                    <input type="text" disabled class="form-control" id="termofechahora">
+                                                    <span class="input-group-addon btn blue tooltips" disabled id="termografiafechahora" data-original-title="Seleccionar fecha">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                @Html.HiddenFor(model => model.termografias.fecha)
+
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.termografias.EjecutadaPor, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.termografias.EjecutadaPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.termografias.transferencia, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.termografias.transferencia, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.termografias.transferencia, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.termografias.TempMedio, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.termografias.TempMedio, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.termografias.TempMedio, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.termografias.cantPto, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.termografias.cantPto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.termografias.Imagen, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                    <img id="Imagen" src="@imgSrc" width="450" height="250" />
+                                                    <input type="file" name="ImageData" id="ImageData" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.termografias.ImagenTermografica, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                    <img id="ImgFoto" src="@imgSrcT" width="450" height="250" />
+                                                    <input type="file" name="ImageDataT" id="ImageDataT" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!--Begin Puntos calientes-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="portlet box blue">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <div class="fa fa-fire"></div>
+                                                            Puntos calientes
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+
+                                                        <div class="scroller" style="width: auto; height: 200px; overflow-y: initial;" data-initialized="1">
+
+                                                            <div class="col-md-12" id="TablaPtos">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Elemento</th>
+                                                                            <th>Descripci&oacute;n del punto caliente</th>
+                                                                            <th>Fase</th>
+                                                                            <th>Temp Detectada(ºC)</th>
+                                                                            <th>Delta T(ºC)</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{
+                                                                            if (Model != null && Model.ptosCalientes != null)
+                                                                            {
+                                                                                for (int i = 0; i < Model.ptosCalientes.Count; i++)
+                                                                                {
+                                                                                    <tr>
+
+                                                                                        <td>
+                                                                                            @Html.HiddenFor(model => model.ptosCalientes[i].Subestacion, new { @class = "CodSub" })
+                                                                                            @Html.HiddenFor(model => model.ptosCalientes[i].Punto, new { @class = "col-md-12", @id = "ptosCalientes_Punto" + i })
+                                                                                            @Html.HiddenFor(model => model.ptosCalientes[i].Id_EAdministrativa, new { @class = "col-md-12", @id = "ptosCalientes_Id_EAdministrativa" + i })
+                                                                                            @Html.HiddenFor(model => model.ptosCalientes[i].NumAccion, new { @class = "col-md-12", @id = "ptosCalientes_NumAccion" + i })
+
+                                                                                            @Html.TextBoxFor(model => model.ptosCalientes[i].elemennto, new { @class = "col-md-2 form-control", @id = "ptosCalientes_elemennto" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.ptosCalientes[i].descrpPtoCaleinte, new { @class = "form-control", @id = "ptosCalientes_descrpPtoCaleinte" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.ptosCalientes[i].Fase, new { @class = "form-control", @id = "ptosCalientes_Fase" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.ptosCalientes[i].TempDetectada, new { @class = "form-control", @id = "ptosCalientes_TempDetectada" + i })
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            @Html.TextBoxFor(model => model.ptosCalientes[i].delta, new { @class = "form-control", @id = "ptosCalientes_delta" + i })
+                                                                                        </td>
+                                                                                    </tr>
+
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="portlet-fit">
+                                                        <button type="button" name="addpto" id="addpto" class="btn btn-success"><i class="fa fa-plus"></i> Agregar punto caliente</button>
+                                                        <button type="button" name="delpto" id="delpto" class="btn btn-danger"><i class="fa fa-minus"></i> Eliminar punto caliente</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--End Puntos calientes-->
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_Termografias")"><i class="fa fa-list"></i> Listado de termograf&iacute;as</a>
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+
+            valorfecha = $("#termografias_fecha").val();
+            valorfecha = moment(valorfecha, "DD/MM/YYYY hh:mm:ss a").format("YYYY/MM/DD H:mm");
+            fecha = new Date(valorfecha);
+            fechaini = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0);
+            fechafin = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 23, 59);
+            $("#fechahora").datetimepicker({
+                language: 'es',
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                format: 'dd/mm/yyyy H:ii p',
+                linkFormat: 'dd/mm/yyyy H:ii p',
+                showMeridian: 1,
+                startDate: fechaini,
+                endDate: fechafin,
+                forceParse: 1,
+                startView: 1,
+                maxView: 1,
+                linkField: 'termografias_fecha'
+            }).datetimepicker('setDate', fecha);
+
+            $("#ImageData").change(function () {
+                cargarFotoReal(this);
+            });
+
+            function cargarFotoReal(imagenR) {
+                if (imagenR.files && imagenR.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#Imagen").attr('src', e.target.result); //renderizamos la imagen
+                    }
+                    reader.readAsDataURL(imagenR.files[0]);
+                }
+            }
+
+            $("#ImageDataT").change(function () {
+                cargarImagen(this);
+            });
+
+            function cargarImagen(imagen) {
+                if (imagen.files && imagen.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#ImgFoto").attr('src', e.target.result);//renderizamos la imagen
+                    }
+                    reader.readAsDataURL(imagen.files[0]);
+                }
+            }
+
+            function formato(date)
+            {
+                var dia = 01;
+                var mes = date.getMonth() + 1;
+                var anho = date.getFullYear().toString().slice(2);
+                return dia + '-' + mes + '-' + anho;
+            }
+
+            var CantPtos = @ViewBag.PtosCount;
+
+            $("#termografias_cantPto").val(CantPtos);//valor del campo cantidad de puntos desde el get
+
+            $("#termografias_TempMedio").change(function () {
+                var tempA = $("#termografias_TempMedio").val();
+
+                calcDelta(tempA);
+
+            });
+
+            function calcDelta(T) {
+                for (var i = 0; i < CantPtos; i++) {
+                    var IdTemp = "ptosCalientes_TempDetectada" + i;
+                    var temp = "#" + IdTemp;
+
+                    var IdDelta = "ptosCalientes_delta" + i;
+                    var deltaText = "#" + IdDelta;
+
+                    tempD = $(temp).val();
+
+                    if ((T != null) && (tempD != null)) {
+
+                        var deltaCal = tempD - T;
+
+                        $(deltaText).val(deltaCal);
+                    }
+                }
+            }
+
+            var tempA = $("#termografias_TempMedio").val();
+
+            calcDelta(tempA);
+
+            //eliminar pto
+            $("#delpto").click(function () {
+                if ($("#TablaPtos tr").length > 1) {
+                    CantPtos--;
+
+
+                    var IdPto = "ptosCalientes_Punto" + CantPtos;
+                    var Pto = "#" + IdPto;
+
+                    var IdEA = "ptosCalientes_Id_EAdministrativa" + CantPtos;
+                    var EA = "#" + IdEA;
+
+                    var IdAcc = "ptosCalientes_NumAccion" + CantPtos;
+                    var Acc = "#" + IdAcc;
+
+                    var ePto = $(Pto).val();
+                    var eEA = $(EA).val();
+                    var eAcc = $(Acc).val();
+
+                    var baseUrl = $('base').attr('href');
+
+                    $.ajax({
+                        url: baseUrl + 'Sub_Termografias/EliminarPto',
+                        method: 'POST',
+                        data: { punto: ePto, EA: eEA, numAccion: eAcc }
+                    });
+                    $("#TablaPtos tr:last").remove();
+
+                    $("#termografias_cantPto").val(CantPtos);//valor del campo cantidad de puntos
+                }
+            });
+
+            //agregar pto
+            $("#addpto").click(function () {
+                var nombreElemento = "ptosCalientes[" + CantPtos + "].elemennto";
+                var IdElemento = "ptosCalientes_elemennto" + CantPtos;
+                var SelectorElementos = "#" + IdElemento;
+
+
+                var nombreDesc = "ptosCalientes[" + CantPtos + "].descrpPtoCaleinte";
+                var IdDesc = "ptosCalientes_descrpPtoCaleinte" + CantPtos;
+
+                var nombreFase = "ptosCalientes[" + CantPtos + "].Fase";
+                var IdFase = "ptosCalientes_Fase" + CantPtos;
+                var SelectorFase = "#" + IdFase;
+
+
+                var nombreTemp = "ptosCalientes[" + CantPtos + "].TempDetectada";
+                var IdTemp = "ptosCalientes_TempDetectada" + CantPtos;
+                var tempE = "#" + IdTemp;
+
+                var nombreDelta = "ptosCalientes[" + CantPtos + "].delta";
+                var IdDelta = "ptosCalientes_delta" + CantPtos;
+                var deltaText = "#" + IdDelta;
+
+                //variables para mostrar los datos en el append de la tabla ptos calientes
+                var inputCodSub = '<input class="CodSub" type="hidden" name="ptosCalientes[' + CantPtos + '].Subestacion" >';
+
+                var listaE = '<td><select name="' + nombreElemento + '" id="' + IdElemento + '" class="form-control"></select></td>';
+                var Desc = '<td><input text name="' + nombreDesc + '" id="' + IdDesc + '" class="form-control"></text></td>';
+                var Fase = '<td><select name="' + nombreFase + '" id="' + IdFase + '" class="form-control"></select></td>';
+                var Temp = '<td><input text name="' + nombreTemp + '" id="' + IdTemp + '" class="form-control"></text></td>';
+                var delta = '<td><input text name="' + nombreDelta + '" id="' + IdDelta + '" class="form-control"></text></td>';
+
+                $("#TablaPtos tbody").append('<tr>' + inputCodSub + listaE + Desc + Fase + Temp + delta + '</tr>');
+                CantPtos++;
+
+                $(deltaText).attr("disabled", true);
+
+                $("#termografias_cantPto").val(CantPtos);//valor del campo cantidad de puntos
+
+                  //listado de elementos
+                var inst = $("#termografias_Subestacion").val();
+
+                var subINST = inst.charAt(1);
+
+                $.getJSON('@Url.Action("ObtenerElementos")', { sub: subINST }
+                    ,
+                    function (Elementos) {
+                        /**/
+                        $(SelectorElementos).append('<option value=""></option');
+                        for (var i = 0; i < Elementos.length; i++) {
+                            $(SelectorElementos).append('<option value="' + Elementos[i].Value + '">' + Elementos[i].Text + '</option');
+                        }
+
+                    });
+
+                //listado fase
+                $.getJSON('@Url.Action("ObtenerFase")',
+                    function (datos) {
+                        /**/
+                        $(SelectorFase).append('<option value=""></option');
+                        for (var i = 0; i < datos.length; i++) {
+                            $(SelectorFase).append('<option value="' + datos[i].Value + '">' + datos[i].Text + '</option');
+                        }
+
+                    });
+
+                $(tempE).change(function () {
+                    var tempA = $("#termografias_TempMedio").val();
+                    var temp = $(tempE).val();
+
+                    if ((tempA != null) && (temp != null)) {
+
+                        var deltaCal = temp - tempA;
+
+                        $(deltaText).val(deltaCal);
+                    }
+
+                });
+
+            });
+
+
+            $("#form").submit(function () {
+                var sub = $("#termografias_Subestacion").val();
+                $(".CodSub").each(function (indice, valuie) { $(this).val(sub); });
+                return true;
+            });
+
+        });
+    </script>
+}
+

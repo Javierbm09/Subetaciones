@@ -1,0 +1,124 @@
+﻿@model Subestaciones.Models.Clases.TransformadorSubtransmision
+<div class="row">
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @id = "nombre", @readonly = "readonly" } })
+            <span class="input-group-addon btn blue tooltips" data-original-title="Seleccionar subestaci&oacute;n">
+                <span class="fa fa-search" href="#basic1" data-toggle="modal"></span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.Numemp, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Numemp, new { htmlAttributes = new { @class = "form-control", @id = "nEmp", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.NoSerie, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.NoSerie, new { htmlAttributes = new { @class = "form-control", @id = "nSerie", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.Fabricante, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Fabricante, new { htmlAttributes = new { @class = "form-control", @id = "Fab", @readonly = "readonly" } })
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.PorcientoImpedancia, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.PorcientoImpedancia, new { htmlAttributes = new { @class = "form-control", @id = "Imp", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.GrupoConexion, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.GrupoConexion, new { htmlAttributes = new { @class = "form-control", @id = "GConex", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.TensionPrimaria, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.TensionPrimaria, new { htmlAttributes = new { @class = "form-control", @id = "VP", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.TensionSecundaria, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.TensionSecundaria, new { htmlAttributes = new { @class = "form-control", @id = "VS", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.capacidad, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.capacidad, new { htmlAttributes = new { @class = "form-control", @id = "cap", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.PesoAceite, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.PesoAceite, new { htmlAttributes = new { @class = "form-control", @id = "pesoA", @readonly = "readonly" } })
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.PesoTotal, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.PesoTotal, new { htmlAttributes = new { @class = "form-control", @id = "pesoT", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.NroPosiciones, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.NroPosiciones, new { htmlAttributes = new { @class = "form-control", @id = "nPos", @readonly = "readonly" } })
+    </div>
+</div>
+
+<div class="modal" id="basic1" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Transformadores en subestaci&oacute;n</h4>
+            </div>
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table" id="datatable_transformadores" style="cursor:pointer">
+                    <thead>
+                        <tr>
+                            <th>
+                                Transformador
+                            </th>
+                            <th>
+                                N&uacute;m serie
+                            </th>
+                            <th>
+                                N&uacute;m empresa
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.listaTransf)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="hidden" value=@item.Id_Transformador id="id_t">
+                                    <input type="hidden" value=@item.Codigo id="sub">
+                                    <input type="hidden" value=@item.Id_EAdministrativa id="EA">
+
+                                    @item.Nombre
+                                </td>
+                                <td>
+                                    @item.NoSerie
+                                </td>
+                                <td>
+                                    @item.Numemp
+                                </td>
+
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="Seleccionar">Seleccionar</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button" id="cerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

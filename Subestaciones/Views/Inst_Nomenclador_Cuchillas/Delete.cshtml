@@ -1,0 +1,96 @@
+﻿@model Subestaciones.Models.Inst_Nomenclador_Cuchillas
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Inst_Nomenclador_Cuchillas</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Inst_Nomenclador_Cuchillas_Mando.DescripcionMandoCuchillas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Inst_Nomenclador_Cuchillas_Mando.DescripcionMandoCuchillas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Inst_Nomenclador_Cuchillas_Operacion.DescripcionOperacionCuchillas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Inst_Nomenclador_Cuchillas_Operacion.DescripcionOperacionCuchillas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Inst_Nomenclador_Cuchillas_Tension.DescripcionTensionCuchillas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Inst_Nomenclador_Cuchillas_Tension.DescripcionTensionCuchillas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Fabricante)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Fabricante)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Administrativa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Administrativa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumAccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa_Prov)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_EAdministrativa_Prov)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

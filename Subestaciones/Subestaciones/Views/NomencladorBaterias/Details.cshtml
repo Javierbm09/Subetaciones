@@ -1,0 +1,50 @@
+﻿@model Subestaciones.Models.NomencladorBaterias
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NomencladorBaterias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoBateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoBateria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CapacidadBateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CapacidadBateria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TensionBateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TensionBateria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClaseBateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClaseBateria)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdBateria }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

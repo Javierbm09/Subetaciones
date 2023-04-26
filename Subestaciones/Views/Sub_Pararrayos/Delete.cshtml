@@ -1,0 +1,170 @@
+﻿@model Subestaciones.Models.Clases.Pararrayos
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Desea eliminar el pararrayos?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreSub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreSub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipoProteg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EquipoProteg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fabricante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fabricante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VInst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VInst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MOCV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MOCV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrienteN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrienteN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Material)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Material)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Frecuencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Frecuencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aislamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aislamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AñoFabricacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AñoFabricacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instalado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instalado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete")) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Ir al listado", "Index")
+        </div>
+        <input type="hidden" name="EA" value="@Model.Id_EAdministrativa" />
+        <input type="hidden" name="id_para" value="@Model.Id_pararrayo" />
+    }
+</div>

@@ -1,0 +1,39 @@
+﻿<div class="top-menu">
+    <ul class="nav navbar-nav pull-right">
+        <!-- BEGIN NOTIFICATION DROPDOWN -->
+        <!-- DOC: Apply "dropdown-hoverable" class after "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
+        <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+        <!-- END NOTIFICATION DROPDOWN -->
+        <!-- BEGIN TODO DROPDOWN -->
+        <!-- END TODO DROPDOWN -->
+        <li class="droddown dropdown-separator">
+            <span class="separator"></span>
+        </li>
+        <!-- BEGIN INBOX DROPDOWN -->
+        <!-- END INBOX DROPDOWN -->
+        <!-- BEGIN USER LOGIN DROPDOWN -->
+        <li class="dropdown dropdown-user dropdown-dark">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                <span class="username username-hide-mobile">
+                    @System.Web.HttpContext.Current.User.Identity.Name
+                </span>
+                <i class="icon-user-following font-green-haze"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-default">
+                <li>
+                    <a href="#">
+                        <i class="icon-lock"></i> Bloquear panta&ntilde;a
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout","Personal")">
+                        <i class="icon-key"></i> Cerrar sesi&oacute;n
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- END USER LOGIN DROPDOWN -->
+        <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+        <!-- END QUICK SIDEBAR TOGGLER -->
+    </ul>
+</div>

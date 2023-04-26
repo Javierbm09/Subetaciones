@@ -1,0 +1,508 @@
+﻿@model Subestaciones.Models.Sub_MttoDistribDesconectivos
+
+@{
+    ViewBag.Title = "Mantenimiento subestación de distribución - Desconectivo";
+
+}
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","SubMttoSubDistribucions")">Mantenimiento a la subestación de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Editar mantenimiento al desconectivo</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Editar mantenimiento de la subestaci&oacute;n de distribuci&oacute;n - Desconectivo
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("Edit", "Sub_MttoDistribDesconectivos", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                        {
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken()
+
+                            <!-- BEGIN FORM-->
+                            <div class="horizontal-form">
+                                <div class="form-body">
+                                    @Html.HiddenFor(model => model.Fecha)
+                                    @Html.HiddenFor(model => model.CodigoSub)
+                                    @Html.HiddenFor(model => model.CodigoDesc)
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos del desconectivo
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+
+                                            <div id="_VPDesc"></div>
+                                            @*<div id="_VPMtto"></div>*@
+                                            <div class="panel" id="datosInt">
+                                                <div class="panel-heading">
+                                                    Interruptor/Recerrador
+                                                </div>
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="collapse"> </a>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.EstLimpiezaTanque, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.EstLimpiezaTanque, ViewBag.limpTanque as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.EstAterramTanque, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.EstAterramTanque, ViewBag.aterrTanque as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group ">
+                                                                @Html.LabelFor(model => model.EstPintura, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.EstPintura, ViewBag.pintura as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.PresionSF6, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.PresionSF6, ViewBag.presion as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.EstRotulos, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.EstRotulos, ViewBag.rotulos as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.PruebasFuncionales, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.PruebasFuncionales, ViewBag.pruebas as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.EstLimpiezaGabinete, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.EstLimpiezaGabinete, ViewBag.limpGab as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.EstAterramGabinete, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.EstAterramGabinete, ViewBag.aterrGab as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group ">
+                                                                @Html.LabelFor(model => model.NroOperaciones, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.EditorFor(model => model.NroOperaciones, new { htmlAttributes = new { @class = "form-control" } })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.PorcDesgasteFaseA, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.EditorFor(model => model.PorcDesgasteFaseA, new { htmlAttributes = new { @class = "form-control" } })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.PorcDesgasteFaseB, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.EditorFor(model => model.PorcDesgasteFaseB, new { htmlAttributes = new { @class = "form-control" } })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.PorcDesgasteFaseC, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.EditorFor(model => model.PorcDesgasteFaseC, new { htmlAttributes = new { @class = "form-control" } })
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel" id="datosCuchillas">
+
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="collapse"> </a>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.LimpiezaAislamiento, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.LimpiezaAislamiento, ViewBag.limpAisl as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.LimpiezaContactos, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.LimpiezaContactos, ViewBag.limpCont as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group ">
+                                                                @Html.LabelFor(model => model.Pintura, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.Pintura, ViewBag.pinturaCuchilla as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2" id="mando">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoMando, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.MttoMando, ViewBag.mttoMando as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2" id="verif">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.VerificacionCapacidad, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.VerificacionCapacidad, ViewBag.verifCap as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.Aterramiento, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.Aterramiento, ViewBag.aterr as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.PruebasFuncionales, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.PruebasFuncionales, ViewBag.pruebas as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row" id="tablaResist">
+                                                <div class="col-md-4">
+                                                    <div class="panel">
+                                                        <div class="panel-heading">
+                                                            Resistencia de Contacto(µΩ)
+                                                        </div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse"> </a>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    Fase A
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistContactoFaseA, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    Fase B
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistContactoFaseB, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    Fase C
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistContactoFaseC, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="panel">
+                                                        <div class="panel-heading">
+                                                            Resistencia de Aislamiento(GΩ)
+                                                        </div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse"> </a>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    E - T(entrada tierra)
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    S - T(salida tierra)
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    ES - T(entrada+salida tierra)
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    Fase A
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseAET, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseAST, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseAEST, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    Fase B
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseBET, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseBST, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseBEST, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    Fase C
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseCET, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseCST, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.ResistAislamFaseCEST, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-actions right">
+                                        <a class="btn btn-primary" id="compo" href="@Url.Action("ComponentesMtto","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="edit" href="@Url.Action("Edit","SubMttoSubDistribucions",new {codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="detail" href="@Url.Action("Detail","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <button type="submit" name="submitButton" value="@ViewBag.valor" class="btn blue">
+                                            <i class="fa fa-plus"></i> Guardar
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")">    </script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+
+            var codSub = "@ViewBag.codSub";
+            var f = "@ViewBag.fechaMtto";
+            var tipoDesconectivo = "@ViewBag.tipoDesc";
+
+            $("#Fecha").val(f);
+
+            $("#int").hide();
+            $("#porta").hide();
+            $("#cuchilla").hide();
+            $("#datosInt").hide();
+            $("#datosCuchillas").hide();
+            $("#tablaResist").hide();
+
+            if ((tipoDesconectivo == 4) || (tipoDesconectivo == 5) ||
+                (tipoDesconectivo == 6) || (tipoDesconectivo == 7)) {
+                $("#int").show();
+                $("#datosInt").show();
+                $("#tablaResist").show();
+                //$("#datosPorta").hide();
+                $("#porta").hide();
+                $("#cuchilla").hide();
+                $("#datosCuchillas").hide();
+
+            }
+            else
+                if ((tipoDesconectivo == 2) || (tipoDesconectivo == 3)) {
+                    $("#cuchilla").show();
+                    $("#datosCuchillas").show();
+                    $("#tablaResist").show();
+                    $("#mando").show();
+                    $("#verif").hide();
+                    $("#datosInt").hide();
+                    //$("#datosPorta").hide();
+                    $("#int").hide();
+                    $("#porta").hide();
+                }
+                else
+                    if (tipoDesconectivo == 1)// es portafusible
+                    {
+                        $("#porta").show();
+                        //$("#datosPorta").show();
+                        $("#int").hide();
+                        $("#cuchilla").hide();
+                        $("#datosInt").hide();
+                        $("#datosCuchillas").show();
+                        $("#tablaResist").hide();
+                        $("#mando").hide();
+                        $("#verif").show();
+
+                    }
+
+ var operacion = "@ViewBag.valor"
+
+            if (operacion == "Editar") {
+                $("#compo").hide();
+                $("#edit").show();
+                $("#detail").hide();
+            }
+            else if (operacion == "Detail") {
+                $("#compo").hide();
+                $("#edit").hide();
+                $("#detail").show();
+            } else  {
+                $("#compo").show();
+                $("#edit").hide();
+                $("#detail").hide();
+            }
+        });
+
+    </script>
+}

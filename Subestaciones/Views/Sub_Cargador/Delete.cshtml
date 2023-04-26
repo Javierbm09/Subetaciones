@@ -1,0 +1,122 @@
+﻿@model Subestaciones.Models.Clases.BancoCargadores
+
+@{
+    ViewBag.Title = "Eliminar cargador";
+}
+
+<h2>Eliminar cargador</h2>
+
+<h3>¿Desea eliminar el cargador?</h3>
+<div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.Id_ServicioCDCarg)
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.volCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volCD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.corriente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.corriente)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.volCA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volCA)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstOp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstOp)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_RedCA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_RedCA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fabricante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fabricante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MesFab) / @Html.DisplayNameFor(model => model.AnnoFab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MesFab) / @Html.DisplayFor(model => model.AnnoFab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoltajeMaxCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoltajeMaxCD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoltajeMinCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoltajeMinCD)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar Cargador" class="btn btn-default" /> |
+        <a class="btn btn-default" href="@Url.Action("Edit","Sub_RedCorrienteDirecta",new {Id_ServicioCD= Model.Id_ServicioCDCarg })"><i class="fa fa-list"></i> Regresar</a>
+    </div>
+    }
+</div>

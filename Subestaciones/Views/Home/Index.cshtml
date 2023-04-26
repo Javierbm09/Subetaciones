@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Subestaciones del SIGERE";
+    ViewBag.PTitle = "Portada";
+    Layout = "~/Views/Shared/_Layout_BackEnd.cshtml";
+}
+
+<!-- BEGIN CONTENT BODY -->
+<!-- BEGIN PAGE HEAD-->
+
+@section pagetitle{
+    <div class="page-title">
+        <h1>Módulo Subestaciones v. @typeof(Subestaciones.Models.SubestacionesTransmision).Assembly.GetName().Version</h1>
+    </div>
+}
+@*<div class="page-head">
+        <div class="container-fluid">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>Módulo Circuitos v. @typeof(Circuitos.Models.CircuitosPrimarios).Assembly.GetName().Version</h1>
+            </div>
+            <!-- END PAGE TITLE -->
+            <!-- BEGIN PAGE TOOLBAR -->
+            <div class="page-toolbar">
+                <!-- BEGIN THEME PANEL -->
+
+                <!-- END THEME PANEL -->
+            </div>
+            <!-- END PAGE TOOLBAR -->
+        </div>
+    </div>*@
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            @*<li>
+                <a href="#">Inicio</a>
+                <i class="fa fa-circle"></i>
+            </li>*@
+            <li>
+                <span>Inicio</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner" >
+            <div class="row">
+                <div class="col-md-8">
+                    @*<div class="note note-info" style="background-image:url(../../Scripts/assets/pages/img/background/62.jpg);background-size:contain;background-color:aqua">*@
+                    <div class="note note-info">
+                        <p class="text-justify" style="text-align:justify; font-size:medium; font-size:16px">
+                            El módulo subestaciones es el encargado de llevar el control y gestión de todas las subestaciones de distribución y transmisión, así como la  adición y modificación
+                            de todos los elementos que la componen como los transformadores de corriente, los transformadores de potencial, los transformadores de potencia, desconectivos,
+                            capacitor, barras, pararrayos, red de aire, servicios corriente alterna, servicio corriente directa y grupos electrógenos.
+                            El sistema lleva un registro de todos los mantenimientos realizados a las subestaciones, con el objetivo de mejorar y hacer óptimo este proceso, ya que manteniendo
+                            un control estricto sobre el mismo será fácil ir pasando paulatinamente de los mantenimientos, temografías y celajes.
+                          
+                        </p>
+                        <br />
+
+                        @*<b style="font-size:16px">Este módulo es el encargado de:</b>*@
+                        @*<p class="hidden-xs hidden-sm hidden-md text-justify" style="text-align:justify; font-size:medium; font-size:16px">
+                            <ul style="font-size:14px">
+                                <li>
+                                    zvdxcvfdsvfdvbdf.
+                                </li>
+                                <li>
+                                    dfbdfbdfbdfb
+                                </li>
+                                <li>
+                                    dfbdfbdfbfd
+                                </li>
+                                <li>
+                                    dfbdfbdfbdffdbdf.
+                                </li>
+                            </ul>
+                        </p>*@
+                        <br />
+                        <br /><br /><br /><br />
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Scripts/assets/pages/img/background/FondoSubestaciones.jpg" style="max-width:100%;width:auto;height:auto;">
+                </div>
+
+            </div>
+            
+
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->

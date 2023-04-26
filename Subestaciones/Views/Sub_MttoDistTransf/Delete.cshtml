@@ -1,0 +1,432 @@
+﻿@model Subestaciones.Models.Sub_MttoDistTransf
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Sub_MttoDistTransf</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Tap_Encontrado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tap_Encontrado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tap_Dejado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tap_Dejado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoTanqueExpansion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoTanqueExpansion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoBusholtz_ReleIntegral)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoBusholtz_ReleIntegral)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoBushingAlta)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoBushingAlta)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoBushingBaja)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoBushingBaja)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TuboExplosor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TuboExplosor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoValvulaSobrePresion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoValvulaSobrePresion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoValvulas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoValvulas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoRadiadores)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoRadiadores)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SaliderosResumidores)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SaliderosResumidores)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TempAmbiente)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TempAmbiente)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TempTransformador)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TempTransformador)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HumedadRelativa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HumedadRelativa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoTiempo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoTiempo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ResistAislABTR15)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ResistAislABTR15)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ResistAislBATR15)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ResistAislBATR15)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ResistAislABR15)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ResistAislABR15)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ResistAislABTR60)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ResistAislABTR60)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ResistAislABR60)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ResistAislABR60)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InstUtilizadoResistAisl)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InstUtilizadoResistAisl)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoIndNivelaceite)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoIndNivelaceite)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NivelAceite)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NivelAceite)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoSilica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoSilica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoTermometro)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoTermometro)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoPintura)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoPintura)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoVentilacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoVentilacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoConexiones)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoConexiones)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AterramientoTanque)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AterramientoTanque)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AterramientoNeutro)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AterramientoNeutro)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InstUtilizadoResistOhm)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InstUtilizadoResistOhm)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InstUtiliRelacTransf)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InstUtiliRelacTransf)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Observaciones)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba1)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RigidezDielectricaPrueba1)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba2)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RigidezDielectricaPrueba2)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba3)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RigidezDielectricaPrueba3)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba4)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RigidezDielectricaPrueba4)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba5)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RigidezDielectricaPrueba5)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PromedioRigidezDielectrica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PromedioRigidezDielectrica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TempAmbRigidezDielectrica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TempAmbRigidezDielectrica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TempTransfRigidezDielectrica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TempTransfRigidezDielectrica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HumRelatRigidezDielectrica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HumRelatRigidezDielectrica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NormaRigidezDielectrica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NormaRigidezDielectrica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InstUtilRigidezDielectrica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InstUtilRigidezDielectrica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba6)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RigidezDielectricaPrueba6)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ResistAislBATR60)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ResistAislBATR60)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ValorEsperadoRelacTransf)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ValorEsperadoRelacTransf)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoPrimVsSecTierra)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoPrimVsSecTierra)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoSecVsPrimTierra)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoSecVsPrimTierra)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoPrimSecVsTierra)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoPrimSecVsTierra)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

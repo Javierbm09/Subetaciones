@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Subestaciones.Models.Inst_Nomenclador_Cuchillas>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Inst_Nomenclador_Cuchillas_Mando.DescripcionMandoCuchillas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inst_Nomenclador_Cuchillas_Operacion.DescripcionOperacionCuchillas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inst_Nomenclador_Cuchillas_Tension.DescripcionTensionCuchillas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Fabricante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Administrativa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa_Prov)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inst_Nomenclador_Cuchillas_Mando.DescripcionMandoCuchillas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inst_Nomenclador_Cuchillas_Operacion.DescripcionOperacionCuchillas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inst_Nomenclador_Cuchillas_Tension.DescripcionTensionCuchillas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Fabricante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Administrativa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumAccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_EAdministrativa_Prov)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id_Cuchilla }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id_Cuchilla }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id_Cuchilla })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,1573 @@
+﻿@model Subestaciones.Models.Clases.SubestacionesTransViewModel
+@{ViewBag.Title = "Detalles Subestaci&oacute;n";}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Detalles de la subestaci&oacute;n de transmisi&oacute;n</h1>
+        </div>
+    }*@
+
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","SubestacionesTransmisions")">Subestaciones de transmisi&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles de la subestaci&oacute;n de transmisi&oacute;n</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+
+        <div class="page-content-inner">
+            <div class="m-heading-1 border-red m-bordered">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-2 text-right" style="padding: 0px 10px; width:auto">
+                            <h5 class="text-overflow"> Filtro de subestaciones:</h5>
+                        </div>
+                        <div class="col-sm-2" style="padding: 0px 5px">
+                            @Html.DropDownList("listaSubestaciones", null, "Seleccione una subestaci&oacute;n de la lista", htmlAttributes: new { @class = "form-control select2" })
+                        </div>
+                        <div class="col-sm-8 toolbar-right">
+
+                            @*<button id="btn_padre" class="btn btn-primary" data-target="#modal-int-father" data-toggle="modal"><i class="fa fa-level-up"></i> Instalaciones (Padre)</button>*@
+                            @*  <button id="btn_hijo" class="btn btn-primary" data-target="#modal-int-son" data-toggle="modal"><i class="fa fa-level-down"></i> Instalaciones (Hijo)</button>*@
+                            @*   <a class="btn btn-primary" href="@Url.Action("IndexSub","Fotos", new { cod = Model.TSubestaciones.Codigo })"><i class="fa fa-photo"></i> Fotos</a>*@
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tabbable-line boxless tabbable-reversed ">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_1" data-toggle="tab" id="tab1"> Datos Generales </a>
+                            </li>
+                            <li>
+                                <a href="#tab_2" data-toggle="tab" id="tab2">Transformadores </a>
+                            </li>
+                            <li>
+                                <a href="#tab_3" data-toggle="tab" id="tab3"> Defectos </a>
+                            </li>
+                            <li>
+                                <a href="#tab_4" data-toggle="tab" id="tab4"> Proyectos </a>
+                            </li>
+                            <li>
+                                <a href="#tab_5" data-toggle="tab" id="tab5"> Mantenimientos </a>
+                            </li>
+                            <li>
+                                <a href="#tab_6" data-toggle="tab" id="tab6"> Termograf&iacute;as </a>
+                            </li>
+                            <li>
+                                <a href="#tab_7" data-toggle="tab" id="tab7"> P&eacute;rdidas </a>
+                            </li>
+                            <li>
+                                <a href="#tab_8" data-toggle="tab" id="tab8"> TC </a>
+                            </li>
+                            <li>
+                                <a href="#tab_9" data-toggle="tab" id="tab9"> TP </a>
+                            </li>
+                            <li>
+                                <a href="#tab_10" data-toggle="tab" id="tab10"> Desconectivos </a>
+                            </li>
+                            <li>
+                                <a href="#tab_11" data-toggle="tab" id="tab11"> Protecciones </a>
+                            </li>
+                            <li>
+                                <a href="#tab_12" data-toggle="tab" id="tab12"> Red CA </a>
+                            </li>
+                            <li>
+                                <a href="#tab_13" data-toggle="tab" id="tab13"> Red CD </a>
+                            </li>
+                            <li>
+                                <a href="#tab_14" data-toggle="tab" id="tab14"> Inspecciones </a>
+                            </li>
+                            <li>
+                                <a href="#tab_15" data-toggle="tab" id="tab15"> Jerarqu&iacute;a de Instalaciones</a>
+                            </li>
+                            <li>
+                                <a href="#tab_16" data-toggle="tab" id="tab16"> Fotos </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Subestaci&oacute;n: <b><span id="subSeleccionada_1"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPDatosGenerales"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_2">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Transformadores de la subestaci&oacute;n: <b><span id="subSeleccionada_2"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPTransformadores"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_3">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Defectos de la subestaci&oacute;n: <b><span id="subSeleccionada_3"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPDefectos"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_4">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Proyectos de la Subestaci&oacute;n: <b><span id="subSeleccionada_4"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="panel" id="VPProyectos"> >Proyectos</div>
+                                    </div>
+
+                                </div>
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Mejoras
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="portlet-body">
+                                        <div class="panel" id="VPMejoras" title="Mejoras"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_5">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Mantenimientos de la subestaci&oacute;n: <b><span id="subSeleccionada_5"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VMantenimientos"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_6">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Termograf&iacute;as de la subestaci&oacute;n: <b><span id="subSeleccionada_6"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="row">
+                                            <h4></h4>
+                                            <h4></h4>
+                                        </div>
+                                        <div id="VPTermografias"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="portlet box blue">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-gift"></i> Puntos calientes
+                                                </div>
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="collapse"> </a>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div id="VPPtosCalientes"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="portlet box blue">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-gift"></i> Foto de la termograf&iacute;a
+                                                </div>
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="collapse"> </a>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div id="VPFoto"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_7">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> P&eacute;rdidas de la subestaci&oacute;n: <b><span id="subSeleccionada_7"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="portlet-body">
+                                        <div class="row">
+                                            <div class="col-sm-2 text-right" style="padding: 0px 10px; width:auto">
+                                                <h5 class="text-overflow"> Seleccione el per&iacute;odo:</h5>
+                                            </div>
+                                            <div class="col-sm-2 text-right" style="padding: 0px 10px; width:auto">
+                                                <h5 class="text-overflow"> Mes:</h5>
+                                            </div>
+                                            <div class="col-sm-4" style="padding: 0px 5px">
+                                                @Html.DropDownList("mes", null, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                            </div>
+                                            <div class="col-sm-2 text-right" style="padding: 0px 10px; width:auto">
+                                                <h5 class="text-overflow"> A&ntilde;o:</h5>
+                                            </div>
+                                            <div class="col-sm-4" style="padding: 0px 5px">
+                                                @Html.DropDownList("anho", null, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+
+                                            </div>
+
+                                        </div>
+                                        <div id="VPPerdidas"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_8">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Transformadores de corriente de la subestaci&oacute;n: <b><span id="subSeleccionada_8"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPTC"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_9">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Circuito: <b><span id="subSeleccionada_9"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPTP"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_10">
+                                <div class="portlet box blue ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Desconectivos de la subestaci&oacute;n: <b><span id="subSeleccionada_10"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPDesc"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_11">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Protecciones de la subestaci&oacute;n: <b><span id="subSeleccionada_11"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPProtecciones"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_12">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Servicios de Corriente Alterna de la subestaci&oacute;n: <b><span id="subSeleccionada_12"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+
+                                        <div id="VPRedCA"></div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Transformadores uso planta</h4><div id="VPTUP"></div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h4>Breakers por baja</h4><div id="VPBreakers"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_13">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Servicios de corriente  directa de la subestaci&oacute;n: <b><span id="subSeleccionada_13"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+
+                                        <div id="VPRedCD"></div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Baterías de la red</h4><div id="VPBaterias"></div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h4>Cargadores de la red</h4><div id="VPCargadores"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_14">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Inspecciones de la subestaci&oacute;n: <b><span id="subSeleccionada_14"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPInspecciones"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_15">
+                                <div class="row" id="_jerarquia">
+
+                                    <div class="col-md-6">
+                                        <div class="portlet light ">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="glyphicon glyphicon-indent-left font-green-sharp"></i>
+                                                    <span class="caption-subject font-green-sharp bold uppercase">Instalaciones-Hijos</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div id="tree_hijo" class="tree-demo"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_16">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i> Fotos de la subestaci&oacute;n: <b><span id="subSeleccionada_16"></span></b>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="VPFotoSub"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- END PAGE CONTENT INNER -->
+</div>
+
+
+
+
+
+<!--Bootstrap Modal Instalaciones Hijo-->
+<!--===================================================-->
+<div class="modal" id="modal-int-son" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Jerarquía Instalaciones (Hijos)</h4>
+            </div>
+
+            <!--Modal body-->
+            <div class="panel-body">
+                @*<div class="myScrollableBlock" style="overflow: auto; height:170px;">
+                        <div id="demo-jstree-json-sons"></div>
+                    </div>*@
+
+                <!-- JSON Example -->
+                <!---------------------------------->
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="myScrollableBlock" style="overflow: auto; height:170px;">
+                            <div id="demo-jstree-json-sons"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <!---------------------------------->
+            </div>
+            <div class="col-sm-6 col-md-4">
+
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.orange.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.energyblue.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.windowsphone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.highcontrast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.light.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/EstiloTabla/tablaStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+    <!--morris-->
+    @*<link href="~/Content/plugins/morris-js/morris.min.css" rel="stylesheet" />
+        <!--spinkit-->
+        <link href="~/Content/plugins/spinkit/css/spinkit.min.css" rel="stylesheet" />*@
+
+}
+
+@section script {
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
+
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcore.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxbuttons.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxscrollbar.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxmenu.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxwindow.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxpanel.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.aggregates.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.grouping.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdropdownlist.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxlistbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.columnsresize.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.filter.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/localization.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxnumberinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcombobox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
+
+    <!--morris-->
+    <script src="~/Content/plugins/morris-js/morris.min.js"></script>
+    <script src="~/Content/plugins/morris-js/raphael-js/raphael.min.js"></script>
+    @*<!--jstree-->
+        <script src="~/Content/plugins/jstree/jstree.min.js"></script>*@
+    <script>
+        //actualizaMenu($("#menu-mostrar"), $("#submenu-mostrar-ck"));
+        $(document).ready(function () {
+            $("#container").removeClass("mainnav-lg");
+            $("#container").addClass("mainnav-sm");
+            $(".select2_single").select2();
+
+            //codigo de la primera sub T
+            var cod = $("#listaSubestaciones").val();
+
+            @*if (cod=="") {
+                cod = "@Model.DSubestaciones.FirstOrDefault().CodigoCircuito";
+                $("#listaSubestaciones").val(cod)
+            }*@
+
+            var nombSubSeleccionada = $('select[name="listaSubestaciones"] option:selected').text();
+            var selectedTab = 1;
+
+            //nombre de la subestacion mostrado al cargar
+            $("#subSeleccionada").text(nombSubSeleccionada);
+
+            //mostrar primer tab al cargar
+            Tab(1);
+
+            //cargar subestacion del buscador
+            $("#listaSubestaciones").change(function () {
+                nombSubSeleccionada = $('select[name="listaSubestaciones"] option:selected').text();
+                $("#subSeleccionada").text(nombSubSeleccionada);
+                cod = $(this).val();
+
+                $.ajax({
+                    async: true,
+                    url: '@Url.Action("jstree_hjjo", "SubestacionesTransmisions")',
+                    data: { codigo: cod },
+                    success: function (data) {
+                        $("#tree_hijo").jstree('destroy');
+                        inicializarJstree_hijo(data);
+                    }
+                });
+
+                Tab(selectedTab);
+            });
+
+            $("#listaSubestaciones").trigger("change");
+
+            //cargar contenidos de pestañas al hacer click
+            $("#tab1").click(function () { Tab(1); });
+            $("#tab2").click(function () { Tab(2); });
+            $("#tab3").click(function () { Tab(3); });
+            $("#tab4").click(function () { Tab(4); });
+            $("#tab5").click(function () { Tab(5); });
+            $("#tab6").click(function () { Tab(6); });
+            $("#tab7").click(function () { Tab(7); });
+            $("#tab8").click(function () { Tab(8); });
+            $("#tab9").click(function () { Tab(9); });
+            $("#tab10").click(function () { Tab(10); });
+            $("#tab11").click(function () { Tab(11); });
+            $("#tab12").click(function () { Tab(12); });
+            $("#tab13").click(function () { Tab(13); });
+            $("#tab14").click(function () { Tab(14); });
+            $("#tab16").click(function () { Tab(16); });
+
+            function inicializarJstree_hijo(data) {
+                $('#tree_hijo').jstree({
+                    'plugins': ["wholerow", "types"],
+                    'core': {
+                        "themes": {
+                            "responsive": false
+                        },
+                        'data': function (node, cb) {
+                            if (node.id === '#') { //Load root, will fire on first load as well as on refresh
+                                cb.call(this, JSON.parse(data));
+                            }
+                        }
+                    },
+                    "types": {
+                        "default": {
+                            "icon": "fa fa-folder icon-state-warning icon-lg"
+                        },
+                        "file": {
+                            "icon": "fa fa-file icon-state-warning icon-lg"
+                        }
+                    }
+                });
+            }
+
+            function Tab(n) {
+
+                $("#modal-sm-loading").modal('show');//mostrar cargando
+                selectedTab = n;
+                if (n == 1) $("#VPDatosGenerales").load('@Url.Content("~/SubestacionesTransmisions/VPDatosGenerales")', { codigo: cod }, function () {
+                    $("#subSeleccionada_1").text(nombSubSeleccionada);
+                    $("#modal-sm-loading").modal('hide');
+                });
+
+
+                if (n == 2) $("#VPTransformadores").load('@Url.Content("~/SubestacionesTransmisions/VPTransformadores")', { codigo: cod }, function () {
+                    $("#subSeleccionada_2").text(nombSubSeleccionada);
+                    $("#table_Transf").DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ": activate to sort column ascending",
+                                "sortDescending": ": activate to sort column descending"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+
+                    $("#modal-sm-loading").modal('hide');
+                });
+
+                if (n == 3) $("#VPDefectos").load('@Url.Content("~/SubestacionesTransmisions/VPDefectos")', { codigo: cod }, function () {
+                    $("#subSeleccionada_3").text(nombSubSeleccionada);
+                    $("#table_Defectos").DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ": activate to sort column ascending",
+                                "sortDescending": ": activate to sort column descending"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+
+                    $("#modal-sm-loading").modal('hide');
+                });
+
+                if (n == 4) {
+                    $("#subSeleccionada_4").text(nombSubSeleccionada);
+                     $("#VPProyectos").load('@Url.Content("~/SubestacionesD/VPProyectos")', { codigo: cod }, function () {
+                        $("#subSeleccionada_4").text(nombSubSeleccionada);
+                        $("#table_proyectD").DataTable({
+                            "language": {
+                                "aria": {
+                                    "sortAscending": ": activate to sort column ascending",
+                                    "sortDescending": ": activate to sort column descending"
+                                },
+                                "emptyTable": "Ningún dato disponible en esta tabla",
+                                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                "lengthMenu": "_MENU_ Registros",
+                                "search": "Buscar:",
+                                "zeroRecords": "No se encontraron resultados"
+                            },
+                            buttons: [
+                                { extend: 'pdf', className: 'btn red default' },
+                                { extend: 'excel', className: 'btn green default ' },
+                                { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                            ],
+                            responsive: true,
+                            select: true,
+
+                            "order": [
+                                [0, 'asc']
+                            ],
+
+                            "lengthMenu": [
+                                [5, 10, 15, 20, -1],
+                                [5, 10, 15, 20, "Todos"]
+                            ],
+
+                            "pageLength": 10,
+
+                            "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                        });
+                        $("#modal-sm-loading").modal('hide');
+                    });
+                    $("#VPMejoras").load('@Url.Content("~/SubestacionesD/VPMejoras")', { codigo: cod }, function () {
+                        $("#tabla_Mejoras").DataTable({
+                            "language": {
+                                "aria": {
+                                    "sortAscending": ": activate to sort column ascending",
+                                    "sortDescending": ": activate to sort column descending"
+                                },
+                                "emptyTable": "Ningún dato disponible en esta tabla",
+                                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                "lengthMenu": "_MENU_ Registros",
+                                "search": "Buscar:",
+                                "zeroRecords": "No se encontraron resultados"
+                            },
+                            buttons: [
+                                { extend: 'pdf', className: 'btn red default' },
+                                { extend: 'excel', className: 'btn green default ' },
+                                { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                            ],
+                            responsive: true,
+                            select: true,
+
+                            "order": [
+                                [0, 'asc']
+                            ],
+
+                            "lengthMenu": [
+                                [5, 10, 15, 20, -1],
+                                [5, 10, 15, 20, "Todos"]
+                            ],
+
+                            "pageLength": 10,
+
+                            "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                        });
+                        $("#modal-sm-loading").modal('hide');
+                    });
+
+                }
+
+                if (n == 5) $("#VMantenimientos").load('@Url.Content("~/SubestacionesTransmisions/VPMttos")', { codigo: cod }, function () {
+                    $("#subSeleccionada_5").text(nombSubSeleccionada);
+                    $("#tabla_mttos").DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ": activate to sort column ascending",
+                                "sortDescending": ": activate to sort column descending"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+                    $("#modal-sm-loading").modal('hide');
+                });
+
+                if (n == 6) {
+                    $("#subSeleccionada_6").text(nombSubSeleccionada);
+                    $("#VPTermografias").load('@Url.Content("~/SubestacionesTransmisions/VPTermografiasT")', { codigo: cod }, function () {
+
+                        var tableTermografias = $("#datatable_termografia").DataTable({
+                            "language": {
+                                select: {
+                                    rows: {
+                                        _: "Seleccionados %d registros",
+                                        0: "Click para seleccionar una termograf&iacute;a",
+                                        1: "1 Registro seleccionado"
+                                    }
+                                },
+                                "aria": {
+                                    "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                    "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                                },
+                                "emptyTable": "Ningún dato disponible en esta tabla",
+                                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                "lengthMenu": "_MENU_ Registros",
+                                "search": "Buscar:",
+                                "zeroRecords": "No se encontraron resultados",
+                                "select-item": "elementos seleccionados"
+                            },
+                            buttons: [
+                                { extend: 'pdf', className: 'btn red default' },
+                                { extend: 'excel', className: 'btn green default ' },
+                                { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                            ],
+                            responsive: true,
+                            select: 'single',
+
+                            "order": [
+                                [0, 'asc']
+                            ],
+
+                            "lengthMenu": [
+                                [5, 10, 15, 20, -1],
+                                [5, 10, 15, 20, "Todos"]
+                            ],
+
+                            "pageLength": 10,
+
+                            "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                        });
+                        $("#VPtosCalientes").html("");
+                        $("#VPFoto").html("");
+
+                        tableTermografias.on('select', function (e, dt, type, indexes) {
+
+                                        $.ajax({
+                                            url: '@Url.Action("VPPtosCalientes", "SubestacionesD")',
+                                            method: "POST",
+                                            data: {
+                                                EA: function () { return $("#idEAdm", ".selected").val(); }, numA: function () { return $("#numA", ".selected").val(); } },
+                                            success: function (data) {
+                                                $("#VPPtosCalientes").html(data);
+                                                var table = $("#datatable_Ptos").DataTable({
+                                                    "language": {
+                                                        "aria": {
+                                                            "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                                            "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                                                        },
+                                                        "emptyTable": "Ningún dato disponible en esta tabla",
+                                                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                        "lengthMenu": "_MENU_ Registros",
+                                                        "search": "Buscar:",
+                                                        "zeroRecords": "No se encontraron resultados",
+                                                        "select-item": "elementos seleccionados"
+                                                    },
+                                                    buttons: [
+                                                        { extend: 'pdf', className: 'btn red default' },
+                                                        { extend: 'excel', className: 'btn green default ' },
+                                                        { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                                                    ],
+                                                    responsive: true,
+                                                    select: true,
+
+                                                    "order": [
+                                                        [0, 'asc']
+                                                    ],
+
+                                                    "lengthMenu": [
+                                                        [5, 10, 15, 20, -1],
+                                                        [5, 10, 15, 20, "Todos"]
+                                                    ],
+
+                                                    "pageLength": 10,
+
+                                                    "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                                                });
+                                            }
+
+                            });
+
+                            $.ajax({
+                                            url: '@Url.Action("VPFoto", "SubestacionesTransmisions")',
+                                            method: "POST",
+                                            data: { EA: $("#idEAdm", ".selected").val(), numA: $("#numA", ".selected").val() },
+                                            success: function (data) {
+                                                $("#VPFoto").html(data);
+
+                                            }
+                                        });
+                                    });
+                        $("#modal-sm-loading").modal('hide');
+                    });
+
+
+                }
+
+                if (n == 7) $("#VPPerdidas").load('@Url.Content("~/SubestacionesTransmisions/VPPerdidas")', { codigo: cod, mes: mes, anho: anho }, function () {
+                    $("#subSeleccionada_7").text(nombSubSeleccionada); datatable_Perdidas
+                    $("#mes").change(function () {
+                        var mes = $("#mes").val();
+                        var anho = $("#anho").val();
+                       if ((mes != "") && (anho != "")){$("#VPPerdidas").load('@Url.Content("~/SubestacionesD/VPPerdidas")', { codigo: cod, mes:mes, anho:anho }, function () {
+                           var tabla_perdidas = $("#tabla_Perdidas").DataTable({
+                               "language": {
+                                   "aria": {
+                                       "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                       "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                                   },
+                                   "emptyTable": "Ningún dato disponible en esta tabla",
+                                   "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                   "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                   "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                   "lengthMenu": "_MENU_ Registros",
+                                   "search": "Buscar:",
+                                   "zeroRecords": "No se encontraron resultados",
+                                   "select-item": "elementos seleccionados"
+                               },
+                               buttons: [
+                                   { extend: 'pdf', className: 'btn red default' },
+                                   { extend: 'excel', className: 'btn green default ' },
+                                   { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                               ],
+                               responsive: true,
+                               select: true,
+
+                               "order": [
+                                   [0, 'asc']
+                               ],
+
+                               "lengthMenu": [
+                                   [5, 10, 15, 20, -1],
+                                   [5, 10, 15, 20, "Todos"]
+                               ],
+
+                               "pageLength": 10,
+
+                               "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                           });
+                        $("#modal-sm-loading").modal('hide');
+                    });}
+                    });
+                    $("#anho").change(function () {
+                        var mes = $("#mes").val();
+                        var anho = $("#anho").val();
+                        if ((mes != "") && (anho != "")) {
+                            $("#VPPerdidas").load('@Url.Content("~/SubestacionesD/VPPerdidas")', { codigo: cod, mes: mes, anho: anho }, function () {
+                                var tabla_perdidas = $("#tabla_Perdidas").DataTable({
+                                    "language": {
+                                        "aria": {
+                                            "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                            "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                                        },
+                                        "emptyTable": "Ningún dato disponible en esta tabla",
+                                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                        "lengthMenu": "_MENU_ Registros",
+                                        "search": "Buscar:",
+                                        "zeroRecords": "No se encontraron resultados",
+                                        "select-item": "elementos seleccionados"
+                                    },
+                                    buttons: [
+                                        { extend: 'pdf', className: 'btn red default' },
+                                        { extend: 'excel', className: 'btn green default ' },
+                                        { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                                    ],
+                                    responsive: true,
+                                    select: true,
+
+                                    "order": [
+                                        [0, 'asc']
+                                    ],
+
+                                    "lengthMenu": [
+                                        [5, 10, 15, 20, -1],
+                                        [5, 10, 15, 20, "Todos"]
+                                    ],
+
+                                    "pageLength": 10,
+
+                                    "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                                });
+                        $("#modal-sm-loading").modal('hide');
+                    });}});
+                });
+
+                if (n == 8) $("#VPTC").load('@Url.Content("~/SubestacionesTransmisions/VPTC")', { codigo: cod }, function () {
+                    $("#subSeleccionada_8").text(nombSubSeleccionada);
+                    $("#table_TC").DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados",
+                            "select-item": "elementos seleccionados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+                    $("#modal-sm-loading").modal('hide');
+                });
+
+                if (n == 9) $("#VPTP").load('@Url.Content("~/SubestacionesTransmisions/VPTP")', { codigo: cod }, function () {
+                    $("#subSeleccionada_9").text(nombSubSeleccionada);
+                    $("#table_TP").DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados",
+                            "select-item": "elementos seleccionados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+                    $("#modal-sm-loading").modal('hide');
+                });
+
+                if (n == 10) $("#VPDesc").load('@Url.Content("~/SubestacionesTransmisions/VPDesc")', { codigo: cod }, function () {
+                    $("#subSeleccionada_10").text(nombSubSeleccionada);
+                    $("#table_Desc").DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados",
+                            "select-item": "elementos seleccionados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+                    $("#modal-sm-loading").modal('hide');
+                });
+
+                if (n == 11) $("#VPProtecciones").load('@Url.Content("~/SubestacionesTransmisions/VPProtecciones")', { codigo: cod }, function () {
+                    $("#subSeleccionada_11").text(nombSubSeleccionada);
+                    $("#table_Protecciones").DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados",
+                            "select-item": "elementos seleccionados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+                    $("#modal-sm-loading").modal('hide');
+                });
+
+                if (n == 12) $("#VPRedCA").load('@Url.Content("~/SubestacionesTransmisions/VPRedCA")', { codigo: cod }, function () {
+                   $("#subSeleccionada_12").text(nombSubSeleccionada);
+                    var tableRedCA = $("#datatable_RedCA").DataTable({
+                        "language": {
+                            select: {
+                                rows: {
+                                    _: "Seleccionados %d registros",
+                                    0: "Click para seleccionar una red",
+                                    1: "1 Registro seleccionado"
+                                }
+                            },
+                            "aria": {
+                                "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados",
+                            "select-item": "elementos seleccionados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: "single",
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+
+                     $.ajax({
+                                            url: '@Url.Action("VPTUP", "SubestacionesD")',
+                                            method: "POST",
+                                            data: { codigo: cod },
+                                            success: function (data) {
+                                                $("#VPTUP").html(data);
+                                                var table = $("#datatable_TUP").DataTable({
+                                                    "language": {
+                                                        "aria": {
+                                                            "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                                            "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                                                        },
+                                                        "emptyTable": "Ningún dato disponible en esta tabla",
+                                                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                        "lengthMenu": "_MENU_ Registros",
+                                                        "search": "Buscar:",
+                                                        "zeroRecords": "No se encontraron resultados",
+                                                        "select-item": "elementos seleccionados"
+                                                    },
+                                                    buttons: [
+                                                        { extend: 'pdf', className: 'btn red default' },
+                                                        { extend: 'excel', className: 'btn green default ' },
+                                                        { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                                                    ],
+                                                    responsive: true,
+                                                    select: true,
+
+                                                    "order": [
+                                                        [0, 'asc']
+                                                    ],
+
+                                                    "lengthMenu": [
+                                                        [5, 10, 15, 20, -1],
+                                                        [5, 10, 15, 20, "Todos"]
+                                                    ],
+
+                                                    "pageLength": 10,
+
+                                                    "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                                                });
+                                            }
+                    });
+                     $("#VPBreakers").html("");
+
+
+                    tableRedCA.on('select', function (e, dt, type, indexes) {
+
+
+                              $.ajax({
+                                            url: '@Url.Action("VPBreakers", "SubestacionesD")',
+                                            method: "POST",
+                                            data: { codigo: $("#codigo", ".selected").val(), idServCA: $("#idServ", ".selected").val()},
+                                            success: function (data) {
+                                                $("#VPBreakers").html(data);
+                                                var table = $("#datatable_Breakers").DataTable({
+                                                    "language": {
+                                                        "aria": {
+                                                            "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                                            "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                                                        },
+                                                        "emptyTable": "Ningún dato disponible en esta tabla",
+                                                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                        "lengthMenu": "_MENU_ Registros",
+                                                        "search": "Buscar:",
+                                                        "zeroRecords": "No se encontraron resultados",
+                                                        "select-item": "elementos seleccionados"
+                                                    },
+                                                    buttons: [
+                                                        { extend: 'pdf', className: 'btn red default' },
+                                                        { extend: 'excel', className: 'btn green default ' },
+                                                        { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                                                    ],
+                                                    responsive: true,
+                                                    select: true,
+
+                                                    "order": [
+                                                        [0, 'asc']
+                                                    ],
+
+                                                    "lengthMenu": [
+                                                        [5, 10, 15, 20, -1],
+                                                        [5, 10, 15, 20, "Todos"]
+                                                    ],
+
+                                                    "pageLength": 10,
+
+                                                    "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                                                });
+                                            }
+                            });
+                    });  $("#modal-sm-loading").modal('hide'); });
+
+                if (n == 13) $("#VPRedCD").load('@Url.Content("~/SubestacionesTransmisions/VPRedCD")', { codigo: cod }, function () {
+                    $("#subSeleccionada_13").text(nombSubSeleccionada);
+                    var tableRedCD = $("#datatable_RedCDT").DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados",
+                            "select-item": "elementos seleccionados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+
+                    $("#VPBaterias").html("");
+                    $("#VPCargadores").html("");
+
+                    tableRedCD.on('select', function (e, dt, type, indexes) {
+
+                                        $.ajax({
+                                            url: '@Url.Action("VPBaterias", "SubestacionesD")',
+                                            method: "POST",
+                                            data: { idServCD: $("#idServ", ".selected").val()},
+                                            success: function (data) {
+                                                $("#VPBaterias").html(data);
+                                                var table = $("#datatable_Baterias").DataTable({
+                                                    "language": {
+                                                        "aria": {
+                                                            "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                                            "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                                                        },
+                                                        "emptyTable": "Ningún dato disponible en esta tabla",
+                                                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                        "lengthMenu": "_MENU_ Registros",
+                                                        "search": "Buscar:",
+                                                        "zeroRecords": "No se encontraron resultados",
+                                                        "select-item": "elementos seleccionados"
+                                                    },
+                                                    buttons: [
+                                                        { extend: 'pdf', className: 'btn red default' },
+                                                        { extend: 'excel', className: 'btn green default ' },
+                                                        { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                                                    ],
+                                                    responsive: true,
+                                                    select: true,
+
+                                                    "order": [
+                                                        [0, 'asc']
+                                                    ],
+
+                                                    "lengthMenu": [
+                                                        [5, 10, 15, 20, -1],
+                                                        [5, 10, 15, 20, "Todos"]
+                                                    ],
+
+                                                    "pageLength": 10,
+
+                                                    "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                                                });
+                                            }
+                        });
+                              $.ajax({
+                                            url: '@Url.Action("VPCargadores", "SubestacionesD")',
+                                            method: "POST",
+                                            data: { idServCD: $("#idServ", ".selected").val()},
+                                            success: function (data) {
+                                                $("#VPCargadores").html(data);
+                                                var table = $("#datatable_Cargadores").DataTable({
+                                                    "language": {
+                                                        "aria": {
+                                                            "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                                            "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                                                        },
+                                                        "emptyTable": "Ningún dato disponible en esta tabla",
+                                                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                        "lengthMenu": "_MENU_ Registros",
+                                                        "search": "Buscar:",
+                                                        "zeroRecords": "No se encontraron resultados",
+                                                        "select-item": "elementos seleccionados"
+                                                    },
+                                                    buttons: [
+                                                        { extend: 'pdf', className: 'btn red default' },
+                                                        { extend: 'excel', className: 'btn green default ' },
+                                                        { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                                                    ],
+                                                    responsive: true,
+                                                    select: true,
+
+                                                    "order": [
+                                                        [0, 'asc']
+                                                    ],
+
+                                                    "lengthMenu": [
+                                                        [5, 10, 15, 20, -1],
+                                                        [5, 10, 15, 20, "Todos"]
+                                                    ],
+
+                                                    "pageLength": 10,
+
+                                                    "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                                                });
+                                            }
+                            });
+                    }); $("#modal-sm-loading").modal('hide');
+                });
+
+                if (n == 14) $("#VPInspecciones").load('@Url.Content("~/SubestacionesTransmisions/VPInspecciones")', { codigo: cod }, function () {
+                    $("#subSeleccionada_14").text(nombSubSeleccionada);
+                    var Tabla_inspecc = $(table_Inspec).DataTable({
+                        "language": {
+                            "aria": {
+                                "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                                "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                            },
+                            "emptyTable": "Ningún dato disponible en esta tabla",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "lengthMenu": "_MENU_ Registros",
+                            "search": "Buscar:",
+                            "zeroRecords": "No se encontraron resultados",
+                            "select-item": "elementos seleccionados"
+                        },
+                        buttons: [
+                            { extend: 'pdf', className: 'btn red default' },
+                            { extend: 'excel', className: 'btn green default ' },
+                            { extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                        ],
+                        responsive: true,
+                        select: true,
+
+                        "order": [
+                            [0, 'asc']
+                        ],
+
+                        "lengthMenu": [
+                            [5, 10, 15, 20, -1],
+                            [5, 10, 15, 20, "Todos"]
+                        ],
+
+                        "pageLength": 10,
+
+                        "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                    });
+                    $("#modal-sm-loading").modal('hide');
+                });
+                 if (n == 16) $("#VPFotoSub").load('@Url.Content("~/SubestacionesTransmisions/VPFotoSub")', { codigo: cod }, function () {
+
+                    $("#subSeleccionada_16").text(nombSubSeleccionada);
+
+
+                    $("#modal-sm-loading").modal('hide');
+                });
+            }
+
+
+
+
+
+        });
+    </script>
+
+
+}

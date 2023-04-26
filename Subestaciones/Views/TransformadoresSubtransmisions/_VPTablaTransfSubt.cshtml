@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Subestaciones.Models.Clases.TransformadorSubtransmision>
+
+
+<table id="datatable" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Subestaci&oacute;n</th>
+            <th>Nro inventario</th>
+            <th>Grupo conexi&oacute;n</th>
+            <th>Nro empresa</th>
+            <th>Fecha instalado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string llaves = item.Id_EAdministrativa + "|" + item.Id_Transformador;
+
+        <tr>
+            <td>
+                @item.Nombre
+            </td>
+
+            <td>
+                @item.Subestacion
+            </td>
+
+            <td>
+                @item.NumeroInventario
+            </td>
+            <td>
+                @item.GrupoConexion
+            </td>
+            <td>
+                @item.Numemp
+            </td>
+
+            <td>
+                @item.FechaDeInstalado
+            </td>
+
+            <td style="width: 125px;">
+                <a href="@Url.Action("Details","TransformadoresSubtransmisions", new { EA = item.Id_EAdministrativa , id_transformador = item.Id_Transformador,  ubicado = @ViewBag.ubicado   } )" class="btn btn-info mt-sweetalert btn-xs" title="Detalles"><i class="fa fa-eye"></i>  </a>
+                <a href="@Url.Action("Edit","TransformadoresSubtransmisions", new { EA = item.Id_EAdministrativa , Id_Transformador = item.Id_Transformador,  ubicado = @ViewBag.ubicado } )" class="btn btn-warning mt-sweetalert  btn-xs" title="Editar"><i class="fa fa-pencil"></i>  </a>
+                <a href="javascript:;" id="@llaves" title="Eliminar" class="btn btn-default mt-sweetalert btn-xs" data-title="¿Est&aacute; seguro de eliminar el transformador @item.Nombre?" data-message="¡Los valores que están en la fila a eliminar no se podr&aacute;n recuperar!"
+                   data-type="info" data-show-confirm-button="true" data-confirm-button-class="btn-success" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-close-on-confirm="false" data-close-on-cancel="false"
+                   data-confirm-button-text='¡S&iacute;, eliminar!' data-cancel-button-text='¡No, cancelar!' data-popup-title-success="¡Eliminado!" data-popup-message-success="El transformador @item.Nombre ha sido eliminada." data-popup-title-cancel="Cancelado"
+                   data-popup-message-cancel="La acción de eliminar ha sido cancelada."><i class="fa fa-trash-o"></i></a>
+
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>

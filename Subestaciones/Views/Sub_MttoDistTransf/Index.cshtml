@@ -1,0 +1,335 @@
+﻿@model IEnumerable<Subestaciones.Models.Sub_MttoDistTransf>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tap_Encontrado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tap_Dejado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoTanqueExpansion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoBusholtz_ReleIntegral)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoBushingAlta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoBushingBaja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TuboExplosor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoValvulaSobrePresion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoValvulas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoRadiadores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SaliderosResumidores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TempAmbiente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TempTransformador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HumedadRelativa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoTiempo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislABTR15)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislBATR15)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislABR15)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislABTR60)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislABR60)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstUtilizadoResistAisl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoIndNivelaceite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NivelAceite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoSilica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoTermometro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoPintura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoVentilacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoConexiones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AterramientoTanque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AterramientoNeutro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstUtilizadoResistOhm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstUtiliRelacTransf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromedioRigidezDielectrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TempAmbRigidezDielectrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TempTransfRigidezDielectrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HumRelatRigidezDielectrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NormaRigidezDielectrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstUtilRigidezDielectrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RigidezDielectricaPrueba6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistAislBATR60)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorEsperadoRelacTransf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoPrimVsSecTierra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoSecVsPrimTierra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoPrimSecVsTierra)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tap_Encontrado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tap_Dejado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoTanqueExpansion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoBusholtz_ReleIntegral)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoBushingAlta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoBushingBaja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TuboExplosor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoValvulaSobrePresion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoValvulas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoRadiadores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaliderosResumidores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TempAmbiente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TempTransformador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HumedadRelativa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoTiempo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislABTR15)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislBATR15)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislABR15)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislABTR60)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislABR60)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstUtilizadoResistAisl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoIndNivelaceite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelAceite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoSilica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoTermometro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPintura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoVentilacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoConexiones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AterramientoTanque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AterramientoNeutro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstUtilizadoResistOhm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstUtiliRelacTransf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observaciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RigidezDielectricaPrueba1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RigidezDielectricaPrueba2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RigidezDielectricaPrueba3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RigidezDielectricaPrueba4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RigidezDielectricaPrueba5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PromedioRigidezDielectrica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TempAmbRigidezDielectrica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TempTransfRigidezDielectrica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HumRelatRigidezDielectrica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormaRigidezDielectrica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstUtilRigidezDielectrica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RigidezDielectricaPrueba6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistAislBATR60)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorEsperadoRelacTransf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPrimVsSecTierra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoSecVsPrimTierra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPrimSecVsTierra)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

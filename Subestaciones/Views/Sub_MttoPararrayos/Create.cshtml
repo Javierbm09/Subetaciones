@@ -1,0 +1,1002 @@
+﻿@model Subestaciones.Models.Clases.Sub_MttoPararrayosModel
+
+@{ViewBag.Title = "Mantenimiento a Pararrayos";}
+
+
+@section pagetitle{
+    <div class="page-title">
+        <h1>Mantenimiento a Pararrayos</h1>
+    </div>
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_MttoPararrayos")">Mantenimiento a Pararrayos</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Crear nuevo</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>Insertar Mantenimiento a Pararrayos
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.AntiForgeryToken()
+
+                                <!-- BEGIN FORM-->
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+
+                                        <!-- BEGIN Portlet PORTLET DATOS IM-->
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject bold"> Datos del Interruptor y del Mantenimiento</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.subestacion, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.subestacion, ViewBag.ListadoSubestaciones as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.subestacion, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.tipoMantenimiento, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.tipoMantenimiento, ViewBag.TipoMantenimiento as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.tipoMantenimiento, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.revisadoPor, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.revisadoPor, ViewBag.ListaRevisado as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.revisadoPor, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.fechaMantenimiento, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.EditorFor(model => model.MttoPararrayos.fechaMantenimiento, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.fechaMantenimiento, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.Mantenido, htmlAttributes: new { @class = "control-label " })
+                                                                <br />
+                                                                @Html.EditorFor(model => model.MttoPararrayos.Mantenido.Value, new
+                                                                {
+                                                                    htmlAttributes = new
+                                                                    {
+                                                                        Name = "MttoPararrayos.Mantenido",
+                                                                        @id = "MttoPararrayos_Mantenido",
+                                                                        @class = "form-control js-switch"
+                                                                    }
+                                                                })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.Mantenido, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group" id="div-tipo-equipos">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.TequipoProt, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.TequipoProt, ViewBag.TipoEquipoProtegido as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.TequipoProt, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group" id="div-equipos">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.CodigoEquipoProtegido, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.CodigoEquipoProtegido, ViewBag.ListaEquiposProtegidos as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.CodigoEquipoProtegido, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group" id="div-voltaje">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.VoltajeInstalado, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.VoltajeInstalado, ViewBag.ListaVoltajesInstalados as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.VoltajeInstalado, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <!-- BEGIN Portlet PORTLET DATOS ALGO-->
+                                                        <div class="portlet light">
+                                                            <div class="portlet-body">
+                                                                <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.Label("Fase A", htmlAttributes: new { @class = "control-label bold grupo-fase-a" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.Label("Fase B", htmlAttributes: new { @class = "control-label bold grupo-fase-b" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.Label("Fase C", htmlAttributes: new { @class = "control-label bold grupo-fase-c" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.NumSerieFaseA, htmlAttributes: new { @class = "control-label grupo-fase-a" })
+                                                                                @Html.EditorFor(model => model.NumSerieFaseA, new { htmlAttributes = new { @class = "form-control grupo-fase-a" } })
+                                                                                @Html.ValidationMessageFor(model => model.NumSerieFaseA, "", new { @class = "text-danger grupo-fase-a" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.NumSerieFaseB, htmlAttributes: new { @class = "control-label grupo-fase-b" })
+                                                                                @Html.EditorFor(model => model.NumSerieFaseB, new { htmlAttributes = new { @class = "form-control grupo-fase-b" } })
+                                                                                @Html.ValidationMessageFor(model => model.NumSerieFaseB, "", new { @class = "text-danger grupo-fase-b" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.NumSerieFaseC, htmlAttributes: new { @class = "control-label grupo-fase-c" })
+                                                                                @Html.EditorFor(model => model.NumSerieFaseC, new { htmlAttributes = new { @class = "form-control grupo-fase-c" } })
+                                                                                @Html.ValidationMessageFor(model => model.NumSerieFaseC, "", new { @class = "text-danger grupo-fase-c" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.TipoParaFaseA, htmlAttributes: new { @class = "control-label grupo-fase-a" })
+                                                                                @Html.EditorFor(model => model.TipoParaFaseA, new { htmlAttributes = new { @class = "form-control grupo-fase-a" } })
+                                                                                @Html.ValidationMessageFor(model => model.TipoParaFaseA, "", new { @class = "text-danger grupo-fase-a" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.TipoParaFaseB, htmlAttributes: new { @class = "control-label grupo-fase-b" })
+                                                                                @Html.EditorFor(model => model.TipoParaFaseB, new { htmlAttributes = new { @class = "form-control grupo-fase-b" } })
+                                                                                @Html.ValidationMessageFor(model => model.TipoParaFaseB, "", new { @class = "text-danger grupo-fase-b" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.TipoParaFaseC, htmlAttributes: new { @class = "control-label grupo-fase-c" })
+                                                                                @Html.EditorFor(model => model.TipoParaFaseC, new { htmlAttributes = new { @class = "form-control grupo-fase-c" } })
+                                                                                @Html.ValidationMessageFor(model => model.TipoParaFaseC, "", new { @class = "text-danger grupo-fase-c" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- END Portlet PORTLET-->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END Portlet PORTLET-->
+                                        <!-- BEGIN Portlet PORTLET DATOS IGE-->
+                                        <div class="portlet light">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject bold"> Datos de la Inspección General Externa</span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.porcelanas, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.porcelanas, ViewBag.ListaDefectosPorcelanas as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.porcelanas, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.platillosMembranas, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.platillosMembranas, ViewBag.ListaDefectosPlatillosMembranas as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.platillosMembranas, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.conexiones, htmlAttributes: new { @class = "control-label" })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.conexiones, ViewBag.ListaDefectosConexiones as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.conexiones, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.tornilleria, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.tornilleria, ViewBag.ListaDefectosTornilleria as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.tornilleria, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.aterramientos, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.aterramientos, ViewBag.ListaDefectosAterramientos as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.aterramientos, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.partesMetalicas, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.partesMetalicas, ViewBag.ListaDefectosPartesMetalicas as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.partesMetalicas, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.EstadoMiliA, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.EstadoMiliA, ViewBag.ListaEstadoMiliA as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.EstadoMiliA, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => model.MttoPararrayos.EstadoCuentaOp, htmlAttributes: new { @class = "control-label " })
+                                                                @Html.DropDownListFor(model => model.MttoPararrayos.EstadoCuentaOp, ViewBag.ListaEstadoCuentaOp as SelectList, "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.EstadoCuentaOp, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <!-- BEGIN Portlet PORTLET DATOS CO-->
+                                                        <div class="portlet light">
+                                                            <div class="portlet-title">
+                                                                <div class="caption">
+                                                                    <span class="caption-subject bold"> Cuenta Operaciones</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="portlet-body">
+                                                                <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.MttoPararrayos.cuentaOpFaseA, htmlAttributes: new { @class = "control-label " })
+                                                                                @Html.EditorFor(model => model.MttoPararrayos.cuentaOpFaseA, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.cuentaOpFaseA, "", new { @class = "text-danger" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.MttoPararrayos.cuentaOpFaseB, htmlAttributes: new { @class = "control-label" })
+                                                                                @Html.EditorFor(model => model.MttoPararrayos.cuentaOpFaseB, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.cuentaOpFaseB, "", new { @class = "text-danger" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.MttoPararrayos.cuentaOpFaseC, htmlAttributes: new { @class = "control-label" })
+                                                                                @Html.EditorFor(model => model.MttoPararrayos.cuentaOpFaseC, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.cuentaOpFaseC, "", new { @class = "text-danger" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.Label("Corriente de Fuga:", htmlAttributes: new { @class = "control-label bold" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.MttoPararrayos.LecturaFugaA, htmlAttributes: new { @class = "control-label " })
+                                                                                @Html.EditorFor(model => model.MttoPararrayos.LecturaFugaA, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.LecturaFugaA, "", new { @class = "text-danger" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.MttoPararrayos.LecturaFugaB, htmlAttributes: new { @class = "control-label " })
+                                                                                @Html.EditorFor(model => model.MttoPararrayos.LecturaFugaB, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.LecturaFugaB, "", new { @class = "text-danger" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                @Html.LabelFor(model => model.MttoPararrayos.LecturaFugaC, htmlAttributes: new { @class = "control-label " })
+                                                                                @Html.EditorFor(model => model.MttoPararrayos.LecturaFugaC, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                @Html.ValidationMessageFor(model => model.MttoPararrayos.LecturaFugaC, "", new { @class = "text-danger" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- END Portlet PORTLET-->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END Portlet PORTLET-->
+
+                                        <div class="row">
+                                            <!-- BEGIN Portlet PORTLET DATOS DMP-->
+                                            <div class="portlet light">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <span class="caption-subject bold"> Datos del Mantenimiento a Pararrayos</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                        <div class="row">
+                                                            <div class="col-md-4 grupo-fase-a">
+                                                                <!-- BEGIN Portlet PORTLET DATOS FASE A-->
+                                                                <div class="portlet light">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <span class="caption-subject bold"> Fase A</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.Label("Sección 1", htmlAttributes: new { @class = "control-label bold" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.Label("Sección 2", htmlAttributes: new { @class = "control-label bold" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.Aislamiento15secc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.Aislamiento15secc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.Aislamiento15secc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.Aislamiento15secc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.Aislamiento15secc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.Aislamiento15secc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.Aislamiento60secc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.Aislamiento60secc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.Aislamiento60secc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.Aislamiento60secc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.Aislamiento60secc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.Aislamiento60secc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.AislamientoDARsecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.AislamientoDARsecc1, new { htmlAttributes = new { @class = "form-control aislamiento-dar" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.AislamientoDARsecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.AislamientoDARsecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.AislamientoDARsecc2, new { htmlAttributes = new { @class = "form-control aislamiento-dar" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.AislamientoDARsecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.VoltajeSecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.VoltajeSecc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.VoltajeSecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.VoltajeSecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.VoltajeSecc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.VoltajeSecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.CorrFiltracionCDSecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.CorrFiltracionCDSecc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.CorrFiltracionCDSecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseA.CorrFiltracionCDSecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseA.CorrFiltracionCDSecc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseA.CorrFiltracionCDSecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END Portlet PORTLET-->
+                                                            </div>
+                                                            <div class="col-md-4 grupo-fase-b">
+                                                                <!-- BEGIN Portlet PORTLET DATOS FASE B-->
+                                                                <div class="portlet light">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <span class="caption-subject bold"> Fase B</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.Label("Sección 1", htmlAttributes: new { @class = "control-label bold" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.Label("Sección 2", htmlAttributes: new { @class = "control-label bold" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.Aislamiento15secc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.Aislamiento15secc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.Aislamiento15secc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.Aislamiento15secc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.Aislamiento15secc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.Aislamiento15secc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.Aislamiento60secc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.Aislamiento60secc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.Aislamiento60secc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.Aislamiento60secc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.Aislamiento60secc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.Aislamiento60secc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.AislamientoDARsecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.AislamientoDARsecc1, new { htmlAttributes = new { @class = "form-control aislamiento-dar" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.AislamientoDARsecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.AislamientoDARsecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.AislamientoDARsecc2, new { htmlAttributes = new { @class = "form-control aislamiento-dar" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.AislamientoDARsecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.VoltajeSecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.VoltajeSecc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.VoltajeSecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.VoltajeSecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.VoltajeSecc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.VoltajeSecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.CorrFiltracionCDSecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.CorrFiltracionCDSecc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.CorrFiltracionCDSecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseB.CorrFiltracionCDSecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseB.CorrFiltracionCDSecc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseB.CorrFiltracionCDSecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END Portlet PORTLET-->
+                                                            </div>
+                                                            <div class="col-md-4 grupo-fase-c">
+                                                                <!-- BEGIN Portlet PORTLET DATOS FASE C-->
+                                                                <div class="portlet light">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <span class="caption-subject bold"> Fase C</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.Label("Sección 1", htmlAttributes: new { @class = "control-label bold" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.Label("Sección 2", htmlAttributes: new { @class = "control-label bold" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.Aislamiento15secc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.Aislamiento15secc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.Aislamiento15secc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.Aislamiento15secc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.Aislamiento15secc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.Aislamiento15secc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.Aislamiento60secc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.Aislamiento60secc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.Aislamiento60secc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.Aislamiento60secc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.Aislamiento60secc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.Aislamiento60secc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.AislamientoDARsecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.AislamientoDARsecc1, new { htmlAttributes = new { @class = "form-control aislamiento-dar" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.AislamientoDARsecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.AislamientoDARsecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.AislamientoDARsecc2, new { htmlAttributes = new { @class = "form-control aislamiento-dar" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.AislamientoDARsecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.VoltajeSecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.VoltajeSecc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.VoltajeSecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.VoltajeSecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.VoltajeSecc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.VoltajeSecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.CorrFiltracionCDSecc1, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.CorrFiltracionCDSecc1, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.CorrFiltracionCDSecc1, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        @Html.LabelFor(model => model.MttoPararrayos_FaseC.CorrFiltracionCDSecc2, htmlAttributes: new { @class = "control-label " })
+                                                                                        @Html.EditorFor(model => model.MttoPararrayos_FaseC.CorrFiltracionCDSecc2, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos_FaseC.CorrFiltracionCDSecc2, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END Portlet PORTLET-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END Portlet PORTLET-->
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <!-- BEGIN Portlet PORTLET DATOS OBSERVACIONES-->
+                                                <div class="portlet light">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject bold"> Observaciones</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        @Html.EditorFor(model => model.MttoPararrayos.observaciones, new { htmlAttributes = new { @class = "form-control", @rows = "4", @style = "resize:none;" } })
+                                                                        @Html.ValidationMessageFor(model => model.MttoPararrayos.observaciones, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END Portlet PORTLET-->
+                                            </div>
+                                            <div class="col-md-4">
+                                                <!-- BEGIN Portlet PORTLET DATOS IU-->
+                                                <div class="portlet light">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject bold"> Instrumentos Utilizados</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group" id="div-instrumentos">
+                                                                        <table width="100%" border="0">
+                                                                            <tr>
+                                                                                <td style="width:48%">Disponibles</td>
+                                                                                <td rowspan="2" style="width:4%">
+                                                                                    <input type="button" value=">>" id="move-to-b" /><br />
+                                                                                    <input type="button" value="<<" id="move-to-a" />
+                                                                                </td>
+                                                                                <td>Seleccionados</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    @Html.ListBox("UnSelectedItem", ViewBag.ListaA as SelectList, new { @style = "width:100%" })
+                                                                                </td>
+                                                                                <td>
+                                                                                    @Html.ListBoxFor(model => model.InstrumentosUtilizados, ViewBag.ListaB as SelectList, new { @style = "width:100%" })
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END Portlet PORTLET-->
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index")"><i class="fa fa-list"></i>Listado</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-check"></i> Insertar
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+}
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker-1.6.4-dist/locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script>
+        $("#div-voltaje").hide();
+
+        $(document).ready(function () {
+
+            if ($("#MttoPararrayos_subestacion").val() != "") {
+                $("#div-voltaje").show();
+            } else {
+                $("#div-voltaje").hide();
+            }
+
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            function obtenerFecha() {
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+
+                var yyyy = today.getFullYear();
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+                if (mm < 10) {
+                    mm = '0' + mm;
+                }
+                return dd + '/' + mm + '/' + yyyy;
+            }
+
+            function cargarTipoEquiposProtegidos() {
+                $.ajax({
+                    url: '@Url.Action("VPTipoEquipos", "Sub_MttoPararrayos")',
+                    method: "POST",
+                    data: { },
+                    success: function (data) {
+                        $('#div-tipo-equipos').html(data);
+                    }
+                });
+            }
+
+            function cargarInstrumentos() {
+                var subestacion = $("#MttoPararrayos_subestacion").val();
+                $.ajax({
+                    url: '@Url.Action("VPInstrumentos", "Sub_MttoPararrayos")',
+                    method: "POST",
+                    data: { subestacion: subestacion },
+                    success: function (data) {
+                        $('#div-instrumentos').html(data);
+                    }
+                });
+            }
+
+            $("#MttoPararrayos_subestacion").change(function () {
+                cargarTipoEquiposProtegidos();
+                cargarInstrumentos();
+            });
+
+            function colorTextoAislamiento() {
+                var e = $(".aislamiento-dar");
+                if (e.val() <= 1) {
+                    e.css('color', '#FF0000')
+                } else if (e.val() > 1 && e.val() <= 1.25) {
+                    e.css('color', '#F56060')
+                } else if (e.val() > 1.25 && e.val() <= 2) {
+                    e.css('color', '#56FA56')
+                } else {
+                    e.css('color', '#008000')
+                }
+            }
+
+            $(".aislamiento-dar").change(function () {
+                colorTextoAislamiento();
+            });
+
+            colorTextoAislamiento();
+
+            $('#MttoPararrayos_fechaMantenimiento').val(obtenerFecha());
+
+            $('.js-switch').bootstrapSwitch({
+                onText: "Si",
+                offText: "No"
+            });
+
+            function MoveListBoxItem(fromId, toId) {
+                $("#" + fromId + " option:selected").remove().appendTo("#" + toId);
+            }
+
+            $("#move-to-b").click(function () {
+                MoveListBoxItem('UnSelectedItem', 'InstrumentosUtilizados');
+            });
+
+            $("#move-to-a").click(function () {
+                MoveListBoxItem('InstrumentosUtilizados', 'UnSelectedItem');
+            });
+
+            function cargarEquiposProtegidos() {
+                var subestacion = $("#MttoPararrayos_subestacion").val();
+                var tipoEquipo = $("#MttoPararrayos_TequipoProt").val();
+                if (tipoEquipo == "T") {
+                    cargarVoltajesInstalados();
+                    $("#div-voltaje").show();
+                } else {
+                    $("#div-voltaje").hide();
+                }
+                $.ajax({
+                    url: '@Url.Action("VPEquipos", "Sub_MttoPararrayos")',
+                    method: "POST",
+                    data: { subestacion: subestacion, tipoEquipo: tipoEquipo },
+                    success: function (data) {
+                        $('#div-equipos').html(data);
+                    }
+                });
+            }
+
+            function cargarVoltajesInstalados() {
+                var subestacion = $("#MttoPararrayos_subestacion").val();
+                $.ajax({
+                    url: '@Url.Action("VPVoltajeInstalado", "Sub_MttoPararrayos")',
+                    method: "POST",
+                    data: { subestacion: subestacion },
+                    success: function (data) {
+                        $('#div-voltaje').html(data);
+                    }
+                });
+            }
+
+            //cargarEquiposProtegidos();
+
+            $("#MttoPararrayos_TequipoProt").change(function () {
+                $('.grupo-fase-a').show();
+                $('.grupo-fase-b').show();
+                $('.grupo-fase-c').show();
+                $('#NumSerieFaseA').val('');
+                $('#NumSerieFaseB').val('');
+                $('#NumSerieFaseC').val('');
+                $('#TipoParaFaseA').val('');
+                $('#TipoParaFaseB').val('');
+                $('#TipoParaFaseC').val('');
+                cargarEquiposProtegidos();
+            });
+
+            function CargarDatosFases() {
+                var tipoEquipo = $("#MttoPararrayos_TequipoProt").val();
+                var codigoEquipo = $("#MttoPararrayos_CodigoEquipoProtegido").val();
+                $.ajax({
+                    url: '@Url.Action("DatosFases", "Sub_MttoPararrayos")',
+                    method: "POST",
+                    data: { tipo: tipoEquipo, codigo: codigoEquipo },
+                    success: function (data) {
+                        $('#NumSerieFaseA').val(data.fans);
+                        $('#NumSerieFaseB').val(data.fbns);
+                        $('#NumSerieFaseC').val(data.fcns);
+                        $('#TipoParaFaseA').val(data.fatp);
+                        $('#TipoParaFaseB').val(data.fbtp);
+                        $('#TipoParaFaseC').val(data.fctp);
+                        MostrarFases(data.fans != "", data.fbns != "", data.fcns != "");
+                    }
+                });
+            }
+
+            function MostrarFases(a, b, c) {
+                if (a) {
+                    $('.grupo-fase-a').show();
+                } else {
+                    $('.grupo-fase-a').hide();
+                }
+                if (b) {
+                    $('.grupo-fase-b').show();
+                } else {
+                    $('.grupo-fase-b').hide();
+                }
+                if (c) {
+                    $('.grupo-fase-c').show();
+                } else {
+                    $('.grupo-fase-c').hide();
+                }
+            }
+
+            $("#MttoPararrayos_CodigoEquipoProtegido").change(function () {
+                CargarDatosFases();
+            });
+        });
+    </script>
+}

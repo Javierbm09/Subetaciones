@@ -1,0 +1,188 @@
+﻿<!--Navegación Principal-->
+<nav id="mainnav-container">
+    <div id="mainnav">
+        <!--Caja Menu Lateral-->
+        <div id="mainnav-menu-wrap">
+            <div class="nano">
+                <div class="nano-content">
+                    <!--Menu Lateral-->
+                    <ul id="mainnav-menu" class="list-group">
+                        <!--Category name-->
+                        <li class="list-header">Circuitos</li>
+                        <!--Menu list item-->
+                        <li id="menu-resumen">
+                            <a href="#">
+                                <i class="ti-slice"></i>
+                                <span class="menu-title">Resumen</span>
+                                <i class="arrow"></i>
+                            </a>
+                            <!--Submenu-->
+                            <ul class="collapse">
+                                <li id="submenu-resumen-ck">@Html.ActionLink("Primarios", "Index", "CircuitosPrimarios") </li>
+                                <li id="submenu-resumen-cs">@Html.ActionLink("Secundarios", "Index", "CircuitosSecundarios")</li>
+                                <li id="submenu-resumen-cu">@Html.ActionLink("Subtransmisión", "Index", "CircuitosSubtransmision")</li>
+                                <li id="submenu-resumen-ca">@Html.ActionLink("Alumbrado", "Index", "CircuitosAlumbrado")</li>
+                            </ul>
+                        </li>
+                        <!--Menu list item-->
+                        <li id="menu-ubicar">
+                            <a href="#">
+                                <i class="ti-pin-alt"></i>
+                                <span class="menu-title">Ubicar</span>
+                                <i class="arrow"></i>
+                            </a>
+                            <!--Submenu-->
+                            <ul class="collapse">
+                                <li id="submenu-ubicar-ck">@Html.ActionLink("Primarios", "Create", "CircuitosPrimarios") </li>
+                                <li id="submenu-ubicar-cs">@Html.ActionLink("Secundarios", "Create", "CircuitosSecundarios")</li>
+                                <li id="submenu-ubicar-cu">@Html.ActionLink("Subtransmisión", "Create", "CircuitosSubtransmision")</li>
+                                <li id="submenu-ubicar-ca">@Html.ActionLink("Alumbrado","                                                                                                                       Create", "CircuitosAlumbrado")</li>
+                            </ul>
+                        </li>
+                        <!--Menu list item-->
+                        <li id="menu-mostrar">
+                            <a href="#">
+                                <i class="ti-search"></i>
+                                <span class="menu-title">Mostrar</span>
+                                <i class="arrow"></i>
+                            </a>
+                            <!--Submenu-->
+                            <ul class="collapse">
+                                <li id="submenu-mostrar-ck">@Html.ActionLink("Primarios", "Details", "CircuitosPrimarios") </li>
+                                <li id="submenu-mostrar-cs">@Html.ActionLink("Secundarios", "Details", "CircuitosSecundarios")</li>
+                                <li id="submenu-mostrar-cu">@Html.ActionLink("Subtransmisión", "Details", "CircuitosSubtransmision")</li>
+                                <li id="submenu-mostrar-ca">@Html.ActionLink("Alumbrado", "Details", "CircuitosAlumbrado")</li>
+                            </ul>
+                        </li>
+                        <li class="list-divider"></li>
+                        <!--Category name-->
+                        <li class="list-header">Gestión</li>
+                        <!--Menu list group-->
+                        <li id="menu-registrar">
+                            <a href="#">
+                                <i class="ti-import"></i>
+                                <span class="menu-title">Registrar</span>
+                                <i class="arrow"></i>
+                            </a>
+                            <!--Submenu-->
+                            <ul class="collapse">
+                                <li id="menu-registrar-datos-circuitos">@Html.ActionLink("Datos de Circuitos", "Index", "Portada") </li>
+                                <li id="menu-registrar-monolineales">@Html.ActionLink("Monolineales", "Index", "Portada")</li>
+                                <li id="menu-registrar-fotos">@Html.ActionLink("Fotos", "Index", "Fotos")</li>
+                                <li id="menu-registrar-estudios">@Html.ActionLink("Estudios", "Index", "Portada")</li>
+                                <li  id="menu-registrar-est-quejas">@Html.ActionLink("Estudio de quejas con eventos", "Index", "Portada")</li>
+                                <li class="list-divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="menu-title">Importar datos NULEC</span>
+                                        <i class="arrow"></i>
+                                    </a>
+                                    <!--Submenu-->
+                                    <ul class="collapse">
+                                        <li>@Html.ActionLink("CSV", "Index", "Portada") </li>
+                                        <li>@Html.ActionLink("DB", "Index", "Portada")</li>
+                                        <li>@Html.ActionLink("SQLite", "Index", "Portada")</li>
+                                        <li>@Html.ActionLink("Históricos Telenul", "Index", "Portada")</li>
+                                    </ul>
+                                </li>
+                                <li>@Html.ActionLink("Análisis de carga y eventos", "Index", "Portada")</li>
+                                <li>@Html.ActionLink("Gráficos NULEC", "Index", "Portada")</li>
+                                <li>@Html.ActionLink("Reportes NULEC", "Index", "Portada")</li>
+                                <li class="list-divider"></li>
+                                <li>@Html.ActionLink("Medición Tierra", "Index", "EstudioTierras") </li>
+                            </ul>
+                        </li>
+                        <!--Menu list item-->
+                        <li>
+                            <a href="#">
+                                <i class="ti-stats-up"></i>
+                                <span class="menu-title">Mejoras</span>
+                                <i class="arrow"></i>
+                            </a>
+                            <!--Submenu-->
+                            <ul class="collapse">
+                                <li>@Html.ActionLink("Conversiones", "Index", "Portada") </li>
+                                <li>@Html.ActionLink("Traspaso de carga", "Index", "Portada")</li>
+                                <li>@Html.ActionLink("Cambio de calibre", "Index", "Portada")</li>
+                                <li>@Html.ActionLink("Cambio de estructura", "Index", "Portada")</li>
+                                <li>@Html.ActionLink("Cambio de lazo", "Index", "Portada")</li>
+                            </ul>
+                        </li>
+                        <!--Menu list item-->
+                        <li id="menu-acciones">
+                            <a href="#">
+                                <i class="ti-panel"></i>
+                                <span class="menu-title">Acciones</span>
+                                <i class="arrow"></i>
+                            </a>
+                            <!--Submenu-->
+                            <ul class="collapse">
+                                <li id="menu-acciones-celaje">@Html.ActionLink("Celaje", "Index", "CelajeCircuitoDistribucion") </li>
+                            </ul>
+                        </li>
+                        <li class="list-divider"></li>
+                        <!--Category name-->
+                        <li class="list-header">Informaciones</li>
+                        <!--Menu list item-->
+                        <li>
+                            <a href="#">
+                                <i class="ti-agenda"></i>
+                                <span class="menu-title">Reportes</span>
+                                <i class="arrow"></i>
+                            </a>
+                            <!--Submenu-->
+                            <ul class="collapse">
+                                <li class="list-divider"></li>
+                                <li>&emsp;&emsp;Circuitos</li>
+                                <li>@Html.ActionLink("Primarios", "Relevadores", "Reportes")</li>
+                                <li>@Html.ActionLink("Secundarios", "Esquemas", "Reportes")</li>
+                                <li>@Html.ActionLink("Subtransmisión", "Mantenimientos", "Reportes")</li>
+                                <li>@Html.ActionLink("Alumbrados", "Averias", "Reportes")</li>
+                                <li class="list-divider"></li>
+                                <li>&emsp;&emsp;Datos</li>
+                                <li>@Html.ActionLink("Básicos", "Averias", "Reportes")</li>
+                                <li>@Html.ActionLink("Resultados", "Averias", "Reportes")</li>
+                                <li>@Html.ActionLink("Registrados de un circuito", "Averias", "Reportes")</li>
+                                <li class="list-divider"></li>
+                                <li>&emsp;&emsp;Estudios</li>
+                                <li>@Html.ActionLink("Van", "Averias", "Reportes")</li>
+                                <li>
+                                    <a href="#"><span class="menu-title">Niveles de voltaje</span><i class="arrow"></i></a>
+                                    <ul>
+                                        <li>@Html.ActionLink("Primario", "Relevadores", "Reportes")</li>
+                                        <li>@Html.ActionLink("Secundario", "Esquemas", "Reportes")</li>
+                                        <li>@Html.ActionLink("Subtransmisión", "Mantenimientos", "Reportes")</li>
+                                        <li>@Html.ActionLink("Alumbrado", "Averias", "Reportes")</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><span class="menu-title">Tipo</span><i class="arrow"></i></a>
+                                    <ul>
+                                        <li>@Html.ActionLink("Primario", "Relevadores", "Reportes")</li>
+                                        <li>@Html.ActionLink("Secundario", "Esquemas", "Reportes")</li>
+                                        <li>@Html.ActionLink("Subtransmisión", "Mantenimientos", "Reportes")</li>
+                                        <li>@Html.ActionLink("Alumbrado", "Averias", "Reportes")</li>
+                                    </ul>
+                                </li>
+                                <li class="list-divider"></li>
+                                <li>&emsp;&emsp;Reportes</li>
+                                <li>@Html.ActionLink("Energía de circuitos primarios", "Relevadores", "Reportes")</li>
+                                <li>@Html.ActionLink("Energía de circuitos secundarios", "Relevadores", "Reportes")</li>
+                                <li>@Html.ActionLink("Kms línea por circuito", "Esquemas", "Reportes")</li>
+                                <li>@Html.ActionLink("Mediciones de tierra", "Mantenimientos", "Reportes")</li>
+                                <li>@Html.ActionLink("Celajes circuitos 33Kv y menores", "Averias", "Reportes")</li>
+                                <li>@Html.ActionLink("Circuitos por Kms compartidos", "Averias", "Reportes")</li>
+                                <li class="list-divider"></li>
+                                <li>&emsp;&emsp;Planes</li>
+                                <li>@Html.ActionLink("Mantenimientos por circuitos", "Relevadores", "Reportes")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--Fin Menu Lateral-->
+                </div>
+            </div>
+        </div>
+        <!--Fin Caja Menu Lateral-->
+    </div>
+</nav>
+<!--Fin Navegación Principal-->

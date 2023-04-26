@@ -1,0 +1,70 @@
+﻿@model Subestaciones.Models.Fotos
+@{
+    ViewBag.Title = "Detalles de la foto";
+    String imgSrc = "";
+    if (Model.Foto != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Foto);
+        imgSrc = String.Format("data:image/jpeg;base64,{0}", base64);
+    }
+}
+
+@section pagetitle{
+    <div class="page-title">
+        <h1>Detalle de Foto</h1>
+    </div>
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Fotos")">Inicio</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Fotos</span>
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-gift"></i>Detalles de la Foto
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row static-info">
+                            <div class="col-md-3 name" style="text-align:end"> @Html.DisplayNameFor(model => model.Instalacion): </div>
+                            <div class="col-md-9 value"> @Html.DisplayFor(model => model.Instalacion)  </div>
+                        </div>
+
+                        <div class="row static-info">
+                            <div class="col-md-3 name" style="text-align:end"> @Html.DisplayNameFor(model => model.Version): </div>
+                            <div class="col-md-9 value"> @Html.DisplayFor(model => model.Version)  </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-3 name" style="text-align:end"> @Html.DisplayNameFor(model => model.Nombre): </div>
+                            <div class="col-md-9 value"> @Html.DisplayFor(model => model.Nombre)  </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-12" style="text-align:center">
+                                <a href="#">
+                                    <img class="ImgFoto" alt="Version 1" src='@imgSrc' height=300 width=300
+                                         data-target="#myModal" data-toggle="modal" />
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE CONTENT INNER -->
+</div>

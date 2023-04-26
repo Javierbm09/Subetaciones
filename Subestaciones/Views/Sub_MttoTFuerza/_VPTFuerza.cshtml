@@ -1,0 +1,6 @@
+﻿@model  Subestaciones.Models.Clases.Sub_MttoTFuerzaViewModel
+
+@Html.LabelFor(model => model.DatosCTF.Nombre, htmlAttributes: new { @class = "control-label" })
+@Html.DropDownListFor(model => model.DatosCTF.Id_Transformador, ViewBag.TFuerza as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @id = "NombreTF" })
+

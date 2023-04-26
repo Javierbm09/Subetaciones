@@ -1,0 +1,45 @@
+﻿@model Subestaciones.Models.Sub_DesconectivoSubestacion
+
+@using (Html.BeginForm("_VPSave", "Sub_DesconectivoSubestacion", FormMethod.Post))
+{
+    <div class="panel-body panel-bordered-default">
+        <div class="panel-heading">
+            <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+            <h3 class="panel-title"><b>Insertar Breaker por Baja de Red de Corriente Alterna</b></h3>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-12">
+                @Html.HiddenFor(model => model.RedCA)
+                @Html.HiddenFor(model => model.CodigoSub)
+                @Html.Hidden("CodDescAnterior", Model.CodigoDesconectivo)
+                <br />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CodigoDesconectivo, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(a => a.CodigoDesconectivo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.CodigoDesconectivo)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TensionNominal, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(a => a.TensionNominal, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.TensionNominal)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CorrienteNominal, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(a => a.CorrienteNominal, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.CorrienteNominal)
+                </div>
+
+                <div class="form-group">
+                    <button id="btn-guardar" type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Guardar</button>
+                  @*  <a  class="btn btn-info" href="@Url.Action("Create", "Sub_DesconectivoSubestacion",new { Sub_DesconectivoSubestacion = @Model})"><i class="fa fa-list"></i> Guardar</a>*@
+                    <button data-dismiss="modal" class="btn btn-default" type="button" id="Close">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+}

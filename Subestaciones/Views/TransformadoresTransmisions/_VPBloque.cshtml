@@ -1,0 +1,56 @@
+﻿
+@if (ViewBag.cantidad > 0)
+{
+    <table id="datatable" class="display compact">
+
+        <h3 class="panel-title">Bloques de transformaci&oacute;n</h3>
+
+        <thead>
+            <tr>
+                <th>Tipo de bloque</th>
+                <th>Esquema por Baja</th>
+                <th>Sector cliente</th>
+                <th>Cliente</th>
+                <th>Tensi&oacute;n terciaria</th>
+                <th>Tensi&oacute;n salida</th>
+                <th>Tipo salida</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.bloques)
+            {
+
+                <tr>
+
+                    <td>
+                        @item.tipobloque
+                    </td>
+
+                    <td>
+                        @item.EsquemaPorBaja
+                    </td>
+
+                    <td>
+                        @item.Sector
+                    </td>
+                    <td>
+                        @item.Cliente
+                    </td>
+                    <td>
+                        @item.VoltajeTerciario
+                    </td>
+
+                    <td>
+                        @item.VoltajeSalida
+                    </td>
+                    <td>
+                        @item.TipoSalida
+                    </td>
+
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}

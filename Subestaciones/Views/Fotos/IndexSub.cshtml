@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Subestaciones.Models.Fotos>
+
+
+@{
+    /**/
+
+    ViewBag.Title = "Fotos";
+    ViewBag.PTitle = "Fotos";
+}
+@section breadcrumb {
+    <li><a href="#"><i class="ti-harddrives"></i></a></li>
+    <li class="active">Fotos de la subestación @ViewBag.instalacion</li>
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="datatable" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                     <th>Nombre</th>
+                    <th>Versión</th>
+                    <th>Imagen</th>
+
+                    <th>Detalles</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Version
+                    </td>
+                    <td>
+                        <img src="@String.Format("data:imagen/jpg;base 64,{0}",Convert.ToBase64String(item.Foto) )" />
+                        @item.Foto
+                    </td>
+
+                    <td style="width: 95px;">
+                        <a href="@Url.Action("Details","Fotos", new { id_ea = item.Id_EAdministrativa, numA = item.NumAccion } )" class="btn btn-info btn-xs" title="Detalles"><i class="fa fa-eye"></i>  </a>
+
+
+                    </td>
+
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section script {
+    <script src="~/Scripts/custom/datatables.js"></script>
+}

@@ -1,0 +1,191 @@
+﻿@model IEnumerable<Subestaciones.Models.Inst_Nomenclador_Desconectivos_DatosEspecificos_Comunicacion>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Inst_Nomenclador_Desconectivos.Id_Nomenclador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Administrativa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_EAdministrativa_Prov)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnnoFabricacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerieInterruptor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NroEmpresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NroInventario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeriGabinete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Altitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInstalacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telemedion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telemando)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SCADA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EquipoUtilizado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LazoAutomatico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Esquema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Funcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_TensionInstalacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Gabinete)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inst_Nomenclador_Desconectivos.Id_Nomenclador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Administrativa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_EAdministrativa_Prov)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumAccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnoFabricacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerieInterruptor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NroEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NroInventario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeriGabinete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Altitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInstalacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telemedion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telemando)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SCADA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EquipoUtilizado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LazoAutomatico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Esquema)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Funcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_TensionInstalacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Gabinete)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id_DatosEspComun }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id_DatosEspComun }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id_DatosEspComun })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

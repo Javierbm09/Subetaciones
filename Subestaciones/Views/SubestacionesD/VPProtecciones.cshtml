@@ -1,0 +1,60 @@
+﻿@model List<Subestaciones.Models.Clases.Protecciones>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="table_Protecciones" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Equipo primario</th>
+                    <th>Elemento eléctrico</th>
+                    <th>Tipo equipo</th>
+                    <th>Rele</th>
+                    <th>Descripción</th>
+                    <th>Devanado</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @item.nombre
+                        </td>
+
+                        <td>
+                            @item.equipoPriamrio
+                        </td>
+
+                        <td>
+                            @item.elementoElectrico
+                        </td>
+                        <td>
+                            @item.tipoEquipo
+                        </td>
+                        <td>
+                            @item.rele
+                        </td>
+
+                        <td>
+                            @item.descripcion
+                        </td>
+                        <td>
+                            @item.devanado
+                        </td>
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+</div>
+</div>

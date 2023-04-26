@@ -1,0 +1,248 @@
+﻿@model Subestaciones.Models.Sub_MttoPararrayos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sub_MttoPararrayos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.corrienteDescarga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.corrienteDescarga)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantOperaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantOperaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.corrienteFiltracionCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.corrienteFiltracionCD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numAccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numAccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subestacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subestacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.revisadoPor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.revisadoPor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaMantenimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaMantenimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TequipoProt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TequipoProt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoEquipoProtegido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoEquipoProtegido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.incidenciasUltimaRev)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.incidenciasUltimaRev)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.porcelanas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.porcelanas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tornilleria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tornilleria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.platillosMembranas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.platillosMembranas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.conexiones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.conexiones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aterramientos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aterramientos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.partesMetalicas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.partesMetalicas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuentaOpFaseA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuentaOpFaseA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuentaOpFaseB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuentaOpFaseB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuentaOpFaseC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuentaOpFaseC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoMantenimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoMantenimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mantenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mantenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LecturaFugaA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LecturaFugaA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LecturaFugaB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LecturaFugaB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LecturaFugaC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LecturaFugaC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoMiliA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoMiliA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoCuentaOp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoCuentaOp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoltajeInstalado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoltajeInstalado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

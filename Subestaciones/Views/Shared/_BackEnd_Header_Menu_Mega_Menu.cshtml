@@ -1,0 +1,518 @@
+﻿<div class="hor-menu  ">
+    <ul class="nav navbar-nav">
+        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
+            <a href="javascript:;">
+                Ver
+                <span class="arrow"></span>
+            </a>
+            <ul class="dropdown-menu pull-left">
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Index","Fotos")" class="nav-link  ">
+                        Foto
+                    </a>
+                </li>
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Subestaciones
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Details", "SubestacionesD")" class="nav-link ">
+                                Distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action( "Details", "SubestacionesTransmisions")" class="nav-link ">
+                                Transmisi&oacute;n
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
+            <a href="javascript:;">
+                Nomencladores
+                <span class="arrow"></span>
+            </a>
+            <ul class="dropdown-menu pull-left">
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Servicio CD
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "Sub_NomCargadores")" class="nav-link ">
+                                Cargadores
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "NomencladorBaterias")" class="nav-link ">
+                                Bater&iacute;as
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Index", "NomencladorTension")" class="nav-link ">
+                                Tensi&oacute;n
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Create","Sub_NomInstrumentoMedicion")" class="nav-link  ">
+                        Instrumentos Medici&oacute;n
+                    </a>
+                </li>
+            </ul>
+
+        </li>
+
+        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
+            <a href="javascript:;">
+                Instalaciones
+                <span class="arrow"></span>
+            </a>
+            <ul class="dropdown-menu pull-left">
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Subestación
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "SubestacionesD")" class="nav-link ">
+                                Distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "SubestacionesTransmisions")" class="nav-link ">
+                                Transmisi&oacute;n
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Transformador
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresSubtransmisions", new { ubicado = "TS" })" class="nav-link ">
+                                De potencia en subestaci&oacute;n de distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresTransmisions", new { ubicado = "TT" })" class="nav-link ">
+                                De potencia en subestaci&oacute;n de transmisi&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresSubtransmisions", new { ubicado = "TSA" })" class="nav-link ">
+                                De potencia de subtransmisi&oacute;n en almac&eacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresTransmisions", new { ubicado = "TTA" })" class="nav-link ">
+                                De potencia de transmisi&oacute;n en almac&eacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "ES_TransformadorCorriente")" class="nav-link ">
+                                De corriente
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "ES_TransformadorPotencial")" class="nav-link ">
+                                De potencial
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Index","InstalacionDesconectivos")" class="nav-link  ">
+                        Desconectivos
+                    </a>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Create","BancoCapacitores")" class="nav-link  ">
+                        Capacitor
+                    </a>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Create","Sub_Barra")" class="nav-link  ">
+                        Barras
+                    </a>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Create","Sub_Pararrayos")" class="nav-link  ">
+                        Pararrayos
+                    </a>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Create","Sub_RedCorrienteAlterna")" class="nav-link  ">
+                        Servicio de corriente alterna
+                    </a>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Create","Sub_RedCorrienteDirecta")" class="nav-link  ">
+                        Servicio de corriente directa
+                    </a>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                        Grupos electr&oacute;genos
+                    </a>
+                </li>
+            </ul>
+
+        </li>
+
+        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+            <a href="javascript:;">
+                @*<i class="icon-briefcase"></i>*@ Acciones
+                <span class="arrow"></span>
+            </a>
+            <ul class="dropdown-menu pull-left">
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Create","Sub_Termografias")" class="nav-link  ">
+                        Termograf&iacute;as
+                    </a>
+                </li>
+
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Mantenimientos
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create","SubMttoSubDistribucions")" class="nav-link  ">
+
+                                Subestaciones de distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class="dropdown-submenu ">
+                            <a href="javascript:;" class="nav-link nav-toggle ">
+                                Subestaciones de transmisi&oacute;n
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Create","Sub_MttoPararrayos")" class="nav-link  ">
+                                        Pararrayos
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","Sub_MttoBateriasEstacionarias")" class="nav-link  ">
+                                        Bater&iacute;as estacionarias
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","Sub_MttoTFuerza")" class="nav-link  ">
+                                        Transformador de fuerza
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","Sub_MttoTransformadoresUsoPlanta")" class="nav-link  ">
+                                        Transformador uso de planta
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Transformador de corriente
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Transformadore de potencial
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Interruptores
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Desconectivos
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Portafusibles
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Inspecciones
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "Sub_CelajeSubDistribucion")" class="nav-link ">
+                                Subestaci&oacute;n de distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "Sub_CelajeSubTrans")" class="nav-link ">
+                                Subestaci&oacute;n de transmisi&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "Sub_Certificacion")" class="nav-link ">
+                                Certificaci&oacute;n de Subestaci&oacute;n de distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "Sub_PruebaAceiteAQReducido")" class="nav-link ">
+                                Pruebas de aceite - An&aacute;lisis qu&iacute;mico reducido
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "Sub_PruebaAceiteAGDisueltos")" class="nav-link ">
+                                Pruebas de aceite - An&aacute;lisis gases disueltos
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Index", "Sub_MedicionTierra")" class="nav-link ">
+                                Mediciones de tierra
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Mover transformador
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create","TransformadoresPotencia")" class="nav-link  ">
+                                Subestaci&oacute;n de distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Edit","TransformadoresPotencia")" class="nav-link  ">
+                                Subestaci&oacute;n de transmisi&oacute;n
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Create","TransformadoresPotencia")" class="nav-link  ">
+                        Mover Transformador
+                    </a>
+                </li>
+                @*<li aria-haspopup="true" class=" ">
+                    <a href="layout_mega_menu_light.html" class="nav-link  ">
+                        Fotos
+                    </a>
+                </li>*@
+
+
+
+            </ul>
+        </li>
+
+       
+
+        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+            <a href="javascript:;">
+                @*<i class="icon-briefcase"></i>*@ 
+                Reportes
+                <span class="arrow"></span>
+            </a>
+            <ul class="dropdown-menu pull-left">
+                <li aria-haspopup="true" class=" ">
+                    <a href="@Url.Action("Reporte", "Sub_Termografias")" class="nav-link ">
+                        Termograf&iacute;as de subestaciones
+                    </a>
+                </li>
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Mantenimientos
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo.html" class="nav-link ">
+                                Subestaciones de distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class="dropdown-submenu ">
+                            <a href="javascript:;" class="nav-link nav-toggle ">
+                                Subestaciones de transmisi&oacute;n
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Pararrayos
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Bater&iacute;as estacionarias
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Transformador de fuerza
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Transformador uso de planta
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Transformador de corriente
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Transformadore de potencial
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Interruptores
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Desconectivos
+                                    </a>
+                                </li>
+                                <li aria-haspopup="true" class=" ">
+                                    <a href="@Url.Action("Index","GruposGs")" class="nav-link  ">
+                                        Portafusibles
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Inspecciones
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresSubtransmisions", new { ubicado = "TS" })" class="nav-link ">
+                                Reporte general Insp. subestaciones de distribuci&Oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresTransmisions", new { ubicado = "TT" })" class="nav-link ">
+                                Reporte general Insp. subestaciones de transmisi&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresSubtransmisions", new { ubicado = "TSA" })" class="nav-link ">
+                                Certificaci&oacute;n de Subestaci&oacute;n de distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresTransmisions", new { ubicado = "TTA" })" class="nav-link ">
+                                An&aacute;lisis qu&iacute;mico de datos
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "TransformadoresTransmisions", new { ubicado = "TTA" })" class="nav-link ">
+                                An&aacute;lisis de gases disueltos
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="@Url.Action("Create", "ES_TransformadorCorriente")" class="nav-link ">
+                                Mediciones de tierra
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Subestaciones y transformadores
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo.html" class="nav-link ">
+                                Listado de subestaciones
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo_2.html" class="nav-link ">
+                                Pararrayos de las subestaciones
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo_2.html" class="nav-link ">
+                                Transformadores de las subestaciones
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo_2.html" class="nav-link ">
+                                Transformadores en almac&eacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo_2.html" class="nav-link ">
+                                Transformadores (Uso de planta y grounding bank)
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo_2.html" class="nav-link ">
+                                Transformadores de corriente y potencial (TC y TP)
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle ">
+                        Reportes generales
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo.html" class="nav-link ">
+                                Energ&iacute;a de subestaci&oacute;n de distribuci&oacute;n
+                            </a>
+                        </li>
+                        <li aria-haspopup="true" class=" ">
+                            <a href="app_todo.html" class="nav-link ">
+                                Instrumentos de medici&oacute;n
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+               
+
+               
+            </ul>
+        </li>
+
+       
+    </ul>
+</div>

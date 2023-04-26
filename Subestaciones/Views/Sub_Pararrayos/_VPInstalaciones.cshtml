@@ -1,0 +1,8 @@
+﻿@model Subestaciones.Models.Sub_Pararrayos
+
+
+@Html.LabelFor(model => model.CE)
+@Html.DropDownListFor(model => model.CE, ViewBag.CE as SelectList,
+    "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+
+

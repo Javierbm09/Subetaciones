@@ -1,0 +1,256 @@
+﻿@model Subestaciones.Models.GruposG
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>GruposG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Emplazamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emplazamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bateria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Grupo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Grupo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaIni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instalacion_Transformadora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instalacion_Transformadora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entrecalle1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entrecalle1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entrecalle2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entrecalle2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sucursal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sucursal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.coddireccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coddireccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Eq_Sincronizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eq_Sincronizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NormalmenteSinc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NormalmenteSinc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desconectivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desconectivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Seccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Seccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_EAdireccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_EAdireccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BarrioPueblo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BarrioPueblo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_EAdministrativa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_EAdministrativa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoGeneracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoGeneracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo_Emergencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo_Emergencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumAccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumAccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoOperativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoOperativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Generación)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Generación)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.centg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.centg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.batg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.batg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unigg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unigg)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

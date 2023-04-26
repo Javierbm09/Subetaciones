@@ -1,0 +1,33 @@
+﻿@{ViewBag.Title = "Titulo de la página";}
+
+@section pagetitle{
+    <div id="page-title">
+        <h1 class="page-header text-overflow">@* Titulo de la página *@</h1>
+    </div>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#"><i class="ti-search"></i> @* miga de pan padre *@</a>
+        </li>
+        <li class="active"> @* miga de pan hija *@</li>
+    </ol>
+}
+
+<div class="panel panel-bordered panel-info">
+    <div class="panel-heading">
+        <div class="panel-control">
+            <a class="btn btn-default" href="@Url.Action("Create","CircuitosPrimarios")" title="Nuevo Circuito Primario"><i class="fa fa-plus-square"></i></a>
+        </div>
+        <h1 class="panel-title">@* Titulo del contenido *@</h1>
+    </div>
+    <div class="panel-body">
+
+    </div>
+</div>
+
+@section styles {
+    @*Estilos*@
+}
+
+@section script {
+    @*JavaScript*@
+}

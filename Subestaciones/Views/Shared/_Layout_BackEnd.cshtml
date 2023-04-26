@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | Subestaciones - SIGERE</title>
+    <base href='@Url.Content("~/")'>
+    @Html.Partial("_BackEnd_CSS")
+    @RenderSection("styles",required:false)
+    
+</head>
+<body class="page-container-bg-solid page-md page-header-menu-fixed">
+    <div class="page-wrapper">
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-top">
+                @Html.Partial("_BackEnd_Header")
+            </div>
+        </div>
+        <div class="page-wrapper-row full-height">
+            <div class="page-wrapper-middle">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <div class="container-fluid">
+                        <!-- BEGIN PAGE TITLE -->
+                        @RenderSection("pagetitle", required: false)
+                        @*<div class="page-title">
+                                <h1>Módulo Circuitos v. @typeof(Circuitos.Models.CircuitosPrimarios).Assembly.GetName().Version</h1>
+                            </div>*@
+                        <!-- END PAGE TITLE -->
+                        <!-- BEGIN PAGE TOOLBAR -->
+                        <div class="page-toolbar">
+                            @RenderSection("pagetoolbar", required: false)
+                            <!-- BEGIN THEME PANEL -->
+                            <!-- END THEME PANEL -->
+                        </div>
+                        <!-- END PAGE TOOLBAR -->
+                    </div>
+                </div>
+                <!-- END PAGE HEAD-->
+                <!-- BEGIN CONTAINER -->
+                <div class="page-container">
+
+                    <!-- BEGIN CONTENT -->
+                    <div class="page-content-wrapper">
+                        @RenderBody()
+                    </div>
+                    <!-- END CONTENT -->
+                    <!-- BEGIN QUICK SIDEBAR -->
+                    @Html.Partial("_BackEnd_Quick_SideBar")
+                    <!-- END QUICK SIDEBAR -->
+                </div>
+                <!-- END CONTAINER -->
+            </div>
+        </div>
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-bottom">
+                <!-- BEGIN FOOTER -->
+                <!-- BEGIN PRE-FOOTER -->
+                @Html.Partial("_BackEnd_Pre_Footer")
+                <!-- END PRE-FOOTER -->
+                <!-- BEGIN INNER FOOTER -->
+                @Html.Partial("_BackEnd_Inner_Footer")
+                <!-- END INNER FOOTER -->
+                <!-- END FOOTER -->
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN QUICK NAV -->
+    <!-- END QUICK NAV -->
+    <!-- BEGIN CORE PLUGINS -->
+    @Html.Partial("_BackEnd_JS")
+    <!--SectionScripts -->
+    @RenderSection("script", required: false)
+</body>
+</html>

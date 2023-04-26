@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Subestaciones.Models.Clases.Desconectivos>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="table_Desc" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Númnero de Fases</th>
+                    <th>Corriente Nominal</th>
+                    <th>Función del desconectivo</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Codigo
+                        </td>
+                        <td>
+                            @item.NumeroFases
+                        </td>
+                        <td>
+                            @item.CorrienteNominal
+                        </td>
+                        <td>
+                            @item.Funcion
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

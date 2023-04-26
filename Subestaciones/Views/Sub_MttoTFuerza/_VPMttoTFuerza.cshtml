@@ -1,0 +1,46 @@
+﻿@model List<Subestaciones.Models.Clases.Sub_MttoTFuerzaList>
+
+<table id="datatable" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Subestaci&oacute;n</th>
+            <th>Tipo mantenimiento</th>
+            <th>Realizado por</th>
+            <th>Fecha</th>
+            <th>Mantenido</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string llaves = item.Id_MttoTFuerza + "|" + item.Id_TFuerza + "|" + item.Id_EAdministrativaTFuerza + "|" + item.Id_EAdministrativa + "|" + item.subestacion;
+
+            <tr>
+                <td>
+                    @item.subestacion, @item.NombreSubestacion
+                </td>
+                <td>
+                    @item.TipoMtto
+                </td>
+                <td>
+                    @item.RealizadoPor
+                </td>
+                <td>
+                    @item.fechaMtto
+                </td>
+                <td>
+                    @item.Mantenido
+                </td>
+                <td style="width: 125px;">
+                    <a href="@Url.Action("Details","Sub_MttoTFuerza", new { id_MTF = item.Id_MttoTFuerza, id_TF = item.Id_TFuerza, id_EATF = item.Id_EAdministrativaTFuerza, id_EA = item.Id_EAdministrativa, cod_Sub = item.subestacion })" class="btn btn-info mt-sweetalert btn-xs" title="Detalles"><i class="fa fa-eye"></i>  </a>
+                    <a href="@Url.Action("Edit","Sub_MttoTFuerza", new { id_MTF = item.Id_MttoTFuerza, id_TF = item.Id_TFuerza, id_EATF = item.Id_EAdministrativaTFuerza, id_EA = item.Id_EAdministrativa, cod_Sub = item.subestacion } )" class="btn btn-warning mt-sweetalert btn-xs" title="Editar"><i class="fa fa-pencil"></i>  </a>
+                    <a href="javascript:;" id="@llaves" title="Eliminar" class="btn btn-default mt-sweetalert btn-xs" data-title="¿Est&aacute; seguro de eliminar el mantenimiento seleccionado?" data-message="¡Los valores que est&aacute;n en la fila a eliminar no se podr&aacute;n recuperar!"
+                       data-type="info" data-show-confirm-button="true" data-confirm-button-class="btn-success" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-close-on-confirm="false" data-close-on-cancel="false"
+                       data-confirm-button-text='¡S&iacute;, eliminar!' data-cancel-button-text='¡No, cancelar!' data-popup-title-success="¡Eliminado!" data-popup-message-success="El mantenimiento ha sido eliminado." data-popup-title-cancel="Cancelado"
+                       data-popup-message-cancel="La acci&oacute;n de eliminar ha sido cancelada."><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

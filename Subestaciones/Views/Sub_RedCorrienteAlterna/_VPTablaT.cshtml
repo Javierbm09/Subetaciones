@@ -1,0 +1,41 @@
+﻿@if (ViewBag.cantidad > 0)
+{  
+    <table id="datatable_transformadores" class="table table-striped table-bordered table-hover">
+        <thead>
+            @*<tr>
+                <th colspan="2" style="align-content:center">Transformadores</th>
+            </tr>*@
+            <tr>
+                <th data-field="id" data-switchable="false">Código Banco</th>
+                <th data-field="name">Seleccionalizador</th>
+                <th data-field="name">Num Emp</th>
+                <th data-field="name">Capacidad</th>
+                <th data-field="name">Fabricante</th>
+                <th data-field="name">Volt Primario</th>
+                <th data-field="name">Volt Secundario</th>
+                <th data-field="name">Fase</th>
+                <th data-field="name">Estado Operativo</th>
+                <th data-field="name">Tap Dejado</th>
+                <th data-field="name">Número Fase</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.transformadores)
+            {
+            <tr>
+                <td>@item.Codigo</td>
+                <td>@item.Seleccionalizador</td>
+                <td>@item.Numemp</td>
+                <td>@item.Capacidad</td>
+                <td>@item.Fabricante</td>
+                <td>@item.VoltajePrim</td>
+                <td>@item.VoltajeSecun</td>
+                <td>@item.Fase</td>
+                <td>@item.EstadoOperativo</td>
+                <td>@item.TapDejado</td>
+                <td>@item.NumFase</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    }

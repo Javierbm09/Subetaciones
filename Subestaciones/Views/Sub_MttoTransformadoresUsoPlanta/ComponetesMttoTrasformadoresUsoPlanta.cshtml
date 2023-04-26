@@ -1,0 +1,633 @@
+﻿@model Subestaciones.Models.Clases.Sub_MttoTransformadoresUsoPlantaViewModel
+
+@{
+    ViewBag.Title = "Mantenimiento a los trasfomadores uso planta";
+}
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_MttoTransformadoresUsoPlanta")">Lista de mantenimientos</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Insertar componentes de los transformadores de uso planta
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("CreateComponentesExtras", "Sub_MttoTransformadoresUsoPlanta", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+                            {
+                                @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="text-align: center; font-size:20px">
+                                            @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.MensajeExistenciaMtto, "", new { @class = "text-danger" })
+                                            @Html.HiddenFor(model => model.sub_MttoTransUsoP.Id_EATransformador, new { @id = "Id_EATransformador" })
+                                            @Html.HiddenFor(model => model.sub_MttoTransUsoP.Id_Eadministrativa, new { @id = "Id_EATransformador" })
+
+                                            @Html.HiddenFor(model => model.sub_MttoTransUsoP.Id_Transformador, new { @id = "Id_Transformador" })
+
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-heading" style="background-color: #99999959"><strong>Datos del mantenimiento</strong></div>
+                                            <div class="panel-body">
+                                                <div class="col-md-2">
+                                                    <div class="form-group" id="cargarNombreSub">
+                                                        @Html.LabelFor(model => model.subestacionesTrans.NombreSubestacion, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="NombreSub" type="text" class="form-control" value= @ViewBag.nombreSub readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.sub_MttoTransUsoP.CodigoSub, htmlAttributes: new { @class = "control-label" })
+
+                                                        @Html.DropDownListFor(model => model.sub_MttoTransUsoP.CodigoSub, ViewBag.ListaSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @id = "codSubTrans", @disabled = "true" })
+                                                        @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.CodigoSub, "", new { @class = "text-danger" })
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.bancosTransformadores.Codigo, htmlAttributes: new { @class = "control-label" })
+                                                        <input id="codigoBanco" type="text" class="form-control" value=@ViewBag.banco readonly="readonly" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-heading" style="background-color: #99999959"><strong>Datos generales</strong> </div>
+                                            <div class="panel-body">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.sub_MttoTransUsoP.TipoMantenimiento, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.sub_MttoTransUsoP.TipoMantenimiento, ViewBag.TiposMtto as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" , @disabled = "true" })
+                                                        @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.TipoMantenimiento, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.sub_MttoTransUsoP.EjecutadoPor, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EjecutadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @disabled = "true" })
+                                                        @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EjecutadoPor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.Fecha, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.sub_MttoTransUsoP.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.Fecha, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.sub_MttoTransUsoP.Mantenido, htmlAttributes: new { @class = "control-label " })
+                                                        <br />
+                                                        @Html.EditorFor(model => model.sub_MttoTransUsoP.Mantenido.Value, new
+                                                        {
+                                                            htmlAttributes = new
+                                                            {
+                                                                Name = "sub_MttoTransUsoP.Mantenido",
+                                                                @id = "sub_MttoTransUsoP_Mantenido",
+                                                                @class = "form-control js-switch",
+                                                                @readonly = "readonly"
+                                                            }
+                                                        })
+                                                        @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.Mantenido, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Region de los Tag-->
+                                        <div class="panel">
+                                            <div class="tabbable-line boxless tabbable-reversed">
+                                                <ul class="nav nav-tabs" style="background-color: #99999959">
+                                                    <li class="active">
+                                                        <a href="#tabTransf_1" data-toggle="tab" id="tabTransf1">Chequeo Exterior </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_2" data-toggle="tab" id="tabTransf2">Resistencia de Aislamiento </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_3" data-toggle="tab" id="tabTransf4">Resistencia Óhmica </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_4" data-toggle="tab" id="tabTransf5">Relación Transformación </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_5" data-toggle="tab" id="tabTransf6">Rigidéz Dieléctrica Aceite(KV) </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabTransf_1">
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoTanqueExpansion, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoTanqueExpansion, ViewBag.estadoTanqueExpansion as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoTanqueExpansion, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoIndNivelaceite, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoIndNivelaceite, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoIndNivelaceite, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoTermometro, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoTermometro, ViewBag.estadoTanqueExpansion as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoTermometro, "", new { @class = "text-danger" })
+                                                                </div>
+
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoBusholtz_ReleIntegral, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoBusholtz_ReleIntegral, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoBusholtz_ReleIntegral, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.NivelAceite, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.NivelAceite, ViewBag.nivelAceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.NivelAceite, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoPintura, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoPintura, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoPintura, "", new { @class = "text-danger" })
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row margin-top-40">
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoBushingAlta, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoBushingAlta, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoBushingAlta, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoSilica, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoSilica, ViewBag.estadoTanqueExpansion as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoSilica, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoVentilacion, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoVentilacion, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoVentilacion, "", new { @class = "text-danger" })
+                                                                </div>
+
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoBushingBaja, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoBushingBaja, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoBushingBaja, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoValvulas, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoValvulas, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoValvulas, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoConexiones, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoConexiones, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoConexiones, "", new { @class = "text-danger" })
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row margin-top-40">
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.TuboExplosor, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.TuboExplosor, ViewBag.estadoTanqueExpansion as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.TuboExplosor, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoRadiadores, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoRadiadores, ViewBag.estadoIndNivelaceite as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoRadiadores, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.AterramientoTanque, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.AterramientoTanque, ViewBag.aterramientoTanque as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.AterramientoTanque, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.EstadoValvulaSobrePresion, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.EstadoValvulaSobrePresion, ViewBag.estadoTanqueExpansion as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.EstadoValvulaSobrePresion, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.SaliderosResumidores, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.SaliderosResumidores, ViewBag.saliderosResumi as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.SaliderosResumidores, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.AterramientoNeutro, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.AterramientoNeutro, ViewBag.aterramientoTanque as List<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.AterramientoNeutro, "", new { @class = "text-danger" })
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_2">
+                                                        <div class="panel-body">
+                                                            <div class="panel">
+
+                                                                <table style="width:85%" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width:15%">Nivel</th>
+                                                                            <th style="width:15%">R15s(MΩ)</th>
+                                                                            <th style="width:15%">R60s(MΩ)</th>
+                                                                            <th style="width:15%">K = R60s/R15s</th>
+                                                                            <th style="width:15%">Estado</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Prim vs Sec+Tierra
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Sec vs Prim+Tierra
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Prim+Sec vs Tierra
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control" value="" style="width:55%" />
+                                                                            </td>
+
+                                                                        </tr>
+                                                                    </tbody>
+
+                                                                </table>
+
+                                                            </div>
+                                                            <div class="col-lg-12" style="margin-top:20px">
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.sub_NomInstrumentoMedicion.Instrumento, htmlAttributes: new { @class = "control-label" })
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    @Html.DropDownListFor(model => model.sub_NomInstrumentoMedicion.Instrumento, ViewBag.incrementoMedicion as SelectList,
+            "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @style = "width:80%" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_NomInstrumentoMedicion.Instrumento, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_3">
+                                                        <div class="panel-body">
+                                                            <div class="col-md-12" id="TablaResistenciaOhmica">
+                                                                <table style="width:100% ; border:groove" class="table">
+                                                                    <thead>
+                                                                        <tr style="border:groove">
+                                                                            <th style="width:5%"></th>
+                                                                            <th style="text-align: center; border: groove " colspan="3">Primario</th>
+                                                                            <th style="text-align: center; border: groove" colspan="3">Secundario</th>
+                                                                            <th style="text-align: center; border: groove" colspan="3">Primario % diferencia</th>
+                                                                            <th style="text-align: center; border: groove" colspan="3">Secundario % diferencia</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th style="border:groove">Nro Tap</th>
+                                                                            <th style="border:groove">A-B</th>
+                                                                            <th style="border:groove">B-C</th>
+                                                                            <th style="border:groove">C-A</th>
+                                                                            <th style="border:groove">a-n</th>
+                                                                            <th style="border:groove">b-n</th>
+                                                                            <th style="border:groove">c-n</th>
+                                                                            <th style="border:groove">A-B</th>
+                                                                            <th style="border:groove">B-C</th>
+                                                                            <th style="border:groove">C-A</th>
+                                                                            <th style="border:groove">a-b</th>
+                                                                            <th style="border:groove">b-c</th>
+                                                                            <th style="border:groove">c-a</th>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_4">
+                                                        <div class="panel-body">
+                                                            <div class="col-md-12" id="TablaRelacionTrasnfor">
+                                                                <table style="width:80% ; border:groove" class="table">
+                                                                    <thead>
+                                                                        <tr style="border:groove">
+                                                                            <th style="width:10%"></th>
+                                                                            <th style="text-align: center; border: groove " colspan="3"></th>
+                                                                            <th style="text-align: center; border: groove" colspan="3">% Diferencia</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th style="border:groove">Nro Tap</th>
+                                                                            <th style="border:groove">A-B</th>
+                                                                            <th style="border:groove">B-C</th>
+                                                                            <th style="border:groove">C-A</th>
+                                                                            <th style="border:groove">A-B</th>
+                                                                            <th style="border:groove">B-C</th>
+                                                                            <th style="border:groove">C-A</th>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_5">
+                                                        <div class="panel-body">
+                                                            <div class="col-lg-3">
+                                                                <div class="row" style="width:70%">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.RigidezDielectricaPrueba1, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="RigidezDielectricaPrueba1" type="text" class="form-control" value="" />
+                                                                </div>
+                                                                <div class="row" style="width: 70%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.RigidezDielectricaPrueba2, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="RigidezDielectricaPrueba2" type="text" class="form-control" value="" />
+                                                                </div>
+                                                                <div class="row" style="width: 70%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.RigidezDielectricaPrueba3, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="RigidezDielectricaPrueba3" type="text" class="form-control" value="" />
+                                                                </div>
+                                                                <div class="row" style="width: 70%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.RigidezDielectricaPrueba4, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="RigidezDielectricaPrueba4" type="text" class="form-control" value="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="row" style="width:70%">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.RigidezDielectricaPrueba5, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="RigidezDielectricaPrueba5" type="text" class="form-control" value="" />
+                                                                </div>
+                                                                <div class="row" style="width: 70%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.RigidezDielectricaPrueba6, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="RigidezDielectricaPrueba6" type="text" class="form-control" value="" />
+                                                                </div>
+                                                                <div class="row" style="width: 70%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.PromedioRigidezDielectrica, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="PromedioRigidezDielectrica" type="text" class="form-control" value="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="row" style="width:70%">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.TempAmbiente, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="RigidezDielectricaPrueba5" type="text" class="form-control" value="" />
+                                                                </div>
+                                                                <div class="row" style="width: 70%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.TempTransformador, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="RigidezDielectricaPrueba6" type="text" class="form-control" value="" />
+                                                                </div>
+                                                                <div class="row" style="width: 70%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.PromedioRigidezDielectrica, htmlAttributes: new { @class = "control-label" })
+                                                                    <input id="PromedioRigidezDielectrica" type="text" class="form-control" value="" />
+                                                                </div>
+                                                                <div class="row" style="width: 90%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.NormaRigidezDielectrica, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.NormaRigidezDielectrica, ViewBag.normaRigidezDielectrica as List<SelectListItem>,
+            "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @style = "width:80%" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.NormaRigidezDielectrica, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="row" style="width: 90%; margin-top: 20px">
+                                                                    @Html.LabelFor(model => model.sub_MttoTransUsoP.InstUtilRigidezDielectrica, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.sub_MttoTransUsoP.InstUtilRigidezDielectrica, ViewBag.incrementoMedicionRigidez as SelectList,
+            "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @style = "width:80%" })
+                                                                    @Html.ValidationMessageFor(model => model.sub_MttoTransUsoP.InstUtilRigidezDielectrica, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_MttoTransformadoresUsoPlanta")"><i class="fa fa-list"></i> Listado de mantenimientos</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-plus"></i> Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.orange.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.energyblue.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.windowsphone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.highcontrast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/alertifyjs/css/alertify.min.css" rel="stylesheet" type="text/css" />
+
+
+}
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src=@Url.Content("~/Content/plugins/switchery/switchery.min.js")></script>
+
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+    <!--datepicker-->
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    @*<script src="~//assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>*@
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcore.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxbuttons.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxscrollbar.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxmenu.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxwindow.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxpanel.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.aggregates.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.grouping.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdropdownlist.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxlistbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.columnsresize.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.filter.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/localization.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxnumberinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcombobox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/alertifyjs/alertify.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            fecha = new Date();
+            fechaini = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0);
+            fechafin = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 23, 59);
+
+            $("#fechahora").datetimepicker({
+                language: 'es',
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                dateFormat: 'dd/mm/yyyy',
+                linkFormat: 'dd/mm/yyyy',
+                showMeridian: 1,
+                startDate: fechaini,
+                endDate: fechafin,
+                forceParse: 1,
+                startView: 2,
+                maxView: 2
+            }).datetimepicker('setDate', fecha);
+
+            $('.js-switch').bootstrapSwitch({
+                onText: "Si",
+                offText: "No"
+            });
+
+            let valorfecha = $("#termofechahora").val();
+            let newfecha = valorfecha.split(" ")[0];
+            let diafecha = newfecha.split("/")[0];
+            let mesfecha = newfecha.split("/")[1];
+            let annofecha = newfecha.split("/")[2];
+            let finalFecha = `${annofecha}-${mesfecha}-${diafecha}`;
+
+
+
+        });
+    </script>
+}

@@ -1,0 +1,102 @@
+﻿@model Subestaciones.Models.Inst_Nomenclador_Puente
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    @*<div class="fa fa-fire"></div>*@
+                   Editar datos del desconectivo  tipo puente
+                </div>
+            </div>
+            <div class="portlet-body">
+
+                <div class="row">
+                    @Html.HiddenFor(model => model.Id_Puente)
+
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.Id_Tipo, htmlAttributes: new { @class = "control-label " })
+                        @Html.DropDownList("tipo", null, "", htmlAttributes: new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Id_Tipo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Id_Modelo, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("modelo", null, "", htmlAttributes: new { @class = "form-control select2" })
+                            @Html.ValidationMessageFor(model => model.Id_Modelo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Bimetalica, htmlAttributes: new { @class = "control-label" })
+                            <div class="radio">
+                                <label>
+                                    @Html.RadioButtonFor(model => model.Bimetalica, 1)
+                                    Sí
+                                </label>
+                                <label>
+                                    @Html.RadioButtonFor(model => model.Bimetalica, 0)
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button" id="edit" value="0"><i class="fa fa-check"></i> Guardar</button>
+                <button class="btn btn-warning" type="button" id="cancel" value="0"><i class="fa fa-close"></i> Cancelar</button>
+
+                @*<button type="button" name="editPuente" id="editPuente" class="btn btn-success"><i class="fa fa-check"></i> Editar</button>*@
+            </div>
+
+               
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#edit").click(function () {
+        var id = $("#edit").val();
+        if (id == 0) {
+            editPuente(); //editar desconectivo tipo puente
+        }
+    });
+     function editPuente() {
+
+                var codPuente = $("#Id_Puente").val();
+                var codtipo = $("#tipo").val();
+                var codmodelo = $("#modelo").val();
+                var bimet = $("#Bimetalica").val();
+                if (codPuente != null || codtipo != null || codmodelo != null || bimet != null) {
+                    swal({
+                        title: "¡Información!",
+                        text: "Debe indicar el tipo de puente, modelo y bimetálica.",
+                        type: "success",
+                        confirmButtonText: "Cerrar",
+                        confirmButtonClass: "btn-primary"
+                    });
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("editarPuente", "Sub_DesconectivoSubestacion")',
+                        method: "POST",
+                        data: { id_puente: codPuente, tipo: codtipo, modelo: codmodelo, b: bimet },
+                        success: function (data) {
+                            $('#datos').html(data);
+
+                            if (data) {
+                                swal({
+                                    title: "¡Editado!",
+                                    text: "El desconectivo ha sido editado.",
+                                    type: "success",
+                                    confirmButtonText: "Cerrar",
+                                    confirmButtonClass: "btn-primary"
+                                });
+                                $("#codDesc").val("");
+                            }
+                        }
+                    });
+                }
+
+            }
+
+</script>
+

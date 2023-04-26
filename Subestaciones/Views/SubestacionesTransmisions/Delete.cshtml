@@ -1,0 +1,232 @@
+﻿@model Subestaciones.Models.SubestacionesTransmision
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>SubestacionesTransmision</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NombreSubestacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NombreSubestacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CodigoAntiguo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CodigoAntiguo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EsquemaPorAlta)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EsquemaPorAlta)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.VoltajePrimario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.VoltajePrimario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Calle)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Calle)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Numero)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Numero)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Entrecalle1)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Entrecalle1)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Entrecalle2)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Entrecalle2)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BarrioPueblo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BarrioPueblo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Sucursal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sucursal)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumeroTransformadores)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumeroTransformadores)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumeroSalidas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumeroSalidas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_EAdministrativa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_EAdministrativa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa_Prov)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_EAdministrativa_Prov)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumAccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EstadoOperativo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EstadoOperativo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoSub)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoSub)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.coddireccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.coddireccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_EAdireccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_EAdireccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tipo_Terceros)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tipo_Terceros)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Largo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Largo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ancho)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ancho)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Latitud)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Latitud)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Longitud)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Longitud)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaPuestaMarcha)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaPuestaMarcha)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

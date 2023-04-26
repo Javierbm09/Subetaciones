@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Subestaciones.Models.Clases.TransformadorSubtransmision>
+
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="table_TransfD" class="table table-striped table-bordered table-hover" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Nro Empresa</th>
+                    <th>Nro Inventario</th>
+                    <th>Capacidad</th>
+                    <th>Tensión Primaria (kV)</th>
+                    <th>Tensión Secundaria (kV)</th>
+                    <th>Tensión Terciaria (kV)</th>
+                    <th>Fabricante</th>
+                    <th>Año Fabricación</th>
+                    <th>Corriente Primaria </th>
+                    <th>Corriente Secundaria </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @item.Nombre
+                        </td>
+
+                        <td>
+                            @item.Numemp
+                        </td>
+
+                        <td>
+                            @item.NumeroInventario
+                        </td>
+                        <td>
+                            @item.capacidad
+                        </td>
+                        <td>
+                            @item.TensionPrimaria
+                        </td>
+
+                        <td>
+                            @item.TensionSecundaria
+                        </td>
+                        <td>
+                            @item.TensionTerciario
+                        </td>
+                        <td>
+                            @item.Fabricante
+                        </td>
+
+                        <td>
+                            @item.AnnoFabricacion
+                        </td>
+                        <td>
+                            @item.CorrientePrimaria
+                        </td>
+                        <td>
+                            @item.CorrienteSecundaria
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

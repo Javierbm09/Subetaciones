@@ -1,0 +1,88 @@
+﻿@model Subestaciones.Models.Sub_TransformadoresSubtrCelaje
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Sub_TransformadoresSubtrCelaje</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.salidero)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.salidero)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.nAceite)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.nAceite)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.pintura)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.pintura)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.aterramiento)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.aterramiento)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.bushing)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.bushing)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.temperaturaReal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.temperaturaReal)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.observaciones)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.observaciones)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

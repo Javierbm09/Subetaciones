@@ -1,0 +1,910 @@
+﻿@model Subestaciones.Models.Clases.ModelosDesconectivos
+
+<div class="panel panel-border-strong">
+    <div class="panel-heading">
+        <h3 class="panel-title"> <b>@Html.DisplayFor(model => model.modelo)</b></h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Fabricante, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.Fabricante, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ExtArco, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.ExtArco, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.presion, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Fabricante, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Aislamiento, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Aislamiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tension, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.tension, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pesoGas, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pesoGas, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Bil, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Bil, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.corrienteN, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.corrienteN, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pesoInt, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pesoInt, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Tanque, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Tanque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.corrienteCorto, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.corrienteCorto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pesoGab, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pesoGab, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SecOpe, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.SecOpe, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.corrienteA, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.corrienteA, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pesoTotal, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pesoTotal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                </div>
+            </div>
+        </div>
+        <div class="form-actions right">
+
+            <button id="btDefinir" type="button" data-toggle="modal" class="btn btn-primary" href="#definirModelos"> <i class="fa fa-plus"></i> Definir</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="definirModelos" position="relative" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Datos generales - @ViewBag.tipo</h4>
+            </div>
+
+
+            <!--Modal body-->
+            <div class="modal-body">
+
+                <div id="bootstrap_alerts_Modelo"> </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.Label("Modelo", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarModelo" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.Label("Fabricante", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarFabricante" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Tensión Nominal (kV)", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarTension" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Corriente Nominal (kV)", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarCorriente" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Peso Gas (Kpa)", htmlAttributes: new { @class = "control-label " })
+                            <input type="number" class="form-control" style="width:100%" id="_insertarPesoGas" placeholder="Insertar peso gas" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Bil", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarBil" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("I Cortocircuito (kA)", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarICortoCircuito" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Peso Interruptor (Kg)", htmlAttributes: new { @class = "control-label " })
+                            <input type="number" class="form-control" style="width:100%" id="_insertarPesoInterruptor" placeholder="Insertar peso interruptor" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Tanque", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarTanque" class="form-control" style="width:100%">
+                                <option value="0"> Seleccione un elemento de la lista</option>
+                                <option value="1"> Vivo </option>
+                                <option value="0"> Muerto </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("I Apert Cable (A)", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarIAperturaCable" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Peso Gabinete (Kg)", htmlAttributes: new { @class = "control-label " })
+                            <input type="number" class="form-control" style="width:100%" id="_insertarPesoGabinete" placeholder="Insertar peso gabinete" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Secuencia Operación", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarSecuenciaOp" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Extinción del Arco", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarExtArco" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Peso Total (Kg)", htmlAttributes: new { @class = "control-label " })
+                            <input type="number" class="form-control" style="width:100%" id="_insertarTotal" placeholder="Insertar peso total" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Aislamiento", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarAislamiento" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label("Presión Gas (Kpa)", htmlAttributes: new { @class = "control-label " })
+                            <select id="_insertarPresionGas" class="form-control">
+                                <option value="0">Seleccione un elemento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <a class="btn blue" href="javascript:;" id="_insertarModeloAction"><i class="fa fa-angle-right"></i> Insertar</a>
+                            </div>
+                        </div>
+                    </p>
+
+                </div>
+                <div id="TablaModelos"></div>
+                <div id="popEditaModelos">
+                    <div>Editar datos generales</div>
+                    <div style="overflow: hidden;">
+                        <table>
+                            <tr hidden>
+                                <td hidden><input id="_editaId_NomModelo" /></td>
+                            </tr>
+                            <tr hidden>
+                                <td hidden><input id="_editaEA" /></td>
+                            </tr>
+                            <tr hidden>
+                                <td hidden><input id="_editaId_EAdministrativaProv" /></td>
+                            </tr>
+                            <tr hidden>
+                                <td hidden><input id="_editaNumAccion" /></td>
+                            </tr>
+                            <tr hidden>
+                                <td hidden><input id="_editaDescripcion" /></td>
+                            </tr>
+                            <tr>
+                                <td align="right">Modelo:</td>
+                                <td>
+                                    <select id="_EditarModelo" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Fabricante:</td>
+                                <td>
+                                    <select id="_EditarFabricante" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Tensión Nominal (kV):</td>
+                                <td>
+                                    <select id="_EditarTension" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Corriente Nominal (kV):</td>
+                                <td>
+                                    <select id="_EditarCorriente" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Peso Gas (Kg):</td>
+                                <td><input id="_EditarPGas" /></td>
+                            </tr>
+                            <tr>
+                                <td align="right">Bil:</td>
+                                <td>
+                                    <select id="_editarBil" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">I Cortocircuito (kA):</td>
+                                <td>
+                                    <select id="_editarICortoCircuito" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Peso Interruptor (Kg):</td>
+                                <td><input id="_EditarPInt" /></td>
+                            </tr>
+                            <tr>
+                                <td align="right">Tanque:</td>
+                                <td>
+                                    <select id="_editarTanque" class="form-control">
+                                        <option value="0"> Seleccione un elemento de la lista</option>
+                                        <option value="1"> Vivo </option>
+                                        <option value="0"> Muerto </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">I Apert Cable (A):</td>
+                                <td>
+                                    <select id="_editarIAperturaCable" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Peso Gabinete (Kg):</td>
+                                <td><input id="_EditarPGab" /></td>
+                            </tr>
+                            <tr>
+                                <td align="right">Secuencia Operación:</td>
+                                <td>
+                                    <select id="_editarSecuenciaOp" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Extinción del Arco:</td>
+                                <td>
+                                    <select id="_editarExtArco" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Peso Total (Kg):</td>
+                                <td><input id="_EditarTotal" /></td>
+                            </tr>
+                            <tr>
+                                <td align="right">Aislamiento:</td>
+                                <td>
+                                    <select id="_editarAisl" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">Presión Gas (Kpa):</td>
+                                <td>
+                                    <select id="_editarPresionGas" class="form-control">
+                                        <option value="0">Seleccione un elemento</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"></td>
+                                <td style="padding-top: 10px;" align="right"><input style="margin-right: 5px;" type="button" id="SaveModelo" value="Guardar" /><input id="CancelModelo" type="button" value="Cancelar" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button" id="cerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let detalle = "@ViewBag.detalles";
+    if (detalle == 'detail') {
+        $("#btDefinir").hide();
+    } else {
+        $("#btDefinir").show();
+    }
+
+    cargarModelos();
+    cargarFabricantes();
+    cargarTension();
+    cargarCorriente();
+    cargarBil();
+    cargarICortoCircuito();
+    cargarCorrienteApertura();
+    cargarSecuenciaOperaciones();
+    cargarExtArco();
+    cargarAislamiento();
+    cargarPresionGas();
+        function cargarModelos() {
+
+            $("#_insertarModelo option").remove();
+            $.getJSON('@Url.Action("ObtenerModelos")', function (data) {
+                $("#_insertarModelo").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarModelo").append('<option value="' + data[i]['Id_Modelo'] + '">' + data[i]['DescripcionModelo'] + '</option>');
+                }
+
+                //inicializar_select2();
+            });
+    }
+
+
+        function cargarFabricantes() {
+
+            $("#_insertarFabricante option").remove();
+            $.getJSON('@Url.Action("ObtenerFabricantes")', function (data) {
+                $("#_insertarFabricante").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarFabricante").append('<option value="' + data[i]['Id_Fabricante'] + '">' + data[i]['Nombre'] + ' ' + '(' + data[i]['Pais'] + ')' + '</option>');
+                }
+
+                //inicializar_select2();
+            });
+        }
+
+        function cargarTension() {
+            $("#_insertarTension option").remove();
+            $.getJSON('@Url.Action("ObtenerTensionNominal")', function (data) {
+                $("#_insertarTension").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarTension").append('<option value="' + data[i]['Id_Tension'] + '">' + data[i]['DescripcionTensionCuchillas'] + '</option>');
+                }
+            });
+        }
+
+        function cargarCorriente() {
+            $("#_insertarCorriente option").remove();
+            $.getJSON('@Url.Action("ObtenerCorrienteNominal")', function (data) {
+                $("#_insertarCorriente").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarCorriente").append('<option value="' + data[i]['Id_CorrienteNominal'] + '">' + data[i]['DescripcionCorrienteNominal'] + '</option>');
+                }
+            });
+        }
+
+        function cargarBil() {
+            $("#_insertarBil option").remove();
+            $.getJSON('@Url.Action("ObtenerBil")', function (data) {
+                $("#_insertarBil").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarBil").append('<option value="' + data[i]['Id_BIL'] + '">' + data[i]['DescripcionBIL'] + '</option>');
+                }
+            });
+        }
+
+        function cargarICortoCircuito() {
+            $("#_insertarICortoCircuito option").remove();
+            $.getJSON('@Url.Action("ObtenerICortoCircuito")', function (data) {
+                $("#_insertarICortoCircuito").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarICortoCircuito").append('<option value="' + data[i]['Id_CortoCircuito'] + '">' + data[i]['DescripcionCortoCircuito'] + '</option>');
+                }
+            });
+        }
+
+        function cargarCorrienteApertura() {
+            $("#_insertarIAperturaCable option").remove();
+            $.getJSON('@Url.Action("ObtenerIAperturaCable")', function (data) {
+                $("#_insertarIAperturaCable").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarIAperturaCable").append('<option value="' + data[i]['Id_ApertCable'] + '">' + data[i]['DescripcionApertCable'] + '</option>');
+                }
+            });
+        }
+
+        function cargarSecuenciaOperaciones() {
+            $("#_insertarSecuenciaOp option").remove();
+            $.getJSON('@Url.Action("ObtenerSecuenciaOperaciones")', function (data) {
+                $("#_insertarSecuenciaOp").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarSecuenciaOp").append('<option value="' + data[i]['Id_SecuenciaOperacion'] + '">' + data[i]['DescripcionSecuenciaOperacion'] + '</option>');
+                }
+            });
+        }
+
+        function cargarExtArco() {
+            $("#_insertarExtArco option").remove();
+            $.getJSON('@Url.Action("ObtenerExtincionArco")', function (data) {
+                $("#_insertarExtArco").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarExtArco").append('<option value="' + data[i]['Id_MedidoExtincionArco'] + '">' + data[i]['DescripcionMedidoExtincionArco'] + '</option>');
+                }
+            });
+        }
+
+        function cargarAislamiento() {
+            $("#_insertarAislamiento option").remove();
+            $.getJSON('@Url.Action("ObtenerAislamiento")', function (data) {
+                $("#_insertarAislamiento").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarAislamiento").append('<option value="' + data[i]['Id_Aislamiento'] + '">' + data[i]['DescripcionAislamiento'] + '</option>');
+                }
+            });
+        }
+
+        function cargarPresionGas() {
+            $("#_insertarPresionGas option").remove();
+            $.getJSON('@Url.Action("ObtenerPresionGas")', function (data) {
+                $("#_insertarPresionGas").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_insertarPresionGas").append('<option value="' + data[i]['Id_PresionGas'] + '">' + data[i]['DescripcionPresionGas'] + '</option>');
+                }
+            });
+        }
+    var idT = "@ViewBag.idTipo";
+
+    ///////////////////insertar modelo
+
+    $("#_insertarModeloAction").on('click', function () {
+        var idModelo = $('#_insertarModelo option:selected').val();
+        var idFabricante = $('#_insertarFabricante option:selected').val();
+        var idTension = $('#_insertarTension option:selected').val();
+        var idCorriente = $('#_insertarCorriente option:selected').val();
+        var pesoGas = $('#_insertarPesoGas').val();
+        var pesoInt = $('#_insertarPesoInterruptor').val();
+        var PesoGab = $('#_insertarPesoGabinete').val();
+        var PesoTotal = $('#_insertarTotal').val();
+        var idBil = $('#_insertarBil option:selected').val();
+        var idCortocircuito = $('#_insertarICortoCircuito option:selected').val();
+        var idTanque = $('#_insertarTanque option:selected').val();
+        var idAperturaCable = $('#_insertarIAperturaCable option:selected').val();
+        var idSec = $('#_insertarSecuenciaOp option:selected').val();
+        var idExtArco = $('#_insertarExtArco option:selected').val();
+        var idAisl = $('#_insertarAislamiento option:selected').val();
+        var idPresionGas = $('#_insertarPresionGas option:selected').val();
+
+
+        var datosValidos = true;
+        var nombreCampo = "";
+        if (idModelo == "" || idModelo == null) {
+            nombreCampo = "Modelo";
+            datosValidos = false;
+        }
+
+        if (!datosValidos) {
+            App.alert({
+                container: "#bootstrap_alerts_Modelo", // alerts parent container(by default placed after the page breadcrumbs)
+                place: "prepend", // append or prepent in container
+                type: "danger",  // alert's type
+                message: "Debe insertar " + nombreCampo + ".",  // alert's message
+                close: 1, // make alert closable
+                reset: 1, // close all previouse alerts first
+                focus: 1, // auto scroll to the alert after shown
+                closeInSeconds: 5,//, // auto close after defined seconds
+                icon: "fa fa-danger" // put icon before the message
+            });
+        } else {
+
+            $.ajax({
+                cache: false,
+                dataType: 'json',
+                url: baseUrl + "Inst_Nomenclador_Desconectivos_DatosEspecificos_Comunicacion/InsertarModelo",
+                data: { EA: EA, EAProv: EA_Prov, numA: NumA, modelo: idModelo, descripcion:idT, fab: idFabricante, tension: idTension, corriente: idCorriente, pGas: pesoGas, pInt: pesoInt, pGab: PesoGab, pTotal: PesoTotal, bil: idBil, cortoCircuito: idCortocircuito, tanque: idTanque, apertCable: idAperturaCable, secc: idSec, extArco: idExtArco, aislamiento: idAisl, presionGas: idPresionGas },
+                type: "POST",
+                success: function (data, status, xhr) {
+                    $("#TablaModelos").jqxGrid('updatebounddata');
+
+                    App.alert({
+                        container: "#bootstrap_alerts_Modelo", // alerts parent container(by default placed after the page breadcrumbs)
+                        place: "prepend", // append or prepent in container
+                        type: "success",  // alert's type
+                        message: "La información se guardó correctamente.",  // alert's message
+                        close: 1, // make alert closable
+                        reset: 1, // close all previouse alerts first
+                        focus: 1, // auto scroll to the alert after shown
+                        closeInSeconds: 5,//, // auto close after defined seconds
+                        icon: "fa fa-success" // put icon before the message
+                    });
+                },
+                error: function (jqXHR, valStatus, errorThrown) {
+                    switch (jqXHR.status) {
+                        case 409:
+                            App.alert({
+                                container: "#bootstrap_alerts_Modelo", // alerts parent container(by default placed after the page breadcrumbs)
+                                place: "prepend", // append or prepent in container
+                                type: "danger",  // alert's type
+                                message: "Ya existe el modelo.",  // alert's message
+                                close: 1, // make alert closable
+                                reset: 1, // close all previouse alerts first
+                                focus: 1, // auto scroll to the alert after shown
+                                closeInSeconds: 5,//, // auto close after defined seconds
+                                icon: "fa fa-danger" // put icon before the message
+                            });
+                            break;
+                        case 400:
+                            App.alert({
+                                container: "#bootstrap_alerts_Modelo", // alerts parent container(by default placed after the page breadcrumbs)
+                                place: "prepend", // append or prepent in container
+                                type: "danger",  // alert's type
+                                message: "Ocurrió un error al insertar el modelo.",  // alert's message
+                                close: 1, // make alert closable
+                                reset: 1, // close all previouse alerts first
+                                focus: 1, // auto scroll to the alert after shown
+                                closeInSeconds: 5,//, // auto close after defined seconds
+                                icon: "fa fa-danger" // put icon before the message
+                            });
+                            break;
+                        default:
+                    }
+                    //commit(false);
+                }
+            });
+        }
+    });
+
+    ///////////////////end insertar modelo
+    //editar modelo
+    $("#_EditarModelo").jqxInput({ theme: 'energyblue' });
+    $("#_EditarModelo").jqxInput({ theme: 'energyblue' });
+    $("#_EditarFabricante").jqxInput({ theme: 'energyblue' });
+    $("#_EditarFabricante").jqxInput({ theme: 'energyblue' });
+    $("#_EditarTension").jqxInput({ theme: 'energyblue' });
+    $("#_EditarTension").jqxInput({ theme: 'energyblue' });
+    $("#_EditarCorriente").jqxInput({ theme: 'energyblue' });
+    $("#_EditarCorriente").jqxInput({ theme: 'energyblue' });
+    $("#_EditarPGas").jqxInput({ theme: 'energyblue' });
+    $("#_EditarPGas").jqxInput({ theme: 'energyblue' });
+    $("#_editarBil").jqxInput({ theme: 'energyblue' });
+    $("#_editarBil").jqxInput({ theme: 'energyblue' });
+    $("#_editarICortoCircuito").jqxInput({ theme: 'energyblue' });
+    $("#_editarICortoCircuito").jqxInput({ theme: 'energyblue' });
+    $("#_EditarPInt").jqxInput({ theme: 'energyblue' });
+    $("#_EditarPInt").jqxInput({ theme: 'energyblue' });
+    $("#_editarTanque").jqxInput({ theme: 'energyblue' });
+    $("#_editarTanque").jqxInput({ theme: 'energyblue' });
+    $("#_editarIAperturaCable").jqxInput({ theme: 'energyblue' });
+    $("#_editarIAperturaCable").jqxInput({ theme: 'energyblue' });
+    $("#_EditarPGab").jqxInput({ theme: 'energyblue' });
+    $("#_EditarPGab").jqxInput({ theme: 'energyblue' });
+    $("#_editarSecuenciaOp").jqxInput({ theme: 'energyblue' });
+    $("#_editarSecuenciaOp").jqxInput({ theme: 'energyblue' });
+    $("#_editarExtArco").jqxInput({ theme: 'energyblue' });
+    $("#_editarExtArco").jqxInput({ theme: 'energyblue' });
+    $("#_EditarTotal").jqxInput({ theme: 'energyblue' });
+    $("#_EditarTotal").jqxInput({ theme: 'energyblue' });
+    $("#_editarPresionGas").jqxInput({ theme: 'energyblue' });
+    $("#_editarPresionGas").jqxInput({ theme: 'energyblue' });
+    $("#_editarAisl").jqxInput({ theme: 'energyblue' });
+    $("#_editarAisl").jqxInput({ theme: 'energyblue' });
+
+    $("#_EditarModelo").width(250);
+    $("#_EditarModelo").height(23);
+    $("#_EditarFabricante").width(250);
+    $("#_EditarFabricante").height(23);
+    $("#_EditarTension").width(250);
+    $("#_EditarTension").height(23);
+    $("#_EditarCorriente").width(250);
+    $("#_EditarCorriente").height(23);
+    $("#_EditarPGas").width(250);
+    $("#_EditarPGas").height(23);
+    $("#_editarBil").width(250);
+    $("#_editarBil").height(23);
+    $("#_editarICortoCircuito").width(250);
+    $("#_editarICortoCircuito").height(23);
+    $("#_EditarPInt").width(250);
+    $("#_EditarPInt").height(23);
+    $("#_editarTanque").width(250);
+    $("#_editarTanque").height(23);
+    $("#_editarIAperturaCable").width(250);
+    $("#_editarIAperturaCable").height(23);
+    $("#_EditarPGab").width(250);
+    $("#_EditarPGab").height(23);
+    $("#_editarSecuenciaOp").width(250);
+    $("#_editarSecuenciaOp").height(23);
+    $("#_editarExtArco").width(250);
+    $("#_editarExtArco").height(23);
+    $("#_EditarTotal").width(250);
+    $("#_EditarTotal").height(23);
+    $("#_editarPresionGas").width(250);
+    $("#_editarPresionGas").height(23);
+    $("#_editarAisl").width(250);
+    $("#_editarAisl").height(23);
+
+    // initialize the popup window and buttons.
+    $("#popEditaModelos").jqxWindow({
+        ////width: 450, resizable: false, position: fixed, autoOpen: false, cancelButton: $("#CancelModelo"), modalOpacity: 0.01
+         width: 450, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#CancelModelo"), modalOpacity: 0.01
+    });
+
+    $("#popEditaModelos").on('open', function () {
+        //$("#_EditarModelo").jqxInput('selectAll');
+    });
+
+    $("#CancelModelo").jqxButton({ theme: 'energyblue' });
+    $("#SaveModelo").jqxButton({ theme: 'energyblue' });
+
+    // update the edited row when the user clicks the 'Save' button.
+    $("#SaveModelo").click(function () {
+
+        if (editrow >= 0) {
+            var row = {
+                idnom: $("#_editaId_NomModelo").val(), EA: $("#_editaEA").val(), EAProv: $("#_editaId_EAdministrativaProv").val(), numA: $("#_editaNumAccion").val(),
+                modelo: $("#_EditarModelo option:selected").val(), descripcion: $("#_editaDescripcion").val(), fab: $("#_EditarFabricante option:selected").val(),
+                tension: $("#_EditarTension option:selected").val(), corriente: $("#_EditarCorriente option:selected").val(), pGas: $("#_EditarPGas").val(),
+                pInt: $("#_EditarPInt").val(), pGab: $("#_EditarPGab").val(), pTotal: $("#_EditarTotal").val(),
+                bil: $("#_editarBil option:selected").val(), cortoCircuito: $("#_editarICortoCircuito option:selected").val(), tanque: $("#_editarTanque option:selected").val(),
+                apertCable: $("#_editarIAperturaCable option:selected").val(), secc: $("#_editarSecuenciaOp option:selected").val(), extArco: $("#_editarExtArco option:selected").val(),
+                aislamiento: $("#_editarAisl option:selected").val(), presionGas: $("#_editarPresionGas option:selected").val(),
+
+            };
+            var rowID = $('#TablaModelos').jqxGrid('getrowid', editrow);
+            $('#TablaModelos').jqxGrid('updaterow', rowID, row);
+            $("#popEditaModelos").jqxWindow('hide');
+        }
+    });
+    ///////////////////end editar modelo
+
+
+    //////////////////listado de editar
+
+    cargarEditarModelos();
+    cargarEditarFabricantes();
+    cargarEditarTension();
+    cargarEditarCorriente();
+    cargarEditarBil();
+    cargarEditarICortoCircuito();
+    cargarEditarCorrienteApertura();
+    cargarEditarSecuenciaOperaciones();
+    cargarEditarExtArco();
+    cargarEditarAislamiento();
+    cargarEditarPresionGas();
+    function cargarEditarModelos() {
+
+        $("#_EditarModelo option").remove();
+            $.getJSON('@Url.Action("ObtenerModelos")', function (data) {
+                $("#_EditarModelo").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_EditarModelo").append('<option value="' + data[i]['Id_Modelo'] + '">' + data[i]['DescripcionModelo'] + '</option>');
+                }
+
+                //inicializar_select2();
+            });
+        }
+
+    function cargarEditarFabricantes() {
+
+        $("#_EditarFabricante option").remove();
+            $.getJSON('@Url.Action("ObtenerFabricantes")', function (data) {
+                $("#_EditarFabricante").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_EditarFabricante").append('<option value="' + data[i]['Id_Fabricante'] + '">' + data[i]['Nombre'] + ' ' + '(' + data[i]['Pais'] + ')' + '</option>');
+                }
+
+                //inicializar_select2();
+            });
+        }
+
+        function cargarEditarTension() {
+            $("#_EditarTension option").remove();
+            $.getJSON('@Url.Action("ObtenerTensionNominal")', function (data) {
+                $("#_EditarTension").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_EditarTension").append('<option value="' + data[i]['Id_Tension'] + '">' + data[i]['DescripcionTensionCuchillas'] + '</option>');
+                }
+            });
+        }
+
+        function cargarEditarCorriente() {
+            $("#_EditarCorriente option").remove();
+            $.getJSON('@Url.Action("ObtenerCorrienteNominal")', function (data) {
+                $("#_EditarCorriente").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_EditarCorriente").append('<option value="' + data[i]['Id_CorrienteNominal'] + '">' + data[i]['DescripcionCorrienteNominal'] + '</option>');
+                }
+            });
+        }
+
+        function cargarEditarBil() {
+            $("#_editarBil option").remove();
+            $.getJSON('@Url.Action("ObtenerBil")', function (data) {
+                $("#_editarBil").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_editarBil").append('<option value="' + data[i]['Id_BIL'] + '">' + data[i]['DescripcionBIL'] + '</option>');
+                }
+            });
+        }
+
+        function cargarEditarICortoCircuito() {
+            $("#_editarICortoCircuito option").remove();
+            $.getJSON('@Url.Action("ObtenerICortoCircuito")', function (data) {
+                $("#_editarICortoCircuito").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_editarICortoCircuito").append('<option value="' + data[i]['Id_CortoCircuito'] + '">' + data[i]['DescripcionCortoCircuito'] + '</option>');
+                }
+            });
+        }
+
+        function cargarEditarCorrienteApertura() {
+            $("#_editarIAperturaCable option").remove();
+            $.getJSON('@Url.Action("ObtenerIAperturaCable")', function (data) {
+                $("#_editarIAperturaCable").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_editarIAperturaCable").append('<option value="' + data[i]['Id_ApertCable'] + '">' + data[i]['DescripcionApertCable'] + '</option>');
+                }
+            });
+        }
+
+        function cargarEditarSecuenciaOperaciones() {
+            $("#_editarSecuenciaOp option").remove();
+            $.getJSON('@Url.Action("ObtenerSecuenciaOperaciones")', function (data) {
+                $("#_editarSecuenciaOp").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_editarSecuenciaOp").append('<option value="' + data[i]['Id_SecuenciaOperacion'] + '">' + data[i]['DescripcionSecuenciaOperacion'] + '</option>');
+                }
+            });
+        }
+
+        function cargarEditarExtArco() {
+            $("#_editarExtArco option").remove();
+            $.getJSON('@Url.Action("ObtenerExtincionArco")', function (data) {
+                $("#_editarExtArco").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_editarExtArco").append('<option value="' + data[i]['Id_MedidoExtincionArco'] + '">' + data[i]['DescripcionMedidoExtincionArco'] + '</option>');
+                }
+            });
+        }
+
+        function cargarEditarAislamiento() {
+            $("#_editarAisl option").remove();
+            $.getJSON('@Url.Action("ObtenerAislamiento")', function (data) {
+                $("#_editarAisl").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_editarAisl").append('<option value="' + data[i]['Id_Aislamiento'] + '">' + data[i]['DescripcionAislamiento'] + '</option>');
+                }
+            });
+        }
+
+        function cargarEditarPresionGas() {
+            $("#_editarPresionGas option").remove();
+            $.getJSON('@Url.Action("ObtenerPresionGas")', function (data) {
+                $("#_editarPresionGas").append('<option value=""></option');
+                for (var i = 0; i < data.length; i++) {
+                    $("#_editarPresionGas").append('<option value="' + data[i]['Id_PresionGas'] + '">' + data[i]['DescripcionPresionGas'] + '</option>');
+                }
+            });
+        }
+
+    //////////////////end listado de editar
+
+</script>
+<script src="~/Scripts/js/jsTablaModeloDesconectivos.js"></script>

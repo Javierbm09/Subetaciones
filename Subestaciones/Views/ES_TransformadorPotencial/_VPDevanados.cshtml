@@ -1,0 +1,39 @@
+﻿@if (ViewBag.cantidad > 0)
+
+{
+
+    <table id="datatable_devanado" class="table table-striped table-bordered table-hover">
+
+        <thead>
+            <tr>
+                <th data-field="name">Devanado</th>
+                <th data-field="name">Tensión</th>
+                <th data-field="name">Capacidad</th>
+                <th data-field="name">Clase Precisión</th>
+                <th data-field="name">Designación</th>
+                <th data-field="name">Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.devanados)
+            {
+                //string llaves = item.Nro_Dev + "|" + item.Nro_TC;
+            <tr>
+                <td>@item.Nro_Dev</td>
+                <td>@item.Tension</td>
+                <td>@item.Capacidad</td>
+                <td>@item.ClasePresicion</td>
+                <td>@item.Designacion</td>
+                <td style="width: 95px;">
+                    <a href="@Url.Action("Edit","ES_TP_Devanado", new {Nro_TP = item.Nro_TP , Nro_Dev = item.Nro_Dev } )" class="btn btn-warning btn-xs" title="Editar"><i class="fa fa-pencil"></i>  </a>
+                    @*  <a id="@llaves" href="javascript:;" class="btn btn-danger btn-xs" title="Eliminar"><i class="fa fa-trash-o"></i>  </a>*@
+                    @*<a href="@Url.Action("Delete","ES_TransformadorCorriente", new { Nro_Serie = item.Nro_Serie } )" class="btn btn-danger btn-xs" title="Eliminar"><i class="fa fa-trash-o"></i>  </a>*@
+                </td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Subestaciones.Models.Clases.TC>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="table_TC" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>No Serie</th>
+
+                    <th>Ubicado En</th>
+                    <th>Código Equipo Asociado</th>
+                    <th>Fase</th>
+                    <th>Voltaje Nominal</th>
+                    <th>Fabricante</th>
+                    <th>Tipo</th>
+                    <th>Año Fabricación</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Nro_Serie
+                        </td>
+
+                        <td>
+                            @item.UbicadoEn
+                        </td>
+                        <td>
+                            @item.CodigoE
+                        </td>
+                        <td>
+                            @item.Fase
+                        </td>
+                        <td>
+                            @item.VoltInst
+                        </td>
+                        <td>
+                            @item.Fabricante
+                        </td>
+                        <td>
+                            @item.Tipo
+                        </td>
+                        <td>
+                            @item.AnnoFab
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

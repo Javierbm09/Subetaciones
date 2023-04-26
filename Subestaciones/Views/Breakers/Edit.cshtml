@@ -1,0 +1,223 @@
+﻿@model Subestaciones.Models.Breakers
+
+@{
+                /**/
+
+                ViewBag.Title = "Breaker";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>editar breakers</h1>
+        </div>
+    }*@
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","InstalacionDesconectivos")">Lista de desconectivos</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Editar breaker</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-bars"></i>Editar desconectivo tipo breaker
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm())
+    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.id_EAdministrativa)
+                        @Html.HiddenFor(model => model.id_EAdministrativa_Prov)
+                        @Html.HiddenFor(model => model.Id_Breaker)
+
+
+                        <!-- BEGIN FORM-->
+
+                        <div class="horizontal-form">
+                            <div class="form-body">
+                                <div class="row" style="display:none">
+                                    @Html.ValidationMessageFor(model => model.id_fabricante, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.id_VoltajeN, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.Capacidad_breaker, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.modelo, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.tipoPortafusible, htmlAttributes: new { @class = "control-label" })
+                                            <div class="form-group">
+                                                Fusible   @Html.RadioButtonFor(model => model.tipoPortafusible, "1", htmlAttributes: new { @id = "fuse" }) &nbsp;&nbsp;
+                                                Breaker  @Html.RadioButtonFor(model => model.tipoPortafusible, "0", htmlAttributes: new { @id = "break" })
+
+                                                @Html.ValidationMessageFor(model => model.tipoPortafusible, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.CodigoBreaker, htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.CodigoBreaker, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.id_fabricante, htmlAttributes: new { @class = "control-label" })
+                                            @*@Html.DropDownList("Subestacion", null, "", htmlAttributes: new { @class = "select2_single form-control" })*@
+                                            @Html.DropDownListFor(model => model.id_fabricante, ViewBag.fab as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                            @*@Html.ValidationMessageFor(model => model.Subestacion, "", new { @class = "text-danger" })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.modelo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            @Html.EditorFor(model => model.modelo, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.id_VoltajeN, htmlAttributes: new { @class = "control-label" })
+                                            @*@Html.DropDownList("Subestacion", null, "", htmlAttributes: new { @class = "select2_single form-control" })*@
+                                            @Html.DropDownListFor(model => model.id_VoltajeN, ViewBag.tension as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                            @*@Html.ValidationMessageFor(model => model.Subestacion, "", new { @class = "text-danger" })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Capacidad_breaker, htmlAttributes: new { @class = "control-label" })
+                                            @*@Html.DropDownList("Subestacion", null, "", htmlAttributes: new { @class = "select2_single form-control" })*@
+                                            @Html.DropDownListFor(model => model.Capacidad_breaker, ViewBag.capacidad as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                            @*@Html.ValidationMessageFor(model => model.Subestacion, "", new { @class = "text-danger" })*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions right">
+                                    <a class="btn btn-primary" href="@Url.Action("Index","InstalacionDesconectivos")"><i class="fa fa-list"></i> Listado de desconectivos</a>
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Editar</button>
+                                </div>
+                            </div>
+                        </div>
+}
+
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+
+}
+
+@section script{
+
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+
+
+            }
+
+            $('input[name="tipoPortafusible"]').change(function () {
+                //alert($(this).val());
+                var tipoFuse = $(this).val();
+                var idBreaker = $("#Id_Breaker").val();
+                var codB = $("#CodigoBreaker").val();
+                var idEA = $("#id_EAdministrativa").val();
+                var prov = $("#id_EAdministrativa_Prov").val();
+                var baseUrl = $('base').attr('href');
+
+
+                if (tipoFuse == "1") {
+                    swal({
+                        title: "El tipo de desconectivo va a cambiar de Breaker a Portafusible.",
+                        text: "¿Realmente desea hacerlo?",
+                        type: "info",
+                        allowOutsideClick: $(this).data('allow-outside-click'),
+                        showConfirmButton: "true",
+                        showCancelButton: "true",
+                        confirmButtonClass: "btn-success",
+                        cancelButtonClass: "btn-success",
+
+                        closeOnConfirm: "false",
+                        closeOnCancel: "false",
+                        confirmButtonText:"Cambiar tipo portafusible",
+                        cancelButtonText: "Cancelar",
+
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                type: 'POST',
+                                url: baseUrl + 'Breakers/eliminarB',
+                                data: { ea: idEA, id: idBreaker, codigo: codB, idEAProv: prov },
+                                dataType: "json",
+                            }
+                            );
+                        } else {
+                            $("#break").prop('checked', true);
+                            
+                        }
+                    });
+
+                }
+
+               
+            });
+
+        });
+
+    </script>
+}
+
+
+

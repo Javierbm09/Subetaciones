@@ -1,0 +1,536 @@
+﻿@model Subestaciones.Models.TransformadoresSubtransmision
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TransformadoresSubtransmision</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumAccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumAccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numemp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numemp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Capacidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Capacidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SimboloTaps)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SimboloTaps)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_VoltajePrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_VoltajePrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NecesidadEmitida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NecesidadEmitida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosicionBanco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosicionBanco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoOperativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoOperativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TapEncontrado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TapEncontrado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TapDejado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TapDejado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumFase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumFase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UltAccionVer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UltAccionVer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoHermeticidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoHermeticidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoPinturaTanque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoPinturaTanque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoPinturaRotulos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoPinturaRotulos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AcidezAceite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AcidezAceite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NivelAceite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NivelAceite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ColoracionAceite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColoracionAceite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerteneceA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PerteneceA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Voltaje_Secun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Voltaje_Secun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Bloque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Bloque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TabRegulable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TabRegulable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TabPrimarioSecundario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TabPrimarioSecundario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadRegulacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadRegulacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CuentaOperaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CuentaOperaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TabFecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TabFecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnoFabricacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnoFabricacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idFabricante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idFabricante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoltajeSecundario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoltajeSecundario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PorcientoImpedancia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PorcientoImpedancia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrupoConexion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrupoConexion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PesoTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PesoTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CapacidadVentilador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CapacidadVentilador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrienteAlta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrienteAlta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrecuenciaN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrecuenciaN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoEnfriamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoEnfriamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerdidasVacio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PerdidasVacio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerdidasBajoCarga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PerdidasBajoCarga)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NivelRuido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NivelRuido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxTemperatura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxTemperatura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoltajeImpulso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoltajeImpulso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PesoAceite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PesoAceite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PesoNucleo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PesoNucleo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NivelRadioInterf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NivelRadioInterf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrienteBaja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrienteBaja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantVentiladores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantVentiladores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantRadiadores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantRadiadores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PesoTansporte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PesoTansporte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoRegVoltaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoRegVoltaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NroPosiciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NroPosiciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoCajaMando)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCajaMando)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TuboExplosor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TuboExplosor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValvulaSobrePresion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValvulaSobrePresion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoltajeTerciario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoltajeTerciario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosicionTrabajo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosicionTrabajo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroInventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroInventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInstalado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInstalado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

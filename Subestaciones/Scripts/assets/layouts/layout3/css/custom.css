@@ -1,0 +1,171 @@
+/* here you can put your own css to customize and override the theme */
+.page-header .page-header-top .page-logo .logo-default {
+    margin: 11.5px 0 0 !important;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown-user .dropdown-toggle > img {
+    float: right !important;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown-user .dropdown-toggle > .username {
+    margin-right: 10px !important;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown > .dropdown-menu {
+    margin-right: 14px !important;
+}
+
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    /*background-color: #0a47b2;*/
+    /*color: #F2784B !important;*/
+}
+
+.jqx-grid-cell-left-align {
+    margin-right: 4px !important;
+    margin-left: 8px !important;
+}
+
+.jqx-grid-cell-right-align {
+    margin-right: 8px !important;
+    margin-left: 4px !important;
+}
+
+.btn.orange-custom:not(.btn-outline) {
+    color: #FFF;
+    background-color: #F2784B;
+    border-color: #F2784B;
+    cursor: pointer !important;
+}
+
+.badge {
+    font-size: 13px !important;
+    height: 20px !important;
+}
+
+.table-hover > tbody > tr:hover, .table-hover > tbody > tr:hover > td {
+    background: #e7ecf1 !important;
+    color: #000 !important;
+}
+
+table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
+    background-color: #e7ecf1 !important;
+}
+
+/*.btn.btn-outline.green.active, .btn.btn-outline.green:active, .btn.btn-outline.green:active:focus, .btn.btn-outline.green:active:hover, .btn.btn-outline.green:focus, .btn.btn-outline.green:hover {
+    border-color: #F2784B;
+    color: #FFF;
+    background-color: #F2784B;
+}*/
+
+#register-back-btn {
+    /*border-color: #F2784B;*/
+    color: #F2784B !important;
+    border-color: #F2784B !important;
+    /*background: 0 0;*/
+}
+
+#register-back-btn:hover, #register-back-btn:active, #register-back-btn:focus {
+    color: #FFF !important;
+    background-color: #F2784B !important;
+}
+
+.login .content .forget-password {
+    float: left !important;
+}
+
+.font-orange-custom {
+    color: #F2784B;
+}
+
+.login .content h3 {
+    color: #F2784B !important;
+}
+
+/*Estilo azul personalizado en el login y en el backend*/
+.login .content .create-account {
+    background-color: #33568e;
+}
+
+.login .content .create-account p a {
+    color: #FFF;
+}
+
+.page-header .page-header-menu {
+    background: #33568e;
+}
+
+.page-header .page-header-menu .hor-menu .navbar-nav > li.active > a, .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a:hover, .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a, .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a:hover {
+    color: #FFF;
+    background: #4B77BE;
+}
+
+.page-header .page-header-menu .hor-menu .navbar-nav > li.active > a:hover > i, .page-header .page-header-menu .hor-menu .navbar-nav > li.active > a > i, .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a:hover > i, .page-header .page-header-menu .hor-menu .navbar-nav > li.current > a > i {
+    color: #FFF;
+}
+
+.page-header .page-header-menu .hor-menu .navbar-nav > li > a, .page-header .page-header-menu .hor-menu .navbar-nav > li > a > i {
+    color: #FFF;
+}
+
+.page-header .page-header-menu .hor-menu .navbar-nav > li.open > a, .page-header .page-header-menu .hor-menu .navbar-nav > li:hover > a, .page-header .page-header-menu .hor-menu .navbar-nav > li > a:active, .page-header .page-header-menu .hor-menu .navbar-nav > li > a:focus, .page-header .page-header-menu .hor-menu .navbar-nav > li > a:hover {
+    background: #4B77BE !important;
+}
+
+.page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li > a {
+    color: #ffffff;
+}
+
+.page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu {
+    background: #4B77BE;
+}
+
+.page-prefooter {
+    background: #33568e;
+    opacity: 0.9;
+    color: #ffffff;
+}
+
+.page-footer {
+    background: #33568e;
+    color: #ffffff;
+}
+
+.scroll-to-top > i {
+    color: #F2784B;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown-user > .dropdown-toggle > .username, .page-header .page-header-top .top-menu .navbar-nav > li.dropdown-user > .dropdown-toggle > i {
+    color: #33568e;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu {
+    background: #33568e;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a, .page-header .page-header-top .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a {
+color: #fff;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a:hover, .page-header .page-header-top .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a:hover {
+    background: #33568e;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu:after {
+    border-bottom-color: #33568e;
+}
+
+.page-header .page-header-top .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a > i, .page-header .page-header-top .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a > i {
+    color: #fff;
+}
+
+.btn-default.active, .btn-default:active, .btn-default:hover, .open > .btn-default.dropdown-toggle {
+    color: #fff;
+    background-color: #F2784B;
+    border-color: #F2784B;
+}
+
+/*.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:visited {
+    background-color: #F2784B !important;
+    color: #ffffff !important;
+}*/
+

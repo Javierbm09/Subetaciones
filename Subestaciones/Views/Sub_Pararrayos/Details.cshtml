@@ -1,0 +1,211 @@
+﻿@model Subestaciones.Models.Clases.Pararrayos
+
+@{
+    ViewBag.Title = "Pararrayos";
+}
+
+
+    @*@section pagetitle{
+            <div class="page-title">
+                <h1>Insertar banco de capacitor</h1>
+            </div>
+        }*@
+
+
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE CONTENT BODY -->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- BEGIN PAGE BREADCRUMBS -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Sub_Pararrayos")">Lista de pararrayos</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Detalles</span>
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMBS -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="page-content-inner">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-flash"></i>Detalles del pararrayo ubicado en "@Html.DisplayFor(model => model.Codigo)"
+                                </div>
+                            </div>
+                            <div class="portlet-body form">
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="horizontal-form">
+                                        <div class="form-body">
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.NombreSub, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.NombreSub, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.EquipoProteg, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.EquipoProteg, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Fabricante, htmlAttributes: new { @class = "control-label " })
+                                                        @Html.EditorFor(model => model.Fabricante, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                        @Html.ValidationMessageFor(model => model.Fabricante, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.VInst, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.VInst, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.tension, htmlAttributes: new { @class = "control-label " })
+                                                        @Html.EditorFor(model => model.tension, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.MOCV, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.MOCV, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.CorrienteN, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.CorrienteN, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Fase, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Fase, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.NumeroSerie, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.NumeroSerie, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Inventario, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Inventario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Material, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Material, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Frecuencia, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Frecuencia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Aislamiento, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Aislamiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Clase, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Clase, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.AñoFabricacion, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.AñoFabricacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Instalado, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Instalado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-actions right">
+                                                <a class="btn btn-primary" href="@Url.Action("Index","Sub_pararrayos")"><i class="fa fa-list"></i> Listado de pararrayos</a>
+                                                <a class="btn btn-warning" href="@Url.Action("Edit","Sub_pararrayos", new { EA = Model.Id_EAdministrativa, Id_para = Model.Id_pararrayo })"><i class="fa fa-list"></i>Editar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT BODY -->
+    <!-- END CONTENT BODY -->
+

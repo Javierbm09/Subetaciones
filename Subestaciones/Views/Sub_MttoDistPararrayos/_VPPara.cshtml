@@ -1,0 +1,149 @@
+﻿@model Subestaciones.Models.Clases.Pararrayos
+<div class="row">
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.NumeroSerie, htmlAttributes: new { @class = "control-label" })
+        <div class="input-group " id="SA">
+            @{
+                var value = Model != null ? Model.NumeroSerie : "";
+            }
+
+            <input type="text" disabled class="form-control" id="idp" value="@value">
+            <span class="input-group-addon btn blue tooltips" id="subestacionesA" data-original-title="Seleccionar pararrayos">
+                <span class="fa fa-search" href="#basic1" data-toggle="modal"></span>
+                @*<button class="btn green"  type="button" id="listaTransf">Go!</button>*@
+                @*<span class="btn blue btn-outline sbold" href="#basic" data-toggle="modal">Conductores </span>*@
+            </span>
+        </div>
+        @Html.HiddenFor(model => model.NumeroSerie)
+
+    </div>
+    @Html.HiddenFor(model => model.Id_pararrayo)
+    @Html.HiddenFor(model => model.Id_EAdministrativa)
+    @Html.HiddenFor(model => model.Codigo)
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.EquipoProteg, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.EquipoProteg, new { htmlAttributes = new { @class = "form-control", @id = "tipo", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control", @id = "EP", @readonly = "readonly" } })
+    </div>
+    
+
+</div>
+<div class="row">
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Fase, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Fase, new { htmlAttributes = new { @class = "form-control", @id = "fase", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.tension, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.tension, new { htmlAttributes = new { @class = "form-control", @id = "volt", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.CorrienteN, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.CorrienteN, new { htmlAttributes = new { @class = "form-control", @id = "corr", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Fabricante, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Fabricante, new { htmlAttributes = new { @class = "form-control", @id = "fab", @readonly = "readonly" } })
+    </div>
+</div>
+
+
+<div class="modal" id="basic1" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Pararrayos en subestaci&oacute;n</h4>
+            </div>
+
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table" id="datatable_para" style="cursor:pointer">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                N&uacute;mero serie
+                            </th>
+                            <th>
+                               Tipo equipo protegido
+                            </th>
+                            <th>
+                                Equipo protegido
+                            </th>
+                            <th>
+                                Fase
+                            </th>
+                            <th>
+                                Tensi&oacute;n nom
+                            </th>
+                            <th>
+                                Corriente nom
+                            </th>
+                            <th>
+                                Fabricante
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.listadoParas)
+                        {
+                        <tr>
+
+                            <td>
+
+                                <input type="hidden" value=@item.NombreSub id="codsub">
+                                <input type="hidden" value=@item.Id_EAdministrativa id="EA">
+                                <input type="hidden" value=@item.Id_pararrayo id="idPara">
+                                <input type="hidden" value=@item.NumeroSerie id="noS">
+                                <input type="hidden" value=@item.Fase id="faseT">
+                                <input type="hidden" value=@item.tension id="tensionN">
+                                <input type="hidden" value=@item.CorrienteN id="corrN">
+                                <input type="hidden" value=@item.Fabricante id="fabric">
+                                <input type="hidden" value=@item.Codigo id="CE">
+                                <input type="hidden" value=@item.EquipoProteg id="tipoEquipo">
+
+                                @item.NumeroSerie
+                            </td>
+                            <td>
+                                @item.EquipoProteg
+                            </td>
+                            <td>
+                                @item.Codigo
+                            </td>
+                            <td>
+                                @item.Fase
+                            </td>
+                            <td>
+                                @item.tension
+                            </td>
+                            <td>
+                                @item.CorrienteN
+                            </td>
+                            <td>
+                                @item.Fabricante
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="SeleccionarB">Seleccionar</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button" id="cerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

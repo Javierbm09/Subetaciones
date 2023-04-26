@@ -1,0 +1,408 @@
+﻿@model Subestaciones.Models.Sub_RedCorrienteDirecta
+
+@{
+    ViewBag.Title = "Servicio de corriente directa";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar banco de capacitor</h1>
+        </div>
+    }*@
+
+<link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_RedCorrienteDirecta")">Lista de servicios de corriente directa</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Editar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="ti-stats-down"></i>Editar servicio de corriente directa "@Html.DisplayFor(model => model.NombreServicioCD)"
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.Id_ServicioCD)
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.NombreServicioCD, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Codigo, ViewBag.Subestacion as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.NombreServicioCD, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.NombreServicioCD, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.idVoltaje, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.idVoltaje, ViewBag.voltaje as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.idVoltaje, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.UsoRed, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.UsoRed, ViewBag.usoRedCD as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.UsoRed, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.ControlAislamBarras, htmlAttributes: new { @class = "control-label" })
+                                                    <div class="radio">
+                                                        <label>
+                                                            @Html.RadioButtonFor(model => model.ControlAislamBarras, "True")
+                                                            Sí
+                                                        </label>
+                                                        <label>
+                                                            @Html.RadioButtonFor(model => model.ControlAislamBarras, "False")
+                                                            No
+                                                        </label>
+                                                    </div>
+
+                                                    @Html.ValidationMessageFor(model => model.ControlAislamBarras, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-base panel-bordered-default">
+
+                                            <!--Nav Tabs-->
+                                            <ul class="nav nav-tabs">
+                                                <li class="active">
+                                                    <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="false">Cargadores del banco de bater&iacute;as </a>
+                                                </li>
+                                                <li class="">
+                                                    <a data-toggle="tab" href="#demo-lft-tab-2" aria-expanded="true">Baterías</a>
+                                                </li>
+
+                                            </ul>
+
+                                            <!--Tabs Content-->
+                                            <div class="tab-content">
+                                                <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                                                    <div class="col-md-12">
+                                                        <div id="TablaCargadores"></div>
+                                                    </div>
+                                                    <button type="submit" name="submitButton" class="btn btn-success" value="cargador"><i class="fa fa-plus"></i>Agregar cargador</button>
+
+                                                </div>
+                                                <div id="demo-lft-tab-2" class="tab-pane fade ">
+                                                    <div class="col-md-12">
+                                                        <div id="TablaBaterias"></div>
+                                                    </div>
+                                                    <button type="submit" name="submitButton" class="btn btn-success" value="bateria"><i class="fa fa-plus"></i>Agregar bater&iacute;a</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_RedCorrienteDirecta")"><i class="fa fa-list"></i> Listado de Servicios</a>
+
+                                            <button type="submit" name="submitButton" class="btn btn-success" value="redCD"><i class="fa fa-check"></i> Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script>
+         var insertado = "@ViewBag.Inserto";
+
+         if ((insertado != null) && (insertado == "Si")) {
+            swal({
+                title: "¡La red de corriente directa fue insertada correctamente!",
+                text: "¡Ahora puede gestionar los datos de sus cargadores y baterías!",
+                type: "success",
+                confirmButtonText: "Aceptar",
+                confirmButtonClass: "btn-primary"
+            });
+        }
+        $(document).ready(function () {
+            inicializar_select2();
+
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+
+            $("#Codigo").change(function () {
+                var nombreSub = $("#select2-Codigo-container").attr("title");
+
+                if (nombreSub != "") {
+                    $("#NombreServicioCD").val("Red de CD de la subestación " + nombreSub);
+                }
+                else {
+                    if (nombreSub = "") {
+                        $("#NombreServicioCD").val("");
+                    }
+                }
+
+            });
+
+
+            //eliminar cargador
+            $('body').on('click', '.mt-sweetalert', function () {
+                var llaves = this.id;
+                var camposLlaves = llaves.split("|");
+                var idC = camposLlaves[1];
+                var valor = camposLlaves[0];
+
+                var baseUrl = $('base').attr('href');
+                if (valor == "carg")
+                    {
+                    swal({
+                        title: $(this).data('title'),
+                        text: $(this).data('message'),
+                        type: $(this).data('type'),
+                        allowOutsideClick: $(this).data('allow-outside-click'),
+                        showConfirmButton: $(this).data('show-confirm-button'),
+                        showCancelButton: $(this).data('show-cancel-button'),
+                        confirmButtonClass: $(this).data('confirm-button-class'),
+                        cancelButtonClass: $(this).data('cancel-button-class'),
+
+                        closeOnConfirm: $(this).data('close-on-confirm'),
+                        closeOnCancel: $(this).data('close-on-cancel'),
+                        confirmButtonText: $(this).data('confirm-button-text'),
+                        cancelButtonText: $(this).data('cancel-button-text'),
+
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url: baseUrl + 'Sub_RedCorrienteDirecta/EliminarCargador',
+                                method: 'POST',
+                                data: { Id_Cargador: idC },
+                                success: function (data) {
+                                    if (data) {
+                                        swal({
+                                            title: "¡Eliminado!",
+                                            text: "El cargador seleccionado ha sido eliminado.",
+                                            type: "success",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+
+                                        cargarTablaCargadores();
+
+
+
+                                    } else {
+                                        swal({
+                                            title: "¡Cancelado!",
+                                            text: "¡No se pudo eliminar el cargador!",
+                                            type: "error",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+                                    }
+                                }
+                            });
+                        } else {
+                            swal("Cancelado", "La acción de eliminar ha sido cancelada.", "error")
+                        }
+                    });
+                }
+                if (valor == "bat") {
+                    swal({
+                        title: $(this).data('title'),
+                        text: $(this).data('message'),
+                        type: $(this).data('type'),
+                        allowOutsideClick: $(this).data('allow-outside-click'),
+                        showConfirmButton: $(this).data('show-confirm-button'),
+                        showCancelButton: $(this).data('show-cancel-button'),
+                        confirmButtonClass: $(this).data('confirm-button-class'),
+                        cancelButtonClass: $(this).data('cancel-button-class'),
+
+                        closeOnConfirm: $(this).data('close-on-confirm'),
+                        closeOnCancel: $(this).data('close-on-cancel'),
+                        confirmButtonText: $(this).data('confirm-button-text'),
+                        cancelButtonText: $(this).data('cancel-button-text'),
+
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url: baseUrl + 'Sub_RedCorrienteDirecta/EliminarBateria',
+                                method: 'POST',
+                                data: { Id_Bateria: idC },
+                                success: function (data) {
+                                    if (data) {
+                                        swal({
+                                            title: "¡Eliminado!",
+                                            text: "La bateria seleccionada ha sido eliminada.",
+                                            type: "success",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+
+                                        cargarTablaBaterias();
+
+
+
+                                    } else {
+                                        swal({
+                                            title: "¡Cancelado!",
+                                            text: "¡No se pudo eliminar el cargador!",
+                                            type: "error",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+                                    }
+                                }
+                            });
+                        } else {
+                            swal("Cancelado", "La acción de eliminar ha sido cancelada.", "error")
+                        }
+                    });
+                }
+            });
+
+
+            cargarTablaCargadores();
+            cargarTablaBaterias();
+            //$("#TablaBaterias").html(null);
+            //$("#TablaCargadores").html(null);
+
+            function cargarTablaCargadores() {
+                var id_servicioCD = $("#Id_ServicioCD").val();
+                var sub = $("#Codigo").val();
+                if (id_servicioCD != "") {
+                    $.ajax({
+                        url: '@Url.Action("cargarTablaCargadores", "Sub_RedCorrienteDirecta")',
+                        method: "POST",
+                        data: { IdredCD: id_servicioCD , codsub: sub},
+                        success: function (data) {
+                            $("#TablaCargadores").html(data);
+                            $("#datatable_cargadores").dataTable({
+                                "select": "single",
+                                "responsive": true,
+                                "ordering": true,
+                                "info": false,
+                                "paging": false,
+                                "searching": false
+                            });
+                        }
+                    });
+                }
+            };
+
+            function cargarTablaBaterias() {
+                var id_servicioCD = $("#Id_ServicioCD").val();
+                if (id_servicioCD != "") {
+                    $.ajax({
+                        url: '@Url.Action("cargarTablaBaterias", "Sub_RedCorrienteDirecta")',
+                        method: "POST",
+                        data: { IdredCD: id_servicioCD },
+                        success: function (data) {
+                            $("#TablaBaterias").html(data);
+                            var table = $("#datatable_baterias").dataTable({
+                                "select": "single",
+                                "responsive": true,
+                                "ordering": true,
+                                "info": false,
+                                "paging": false,
+                                "searching": false
+                            });
+                        }
+                    });
+                }
+            };
+        });
+
+    </script>
+
+
+}

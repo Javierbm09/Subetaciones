@@ -1,0 +1,798 @@
+﻿@model Subestaciones.Models.Sub_PruebaAceiteAQReducido
+
+
+@{
+    ViewBag.Title = "Pruebas de aceite - análisis químico reducido";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar prueba de aceite - analisis quimico reducido</h1>
+        </div>
+    }*@
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_PruebaAceiteAQReducido")">Lista de pruebas</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Insertar prueba de aceite - an&aacute;lisis qu&iacute;mico reducido
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Create", "Sub_PruebaAceiteAQReducido", FormMethod.Post, htmlAttributes: new { @id = "form" }))
+
+                            {
+                                @Html.ValidationSummary(false)
+                                @Html.AntiForgeryToken()
+
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.Id_Transf, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.CodigoSub, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos generales de la prueba</div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.CodigoSub, htmlAttributes: new { @class = "control-label" })
+
+                                                            @Html.DropDownListFor(model => model.CodigoSub, ViewBag.ListaSub as SelectList,
+        "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control datepicker", @disabled = "disabled" } })
+
+                                                        @*<div class="input-group date" id="fechahora">
+                                                            <input type="text" disabled class="form-control" id="termofechahora">
+                                                            <span class="input-group-addon btn blue tooltips" disabled id="termografiafechahora" data-original-title="Seleccionar fecha">
+                                                                <span class="fa fa-calendar"></span>
+                                                                @*<button class="btn green" type="button">Go!</button>*@
+                                                        @*</span>
+                                                            </div>*@
+                                                        @*  @Html.HiddenFor(model => model.Fecha)*@
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        @Html.HiddenFor(model => model.Id_Transf)
+                                                        @Html.HiddenFor(model => model.Id_EAdminTransf)
+                                                        @Html.HiddenFor(model => model.f)
+                                                        @Html.HiddenFor(model => model.fechaRec)
+                                                        @Html.HiddenFor(model => model.fechaIni)
+                                                        @Html.HiddenFor(model => model.fechaSelec)
+                                                        @Html.HiddenFor(model => model.fechaTer)
+
+                                                        <div id="_VPListaTransf"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos del an&aacute;lisis qu&iacute;mico reducido</div>
+                                            <div class="panel-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.RealizadoenLaboraorio, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.RealizadoenLaboraorio, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.EjecutadoPor, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.EjecutadoPor, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.RevisadoPor, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.RevisadoPor, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        @Html.LabelFor(model => model.FechaSeleccion, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.FechaSeleccion, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.FechaInicio, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        @Html.LabelFor(model => model.FechaRecepcion, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.FechaRecepcion, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        @Html.LabelFor(model => model.FechaTerminacion, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.FechaTerminacion, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.MuestreoSegProc, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.MuestreoSegProc, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.MuestreoSegProcPor, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.MuestreoSegProcPor, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.NumeroControl, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.NumeroControl, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Clasificacion, htmlAttributes: new { @class = "control-label" })
+                                                            @Html.EditorFor(model => model.Clasificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel">
+
+                                                    <div class="panel-heading">Ensayos AQR</div>
+                                                    <div class="panel-body">
+                                                        <div class="row">
+
+                                                            <div class=" col-md-6" id="TablaEnsayos">
+
+                                                                <table style="width:100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Ensayos</th>
+                                                                            <th>Normas ensayos</th>
+                                                                            <th style="width:5px">Resultados</th>
+                                                                            <th style="width:15px"></th>
+                                                                            <th style="width:5px">Valores condenatorios</th>
+                                                                        </tr>
+
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Temperatura Muestra (°C)
+                                                                            </td>
+                                                                            <td>
+                                                                                -
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.TempMuestra, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                -
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Densidad a 20°C (g/cm3)
+                                                                            </td>
+                                                                            <td>
+                                                                                NC 33 - 28
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.Densidada20GC, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio1" name="radio" value="densidad" checked />
+                                                                                < 0.95
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Nro de Neutralización (mg KOH/g)
+                                                                            </td>
+                                                                            <td>
+                                                                                ASTM D 974
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.NrodeNeutralizacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio2" name="radio" value="nroNeu" />
+                                                                                < 0.25
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Agua por K. Fischer (ppm)
+                                                                            </td>
+                                                                            <td>
+                                                                                IEC 60814
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.AguaporKFisher, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio3" name="radio" value="agua" />
+                                                                                <= 30
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Humedad en el papel (%)
+                                                                            </td>
+                                                                            <td>
+                                                                                IEEE 62/95
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.HumedadenPapel, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio4" name="radio" value="humedad" />
+                                                                                < 4.5
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Tensi&oacute;n Interfacial (dinas/cm)
+                                                                            </td>
+                                                                            <td>
+                                                                                M&eacute;todo de la gota
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.TensionInterfacial, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio5" name="radio" value="tension" />
+                                                                                > 20
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Punto de inflamaci&oacute;n CA (°C)
+                                                                            </td>
+                                                                            <td>
+                                                                                NC ASTM D92
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.PuntoInflamacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio6" name="radio" value="punto" />
+                                                                                > 130
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Rigidez Diel&eacute;ctrica VDE 2.5 mm (KV)
+                                                                            </td>
+                                                                            <td>
+                                                                                IEC 60156
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.RigidezDielectrica, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio7" name="radio" value="riguidez" />
+                                                                                > 45
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Sedimento y Cieno precip. (% m/m)
+                                                                            </td>
+                                                                            <td>
+                                                                                IEC 60422
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.SedimentoyCienoPrecip, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio8" name="radio" value="sedimento" />
+                                                                                < 0,02
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Viscosidad a 40°C (mm2/s)
+                                                                            </td>
+                                                                            <td>
+                                                                                NC ASTM D 445
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.Viscosidada40GC, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio9" name="radio" value="visc" />
+                                                                                < 15
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Factor Disipaci&oacute;n a Temp. Amb.
+                                                                            </td>
+                                                                            <td>
+                                                                                ASTM D 924
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.FactorDisipacionTAmb, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio10" name="radio" value="factorTAmb" />
+                                                                                -
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Factor Disipaci&oacute;n a 70°C
+                                                                            </td>
+                                                                            <td>
+                                                                                ASTM D 924
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.FactorDisipaciona70GC, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio12" name="radio" value="factor70" />
+                                                                                < 0,045
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Factor Disipaci&oacute;n a 90°C
+                                                                            </td>
+                                                                            <td>
+                                                                                ASTM D 924
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.FactorDisipacion90GC, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <input type="radio" id="radio13" name="radio" value="factor90" />
+                                                                                < 0,057
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Aspecto f&iacute;sico
+
+                                                                            </td>
+                                                                            <td>
+                                                                                Visual
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.EditorFor(model => model.AspectoFisico, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div id="nombre"></div>
+                                                            <div id="grafic" class="col-md-6" style="width:550px; height:500px; max-height: 600px;"></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            @*<div class="col-md-6">
+
+                                                    <div class="panel">
+                                                        <div class="panel-heading">Grafica</div>
+                                                        <div class="panel-body">
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_PruebaAceiteAQReducido")"><i class="fa fa-list"></i> Listado de pruebas AQR</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-plus"></i> Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- BEGIN PAGE LEVEL daterangepicker -->
+    @*<link href="~/Scripts/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Scripts/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Scripts/assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />*@
+    <!-- END PAGE LEVEL daterangepicker -->
+
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src=@Url.Content("~/Content/plugins/switchery/switchery.min.js")></script>
+
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>*@
+    @*<script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>*@
+    @*<script src="~/Scripts/assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>*@
+
+    @*<script src="~/Scripts/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>*@
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    @*<script src="~//assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>*@
+
+    <script src="~/Scripts/assets/global/plugins/amcharts4/core.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/amcharts4/charts.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/amcharts4/animated.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento"
+                });
+            }
+
+            inicializar_datepicker();
+
+            function inicializar_datepicker() {
+
+                $('.datepicker').datepicker({
+                    language: 'es',
+                    todayBtn: 1,
+                    autoclose: 1,
+                    todayHighlight: 1,
+                    format: 'dd/mm/yyyy ',
+                    linkFormat: 'dd/mm/yyyy ',
+                    minDate: 0
+                }).datepicker('setDate', new Date());
+            }
+
+
+            $("#CodigoSub").change(function () {
+                cargarTablaTransformadores();
+            });
+            var datos = [];
+            function cargarTablaTransformadores() {
+                var sub = $("#CodigoSub").val();
+
+                    $.ajax({
+                        url: '@Url.Action("CargarTransf", "Sub_PruebaAceiteAQReducido")',
+                        method: "POST",
+                        data: { codsub: sub},
+                        success: function (data) {
+
+                            $("#_VPListaTransf").html(data);
+
+                            $("#Seleccionar").click(function () {
+                                if (table.rows({ selected: true }).count() > 0) {
+                                    codS = $("#sub", ".selected").val();
+                                    idea = $("#EA", ".selected").val();
+                                    id_t = $("#id_t", ".selected").val()
+                                    $("#Id_Transf").val(id_t);
+                                    $("#Id_EAdminTransf").val(idea);
+                                    $("#nuEmp").val($("#NEmp", ".selected").val());
+                                    $("#nSerie").val($("#NSerie", ".selected").val());
+                                    $("#cap").val($("#capacidad", ".selected").val());
+                                    $("#pesoA").val($("#peso", ".selected").val());
+                                    $("#anho").val($("#anhoF", ".selected").val());
+                                    $("#Nombre").val($("#NombreT", ".selected").val());
+
+
+                    $.ajax({
+                        url: '@Url.Action("ObtenerPruebas", "Sub_PruebaAceiteAQReducido")',
+                        method: "POST",
+                        data: { t: id_t, EA: idea, cod: codS },
+                        success: function (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                datos.push(data[i]);
+                                datos[i].Fecha = new Date(parseInt(datos[i].Fecha.substr(6)));
+                                $("input:radio:first").prop("checked", true).trigger("change");
+                                // datos[i].Fecha = new Date(parseInt(datos[i].Fecha.replace(/(^.*\()|([+-].*$)/g, '')));
+                                //datos[i].Fecha = new Date(JSON.parse(datos[i].Fecha));
+                            }
+                        }
+                    });
+
+                    $("#cerrar").click();
+
+                                }
+                            });
+
+
+                            var table = $("#datatable_transformadores").DataTable({
+                                "language": {
+                                    "aria": {
+                                        "sortAscending": ": activate to sort column ascending",
+                                        "sortDescending": ": activate to sort column descending"
+                                    },
+                                    "emptyTable": "No existen transformadores declarados en esta Subestación",
+                                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "lengthMenu": "_MENU_ Registros",
+                                    "search": "Buscar:",
+                                    "zeroRecords": "No se encontraron resultados"
+                                },
+                                rows: {
+                                    _: "Seleccionados %d registros",
+                                    1: "1 Registro seleccionado"
+                                },
+                                "order": [
+                                    [0, 'asc']
+                                ],
+                                responsive: true,
+                                select: true,
+                                "pageLength": 10
+                            });
+
+                        }
+                    });
+            };
+
+
+
+            function grafica(valorY) {
+                am4core.useTheme(am4themes_animated);
+
+
+                var chart = am4core.create("grafic", am4charts.XYChart);
+                chart.paddingRight = 20;
+                chart.data = datos;
+                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                dateAxis.renderer.grid.template.location = 0;
+
+                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                valueAxis.tooltip.disabled = true;
+                valueAxis.renderer.minWidth = 35;
+
+                var series = chart.series.push(new am4charts.LineSeries());
+                series.dataFields.dateX = "Fecha";
+                series.dataFields.valueY = valorY;
+                series.tooltipText = "{valueY}";
+                series.tooltip.pointerOrientation = "vertical";
+                series.tooltip.background.fillOpacity = 0.5;
+
+                chart.cursor = new am4charts.XYCursor();
+                chart.cursor.snapToSeries = series;
+                chart.cursor.xAxis = dateAxis;
+
+                var scrollbarX = new am4charts.XYChartScrollbar();
+                scrollbarX.series.push(series);
+                chart.scrollbarX = scrollbarX;
+ }
+
+            $("input[name=radio]").change(function () {
+                var valores = $(this).val();
+                if (valores == "densidad") {
+                    document.getElementById("nombre").innerHTML = "<strong>Densidad a 20°C (g/cm3)</strong>";
+                    grafica("Densidada20GC");
+                }
+                else
+                    if (valores == "nroNeu") {
+                        document.getElementById("nombre").innerHTML = "<strong>Nro de Neutralización (mg KOH/g)</strong>";
+                        grafica("NrodeNeutralizacion");
+                    }
+                    else
+                        if (valores == "agua") {
+                            document.getElementById("nombre").innerHTML = "<strong>Agua por K. Fischer (ppm)</strong>";
+                            grafica("AguaporKFisher");
+                        }
+                        else
+                            if (valores == "humedad") {
+                                document.getElementById("nombre").innerHTML = "<strong>Humedad en el papel (%)</strong>";
+                                grafica("HumedadenPapel");
+                            }
+                            else
+                                if (valores == "tension") {
+                                    document.getElementById("nombre").innerHTML = "<strong>Tensión Interfacial (dinas/cm)</strong>";
+                                    grafica("TensionInterfacial");
+                                }
+                                else
+                                    if (valores == "punto") {
+                                        document.getElementById("nombre").innerHTML = "<strong>Punto de Inflamación CA (°C)</strong>";
+                                        grafica("PuntoInflamacion");
+                                    }
+                                    else
+                                        if (valores == "riguidez") {
+                                            document.getElementById("nombre").innerHTML = "<strong>Rigidez Dieléctrica VDE 2.5 mm (KV)</strong>";
+                                            grafica("RigidezDielectrica");
+                                        }
+                                        else
+                                            if (valores == "sedimento") {
+                                                document.getElementById("nombre").innerHTML = "<strong>Sedimento y Cieno precip. (% m/m)</strong>";
+                                                grafica("SedimentoyCienoPrecip");
+                                            }
+                                            else
+                                                if (valores == "visc") {
+                                                    document.getElementById("nombre").innerHTML = "<strong>Viscosidad a 40°C (mm2/s)</strong>";
+                                                    grafica("Viscosidada40GC");
+                                                }
+                                                else
+                                                    if (valores == "factorTAmb") {
+                                                        document.getElementById("nombre").innerHTML = "<strong>Factor Disipación a Temperatura Ambiente</strong>";
+                                                        grafica("FactorDisipacionTAmb");
+                                                    }
+                                                    else
+                                                        if (valores == "factor70") {
+                                                            document.getElementById("nombre").innerHTML = "<strong>Factor Disipación a 70°C</strong>";
+                                                            grafica("FactorDisipaciona70GC");
+                                                        }
+                                                        else
+                                                            if (valores == "factor90") {
+                                                                document.getElementById("nombre").innerHTML = "<strong>Factor Disipación a 90°C</strong>";
+                                                                grafica("FactorDisipacion90GC");
+                                                            }
+            });
+
+            $("#Densidada20GC").change(function (){
+               colorResultados($("#Densidada20GC").val(), 0.95, $("#Densidada20GC"));
+            });
+
+            $("#NrodeNeutralizacion").change(function () {
+               colorResultados($("#NrodeNeutralizacion").val(), 0.25, $("#NrodeNeutralizacion"));
+            });
+
+            $("#AguaporKFisher").change(function () {
+               colorResultados($("#AguaporKFisher").val(), 30, $("#AguaporKFisher"));
+            });
+
+            $("#HumedadenPapel").change(function () {
+               colorResultados($("#HumedadenPapel").val(), 4.5, $("#HumedadenPapel"));
+            });
+
+            $("#TensionInterfacial").change(function () {
+               colorResultados(20, $("#TensionInterfacial").val(), $("#TensionInterfacial"));
+            });
+
+            $("#PuntoInflamacion").change(function () {
+               colorResultados(130, $("#PuntoInflamacion").val(), $("#PuntoInflamacion"));
+            });
+
+            $("#RigidezDielectrica").change(function () {
+               colorResultados(45, $("#RigidezDielectrica").val(), $("#RigidezDielectrica"));
+            });
+
+            $("#SedimentoyCienoPrecip").change(function () {
+               colorResultados($("#SedimentoyCienoPrecip").val(), 0.02, $("#SedimentoyCienoPrecip"));
+            });
+
+            $("#Viscosidada40GC").change(function () {
+              colorResultados($("#Viscosidada40GC").val(), 15, $("#Viscosidada40GC"));
+            });
+
+            $("#FactorDisipacionTAmb").change(function () {
+              colorResultados($("#FactorDisipacionTAmb").val(), 0.057, $("#FactorDisipacionTAmb"));
+            });
+
+            $("#FactorDisipaciona70GC").change(function () {
+              colorResultados($("#FactorDisipaciona70GC").val(), 0.045, $("#FactorDisipaciona70GC"));
+            });
+
+            $("#FactorDisipacion90GC").change(function () {
+               colorResultados($("#FactorDisipacion90GC").val(), 0.057, $("#FactorDisipacion90GC"));
+            });
+
+            //colores de los resultados
+            function colorResultados(resultado, valor, elemento) {
+
+                if (resultado < valor) {
+                    elemento.css("background-color", "green");
+                }
+
+                else {
+                    elemento.css("background-color", "red");
+                }
+            }
+
+            $("#form").submit(function () {
+                $("#Fecha").removeAttr('disabled');
+
+                $('#f').val(moment(moment($('#Fecha').datepicker('getDate'))._d).format("YYYY-MM-DD"));
+                $('#fechaSelec').val(moment(moment($('#FechaSeleccion').datepicker('getDate'))._d).format("YYYY-MM-DD"));
+                $('#fechaIni').val(moment(moment($('#FechaInicio').datepicker('getDate'))._d).format("YYYY-MM-DD"));
+                $('#fechaRec').val(moment(moment($('#FechaRecepcion').datepicker('getDate'))._d).format("YYYY-MM-DD"));
+                $('#fechaTer').val(moment(moment($('#FechaTerminacion').datepicker('getDate'))._d).format("YYYY-MM-DD"));
+
+            });
+
+        });
+    </script>
+}

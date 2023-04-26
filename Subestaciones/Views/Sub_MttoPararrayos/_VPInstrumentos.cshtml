@@ -1,0 +1,36 @@
+﻿@model Subestaciones.Models.Clases.Sub_MttoPararrayosModel
+
+
+<table width="100%" border="0">
+    <tr>
+        <td style="width:48%">Disponibles</td>
+        <td rowspan="2" style="width:4%">
+            <input type="button" value=">>" id="move-to-b" /><br />
+            <input type="button" value="<<" id="move-to-a" />
+        </td>
+        <td>Seleccionados</td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ListBox("UnSelectedItem", ViewBag.ListaA as SelectList, new { @style = "width:100%" })
+        </td>
+        <td>
+            @Html.ListBoxFor(model => model.InstrumentosUtilizados, ViewBag.ListaB as SelectList, new { @style = "width:100%" })
+        </td>
+    </tr>
+</table>
+
+
+<script>
+    function MoveListBoxItem(fromId, toId) {
+        $("#" + fromId + " option:selected").remove().appendTo("#" + toId);
+    }
+
+    $("#move-to-b").click(function () {
+        MoveListBoxItem('UnSelectedItem', 'InstrumentosUtilizados');
+    });
+
+    $("#move-to-a").click(function () {
+        MoveListBoxItem('InstrumentosUtilizados', 'UnSelectedItem');
+    });
+</script>

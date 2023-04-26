@@ -1,0 +1,124 @@
+﻿@model Subestaciones.Models.Clases.Desconectivos
+
+<div class="row">
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label" })
+        <div class="input-group " id="SA">
+            @{
+                var value = Model != null ? Model.Codigo : "";
+            }
+
+            <input type="text" disabled class="form-control" id="desc" value="@value">
+            <span class="input-group-addon btn blue tooltips" id="subestacionesA" data-original-title="Seleccionar desconectivo">
+                <span class="fa fa-search" href="#basic1" data-toggle="modal"></span>
+                @*<button class="btn green"  type="button" id="listaTransf">Go!</button>*@
+                @*<span class="btn blue btn-outline sbold" href="#basic" data-toggle="modal">Conductores </span>*@
+            </span>
+        </div>
+        @Html.HiddenFor(model => model.Codigo)
+
+    </div>
+    @*@Html.HiddenFor(model => model.Id_Transformador)*@
+    @Html.HiddenFor(model => model.Id_EAdministrativa)
+    @Html.HiddenFor(model => model.UbicadaEn)
+  
+    <div class="form-group col-md-8" div="l">
+        <div class="panel" id="int">
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.fabricante, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.fabricante, new { htmlAttributes = new { @class = "form-control", @id = "fab", @readonly = "readonly" } })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.anhoFab, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.anhoFab, new { htmlAttributes = new { @class = "form-control", @id = "anno", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        
+
+    </div>
+
+</div>
+
+
+
+<div class="modal" id="basic1" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Interruptores en subestaci&oacute;n</h4>
+            </div>
+
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table" id="datatable_desc" style="cursor:pointer">
+                    <thead>
+                        <tr>
+                            <th>
+                                C&oacute;digo
+                            </th>
+                            @*<th>
+                                Tipo
+                            </th>
+                            <th>
+                                Funci&oacute;n
+                            </th>
+                            <th>
+                                Estado operativo
+                            </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.listadoDesc)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <input type="hidden" value=@item.UbicadaEn id="sub">
+                                    <input type="hidden" value=@item.Id_EAdministrativa id="EA">
+                                    <input type="hidden" value=@item.tipoDesc id="tipoDesconectivo">
+                                    <input type="hidden" value=@item.Codigo id="idDesc">
+                                    <input type="hidden" value=@item.TipoSeccionalizador id="tipo">
+                                    <input type="hidden" value=@item.anhoFab id="A">
+                                    <input type="hidden" value=@item.CorrienteNominal id="corr">
+                                    <input type="hidden" value=@item.DescripcionTipoPortaFusible id="tipoP">
+                                    <input type="hidden" value=@item.DescripcionTipoFusible id="tipoF">
+                                    <input type="hidden" value=@item.DescripcionTensionFusible id="tensionN">
+                                    <input type="hidden" value=@item.DescripcionCapacidadFusible id="cap">
+
+                                    @item.Codigo
+                                </td>
+                                @*<td>
+                                    @item.TipoSeccionalizador
+                                </td>
+                                <td>
+                                    @item.Funcion
+                                </td>
+                                <td>
+                                    @item.EstadoOperativo
+                                </td>*@
+
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="SeleccionarD">Seleccionar</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button" id="cerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

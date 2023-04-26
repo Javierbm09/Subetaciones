@@ -1,0 +1,240 @@
+﻿@model Subestaciones.Models.Inst_Nomenclador_Desconectivos_DatosEspecificos_Comunicacion
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Inst_Nomenclador_Desconectivos_DatosEspecificos_Comunicacion</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Inst_Nomenclador_Desconectivos.Id_Nomenclador)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Inst_Nomenclador_Desconectivos.Id_Nomenclador)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Administrativa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Administrativa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_EAdministrativa_Prov)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_EAdministrativa_Prov)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumAccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AnnoFabricacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AnnoFabricacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SerieInterruptor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SerieInterruptor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NroEmpresa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NroEmpresa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NroInventario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NroInventario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SeriGabinete)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SeriGabinete)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ubicacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Altitud)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Altitud)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Latitud)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Latitud)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaInstalacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaInstalacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Observacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Observacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Telemedion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Telemedion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Telemando)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Telemando)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SCADA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SCADA)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EquipoUtilizado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EquipoUtilizado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Marca)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Marca)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Modelo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LazoAutomatico)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LazoAutomatico)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Esquema)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Esquema)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Funcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Funcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_TensionInstalacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_TensionInstalacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Gabinete)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Gabinete)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

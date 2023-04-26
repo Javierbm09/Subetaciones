@@ -1,0 +1,58 @@
+﻿@model Subestaciones.Models.Clases.TransformadorSubtransmision
+<div class="row">
+
+    @Html.HiddenFor(model => model.Id_Transformador)
+    @Html.HiddenFor(model => model.Id_EAdministrativa)
+    @Html.HiddenFor(model => model.Subestacion)
+
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @id = "nombre", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.Numemp, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Numemp, new { htmlAttributes = new { @class = "form-control", @id = "nEmp", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.NoSerie, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.NoSerie, new { htmlAttributes = new { @class = "form-control", @id = "nSerie", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.Fabricante, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Fabricante, new { htmlAttributes = new { @class = "form-control", @id = "Fab", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.PorcientoImpedancia, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.PorcientoImpedancia, new { htmlAttributes = new { @class = "form-control", @id = "Imp", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.GrupoConexion, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.GrupoConexion, new { htmlAttributes = new { @class = "form-control", @id = "GConex", @readonly = "readonly" } })
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.TensionPrimaria, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.TensionPrimaria, new { htmlAttributes = new { @class = "form-control", @id = "VP", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.TensionSecundaria, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.TensionSecundaria, new { htmlAttributes = new { @class = "form-control", @id = "VS", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.capacidad, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.capacidad, new { htmlAttributes = new { @class = "form-control", @id = "cap", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.PesoAceite, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.PesoAceite, new { htmlAttributes = new { @class = "form-control", @id = "pesoA", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.PesoTotal, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.PesoTotal, new { htmlAttributes = new { @class = "form-control", @id = "pesoT", @readonly = "readonly" } })
+    </div>
+    <div class="form-group col-md-2">
+        @Html.LabelFor(model => model.NroPosiciones, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.NroPosiciones, new { htmlAttributes = new { @class = "form-control", @id = "nPos", @readonly = "readonly" } })
+    </div>
+</div>

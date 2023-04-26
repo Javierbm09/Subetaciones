@@ -1,0 +1,327 @@
+﻿@model Subestaciones.Models.ES_TransformadorCorriente
+
+@{
+    ViewBag.Title = "Transformador de corriente";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar transformador de corriente</h1>
+        </div>
+    }*@
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","ES_TransformadorCorriente")">Transformadores de corriente </a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>Insertar transformador de corriente
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(false)
+                                @Html.AntiForgeryToken()
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.CodSub, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Fase, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Tipo_Equipo_Primario, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Elemento_Electrico, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Nro_Serie, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Cant_Devanado, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.AnnoFab, "", new { @class = "text-danger" })
+
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.CodSub, htmlAttributes: new { @class = "control-label" })
+                                                    @* @Html.DropDownList("Elemento_Electrico", null, "", htmlAttributes: new { @class = "select2_single form-control" })*@
+                                                    @Html.DropDownListFor(model => model.CodSub, ViewBag.CodigoSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Tipo_Equipo_Primario, htmlAttributes: new { @class = "control-label" })
+                                                    @* @Html.DropDownList("Tipo_Equipo_Primario", null, "", htmlAttributes: new { @class = "select2_single form-control" })*@
+                                                    @Html.DropDownListFor(model => model.Tipo_Equipo_Primario, ViewBag.TequipoProt as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @*      @Html.ValidationMessageFor(model => model.Tipo_Equipo_Primario, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group" id="cargarEquipo">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Nro_Serie, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Nro_Serie, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.Nro_Serie, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Fase, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Fase, ViewBag.Fase as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @*  @Html.ValidationMessageFor(model => model.Fase, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Fabricante, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Fabricante, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Fabricante, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.id_Voltaje_Nominal, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.id_Voltaje_Nominal, ViewBag.Id_Voltaje as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.id_Voltaje_Nominal, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Inventario, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Inventario, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Inventario, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.InPrimaria, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.InPrimaria, ViewBag.InPrim as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.InPrimaria, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.InTrabajoPrim, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.InTrabajoPrim, ViewBag.InTrabajoPrim as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.InTrabajoPrim, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.InSecundaria, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.InSecundaria, ViewBag.InSec as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.InSecundaria, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Cant_Devanado, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Cant_Devanado, ViewBag.devanados as SelectList,
+                                                              "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @* @Html.EditorFor(model => model.Cant_Devanado, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.AnnoFab, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.AnnoFab, Enumerable.Range(0, (DateTime.Now.Year - 1900 - 1)).Select(i => new SelectListItem { Text = (DateTime.Now.Year - i).ToString(), Value = (DateTime.Now.Year - i).ToString() }), "", htmlAttributes: new { @class = "form-control select2" })
+
+                                                    @*@Html.EditorFor(model => model.AnnoFab, new { htmlAttributes = new { @class = "form-control", type = "number", MaxLengthAttributeAdapter = 4 } })*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.FechaInstalado, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.FechaInstalado, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    @Html.ValidationMessageFor(model => model.FechaInstalado, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Frecuencia, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Frecuencia, ViewBag.Frecuencia as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.Frecuencia, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","ES_TransformadorCorriente")"><i class="fa fa-list"></i> Listado de transformadores de corriente</a>
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Insertar </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- BEGIN PAGE LEVEL daterangepicker -->
+    <link href="~/Scripts/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL daterangepicker -->
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+    @Html.Partial("~/Views/Shared/_Validacion.cshtml")
+
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script>
+    $(document).ready(function () {
+        //$("#FechaInstalado").datepicker({});
+        inicializar_select2();
+
+        $('.datepicker').datepicker({
+            todayHighlight: true,
+            todayBtn: "linked",
+            language: "es",
+            format: 'yyyy/mm/dd',
+            autoclose: true
+        });
+
+        function inicializar_select2() {
+            $(".select2").select2({
+                placeholder: "Seleccione un elemento de la lista"
+            });
+        }
+
+        $("#CodSub").change(function () {
+            cargarTEquipo();
+
+        });
+
+        $("#Tipo_Equipo_Primario").change(function () {
+            cargarTEquipo();
+
+        });
+
+
+        function cargarTEquipo() {
+
+            var TE = $("#Tipo_Equipo_Primario").val();
+            var sub = $("#CodSub").val();
+            if (TE != "" && sub != "") {
+                $.ajax({
+                    url: '@Url.Action("CargarEquipo", "ES_TransformadorCorriente")',
+                    method: "POST",
+                    data: { tipoequipo: TE,codsub: sub },
+                    success: function (data) {
+                        $('#cargarEquipo').html(data);
+                        $(".select2_single").select2({
+                            placeholder: "Seleccione un elemento de la lista",
+                            allowClear: true
+                        });
+                    }
+                });
+            }
+        }
+
+
+
+
+    });
+    </script>
+}

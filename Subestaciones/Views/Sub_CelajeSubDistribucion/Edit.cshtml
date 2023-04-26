@@ -1,0 +1,743 @@
+﻿@model Subestaciones.Models.Sub_CelajeSubDistribucion
+
+@{
+    ViewBag.Title = "Editar inspección subestación de distribución";
+}
+
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_CelajeSubDistribucion")">Lista inspecci&oacute;n subestaci&oacute;n de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Editar </span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Editar inspecci&oacute;n subestaci&oacute;n de distribuci&oacute;n
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Edit", "Sub_CelajeSubDistribucion", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                            {
+                                @Html.ValidationSummary(false)
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("nombreCelajeAnterior", Model.nombreCelaje)
+
+                                <!-- BEGIN FORM-->
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+
+                                        <div class="tabbable-line boxless tabbable-reversed ">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active">
+                                                    <a href="#tab_1" data-toggle="tab" id="tab1">Inspecci&oacute;n general</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#tab_2" data-toggle="tab" id="tab2">Transformadores de fuerza</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#tab_3" data-toggle="tab" id="tab3">Interruptores</a>
+                                                </li>
+
+
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab_1">
+
+                                                    <div class="panel">
+                                                        <div class="panel-heading">Datos de la inspecci&oacute;n</div>
+                                                        <div class="panel-body">
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.codigoSub, htmlAttributes: new { @class = "control-label" })
+
+                                                                    @Html.DropDownListFor(model => model.codigoSub, ViewBag.ListaSub as SelectList,
+                                                                        "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.nombreCelaje, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.nombreCelaje, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                                    @*@Html.DropDownListFor(model => model.nombreCelaje, ViewBag.tipo as IEnumerable<SelectListItem>,
+                                                                        "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })*@
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.realizadoPor, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.realizadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label" })
+
+                                                                <div class="input-group date" id="fechahora">
+                                                                    <input type="text" disabled class="form-control" id="termofechahora">
+                                                                    <span class="input-group-addon btn blue tooltips" disabled id="inspfechahora" data-original-title="Seleccionar fecha">
+                                                                        <span class="fa fa-calendar"></span>
+                                                                        @*<button class="btn green" type="button">Go!</button>*@
+                                                                    </span>
+                                                                </div>
+                                                                @Html.HiddenFor(model => model.fecha)
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="panel">
+                                                        <div class="panel-heading">Datos generales </div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.mallaTSub, htmlAttributes: new { @class = "control-label" })
+
+                                                                        @Html.DropDownListFor(model => model.mallaTSub, ViewBag.mallaTS as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.hierba, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.CheckBox("hierba", htmlAttributes: new { @class = "form-control " })
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.estadoCerca, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.DropDownListFor(model => model.estadoCerca, ViewBag.estadoCerca as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.pRayosAlta, htmlAttributes: new { @class = "control-label" })
+
+                                                                        @Html.DropDownListFor(model => model.pRayosAlta, ViewBag.paraA as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.estadoCarteles, htmlAttributes: new { @class = "control-label" })
+
+                                                                        @Html.DropDownListFor(model => model.estadoCarteles, ViewBag.estadoCarteles as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.estadoAlumbrado, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.DropDownListFor(model => model.estadoAlumbrado, ViewBag.estadoAlumbrado as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.mallaTCerca, htmlAttributes: new { @class = "control-label" })
+
+                                                                        @Html.DropDownListFor(model => model.mallaTCerca, ViewBag.mallaTC as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.desordenSub, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.CheckBox("desordenSub", htmlAttributes: new { @class = "form-control " })
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.estadoPuerta, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.DropDownListFor(model => model.estadoPuerta, ViewBag.estadoPuerta as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.pRayosBaja, htmlAttributes: new { @class = "control-label" })
+
+                                                                        @Html.DropDownListFor(model => model.pRayosBaja, ViewBag.paraB as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.estadoCandadoPuerta, htmlAttributes: new { @class = "control-label" })
+
+                                                                        @Html.DropDownListFor(model => model.estadoCandadoPuerta, ViewBag.estadoCandado as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="panel">
+                                                                <div class="panel-heading">Drop-out </div>
+                                                                <div class="panel-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-2">
+
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            Fase A
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            Fase B
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            Fase C
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-2">
+                                                                            <div class="text-stat">
+
+                                                                                Drop-Out A
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutAFaseA, ViewBag.dropAA as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutAFaseB, ViewBag.dropAB as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutAFaseC, ViewBag.dropAC as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-2">
+                                                                            Drop-Out B
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutBFaseA, ViewBag.dropBA as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutBFaseB, ViewBag.dropBB as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutBFaseC, ViewBag.dropBC as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                Drop-Out Bypass
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutBypassFaseA, ViewBag.dropBypassA as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutBypassFaseB, ViewBag.dropBypassB as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                @Html.DropDownListFor(model => model.dropOutBypassFaseC, ViewBag.dropBypassC as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label " for="observaciones">Observaciones</label>
+                                                                <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="observaciones" name="observaciones" rows="2"></textarea>
+                                                                <span class="field-validation-valid text-danger" data-valmsg-for="observaciones" data-valmsg-replace="true"></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-actions right">
+                                                        <a class="btn btn-primary" href="@Url.Action("Index","Sub_CelajeSubDistribucion",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaInsp})"><i class="fa fa-close"></i> Cancelar</a>
+                                                        <button type="submit" class="btn blue">
+                                                            <i class="fa fa-plus"></i> Guardar
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="tab-pane" id="tab_2">
+                                                    <div id="noTransf">
+                                                        La subestaci&oacute;n no tiene transformadores declarados.
+                                                    </div>
+
+                                                    <div id="_VPInspTransf">
+
+                                                    </div>
+                                                    <a class="btn btn-default" id="AgregarInspTransf" href="@Url.Action("Create","Sub_TransformadoresSubtrCelaje", new { nombreCelaje = Model.nombreCelaje,sub= Model.codigoSub, fechaIns= Model.fecha, ea= Model.id_EAdministrativa, valor = "Editar"})"><i class="fa fa fa-plus"></i> Nuevo</a>
+
+                                                </div>
+
+                                                <div class="tab-pane" id="tab_3">
+
+                                                    <div class="portlet-body">
+                                                        <div id="noInt">
+                                                            La subestaci&oacute;n no tiene interruptores declarados.
+                                                        </div>
+                                                        <div id="_VPInspInterrup">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <a class="btn btn-default" id="I" href="@Url.Action("Create","Sub_CelajeSubDistInterruptor", new { nombreCelaje = Model.nombreCelaje, sub= Model.codigoSub, fechaIns= Model.fecha, valor = "Editar"})"><i class="fa fa fa-plus"></i> Nuevo</a>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src=@Url.Content("~/Content/plugins/switchery/switchery.min.js")></script>
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+
+    <!--datepicker-->
+    <script>
+        $(document).ready(function () {
+
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            valorfecha = $("#fecha").val();
+            valorfecha = moment(valorfecha, "DD/MM/YYYY hh:mm:ss a").format("YYYY/MM/DD H:mm");
+            fechaI = new Date(valorfecha);
+            fechaini = new Date(fechaI.getFullYear(), fechaI.getMonth(), fechaI.getDate(), 0, 0);
+            fechafin = new Date(fechaI.getFullYear(), fechaI.getMonth(), fechaI.getDate(), 23, 59);
+            $("#fechahora").datetimepicker({
+                language: 'es',
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                format: 'dd/mm/yyyy ',
+                linkFormat: 'dd/mm/yyyy ',
+                showMeridian: 1,
+                startDate: fechaini,
+                endDate: fechafin,
+                forceParse: 1,
+                startView: 2,
+                maxView: 2,
+                linkField: 'fecha'
+
+            }).datetimepicker('setDate', fechaI);
+
+            function formato(date) {
+                var dia = 01;
+                var mes = date.getMonth() + 1;
+                var anho = date.getFullYear().toString().slice(2);
+                return dia + '-' + mes + '-' + anho;
+            }
+
+            $("#codigoSub").attr('disabled', true);
+
+
+            $("#form").submit(function () {
+                $("#codigoSub").removeAttr('disabled');
+
+                return true;
+            });
+
+            //mostrar primer tab al cargar
+            Tab(1);
+            var selectedTab = 1;
+
+            Tab(selectedTab);
+
+            //cargar contenidos de pestañas al hacer click
+            $("#tab1").click(function () { Tab(1); });
+            $("#tab2").click(function () { Tab(2); });
+            $("#tab3").click(function () { Tab(3); });
+
+
+            function Tab(n) {
+                var id_nom = 0;
+
+                var baseUrl = $('base').attr('href');
+
+                var codSub = $("#codigoSub").val();
+                var fechaInsSub = $("#fecha").val();
+                var tipo = $("#nombreCelaje").val();
+
+
+                $("#modal-sm-loading").modal('show');//mostrar cargando
+                selectedTab = n;
+
+                if (n == 2) {
+                    cantTRans = "@ViewBag.cantT";
+                    if (cantTRans != 0) {
+                        $("#_VPInspTransf").load('@Url.Content("~/Sub_CelajeSubDistribucion/_VPInspTransf")', { nombre: tipo, sub: codSub, fechaM: fechaInsSub, valor: "Editar" }, function () {
+
+                            var table = $("#tabla_InspTransf").DataTable({
+                                "language": {
+                                    "aria": {
+                                        "sortAscending": ": activate to sort column ascending",
+                                        "sortDescending": ": activate to sort column descending"
+                                    },
+                                    "emptyTable": "No existen transformadores declarados en esta Subestación",
+                                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "lengthMenu": "_MENU_ Registros",
+                                    "search": "Buscar:",
+                                    "zeroRecords": "No se encontraron resultados"
+                                },
+                                rows: {
+                                    _: "Seleccionados %d registros",
+                                    1: "1 Registro seleccionado"
+                                },
+                                "order": [
+                                    [0, 'asc']
+                                ],
+                                responsive: true,
+                                select: true,
+                                "pageLength": 10
+                            });
+
+                        });
+                        $("#AgregarInspTransf").show();
+                        $("#noTransf").hide();
+                    } else {
+                        swal({
+                            title: "¡Información!",
+                            text: "La subestación no tiene trasnformadores declarados.",
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonClass: "btn-primary"
+                        });
+                        $("#AgregarInspTransf").hide();
+                        $("#noTransf").show();
+
+                    }
+
+                    $("#modal-sm-loading").modal('hide');
+
+                }
+
+
+                if (n == 3) {
+                    cantInterrup = "@ViewBag.cantI";
+                    if (cantInterrup != 0) {
+                        $("#_VPInspInterrup").load('@Url.Content("~/Sub_CelajeSubDistribucion/_VPInspInterrup")', { nombre: tipo, sub: codSub, fechaM: fechaInsSub, valor: "Editar"}, function () {
+
+
+                            var table = $("#tabla_InspInterr").DataTable({
+                                "language": {
+                                    "aria": {
+                                        "sortAscending": ": activate to sort column ascending",
+                                        "sortDescending": ": activate to sort column descending"
+                                    },
+                                    "emptyTable": "No existen transformadores declarados en esta Subestación",
+                                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "lengthMenu": "_MENU_ Registros",
+                                    "search": "Buscar:",
+                                    "zeroRecords": "No se encontraron resultados"
+                                },
+                                rows: {
+                                    _: "Seleccionados %d registros",
+                                    1: "1 Registro seleccionado"
+                                },
+                                "order": [
+                                    [0, 'asc']
+                                ],
+                                responsive: true,
+                                select: true,
+                                "pageLength": 10
+                            });
+                            $("#modal-sm-loading").modal('hide');
+
+                            $("#I").show();
+                            $("#noInt").hide();
+
+
+                        });
+
+                    }
+                    else {
+                        swal({
+                            title: "¡Información!",
+                            text: "La subestación no tiene interruptores declarados.",
+                            type: "success",
+                            confirmButtonText: "Aceptar",
+                            confirmButtonClass: "btn-primary"
+                        });
+
+                        $("#I").hide();
+                        $("#noInt").show();
+
+                    }
+
+
+
+                }
+
+            }
+
+            $('body').on('click', '.mt-sweetalert', function () {
+                var llaves = this.id;
+                var camposLlaves = llaves.split("|");
+                var sub = camposLlaves[0];
+                var fechaE = camposLlaves[1];
+                var componente = camposLlaves[2];
+                var valor = camposLlaves[3];
+                var idEA = camposLlaves[4];
+                var nomb = camposLlaves[5];
+
+
+
+                var baseUrl = $('base').attr('href');
+
+
+                //elimina desconectivo
+
+                if (valor == "desc") {
+                    swal({
+                        title: $(this).data('title'),
+                        text: $(this).data('message'),
+                        type: $(this).data('type'),
+                        allowOutsideClick: $(this).data('allow-outside-click'),
+                        showConfirmButton: $(this).data('show-confirm-button'),
+                        showCancelButton: $(this).data('show-cancel-button'),
+                        confirmButtonClass: $(this).data('confirm-button-class'),
+                        cancelButtonClass: $(this).data('cancel-button-class'),
+
+                        closeOnConfirm: $(this).data('close-on-confirm'),
+                        closeOnCancel: $(this).data('close-on-cancel'),
+                        confirmButtonText: $(this).data('confirm-button-text'),
+                        cancelButtonText: $(this).data('cancel-button-text'),
+
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url: baseUrl + 'Sub_CelajeSubDistribucion/EliminaInspInt',
+                                method: 'POST',
+                                data: { nombInps: nomb, cod: sub, fechaM: fechaE, codInt: componente },
+                                success: function (data) {
+                                    if (data) {
+                                        swal({
+                                            title: "¡Eliminado!",
+                                            text: "El mantenimiento seleccionado ha sido eliminado.",
+                                            type: "success",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+
+                                        Tab(2);
+                                        var selectedTab = 2;
+
+                                        Tab(selectedTab);
+
+
+
+                                    } else {
+                                        swal({
+                                            title: "¡Cancelado!",
+                                            text: "¡No se pudo eliminar el mantenimiento!",
+                                            type: "error",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+                                    }
+                                }
+                            });
+                        } else {
+                            swal("Cancelado", "La acción de eliminar ha sido cancelada.", "error")
+                        }
+                    });
+                }
+                //elimina transformador
+
+                if (valor == "transf") {
+                    swal({
+                        title: $(this).data('title'),
+                        text: $(this).data('message'),
+                        type: $(this).data('type'),
+                        allowOutsideClick: $(this).data('allow-outside-click'),
+                        showConfirmButton: $(this).data('show-confirm-button'),
+                        showCancelButton: $(this).data('show-cancel-button'),
+                        confirmButtonClass: $(this).data('confirm-button-class'),
+                        cancelButtonClass: $(this).data('cancel-button-class'),
+
+                        closeOnConfirm: $(this).data('close-on-confirm'),
+                        closeOnCancel: $(this).data('close-on-cancel'),
+                        confirmButtonText: $(this).data('confirm-button-text'),
+                        cancelButtonText: $(this).data('cancel-button-text'),
+
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url: baseUrl + 'Sub_CelajeSubDistribucion/EliminaInspTransf',
+                                method: 'POST',
+                                data: { nombInps: nomb, cod: sub, idTransf: componente, fechaM: fechaE, EA: idEA },
+                                success: function (data) {
+                                    if (data) {
+                                        swal({
+                                            title: "¡Eliminado!",
+                                            text: "La inspección seleccionada ha sido eliminada.",
+                                            type: "success",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+
+                                        Tab(1);
+                                        var selectedTab = 1;
+
+                                        Tab(selectedTab);
+
+
+                                    } else {
+                                        swal({
+                                            title: "¡Cancelado!",
+                                            text: "¡No se pudo eliminar la inspección!",
+                                            type: "error",
+                                            confirmButtonText: "Cerrar",
+                                            confirmButtonClass: "btn-primary"
+                                        });
+                                    }
+                                }
+                            });
+                        } else {
+                            swal("Cancelado", "La acción de eliminar ha sido cancelada.", "error")
+                        }
+                    });
+                }
+
+
+            });
+
+            var hierba = new Switchery(document.getElementById("hierba"));
+            var desorden = new Switchery(document.getElementById("desordenSub"));
+
+        });
+    </script>
+
+}

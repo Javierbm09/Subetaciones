@@ -1,0 +1,76 @@
+﻿@model Subestaciones.Models.ES_TP_Devanado
+@{
+    /**/
+
+    ViewBag.Title = "Insertar Devanados de Transformador de Potencial";
+}
+
+<div class="panel panel-bordered-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Editar devanado @Model.Nro_Dev del TC @Model.Nro_TP</h3>
+    </div>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form">
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Nro_TP)
+                @Html.HiddenFor(model => model.Nro_Dev)
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nro_Dev, htmlAttributes: new { @class = "control-label" })
+                            @*@Html.DisplayFor(model => model.Nro_Dev)*@
+                            <label class="form-control">@Model.Nro_Dev</label>
+                            @Html.ValidationMessageFor(model => model.Nro_Dev, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Tension, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.Tension, null,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "select2_single form-control" })
+                            @Html.ValidationMessageFor(model => model.Tension, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Capacidad, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Capacidad, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Capacidad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ClasePresicion, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ClasePresicion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ClasePresicion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Designacion, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Designacion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Designacion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" name="submitButton" class="btn btn-success" value="TS"><i class="fa fa-plus"></i> Guardar</button>
+                        <a class="btn btn-default" href="@Url.Action("Edit","ES_TransformadorPotencial", new { Nro_Serie = @Model.Nro_TP })"><i class="fa fa-list"></i> Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section script {
+    <script src="@Url.Content("~/Scripts/custom/select2.js")"></script>
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+    <script src="@Url.Content("~/Content/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js")"></script>
+    @Html.Partial("~/Views/Shared/_Validacion.cshtml")
+}

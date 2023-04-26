@@ -1,0 +1,51 @@
+﻿@model List<Subestaciones.Models.Clases.Baterias>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="datatable_Baterias" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Tipo batería</th>
+                    <th>Capacidad</th>
+                    <th>Tensión</th>
+                    <th>Cantidad de vasos</th>
+                    <th>Densidad</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @item.TipoBat
+
+                        </td>
+
+                        <td>
+                            @item.Capacidad
+                        </td>
+
+                        <td>
+                            @item.Tension
+                        </td>
+                        <td>
+                            @item.CantidadVasos
+                        </td>
+                        <td>
+                            @item.Densisdad
+                        </td>
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

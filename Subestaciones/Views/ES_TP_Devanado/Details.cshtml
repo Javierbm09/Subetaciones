@@ -1,0 +1,66 @@
+﻿@model Subestaciones.Models.ES_TP_Devanado
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ES_TP_Devanado</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.id_Voltaje_Secundario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_Voltaje_Secundario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Designacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Designacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ClasePresicion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ClasePresicion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Capacidad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Capacidad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tension)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tension)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -1,0 +1,8 @@
+﻿@model Subestaciones.Models.ES_TransformadorCorriente
+
+@Html.LabelFor(model => model.Elemento_Electrico);
+@Html.DropDownListFor(model => model.Elemento_Electrico, ViewBag.Elemento_Electrico as SelectList,
+    "Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+@*@Html.DropDownList("Elemento_Electrico", null, "", htmlAttributes: new { @class = "select2_single form-control" })*@
+
+

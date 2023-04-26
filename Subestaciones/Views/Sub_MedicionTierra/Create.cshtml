@@ -1,0 +1,605 @@
+﻿@model Subestaciones.Models.Clases.MedicionesTierraViewModel
+
+
+
+@{
+    ViewBag.Title = "Mediciones de tierra";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>Insertar prueba de aceite - analisis quimico reducido</h1>
+        </div>
+    }*@
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_MedicionTierra")">Lista de mediciones</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Insertar mediciones de tierra
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Create", "Sub_MedicionTierra", FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data", @id = "form" }))
+
+                            {
+                                @Html.ValidationSummary(false)
+                                @Html.AntiForgeryToken()
+
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.Mediciones.Subestacion, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Mediciones.Empresa, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Mediciones.Fecha, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Mediciones.RealizadaPor, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Mediciones.Subestacion, htmlAttributes: new { @class = "control-label" })
+
+                                                    @Html.DropDownListFor(model => model.Mediciones.Subestacion, ViewBag.ListaSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Mediciones.Empresa, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Mediciones.Empresa, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Mediciones.RealizadaPor, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Mediciones.RealizadaPor, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                @Html.LabelFor(model => model.Mediciones.Fecha, htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.Mediciones.Fecha, new { htmlAttributes = new { @class = "form-control datepicker", @disabled = "disabled" } })
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            @*@Html.HidRdenFor(model => model.Id_EAdministrativa)*@
+                                            @Html.HiddenFor(model => model.Mediciones.f)
+
+                                        </div>
+
+                                        <div class="tabbable-line boxless tabbable-reversed ">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active">
+                                                    <a href="#tab_0" data-toggle="tab" id="tab0">Curva de ca&iacute;da potencial </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab_1" data-toggle="tab" id="tab1">Continuidad de Malla </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab_2" data-toggle="tab" id="tab1">Esquemas Puntos Medición </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab_0">
+                                                    <div class="panel">
+                                                        <div class="panel-heading">Datos generales</div>
+                                                        <div class="panel-body">
+
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.Mediciones.Marca, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Mediciones.Marca, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.Mediciones.Modelo, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Mediciones.Modelo, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.Mediciones.Serie, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Mediciones.Serie, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.Mediciones.Operador, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Mediciones.Operador, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        @Html.LabelFor(model => model.Mediciones.Angulo, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Mediciones.Angulo, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.Mediciones.TipoMalla, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.Mediciones.TipoMalla, ViewBag.malla as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.Mediciones.Diagonal, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.Mediciones.Diagonal, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.Mediciones.Temperatura, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.Mediciones.Temperatura, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.Mediciones.EstadoSuelo, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.Mediciones.EstadoSuelo, ViewBag.estadoSuelo as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.Mediciones.TipoSuelo, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.Mediciones.TipoSuelo, ViewBag.tipoSuelo as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.Mediciones.CorrienteParasita, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.DropDownListFor(model => model.Mediciones.CorrienteParasita, ViewBag.corriente as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    @Html.LabelFor(model => model.Mediciones.ResistenciaResultante, htmlAttributes: new { @class = "control-label" })
+                                                                    @Html.EditorFor(model => model.Mediciones.ResistenciaResultante, new { htmlAttributes = new { @class = "form-control" } })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="panel">
+                                                                <div class="panel-heading">Tabla de Curvatura</div>
+                                                                <div class="panel-body">
+                                                                    <div class="row">
+                                                                        <div class="form-group">
+                                                                            @Html.LabelFor(model => model.Mediciones.DistElectCorriente, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                                            <div class="col-md-2">
+                                                                                @Html.EditorFor(model => model.Mediciones.DistElectCorriente, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                @Html.ValidationMessageFor(model => model.Mediciones.DistElectCorriente, "", new { @class = "text-danger" })
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="scroller" height: 50px; overflow-y: initial;" data-initialized="1">
+
+                                                                            <div class=" col-md-5" id="TablaCaida">
+                                                                                <table style="width:100%">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Dist. Elect. Potencial (m)</th>
+                                                                                            <th>Resistencia (Ω)</th>
+
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @{
+                                                if (Model != null && Model.CaidaPotencial != null)
+                                                {
+                                                    for (int i = 0; i < Model.CaidaPotencial.Count; i++)
+                                                    {
+                                                        <tr>
+
+                                                            <td>
+                                                                @*@Html.DropDownListFor(model => model.ptosCalientes[i].elemennto, ViewBag.ListaE as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control select2" })*@
+
+                                                                @Html.TextBoxFor(model => model.CaidaPotencial[i].DistanciaElectrodoPotencial, new { @class = "col-md-2", @id = "ptosCalientes_elemennto" + i })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => model.CaidaPotencial[i].Resistencia, new { @class = "col-md-2", @id = "ptosCalientes_descrpPtoCaleinte" + i })
+                                                            </td>
+
+                                                        </tr>
+
+        }
+    }
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="panel-footer">
+                                                                    <button type="button" name="addpto" id="addpto" class="btn btn-success"><i class="fa fa-plus"></i> + </button>
+                                                                    <button type="button" name="delpto" id="delpto" class="btn btn-danger"><i class="fa fa-minus"></i> - </button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="panel">
+                                                                <div class="panel-heading">Gr&aacute;fico de Curvatura</div>
+                                                                <div class="panel-body">
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane " id="tab_1">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Mediciones.NumeroPuntos, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-2">
+
+                                                                @Html.EditorFor(model => model.Mediciones.NumeroPuntos, new { htmlAttributes = new { @class = "form-control" } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button class="btn blue mt-ladda-btn ladda-button btn-outline" type="button" id="generaPtos" data-style="slide-right" data-spinner-color="#333">
+                                                                <span class="ladda-label">
+                                                                    <i class="icon-play-circle"></i>  Generar puntos
+                                                                </span>
+                                                                <span class="ladda-spinner"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="row" id="mostrarTabla">
+                                                            <div class="scroller" height: 50px; overflow-y: initial;" data-initialized="1">
+
+                                                                <div class=" col-md-5" id="TablaPtos">
+                                                                    <table style="width:100%">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>N&uacute;mero de la Medición</th>
+                                                                                <th>Resistencia (Ω)</th>
+                                                                                <th>Observaciones</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @{
+                                if (Model != null && Model.ContinuidadMalla != null)
+                                {
+                                    for (int i = 0; i < Model.Mediciones.NumeroPuntos; i++)
+                                    {
+                                                <tr>
+
+                                                    <td>
+                                                        @*@Html.DropDownListFor(model => model.ptosCalientes[i].elemennto, ViewBag.ListaE as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control select2" })*@
+
+                                                        @Html.TextBoxFor(model => model.ContinuidadMalla[i].NoMedicion, new { @class = "col-md-2", @id = "ptosCalientes_elemennto" + i })
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ContinuidadMalla[i].Resistencia, new { @class = "col-md-2", @id = "ptosCalientes_descrpPtoCaleinte" + i })
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(model => model.ContinuidadMalla[i].Observaciones, new { @class = "col-md-2", @id = "ptosCalientes_descrpPtoCaleinte" + i })
+                                                    </td>
+                                                </tr>
+
+}
+}
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="panel">
+                                                                <div class="panel-heading">Observaciones de la Continuidad de Malla</div>
+                                                                <div class="panel-body">
+                                                                    <div class="row">
+
+                                                                        <div class="form-group" style="width:850px">
+                                                                            @Html.LabelFor(model => model.Mediciones.MallaEquipotencial, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                                            <div class="col-md-3">
+                                                                                @Html.DropDownListFor(model => model.Mediciones.MallaEquipotencial, ViewBag.malla as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="width:650px">
+                                                                            @Html.LabelFor(model => model.Mediciones.CertificacionAPCI, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                                            <div class="col-md-3">
+                                                                                @Html.DropDownListFor(model => model.Mediciones.CertificacionAPCI, ViewBag.certf as IEnumerable<SelectListItem>,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                        <div class="tab-pane" id="tab_2">
+                                                            <div class="form-group">
+                                                                @*@Html.LabelFor(model => model.Mediciones.ImagenPuntos, htmlAttributes: new { @class = "control-label col-md-12" })*@
+                                                                <img id="ImgFoto" src="" width="480" height="480" />
+                                                                <input type="file" name="ImageData" id="ImageData" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="control-label " for="observaciones">Observaciones</label>
+                                                <textarea class="form-control" cols="20" data-val="true" data-val-length="El campo Observaciones debe ser una cadena con una longitud máxima de 750." data-val-length-max="750" id="Mediciones_ObservacionesGenerales" name="Mediciones_ObservacionesGenerales" rows="2"></textarea>
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="observaciones" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_MedicionTierra")"><i class="fa fa-list"></i> Listado de mediciones de tierra</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-plus"></i> Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- BEGIN PAGE LEVEL daterangepicker -->
+    @*<link href="~/Scripts/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Scripts/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Scripts/assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />*@
+    <!-- END PAGE LEVEL daterangepicker -->
+
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src=@Url.Content("~/Content/plugins/switchery/switchery.min.js")></script>
+
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>*@
+    @*<script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>*@
+    @*<script src="~/Scripts/assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>*@
+
+    @*<script src="~/Scripts/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>*@
+
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    @*<script src="~//assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>*@
+
+    <script src="~/Scripts/assets/global/plugins/amcharts4/core.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/amcharts4/charts.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/amcharts4/animated.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento"
+                });
+            }
+
+            inicializar_datepicker();
+
+            function inicializar_datepicker() {
+
+                $('.datepicker').datepicker({
+                    language: 'es',
+                    todayBtn: 1,
+                    autoclose: 1,
+                    todayHighlight: 1,
+                    format: 'dd/mm/yyyy ',
+                    linkFormat: 'dd/mm/yyyy ',
+                    minDate: 0
+                }).datepicker('setDate', new Date());
+            }
+
+            $("#form").submit(function () {
+                $("#Mediciones_Fecha").removeAttr('disabled');
+
+                $('#Mediciones_f').val(moment(moment($('#Fecha').datepicker('getDate'))._d).format("YYYY-MM-DD"));
+
+
+            });
+
+            $("#ImageData").change(function () {
+                cargarImagenPtos(this);
+            });
+
+            function cargarImagenPtos(imagenR) {
+                if (imagenR.files && imagenR.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#ImgFoto").attr('src', e.target.result);//renderizamos la imagen
+                    }
+                    reader.readAsDataURL(imagenR.files[0]);
+                }
+            }
+
+                     var CantPtos = @ViewBag.PtosCount;
+
+            //eliminar pto
+            $("#delpto").click(function () {
+                if ($("#TablaPtos tr").length > 1) {
+                    $("#TablaPtos tr:last").remove();
+                    CantPtos--;
+                 
+                }
+
+            });
+
+            //agregar elementoo a la tabla de curvatura
+            $("#addpto").click(function () {
+                var inst = $("#Mediciones_Subestacion").val();
+
+                if (inst == "") {
+                    swal({
+                        title: "¡Información!",
+                        text: "Seleccione la subestación.",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonClass: "btn-primary"
+                    });
+                }
+                else {
+                    
+                    var nombreDistancia = "CaidaPotencial[" + CantPtos + "].DistanciaElectrodoPotencial";
+                    var IdDistancia = "CaidaPotencial_DistanciaElectrodoPotencial" + CantPtos;
+
+                    var nombreResistencia = "CaidaPotencial[" + CantPtos + "].Resistencia";
+                    var IdResistencia = "CaidaPotencial_Resistencia" + CantPtos;
+
+
+
+                    //variables para mostrar los datos en el append de la tabla ptos calientes
+                    var inputCodSub = '<input class="CodSub" type="hidden" name="CaidaPotencial[' + CantPtos + '].Subestacion" >';
+
+                    var distancia = '<td><input text name="' + nombreDistancia + '" id="' + IdDistancia + '" class="form-control col-md-4"></text></td>';
+                    var resistencia = '<td><input text name="' + nombreResistencia + '" id="' + IdResistencia + '" class="form-control col-md-4"></text></td>';
+
+                    $("#TablaCaida tbody").append('<tr>' + inputCodSub + distancia + resistencia + '</tr>');
+                    CantPtos++;
+                }
+            });
+
+
+            //generar puntos
+            $("#generaPtos").click(function () {
+                var inst = $("#Mediciones_Subestacion").val();
+                var puntos = $("#Mediciones_NumeroPuntos").val();
+
+
+                if (inst == "") {
+                    swal({
+                        title: "¡Información!",
+                        text: "Seleccione la subestación.",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonClass: "btn-primary"
+                    });
+                } if (puntos == "") {
+                    swal({
+                        title: "¡Información!",
+                        text: "Indique el número de puntos.",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonClass: "btn-primary"
+                    });
+                } else
+                for (i = 0; i < puntos; i++) {
+
+                    var nombreNoMedicion = "ContinuidadMalla[" + i + "].NoMedicion";
+                    var IdNoMedicion = "ContinuidadMalla_NoMedicion" + i;
+                    var NoMedicion = "#" + IdNoMedicion;
+
+
+                    var nombreResistenciaCaida = "ContinuidadMalla[" + i + "].Resistencia";
+                    var IdResistenciaCaida = "ContinuidadMalla_Resistencia" + i;
+
+                    var nombreObservaciones = "ContinuidadMalla[" + i + "].Observaciones";
+                    var IdObservaciones = "ContinuidadMalla_Observaciones" + i;
+
+                    //variables para mostrar los datos en el append de la tabla ptos calientes
+                    var inputCodSub = '<input class="CodSub" type="hidden" name="ContinuidadMalla[' + i + '].Subestacion" >';
+
+                    var noMed = '<td><input text name="' + nombreNoMedicion + '" id="' + IdNoMedicion + '" class="form-control"></text></td>';
+                    var resistenciaCaida = '<td><input text name="' + nombreResistenciaCaida + '" id="' + IdResistenciaCaida + '" class="form-control"></text></td>';
+                    var observ = '<td><input text name="' + nombreObservaciones + '" id="' + IdObservaciones + '" class="form-control col-md-6"></text></td>';
+
+                    $("#TablaPtos tbody").append('<tr>' + inputCodSub + noMed + resistenciaCaida + observ + '</tr>');
+                    j = i +1;
+                    $(NoMedicion).val("P"+j);
+
+                }
+              
+            });
+
+            $("#form").submit(function () {
+                var sub = $("#Mediciones_Subestacion").val();
+                $(".CodSub").each(function (indice, valuie) { $(this).val(sub); });
+                return true;
+            });
+        });
+    </script>
+}

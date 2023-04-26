@@ -1,0 +1,57 @@
+﻿@model Subestaciones.Models.NomencladorBaterias
+
+@{
+    ViewBag.Title = "Eliminar Tipo de Batería";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Desea eliminar el tipo de batería?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoBateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoBateria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CapacidadBateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CapacidadBateria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TensionBateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TensionBateria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClaseBateria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClaseBateria)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al listado", "Index")
+        </div>
+    }
+</div>

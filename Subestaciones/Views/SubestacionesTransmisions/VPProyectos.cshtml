@@ -1,0 +1,29 @@
+﻿@model List<Subestaciones.Models.Clases.Proyectos>
+
+<table id="table_Proyectos" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Nombre del Proyecto</th>
+            <th>Estado</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @item.NombreProyecto
+                </td>
+
+                <td>
+                    @item.EstadoDelProyecto
+                </td>
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,194 @@
+﻿@model Subestaciones.Models.Clases.MttosPararrayosSubDist
+
+@{
+                /**/
+
+                ViewBag.Title = "Mantenimiento subestación de distribución - Pararrayos";
+
+}
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","SubMttoSubDistribucions")">Mantenimiento a la subestación de distribuci&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles mantenimiento a pararrayos</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Detalles mantenimiento de la subestaci&oacute;n de distribuci&oacute;n - Pararrayos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        @using (Html.BeginForm("Create", "Sub_MttoDistPararrayos", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                        {
+                            @Html.ValidationSummary(false)
+                            @Html.AntiForgeryToken()
+
+                            <!-- BEGIN FORM-->
+                            <div class="horizontal-form">
+                                <div class="form-body">
+                                    @Html.HiddenFor(model => model.Fecha)
+                                    @Html.HiddenFor(model => model.CodigoSub)
+                                    @Html.HiddenFor(model => model.Id_AdminPararrayo)
+                                    @Html.HiddenFor(model => model.Id_Pararrayo)
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos del pararrayos
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(model => model.serie, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.serie, new { htmlAttributes = new { @class = "form-control", @id = "tipo", @readonly = "readonly" } })
+
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control", @id = "tipo", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control", @id = "EP", @readonly = "readonly" } })
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.Fase, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Fase, new { htmlAttributes = new { @class = "form-control", @id = "fase", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.tension, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.tension, new { htmlAttributes = new { @class = "form-control", @id = "volt", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.corr, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.corr, new { htmlAttributes = new { @class = "form-control", @id = "corr", @readonly = "readonly" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    @Html.LabelFor(model => model.fab, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.fab, new { htmlAttributes = new { @class = "form-control", @id = "fab", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="panel">
+                                        <div class="panel-heading">
+                                            Datos del mantenimiento
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse"> </a>
+                                        </div>
+                                        <div class="panel-body">
+
+
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group ">
+                                                        @Html.LabelFor(model => model.Aislamiento, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.Aislamiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.EstAterramiento, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.EditorFor(model => model.EstAterramiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions right">
+                                        <a class="btn btn-primary" id="compo" href="@Url.Action("ComponentesMtto","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="edit" href="@Url.Action("Edit","SubMttoSubDistribucions",new {codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-primary" id="detail" href="@Url.Action("Detail","SubMttoSubDistribucions",new {nombInsp = ViewBag.nomb, codigo = ViewBag.codSub, fecha = ViewBag.fechaMtto })"><i class="fa fa-close"></i> Cancelar</a>
+                                        <a class="btn btn-warning" href="@Url.Action("Edit","Sub_MttoDistPararrayos", new { subcodigo = Model.CodigoSub, fecha = Model.Fecha,ea = Model.Id_AdminPararrayo, idPara = Model.Id_Pararrayo,  valor = ViewBag.valor  })"><i class="fa fa-list"></i>Editar</a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section script{
+    <script>
+        $(document).ready(function () {
+
+
+             var operacion = "@ViewBag.valor"
+
+            if (operacion == "Editar") {
+                $("#compo").hide();
+                $("#edit").show();
+                $("#detail").hide();
+            }
+            else if (operacion == "Detail") {
+                $("#compo").hide();
+                $("#edit").hide();
+                $("#detail").show();
+            } else  {
+                $("#compo").show();
+                $("#edit").hide();
+                $("#detail").hide();
+             }
+
+
+
+
+        });
+
+    </script>
+}

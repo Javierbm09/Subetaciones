@@ -1,0 +1,306 @@
+﻿@model Subestaciones.Models.Clases.SubestacionesTransViewModel
+
+@{
+    ViewBag.Title = "Subestaciones de transmisión";
+}
+
+@section pagetitle{
+    <div class="page-title">
+        <h1>Subestaci&oacute;n de transmisi&oacute;n</h1>
+    </div>
+}
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","SubestacionesTransmisions")">Subestaciones de transmisi&oacute;n</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Crear nuevo</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>Insertar subestaci&oacute;n de transmisi&oacute;n
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("Create", "SubestacionesTransmisions", FormMethod.Post, htmlAttributes: new { @id = "form" }))
+
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.AntiForgeryToken()
+
+                                <!-- BEGIN FORM-->
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Codigo, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Codigo, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Codigo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.CodigoAntiguo, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.TSubestaciones.CodigoAntiguo, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.CodigoAntiguo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.TipoSub, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.TSubestaciones.TipoSub, ViewBag.TiposSubs as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.TipoSub, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.NombreSubestacion, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.NombreSubestacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.NombreSubestacion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.NumeroSalidas, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.NumeroSalidas, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.NumeroSalidas, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Tipo_Terceros, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.TSubestaciones.Tipo_Terceros, ViewBag.TipoTercero as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Tipo_Terceros, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.EsquemaPorAlta, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.TSubestaciones.EsquemaPorAlta, ViewBag.EsquemasXAlta as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.EsquemaPorAlta, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.EstadoOperativo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.TSubestaciones.EstadoOperativo, ViewBag.EstadosOperativos as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.EstadoOperativo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.VoltajePrimario, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.TSubestaciones.VoltajePrimario, ViewBag.VoltajeNominalAlta as IEnumerable<SelectListItem>, "", htmlAttributes: new { @class = "form-control select2", @disabled = "disabled" })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.VoltajePrimario, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Sucursal, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.TSubestaciones.Sucursal, ViewBag.Sucursales as SelectList, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Sucursal, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Calle, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Calle, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Calle, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Numero, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Numero, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Numero, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group" id="cargarLugarHabitado">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Entrecalle1, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Entrecalle1, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Entrecalle1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Entrecalle2, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Entrecalle2, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Entrecalle2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Largo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Largo, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Largo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Ancho, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Ancho, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Ancho, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Latitud, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Latitud, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Latitud, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.Longitud, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.Longitud, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.Longitud, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TSubestaciones.FechaPuestaMarcha, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.TSubestaciones.FechaPuestaMarcha, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    @Html.ValidationMessageFor(model => model.TSubestaciones.FechaPuestaMarcha, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index")"><i class="fa fa-list"></i>Listado</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-check"></i> Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- END FORM-->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href='~/Content/plugins/switchery/switchery.min.css' rel='stylesheet' type='text/css'>
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+}
+
+@section script{
+    <script src="~/Content/plugins/switchery/switchery.min.js"></script>
+    @Html.Partial("~/Views/Shared/_Validacion.cshtml")
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            /**/
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            $('.datepicker').datepicker({
+                language: 'es',
+                autoclose: 1,
+                todayHighlight: 1,
+                format: 'yyyy/mm/dd',
+                minDate: 0
+            });
+
+            $("#TSubestaciones_Sucursal").change(function () {
+                cargarLugar_Habitado();
+            });
+
+
+            function cargarLugar_Habitado() {
+
+                var sub = $("#TSubestaciones_Sucursal").val();
+            if ( sub != "") {
+                $.ajax({
+                    url: '@Url.Action("CargarLugarHabitado")',
+                    method: "POST",
+                    data: { id_sucursal: sub },
+                    success: function (data) {
+                        $('#cargarLugarHabitado').html(data);
+                        $(".select2").select2({
+                            placeholder: "Seleccione un elemento de la lista",
+                            allowClear: true
+                        });
+                    }
+                });
+            }
+        }
+
+
+
+
+        $("#form").submit(function () {
+                var sub = $("#TSubestaciones_Codigo").val();
+                $(".CodSub").each(function (indice, valuie) { $(this).val(sub); });
+        return true;
+            });
+
+});
+    </script>
+}

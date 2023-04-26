@@ -1,0 +1,161 @@
+﻿@model IEnumerable<Subestaciones.Models.PortaFusibles>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoPortafusible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoFuse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TEquipoProt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoOperativo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_VoltajeN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorrienteNominal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FusibleAjuste)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorrienteCortoCto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Fabricante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Fusible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoFusible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_FabricanteFusible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CapacidadFusible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa_Prov)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumAccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoPortafusible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoFuse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TEquipoProt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoOperativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_VoltajeN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrienteNominal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FusibleAjuste)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrienteCortoCto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Fabricante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Fusible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoFusible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_FabricanteFusible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapacidadFusible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_EAdministrativa_Prov)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿@model List<Subestaciones.Models.Clases.Perdidas>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="datatable_Perdidas" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th rowspan="2">Circuito</th>
+                    <th colspan="7">Energía</th>
+                    <th colspan="3">Pérdidas</th>
+                </tr>
+                <tr>
+                    <th>Energía entregada a distribución</th>
+                    <th>Transferencia entregada en distribución</th>
+                    <th>Total disponible en circuito</th>
+                    <th>Facturación clientes por circuito</th>
+                    <th>Facturación sector residencial</th>
+                    <th>Facturación sector estatal mayor</th>
+                    <th>Facturación sector estatal menor</th>
+                    <th>Consumo de energía</th>
+                    <th>Técnicas</th>
+                    <th>Totales</th>
+                    <th>% Totales</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @item.Circuito
+                        </td>
+
+                        <td>
+                            @item.eEntregadaADistrib
+                        </td>
+                        <td>
+                            @item.transfEntregadaEnDistrib
+                        </td>
+
+                        <td>
+                            @item.eTotalDisponibleEnCto
+                        </td>
+                        <td>
+                            @item.factClientesPorCto
+                        </td>
+
+                        <td>
+                            @item.factSectorResidencial
+                        </td>
+                        <td>
+                            @item.factSectorEstatalMayor
+                        </td>
+
+                        <td>
+                            @item.factSectorEstatalMenor
+                        </td>
+                        <td>
+                            @item.consumoEmpresa
+                        </td>
+
+                        <td>
+                            @item.PerdidasTecnicas
+                        </td>
+                        <td>
+                            @item.pCtoDistribucion
+                        </td>
+
+                        <td>
+                            @item.pPorcPCtoDistribucion
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

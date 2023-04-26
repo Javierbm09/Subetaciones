@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Subestaciones.Models.Breakers>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoBreaker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_fabricante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_VoltajeN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidad_breaker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa_Prov)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumAccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoBreaker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_fabricante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_VoltajeN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidad_breaker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_EAdministrativa_Prov)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

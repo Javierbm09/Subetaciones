@@ -1,0 +1,46 @@
+﻿@model List<Subestaciones.Models.Clases.DefectoViewModel>
+
+<table id="datatable_nts" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Elemento</th>
+            <th>Material</th>
+            <th>Defecto</th>
+            <th>Prioridad</th>
+            <th>Fecha</th>
+            <th>Fecha fin</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+        <tr>
+            <td>
+                @item.Elemento
+            </td>
+
+            <td>
+                @item.Material
+            </td>
+            <td>
+                @item.Defecto
+            </td>
+            <td>
+                @item.prioridad
+            </td>
+
+            <td>
+                @item.Fecha
+            </td>
+            <td>
+                @item.FechaFin
+            </td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>
+

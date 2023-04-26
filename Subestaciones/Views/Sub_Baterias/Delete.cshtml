@@ -1,0 +1,81 @@
+﻿@model Subestaciones.Models.Clases.Baterias
+
+@{
+    ViewBag.Title = "Eliminar batería";
+}
+
+<h2>Eliminar batería</h2>
+
+<h3>¿Desea eliminar la batería?</h3>
+<div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.Id_ServicioCDBat)
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modelo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capacidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoBat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoBat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Densisdad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Densisdad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voltaje_Vasos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voltaje_Vasos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadVasos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadVasos)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar Batería" class="btn btn-default" /> |
+            <a class="btn btn-default" href="@Url.Action("Edit","Sub_RedCorrienteDirecta",new {Id_ServicioCD= Model.Id_ServicioCDBat })"><i class="fa fa-list"></i> Regresar</a>
+        </div>
+    }
+</div>

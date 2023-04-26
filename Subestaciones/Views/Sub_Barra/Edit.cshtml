@@ -1,0 +1,314 @@
+﻿@model Subestaciones.Models.Sub_Barra
+
+
+@{
+    ViewBag.Title = "Barras";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>editar banco de capacitor</h1>
+        </div>
+    }*@
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_Barra")">Lista de barras</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Editar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-bars"></i>Editar barra @Html.DisplayFor(model => model.codigo)
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("SubAnterior", Model.Subestacion)
+                                @Html.Hidden("CodAnterior", Model.codigo)
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.Subestacion, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Conductor, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Subestacion, htmlAttributes: new { @class = "control-label" })
+                                                    @*@Html.DropDownList("Subestacion", null, "", htmlAttributes: new { @class = "select2_single form-control" })*@
+                                                    @Html.DropDownListFor(model => model.Subestacion, ViewBag.ListadoSubestacion as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                    @*@Html.ValidationMessageFor(model => model.Subestacion, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.codigo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group ">
+
+                                                    @Html.LabelFor(model => model.Conductor, htmlAttributes: new { @class = "control-label" })
+                                                    <div class="form-inline">
+                                                        @Html.EditorFor(model => model.Conductor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @*<button data-target="#demo-modal-wo-anim" data-toggle="modal" class="form-control">
+                                                                <span class="ti-search"></span>
+                                                            </button>*@<a class="btn blue btn-outline sbold" href="#basic" data-toggle="modal">Conductores </a>
+
+                                                        @*@Html.ValidationMessageFor(model => model.Conductor, "", new { @class = "text-danger" })*@
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class=" form-group">
+                                                    @Html.LabelFor(model => model.ID_Voltaje, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.DropDownList("ID_Voltaje", null, "", htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.ValidationMessageFor(model => model.ID_Voltaje, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.corriente, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.corriente, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.corriente, "", new { @class = "text-danger", type = "number"})
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.CantidadCond, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.CantidadCond, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CantidadCond, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_barra")"><i class="fa fa-list"></i> Listado de barras</a>
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="modal" id="basic" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+
+                                        <!--Modal header-->
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                                            <h4 class="modal-title">Conductores</h4>
+                                        </div>
+
+
+                                        <!--Modal body-->
+                                        <div class="modal-body">
+                                            <table class="table" id="tabla_conductores" style="cursor:pointer">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            C&oacute;digo conductor
+                                                        </th>
+                                                        <th>
+                                                            Tipo conductor
+                                                        </th>
+                                                        <th>
+                                                            Material
+                                                        </th>
+                                                        <th>
+                                                            Calibre
+                                                        </th>
+                                                        <th>
+                                                            Recubrimiento
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.Cond)
+                                                    {
+                                                        <tr>
+
+                                                            <td>
+                                                                <input type="hidden" value=@item.codigo id="Codigo">
+                                                                @item.codigo
+                                                            </td>
+                                                            <td>
+                                                                @item.TCond
+                                                            </td>
+                                                            <td>
+                                                                @item.material
+                                                            </td>
+                                                            <td>
+                                                                @item.calibre
+                                                            </td>
+                                                            <td>
+                                                                @item.recubrimiento
+                                                            </td>
+                                                        </tr>
+                                                    }
+
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+
+
+                                        <!--Modal footer-->
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" type="button" id="Seleccionar">Seleccionar</button>
+                                            <button data-dismiss="modal" class="btn btn-default" type="button" id="cerrar">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Scripts/assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- BEGIN PAGE LEVEL daterangepicker -->
+    <link href="~/Scripts/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL daterangepicker -->
+
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+            var table = $("#tabla_conductores").DataTable({
+                "language": {
+                    "aria": {
+                        "sortAscending": ":Activar para ordenar la columna de manera ascendente",
+                        "sortDescending": ": Activar para ordenar la columna de manera descendiente"
+                    },
+                    "emptyTable": "Ningún dato disponible en esta tabla",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "lengthMenu": "_MENU_ Registros",
+                    "search": "Buscar:",
+                    "zeroRecords": "No se encontraron resultados",
+                    "select-item": "elementos seleccionados"
+                },
+                buttons: [
+                    //{ extend: 'pdf', className: 'btn red default' },
+                    //{ extend: 'excel', className: 'btn green default ' },
+                    //{ extend: 'colvis', className: 'btn white default', text: 'Columnas' }
+                ],
+                responsive: true,
+                select: true,
+
+                "order": [
+                    [0, 'asc']
+                ],
+
+                "lengthMenu": [
+                    [5, 10, 15, 20, -1],
+                    [5, 10, 15, 20, "Todos"]
+                ],
+
+                "pageLength": 10,
+
+                "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+            });
+
+            $("#Seleccionar").click(function () {
+                if (table.rows({ selected: true }).count() > 0) {
+                    $("#Conductor").val($("#Codigo", ".selected").val());
+                    $("#cerrar").click();
+                    //alert($("#Codigo", ".selected").val());
+
+                }
+            });
+        });
+
+    </script>
+}

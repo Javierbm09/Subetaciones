@@ -1,0 +1,70 @@
+﻿@model Subestaciones.Models.Clases.RedCD
+
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h3>¿Desea eliminar el servicio de red de corriente directa?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreSub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreSub)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreServicioCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreServicioCD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idVoltaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idVoltaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsoRed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsoRed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ControlAislamBarras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ControlAislamBarras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al listado", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,158 @@
+﻿@model Subestaciones.Models.Inst_Nomenclador_Cuchillas
+
+@{
+                /**/
+
+                /**/
+
+                ViewBag.Title = "Cuchillas";
+}
+
+@*@section pagetitle{
+        <div class="page-title">
+            <h1>editar banco de capacitor</h1>
+        </div>
+    }*@
+
+
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","InstalacionDesconectivos")">Lista de desconectivos</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Editar cuchilla</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-bars"></i>Editar desconectivo tipo cuchilla
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.Id_Cuchilla)
+                                @Html.HiddenFor(model => model.Id_Administrativa)
+                                @Html.HiddenFor(model => model.id_EAdministrativa_Prov)
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="display:none">
+                                            @Html.ValidationMessageFor(model => model.Id_Fabricante, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Id_Tension, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Id_Operacion, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Id_Mando, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Id_Fabricante, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Id_Fabricante, ViewBag.fab as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Id_Tension, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.DropDownListFor(model => model.Id_Tension, ViewBag.idT as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Id_Operacion, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Id_Operacion, ViewBag.op as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Id_Mando, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.DropDownListFor(model => model.Id_Mando, ViewBag.mando as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","InstalacionDesconectivos")"><i class="fa fa-list"></i> Listado de desconectivos</a>
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Editar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+}
+
+@section script{
+
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+
+
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            inicializar_select2();
+
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+        });
+
+    </script>
+}
+
+

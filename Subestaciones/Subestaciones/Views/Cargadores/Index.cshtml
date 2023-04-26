@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Subestaciones.Models.Cargadores>
+
+@{
+    ViewBag.Title = "Cargadores";
+    ViewBag.PTitle = "Lista de Cargadores";
+}
+
+@section breadcrumb {
+    <li><a href="#"><i class="ti-layout-accordion-list"></i></a></li>
+    <li class="active">Cargadores</li>
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="datatable" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Tipo de Cargador</th>
+                    <td>@Model.TipoCargador</td>
+
+                    <th>Tensión CD</th>
+                    <th>Tensión CA</th>
+                    <th>Corriente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoCargador)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VoltajeCorrienteDirecta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VoltajeCA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Corriente)
+                        </td>
+                        <td style="width: 95px;">
+                            <a href="@Url.Action("Details","Cargadores", new { id = item.IdCargador } )" class="btn btn-info btn-xs" title="Detalles"><i class="fa fa-eye"></i>  </a>
+                            <a href="@Url.Action("Edit","Cargadores", new { id = item.IdCargador } )" class="btn btn-warning btn-xs" title="Editar"><i class="fa fa-pencil"></i>  </a>
+                            <a href="@Url.Action("Delete","Cargadores", new { id = item.IdCargador } )" class="btn btn-danger btn-xs" title="Eliminar"><i class="fa fa-trash-o"></i>  </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <a href="@Url.Action("Create","Cargadores")" class="btn btn-info"><i class="fa fa-plus"></i> Nuevo</a>
+    </div>
+</div>
+
+@section script {
+    <script src="~/Scripts/custom/datatables.js"></script>
+}
+

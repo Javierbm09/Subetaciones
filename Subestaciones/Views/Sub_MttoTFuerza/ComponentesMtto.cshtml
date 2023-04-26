@@ -1,0 +1,1863 @@
+﻿@model Subestaciones.Models.Clases.Sub_MttoTFuerzaViewModel
+
+@{
+    ViewBag.Title = "Mantenimiento de los transformadores de fuerza";
+}
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Sub_MttoTFuerza")">Lista de mantenimientos</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Insertar</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-binoculars"></i>Insertar componentes de los transformadores de fuerza
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm("CreateComponentesExtras", "Sub_MttoTFuerza", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+
+                            {
+                                @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+
+                                <!-- BEGIN FORM-->
+
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row" style="text-align: center; font-size:20px">
+                                            @Html.ValidationMessageFor(model => model.Sub_MTF.MensajeExistenciaMtto, "", new { @class = "text-danger" })
+
+                                            @Html.HiddenFor(model => model.Sub_MTF.Id_TFuerza, new { @id = "Id_TFuerza" })
+                                            @Html.HiddenFor(model => model.Sub_MTF.Id_MttoTFuerza, new { @id = "Id_MttoTFuerza" })
+                                            @Html.HiddenFor(model => model.Sub_MTF.Id_EAdministrativaTFuerza, new { @id = "Id_EAdministrativaTFuerza" })
+
+                                            @Html.HiddenFor(model => model.Sub_MTFTDE.Id_MttoTFuerza)
+
+                                            @Html.HiddenFor(model => model.Sub_MTFPB.Id_MttoTFuerza)
+
+                                            @Html.HiddenFor(model => model.VoltajeP, new { @id = "VoltajeP" })
+                                            @Html.HiddenFor(model => model.VoltajeS, new { @id = "VoltajeS" })
+                                            @Html.HiddenFor(model => model.VoltajeT, new { @id = "VoltajeT" })
+
+                                        </div>
+
+                                        <div class="panel">
+                                            <div class="panel-heading">Datos generales del mantenimiento</div>
+                                            <div class="panel-body">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Sub_MTF.Subestacion, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.Sub_MTF.Subestacion, ViewBag.ListaSub as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2", @id = "codSub" })
+                                                        @Html.ValidationMessageFor(model => model.Sub_MTF.Subestacion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Sub_MTF.tipoMantenimiento, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.Sub_MTF.tipoMantenimiento, ViewBag.TiposMtto as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        @Html.ValidationMessageFor(model => model.Sub_MTF.tipoMantenimiento, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Sub_MTF.RevisadoPor, htmlAttributes: new { @class = "control-label" })
+                                                        @Html.DropDownListFor(model => model.Sub_MTF.RevisadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                        @Html.ValidationMessageFor(model => model.Sub_MTF.RevisadoPor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    @Html.LabelFor(model => model.Sub_MTF.Fecha, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.Sub_MTF.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Sub_MTF.Fecha, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Sub_MTF.Mantenido, htmlAttributes: new { @class = "control-label " })
+                                                        <br />
+                                                        @Html.EditorFor(model => model.Sub_MTF.Mantenido.Value, new
+                                                   {
+                                                       htmlAttributes = new
+                                                       {
+                                                           Name = "Sub_MTF.Mantenido",
+                                                           @id = "Sub_MTF_Mantenido",
+                                                           @class = "form-control js-switch",
+                                                           @readonly = "readonly"
+                                                       }
+                                                   })
+                                                        @Html.ValidationMessageFor(model => model.Sub_MTF.Mantenido, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="panel">
+                                            <div class="tabbable-line boxless tabbable-reversed">
+                                                <ul class="nav nav-tabs">
+                                                    <li>
+                                                        <a href="#tabTransf_1" data-toggle="tab" id="tabTransf1">Enrrollados </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_2" data-toggle="tab" id="tabTransf2">Bushings </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_3" data-toggle="tab" id="tabTransf3">Relación de transformación </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_4" data-toggle="tab" id="tabTransf4">Resistencia Óhmica </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_5" data-toggle="tab" id="tabTransf5">Corriente excitación </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_6" data-toggle="tab" id="tabTransf6">Conmutador </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabTransf_7" data-toggle="tab" id="tabTransf7">Inspección externa y medición de aceite </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabTransf_1">
+                                                        <div class="panel-body">
+                                                            <div class="panel">
+                                                                <div class="tabbable-line boxless tabbable-reversed ">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li>
+                                                                            <a href="#tabTransf_8" data-toggle="tab" id="tabTransf8">Aislamiento </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#tabTransf_9" data-toggle="tab" id="tabTransf9">Tangente delta </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="tabTransf_8">
+                                                                            <div class="panel-body">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrAislHumRelativa, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.EnrrAislHumRelativa, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrAislHumRelativa, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrAislTempAceite, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.EnrrAislTempAceite, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrAislTempAceite, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrAislTempAmbiente, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.EnrrAislTempAmbiente, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrAislTempAmbiente, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />
+                                                                                <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrAislInstUtilizado, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.DropDownListFor(model => model.Sub_MTFA.EnrrAislInstUtilizado, ViewBag.instAislEnrrollado as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrAislInstUtilizado, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrAislRealizadoPor, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.DropDownListFor(model => model.Sub_MTFA.EnrrAislRealizadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrAislRealizadoPor, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrAislRevisadoPor, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.DropDownListFor(model => model.Sub_MTFA.EnrrAislRevisadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrAislRevisadoPor, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <br />
+
+                                                                            <div class=" col-md-12" id="TablaSub_MTFAE">
+                                                                                <br /><br />
+                                                                                <table style="width:100%" class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th style="width:18%">Lugar de medición</th>
+                                                                                            <th>15 seg (MΩ)</th>
+                                                                                            <th>60 seg (MΩ)</th>
+                                                                                            <th>600 seg (MΩ)</th>
+                                                                                            <th>Coef. Absorción</th>
+                                                                                            <th>Estado</th>
+                                                                                            <th>Índice de polarización</th>
+                                                                                            <th>Estado</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @{
+                                                                                            if (Model != null && Model.Sub_MTFAE != null)
+                                                                                            {
+                                                                                                for (int i = 0; i < @ViewBag.LugarMedicion; i++)
+                                                                                                {
+                                                                                                    <tr>
+
+                                                                                                        <td>
+                                                                                                            @Html.TextBoxFor(model => model.Sub_MTFAE[i].LugarMedicion, new { @class = "col-md-3", @id = "Sub_MTFAE_LugarMedicion" + i })
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            @Html.TextBoxFor(model => model.Sub_MTFAE[i].Med15Seg, new { @class = "col-md-1", @id = "Sub_MTFAE_Med15Seg" + i })
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            @Html.TextBoxFor(model => model.Sub_MTFAE[i].Med60Seg, new { @class = "col-md-1", @id = "Sub_MTFAE_Med60Seg" + i })
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            @Html.TextBoxFor(model => model.Sub_MTFAE[i].Med600Seg, new { @class = "col-md-1", @id = "Sub_MTFAE_Med600Seg" + i })
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            @Html.TextBoxFor(model => model.Sub_MTFAE[i].CoefAbsorcion, new { @class = "col-md-1", @id = "Sub_MTFAE_CoefAbsorcion" + i })
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            @Html.TextBoxFor(model => model.Sub_MTFAE[i].EstadoCA, new { @class = "col-md-1", @id = "Sub_MTFAE_EstadoCA" + i })
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            @Html.TextBoxFor(model => model.Sub_MTFAE[i].IndicePolarizacion, new { @class = "col-md-1", @id = "Sub_MTFAE_IndicePolarizacion" + i })
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            @Html.TextBoxFor(model => model.Sub_MTFAE[i].EstadoIP, new { @class = "col-md-1", @id = "Sub_MTFAE_EstadoIP" + i })
+                                                                                                        </td>
+
+                                                                                                    </tr>
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="tab-pane" id="tabTransf_9">
+                                                                            <div class="panel-body">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrTDHumRelativa, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.EnrrTDHumRelativa, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrTDHumRelativa, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrTDTempAceite, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.EnrrTDTempAceite, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrTDTempAceite, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrTDTempAmbiente, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.EnrrTDTempAmbiente, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrTDTempAmbiente, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />
+                                                                                <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrTDInstUtilizado, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.DropDownListFor(model => model.Sub_MTFA.EnrrTDInstUtilizado, ViewBag.instTDEnrrollado as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrTDInstUtilizado, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrTDRealizadoPor, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.DropDownListFor(model => model.Sub_MTFA.EnrrTDRealizadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrTDRealizadoPor, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.EnrrTDRevisadoPor, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.DropDownListFor(model => model.Sub_MTFA.EnrrTDRevisadoPor, ViewBag.personal as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.EnrrTDRevisadoPor, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <br />
+
+                                                                            <div class="col-md-12" style="margin-top: 40px">
+                                                                                <div id="bootstrap_alerts_TDEnrrollado"> </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-2">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFTDE.Seccion, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFTDE.Seccion, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFTDE.Seccion, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFTDE.Esquema, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFTDE.Esquema, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFTDE.Esquema, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFTDE.Capacitancia, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFTDE.Capacitancia, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFTDE.Capacitancia, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFTDE.TangenteDelta, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFTDE.TangenteDelta, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFTDE.TangenteDelta, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <p>
+                                                                                        <div class="col-md-2" style="margin-top: 4px">
+                                                                                            <div class="form-group">
+                                                                                                <a class="btn blue" href="javascript:;" id="_insertarTDEnrrolladoAction"><i class="fa fa-angle-right"></i> Insertar</a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div id="TablaTDEnrrollado"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_2">
+                                                        <div class="panel-body">
+                                                            <div class="panel">
+                                                                <div class="tabbable-line boxless tabbable-reversed ">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li>
+                                                                            <a href="#tabTransf_10" data-toggle="tab" id="tabTransf10">Presión </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#tabTransf_11" data-toggle="tab" id="tabTransf11">Aislamiento </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#tabTransf_12" data-toggle="tab" id="tabTransf12">Tangente delta </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="tabTransf_10">
+                                                                            <div class="panel-body">
+                                                                                <div class="col-md-12" id="TablaSub_MTFPB">
+                                                                                    <table style="width:100%" class="table">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th style="width:14%">Nivel Voltaje</th>
+                                                                                                <th style="width:14%">Fase A Antes</th>
+                                                                                                <th style="width:14%">Fase A Después</th>
+                                                                                                <th style="width:14%">Fase B Antes</th>
+                                                                                                <th style="width:14%">Fase B Después</th>
+                                                                                                <th style="width:14%">Fase C Antes</th>
+                                                                                                <th style="width:14%">Fase C Después</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    @Html.TextBoxFor(model => model.Sub_MTFPB.NivelVoltaje, new { @class = "form-control", @id = "Sub_MTFPB_NivelVoltaje", @readonly = "readonly" })
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    @Html.TextBoxFor(model => model.Sub_MTFPB.FaseAAntes, new { @class = "form-control", @id = "Sub_MTFPB_FaseAAntes" })
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    @Html.TextBoxFor(model => model.Sub_MTFPB.FaseADespues, new { @class = "form-control", @id = "Sub_MTFPB_FaseADespues" })
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    @Html.TextBoxFor(model => model.Sub_MTFPB.FaseBAntes, new { @class = "form-control", @id = "Sub_MTFPB_FaseBAntes" })
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    @Html.TextBoxFor(model => model.Sub_MTFPB.FaseBDespues, new { @class = "form-control", @id = "Sub_MTFPB_FaseBDespues" })
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    @Html.TextBoxFor(model => model.Sub_MTFPB.FaseCAntes, new { @class = "form-control", @id = "Sub_MTFPB_FaseCAntes" })
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    @Html.TextBoxFor(model => model.Sub_MTFPB.FaseCDespues, new { @class = "form-control", @id = "Sub_MTFPB_FaseCDespues" })
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="tab-pane" id="tabTransf_11">
+                                                                            <div class="panel-body">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.BushAislHumRelativa, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.BushAislHumRelativa, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.BushAislHumRelativa, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.BushAislTempEquipo, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.BushAislTempEquipo, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.BushAislTempEquipo, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.BushAislTempAmbiente, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.BushAislTempAmbiente, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.BushAislTempAmbiente, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.BushAislInstUtilizado, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.DropDownListFor(model => model.Sub_MTFA.BushAislInstUtilizado, ViewBag.instAislEnrrollado as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.BushAislInstUtilizado, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <br />
+                                                                            <div class="col-md-12" id="TablaSub_MTFAB">
+                                                                                <br />
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th></th>
+                                                                                            <th style="text-align: center" colspan="4">Fase A</th>
+                                                                                            <th style="text-align: center" colspan="4">Fase B</th>
+                                                                                            <th style="text-align: center" colspan="4">Fase c</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <th>Bushings</th>
+                                                                                            <th>R15s (MΩ)</th>
+                                                                                            <th>R60s (MΩ)</th>
+                                                                                            <th>K=R60s/R15s</th>
+                                                                                            <th>Estado</th>
+                                                                                            <th>R15s (MΩ)</th>
+                                                                                            <th>R60s (MΩ)</th>
+                                                                                            <th>K=R60s/R15s</th>
+                                                                                            <th>Estado</th>
+                                                                                            <th>R15s (MΩ)</th>
+                                                                                            <th>R60s (MΩ)</th>
+                                                                                            <th>K=R60s/R15s</th>
+                                                                                            <th>Estado</th>
+                                                                                        </tr>
+                                                                                        @{
+                                                                                            if (Model != null && Model.Sub_MTFAB != null)
+                                                                                            {
+                                                                                                for (int i = 0; i < 2; i++)
+                                                                                                {
+                                                                                                    <tr>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].TipoBushing, new { @class = "form-control", @id = "Sub_MTFAB_TipoBushing" + i, @readonly = "readonly" })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseA_R15, new { @class = "form-control", @id = "Sub_MTFAB_FaseA_R15" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseA_R60, new { @class = "form-control", @id = "Sub_MTFAB_FaseA_R60" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseA_K, new { @class = "form-control", @id = "Sub_MTFAB_FaseA_K" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseA_Estado, new { @class = "form-control", @id = "Sub_MTFAB_Estado" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseB_R15, new { @class = "form-control", @id = "Sub_MTFAB_FaseB_R15" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseB_R60, new { @class = "form-control", @id = "Sub_MTFAB_FaseB_R60" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseB_K, new { @class = "form-control", @id = "Sub_MTFAB_FaseB_K" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseB_Estado, new { @class = "form-control", @id = "Sub_MTFAB_FaseB_Estado" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseC_R15, new { @class = "form-control", @id = "Sub_MTFAB_FaseC_R15" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseC_R60, new { @class = "form-control", @id = "Sub_MTFAB_FaseC_R60" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseC_K, new { @class = "form-control", @id = "Sub_MTFAB_FaseC_K" + i })</td>
+                                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFAB[i].FaseC_Estado, new { @class = "form-control", @id = "Sub_MTFAB_FaseC_Estado" + i })</td>
+                                                                                                    </tr>
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="tab-pane" id="tabTransf_12">
+                                                                            <div class="panel-body">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.BushTDHumRelativa, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.BushTDHumRelativa, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.BushTDHumRelativa, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.BushTDTempEquipo, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.BushTDTempEquipo, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.BushTDTempEquipo, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.BushTDTempAmbiente, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFA.BushTDTempAmbiente, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.BushTDTempAmbiente, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFA.BushTDInstUtilizado, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.DropDownListFor(model => model.Sub_MTFA.BushTDInstUtilizado, ViewBag.instTDEnrrollado as SelectList,
+"Seleccione un elemento de la lista", htmlAttributes: new { @class = "form-control select2" })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFA.BushTDInstUtilizado, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <br />
+
+                                                                            <div class="col-md-12" style="margin-top: 40px">
+                                                                                <div id="bootstrap_alerts_TDBushings"> </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-2">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFTDB.Seccion, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFTDB.Seccion, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFTDB.Seccion, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFTDB.Esquema, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFTDB.Esquema, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFTDB.Esquema, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFTDB.Capacitancia, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFTDB.Capacitancia, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFTDB.Capacitancia, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        @Html.LabelFor(model => model.Sub_MTFTDB.TanDelta, htmlAttributes: new { @class = "control-label" })
+                                                                                        @Html.EditorFor(model => model.Sub_MTFTDB.TanDelta, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFTDB.TanDelta, "", new { @class = "text-danger" })
+                                                                                    </div>
+                                                                                    <p>
+                                                                                        <div class="col-md-2" style="margin-top: 4px">
+                                                                                            <div class="form-group">
+                                                                                                <a class="btn blue" href="javascript:;" id="_insertarTDBushingsAction"><i class="fa fa-angle-right"></i> Insertar</a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div id="TablaTDBushings"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="tab-pane" id="tabTransf_3">
+                                                        <div class="panel-body">
+                                                            <div class="col-md-12" id="TablaSub_MTFRT">
+                                                                <table style="width:100%" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width:11%">Nro.Derivación</th>
+                                                                            <th style="width:11%">Fase A Antes</th>
+                                                                            <th style="width:11%">Fase A Después</th>
+                                                                            <th style="width:11%">Fase B Antes</th>
+                                                                            <th style="width:11%">Fase B Después</th>
+                                                                            <th style="width:11%">Fase C Antes</th>
+                                                                            <th style="width:11%">Fase C Después</th>
+                                                                            <th style="width:11%">Valor Teórico</th>
+                                                                            <th style="width:11%">Desv. %</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{
+                                                                            if (Model != null && Model.Sub_MTFRT != null)
+                                                                            {
+                                                                                for (int i = 0; i < @ViewBag.nroDerivacion; i++)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].NroDerivacion, new { @class = "form-control", @id = "Sub_MTFRT_NroDerivacion" + i, @readonly = "readonly" })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].FaseAAntes, new { @class = "form-control", @id = "Sub_MTFRT_FaseAAntes" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].FaseADespues, new { @class = "form-control", @id = "Sub_MTFRT_FaseADespues" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].FaseBAntes, new { @class = "form-control", @id = "Sub_MTFRT_FaseBAntes" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].FaseBDespues, new { @class = "form-control", @id = "Sub_MTFRT_FaseBDespues" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].FaseCAntes, new { @class = "form-control", @id = "Sub_MTFRT_FaseCAntes" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].FaseCDespues, new { @class = "form-control", @id = "Sub_MTFRT_FaseCDespues" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].ValorTeorico, new { @class = "form-control", @id = "Sub_MTFRT_ValorTeorico" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRT[i].PorcDesviacion, new { @class = "form-control", @id = "Sub_MTFRT_PorcDesviacion" + i })</td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_4">
+                                                        <div class="panel-body">
+                                                            <div class="col-md-12" id="TablaSub_MTFRO">
+                                                                <table style="width:100%" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width:12.5%">Nro.Derivación</th>
+                                                                            <th style="width:12.5%">Fase A Antes</th>
+                                                                            <th style="width:12.5%">Fase A Después</th>
+                                                                            <th style="width:12.5%">Fase B Antes</th>
+                                                                            <th style="width:12.5%">Fase B Después</th>
+                                                                            <th style="width:12.5%">Fase C Antes</th>
+                                                                            <th style="width:12.5%">Fase C Después</th>
+                                                                            <th style="width:12.5%">Desv. %</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{
+                                                                            if (Model != null && Model.Sub_MTFRO != null)
+                                                                            {
+                                                                                for (int i = 0; i < (@ViewBag.nroDerivacion + 6); i++)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRO[i].NroDeriv, new { @class = "form-control", @id = "Sub_MTFRO_NroDeriv" + i, @readonly = "readonly" })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRO[i].FaseAAntes, new { @class = "form-control", @id = "Sub_MTFRO_FaseAAntes" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRO[i].FaseADespues, new { @class = "form-control", @id = "Sub_MTFRO_FaseADespues" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRO[i].FaseBAntes, new { @class = "form-control", @id = "Sub_MTFRO_FaseBAntes" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRO[i].FaseBDespues, new { @class = "form-control", @id = "Sub_MTFRO_FaseBDespues" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRO[i].FaseCAntes, new { @class = "form-control", @id = "Sub_MTFRO_FaseCAntes" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRO[i].FaseCDespues, new { @class = "form-control", @id = "Sub_MTFRO_FaseCDespues" + i })</td>
+                                                                                        <td>@Html.TextBoxFor(model => model.Sub_MTFRO[i].PorcientoDesviacion, new { @class = "form-control", @id = "Sub_MTFRO_PorcientoDesviacion" + i })</td>
+                                                                                        <td>@Html.HiddenFor(model => model.Sub_MTFRO[i].NivelVoltaje, new { @class = "form-control", @id = "Sub_MTFRO_NivelVoltaje" + i })</td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_5">
+                                                        <div class="panel-body">
+                                                            <div class="col-md-12">
+                                                                <div id="bootstrap_alerts_CorrienteExit"> </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-2">
+                                                                        @Html.LabelFor(model => model.Sub_MTFCE.Tap, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Sub_MTFCE.Tap, new { htmlAttributes = new { @class = "form-control" } })
+                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFCE.Tap, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        @Html.LabelFor(model => model.Sub_MTFCE.A_0, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Sub_MTFCE.A_0, new { htmlAttributes = new { @class = "form-control" } })
+                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFCE.A_0, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        @Html.LabelFor(model => model.Sub_MTFCE.B_0, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Sub_MTFCE.B_0, new { htmlAttributes = new { @class = "form-control" } })
+                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFCE.B_0, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        @Html.LabelFor(model => model.Sub_MTFCE.C_0, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Sub_MTFCE.C_0, new { htmlAttributes = new { @class = "form-control" } })
+                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFCE.C_0, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        @Html.LabelFor(model => model.Sub_MTFCE.PorcientoDesviacion, htmlAttributes: new { @class = "control-label" })
+                                                                        @Html.EditorFor(model => model.Sub_MTFCE.PorcientoDesviacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                                        @Html.ValidationMessageFor(model => model.Sub_MTFCE.PorcientoDesviacion, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                    <p>
+                                                                        <div class="col-md-2" style="margin-top: 4px">
+                                                                            <div class="form-group">
+                                                                                <a class="btn blue" href="javascript:;" id="_insertarCorrienteExitAction"><i class="fa fa-angle-right"></i> Insertar</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </p>
+                                                                </div>
+                                                                <div id="TablaCorrienteExit"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_6">
+                                                        <div class="panel-body">
+                                                            Tab 6
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_7">
+                                                        <div class="panel-body">
+                                                            Tab 7
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane" id="tabTransf_8">
+                                                        <div class="panel-body">
+                                                            Tab 8
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index","Sub_MttoBateriasEstacionarias")"><i class="fa fa-list"></i> Listado de mantenimientos</a>
+                                            <button type="submit" class="btn blue">
+                                                <i class="fa fa-plus"></i> Guardar
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+
+    <link href="~/Scripts/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href=@Url.Content("~/Content/plugins/switchery/switchery.min.css") rel="stylesheet">
+
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.orange.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.energyblue.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.windowsphone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.highcontrast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/plugins/jqwidgets/styles/jqx.light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/alertifyjs/css/alertify.min.css" rel="stylesheet" type="text/css" />
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/TooltipValidator1Anidacion.js")"></script>
+
+    <script src="~/Scripts/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/table-datatables-responsive.min.js" type="text/javascript"></script>
+
+    <script src=@Url.Content("~/Content/plugins/switchery/switchery.min.js")></script>
+
+
+    <!--datepicker-->
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-datetimepicker2.4.4/js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
+    <!--datepicker-->
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+
+
+    <script src="~/Scripts/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    @*<script src="~//assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>*@
+
+    <script src="~/Scripts/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcore.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxbuttons.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxscrollbar.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxmenu.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxwindow.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.edit.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxpanel.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.selection.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.aggregates.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdata.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.export.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.grouping.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.pager.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxdropdownlist.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxlistbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.sort.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.columnsresize.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxgrid.filter.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/localization.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxnumberinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcombobox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxinput.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/jqwidgets/jqxcheckbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/alertifyjs/alertify.min.js" type="text/javascript"></script>
+
+    <script>
+        var sub = "@ViewBag.Sub";
+        var idMttoTF = @ViewBag.IdMttoTF;
+        var idTF = @ViewBag.IdTF ;
+        var idEATF = @ViewBag.IdEATF;
+
+        $(document).ready(function () {
+
+            let baseUrl = $('base').attr('href');
+
+            inicializar_select2();
+
+            function inicializar_select2() {
+                $(".select2").select2({
+                    width: '',
+                    placeholder: "Seleccione un elemento de la lista"
+                });
+            }
+
+            let sub = "@ViewBag.Sub;";
+            let idMttoTF = @ViewBag.IdMttoTF;
+            let idTF = @ViewBag.IdTF;
+            let idEATF = @ViewBag.IdEATF;
+
+            let valorfecha = $("#Sub_MTF_Fecha").val();
+            let newfecha = valorfecha.split(" ")[0];
+            let diafecha = newfecha.split("/")[0];
+            let mesfecha = newfecha.split("/")[1];
+            let annofecha = newfecha.split("/")[2];
+            let finalFecha = `${annofecha}-${mesfecha}-${diafecha}`;
+            $('#Sub_MTF_Fecha').val(`${diafecha}/${mesfecha}/${annofecha}`)
+
+            $('.js-switch').bootstrapSwitch({
+                onText: "Si",
+                offText: "No"
+            });
+
+            $("#codSub").attr('disabled', true);
+            $("#Sub_MTF_tipoMantenimiento").attr('disabled', true);
+            $("#Sub_MTF_RevisadoPor").attr('disabled', true);
+            $("#Sub_MTF_Fecha").attr('disabled', true);
+
+            $('#Sub_MTFPB_NivelVoltaje').val('Primario');
+
+            for (i = 0; i < @ViewBag.LugarMedicion; i++) {
+
+                llenarTablaTab1();
+
+            }
+
+            function llenarTablaTab1() {
+
+                var nombreLugarMedicion = "Sub_MTFAE[" + i + "].LugarMedicion";
+                var idLugarMedicion = "Sub_MTFAE_LugarMedicion" + i;
+                var LugarMedicionText = "#" + idLugarMedicion;
+
+                var nombreMed15Seg = "Sub_MTFAE[" + i + "].Med15Seg";
+                var idMed15Seg = "Sub_MTFAE_Med15Seg" + i;
+                var Med15SegText = "#" + idMed15Seg;
+
+                var nombreMed60Seg = "Sub_MTFAE[" + i + "].Med60Seg";
+                var idMed60Seg = "Sub_MTFAE_Med60Seg" + i;
+                var Med60SegText = "#" + idMed60Seg;
+
+                var nombreMed600Seg = "Sub_MTFAE[" + i + "].Med600Seg";
+                var idMed600Seg = "Sub_MTFAE_Med600Seg" + i;
+                var Med600SegText = "#" + idMed600Seg;
+
+                var nombreCoefAbsorcion = "Sub_MTFAE[" + i + "].CoefAbsorcion";
+                var idCoefAbsorcion = "Sub_MTFAE_CoefAbsorcion" + i;
+                var CoefAbsorcionText = "#" + idCoefAbsorcion;
+
+                var nombreEstadoCA = "Sub_MTFAE[" + i + "].EstadoCA";
+                var idEstadoCA = "Sub_MTFAE_EstadoCA" + i;
+                var EstadoCAText = "#" + idEstadoCA;
+
+                var nombreIndicePolarizacion = "Sub_MTFAE[" + i + "].IndicePolarizacion";
+                var idIndicePolarizacion = "Sub_MTFAE_IndicePolarizacion" + i;
+                var IndicePolarizacionText = "#" + idIndicePolarizacion;
+
+                var nombreEstadoIP = "Sub_MTFAE[" + i + "].EstadoIP";
+                var idEstadoIP = "Sub_MTFAE_EstadoIP" + i;
+                var EstadoIPText = "#" + idEstadoIP;
+
+                var inputId_MttoAislamEnroll = '<input class="id_MAE" type="hidden" name="Sub_MTFAE[' + i + '].Id_MttoAislamEnroll" >';
+                var inputId_MttoTFuerza = '<input class="id_MTFAE" type="hidden" name="Sub_MTFAE[' + i + '].Id_MttoTFuerza" >';
+                var inputTipoTransformador = '<input class="tipoT" type="hidden" name="Sub_MTFAE[' + i + '].TipoTransformador" >';
+
+                var lugarMedicion = '<td><input text name="' + nombreLugarMedicion + '" id="' + idLugarMedicion + '" class="form-control"></text></td>';  //value="' +  i +'"
+                var med15Seg = '<td><input text name="' + nombreMed15Seg + '" id="' + idMed15Seg + '" class="form-control"></text></td>';
+                var med60Seg = '<td><input text name="' + nombreMed60Seg + '" id="' + idMed60Seg + '" class="form-control"></text></td>';
+                var med600Seg = '<td><input text name="' + nombreMed600Seg + '" id="' + idMed600Seg + '" class="form-control"></text></td>';
+                var coefAbsorcion = '<td><input text name="' + nombreCoefAbsorcion + '" id="' + idCoefAbsorcion + '" class="form-control"></text></td>';
+                var estadoCA = '<td><input text name="' + nombreEstadoCA + '" id="' + idEstadoCA + '" class="form-control"></text></td>';
+                var indicePolarizacion = '<td><input text name="' + nombreIndicePolarizacion + '" id="' + idIndicePolarizacion + '" class="form-control"></text></td>';
+                var estadoIP = '<td><input text name="' + nombreEstadoIP + '" id="' + idEstadoIP + '" class="form-control"></text></td>';
+
+
+                $("#TablaSub_MTFAE tbody").append('<tr>' + lugarMedicion + med15Seg + med60Seg + med600Seg + coefAbsorcion + estadoCA + indicePolarizacion + estadoIP + inputId_MttoAislamEnroll + inputId_MttoTFuerza + inputTipoTransformador +'</tr>');
+
+                if (@ViewBag.LugarMedicion == 3) {
+                    switch (i) {
+                        case 0:
+                            $(LugarMedicionText).attr("disabled", true);
+                            $(LugarMedicionText).val("Prim vs Sec + tierra");
+                            break;
+                        case 1:
+                            $(LugarMedicionText).attr("disabled", true);
+                            $(LugarMedicionText).val("Sec vs Prim+tierra");
+                            break;
+                        case 2:
+                            $(LugarMedicionText).attr("disabled", true);
+                            $(LugarMedicionText).val("Prim+Sec vs tierra");
+                            break;
+                        default:
+                            console.log(`Lo siento, no puedo hacer nada con el index ${i}.`);
+                    }
+                } else {
+                    switch (i) {
+                        case 0:
+                            $(LugarMedicionText).attr("disabled", true);
+                            $(LugarMedicionText).val("Prim vs Sec+Terc+tierra");
+                            break;
+                        case 1:
+                            $(LugarMedicionText).attr("disabled", true);
+                            $(LugarMedicionText).val("Sec vs Prim+Terc+tierra");
+                            break;
+                        case 2:
+                            $(LugarMedicionText).attr("disabled", true);
+                            $(LugarMedicionText).val("Terc vs Prim+Sec+tierra");
+                            break;
+                        case 3:
+                            $(LugarMedicionText).attr("disabled", true);
+                            $(LugarMedicionText).val("Prim+Sec+Terc vs tierra");
+                            break;
+                        default:
+                            console.log(`Lo siento, no puedo hacer nada con el index ${i}.`);
+                    }
+                }
+
+                //Cálculo de Coeficiente Absorcion y Indice Polarizacion
+                $(Med15SegText).change(function () {
+
+                    calculoCoeficienteA_IndicePolarizacion();
+
+                });
+                $(Med60SegText).change(function () {
+
+                    calculoCoeficienteA_IndicePolarizacion();
+
+                });
+                $(Med600SegText).change(function () {
+
+                    calculoCoeficienteA_IndicePolarizacion();
+
+                });
+
+                function calculoCoeficienteA_IndicePolarizacion() {
+                    if (($(Med15SegText).val() != 0) && ($(Med60SegText).val() != 0)) {
+                        $(CoefAbsorcionText).val(($(Med60SegText).val() / $(Med15SegText).val()));
+                        if ($(CoefAbsorcionText).val() != 0) {
+                            MostrarResultadoEn($(CoefAbsorcionText).val(), $(CoefAbsorcionText));
+                            $(EstadoCAText).val(AsignaEstado($(CoefAbsorcionText).val()));
+                        }
+                    }
+                    if (($(Med60SegText).val() != 0) && ($(Med600SegText).val() != 0)) {
+                        $(IndicePolarizacionText).val(($(Med600SegText).val() / $(Med60SegText).val()));
+                        if ($(IndicePolarizacionText).val() != 0) {
+                            $(EstadoIPText).val(AsignaEstado($(IndicePolarizacionText).val()));
+                        }
+                    }
+                }
+
+            }
+
+
+            for (i = 0; i < 2; i++) {
+
+                llenarTablaTab2();
+
+            }
+
+            function llenarTablaTab2() {
+
+                var nombreTipoBushing = "Sub_MTFAB[" + i + "].TipoBushing";
+                var idTipoBushing = "Sub_MTFAB_TipoBushing" + i;
+                var TipoBushingText = "#" + idTipoBushing;
+
+                // Fase A
+                var nombreFaseA_R15 = "Sub_MTFAB[" + i + "].FaseA_R15";
+                var idFaseA_R15 = "Sub_MTFAB_FaseA_R15" + i;
+                var FaseA_R15Text = "#" + idFaseA_R15;
+
+                var nombreFaseA_R60 = "Sub_MTFAB[" + i + "].FaseA_R60";
+                var idFaseA_R60 = "Sub_MTFAB_FaseA_R60" + i;
+                var FaseA_R60Text = "#" + idFaseA_R60;
+
+                var nombreFaseA_K = "Sub_MTFAB[" + i + "].FaseA_K";
+                var idFaseA_K = "Sub_MTFAB_FaseA_K" + i;
+                var FaseA_KText = "#" + idFaseA_K;
+
+                var nombreFaseA_Estado = "Sub_MTFAB[" + i + "].FaseA_Estado";
+                var idFaseA_Estado = "Sub_MTFAB_FaseA_Estado" + i;
+                var FaseA_EstadoText = "#" + idFaseA_Estado;
+
+                // Fase B
+                var nombreFaseB_R15 = "Sub_MTFAB[" + i + "].FaseB_R15";
+                var idFaseB_R15 = "Sub_MTFAB_FaseB_R15" + i;
+                var FaseB_R15Text = "#" + idFaseB_R15;
+
+                var nombreFaseB_R60 = "Sub_MTFAB[" + i + "].FaseB_R60";
+                var idFaseB_R60 = "Sub_MTFAB_FaseB_R60" + i;
+                var FaseB_R60Text = "#" + idFaseB_R60;
+
+                var nombreFaseB_K = "Sub_MTFAB[" + i + "].FaseB_K";
+                var idFaseB_K = "Sub_MTFAB_FaseB_K" + i;
+                var FaseB_KText = "#" + idFaseB_K;
+
+                var nombreFaseB_Estado = "Sub_MTFAB[" + i + "].FaseB_Estado";
+                var idFaseB_Estado = "Sub_MTFAB_FaseB_Estado" + i;
+                var FaseB_EstadoText = "#" + idFaseB_Estado;
+
+                // Fase C
+                var nombreFaseC_R15 = "Sub_MTFAB[" + i + "].FaseC_R15";
+                var idFaseC_R15 = "Sub_MTFAB_FaseC_R15" + i;
+                var FaseC_R15Text = "#" + idFaseC_R15;
+
+                var nombreFaseC_R60 = "Sub_MTFAB[" + i + "].FaseC_R60";
+                var idFaseC_R60 = "Sub_MTFAB_FaseC_R60" + i;
+                var FaseC_R60Text = "#" + idFaseC_R60;
+
+                var nombreFaseC_K = "Sub_MTFAB[" + i + "].FaseC_K";
+                var idFaseC_K = "Sub_MTFAB_FaseC_K" + i;
+                var FaseC_KText = "#" + idFaseC_K;
+
+                var nombreFaseC_Estado = "Sub_MTFAB[" + i + "].FaseC_Estado";
+                var idFaseC_Estado = "Sub_MTFAB_FaseC_Estado" + i;
+                var FaseC_EstadoText = "#" + idFaseC_Estado;
+
+
+
+                var inputId_AislamBushings = '<input class="id_MAB" type="hidden" name="Sub_MTFAB[' + i + '].Id_AislamBushings" >';
+                var inputId_MttoTFuerza = '<input class="id_MTFAB" type="hidden" name="Sub_MTFAB[' + i + '].Id_MttoTFuerza" >';
+
+                var TipoBushing = '<td><input text name="' + nombreTipoBushing + '" id="' + idTipoBushing + '" class="form-control"></text></td>';  //value="' +  i +'"
+                var FaseA_R15 = '<td><input text name="' + nombreFaseA_R15 + '" id="' + idFaseA_R15 + '" class="form-control"></text></td>';
+                var FaseA_R60 = '<td><input text name="' + nombreFaseA_R60 + '" id="' + idFaseA_R60 + '" class="form-control"></text></td>';
+                var FaseA_K = '<td><input text name="' + nombreFaseA_K + '" id="' + idFaseA_K + '" class="form-control"></text></td>';
+                var FaseA_Estado = '<td><input text name="' + nombreFaseA_Estado + '" id="' + idFaseA_Estado + '" class="form-control"></text></td>';
+                var FaseB_R15 = '<td><input text name="' + nombreFaseB_R15 + '" id="' + idFaseB_R15 + '" class="form-control"></text></td>';
+                var FaseB_R60 = '<td><input text name="' + nombreFaseB_R60 + '" id="' + idFaseB_R60 + '" class="form-control"></text></td>';
+                var FaseB_K = '<td><input text name="' + nombreFaseB_K + '" id="' + idFaseB_K + '" class="form-control"></text></td>';
+                var FaseB_Estado = '<td><input text name="' + nombreFaseB_Estado + '" id="' + idFaseB_Estado + '" class="form-control"></text></td>';
+                var FaseC_R15 = '<td><input text name="' + nombreFaseC_R15 + '" id="' + idFaseC_R15 + '" class="form-control"></text></td>';
+                var FaseC_R60 = '<td><input text name="' + nombreFaseC_R60 + '" id="' + idFaseC_R60 + '" class="form-control"></text></td>';
+                var FaseC_K = '<td><input text name="' + nombreFaseC_K + '" id="' + idFaseC_K + '" class="form-control"></text></td>';
+                var FaseC_Estado = '<td><input text name="' + nombreFaseC_Estado + '" id="' + idFaseC_Estado + '" class="form-control"></text></td>';
+
+                $("#TablaSub_MTFAB tbody").append('<tr>' + TipoBushing + FaseA_R15 + FaseA_R60 + FaseA_K + FaseA_Estado + FaseB_R15 + FaseB_R60 + FaseB_K + FaseB_Estado + FaseC_R15 + FaseC_R60 + FaseC_K + FaseC_Estado + inputId_AislamBushings + inputId_MttoTFuerza +'</tr>');
+
+                if (i == 0) {
+                    $(TipoBushingText).attr("disabled", true);
+                    $(TipoBushingText).val("Alta-pin");
+                }
+
+                if (i == 1) {
+                    $(TipoBushingText).attr("disabled", true);
+                    $(TipoBushingText).val("Pin-tierra");
+                }
+
+
+                //Cálculo de Coeficiente Absorcion y Indice Polarizacion
+                $(FaseA_R15Text).change(function () {
+
+                    calculoK();
+
+                });
+                $(FaseA_R60Text).change(function () {
+
+                    calculoK();
+
+                });
+                $(FaseB_R15Text).change(function () {
+
+                    calculoK();
+
+                });
+                $(FaseB_R60Text).change(function () {
+
+                    calculoK();
+
+                });
+                $(FaseC_R15Text).change(function () {
+
+                    calculoK();
+
+                });
+                $(FaseC_R60Text).change(function () {
+
+                    calculoK();
+
+                });
+
+
+                function calculoK() {
+                    if (($(FaseA_R15Text).val() != 0) && ($(FaseA_R60Text).val() != 0)) {
+                        $(FaseA_KText).val(($(FaseA_R60Text).val() / $(FaseA_R15Text).val()));
+                        if ($(FaseA_KText).val() != 0) {
+                            MostrarResultadoEn($(FaseA_KText).val(), $(FaseA_KText));
+                            $(FaseA_EstadoText).val(AsignaEstado($(FaseA_KText).val()));
+                        }
+                    }
+                    if (($(FaseB_R15Text).val() != 0) && ($(FaseB_R60Text).val() != 0)) {
+                        $(FaseB_KText).val(($(FaseB_R60Text).val() / $(FaseB_R15Text).val()));
+                        if ($(FaseB_KText).val() != 0) {
+                            MostrarResultadoEn($(FaseB_KText).val(), $(FaseB_KText));
+                            $(FaseB_EstadoText).val(AsignaEstado($(FaseB_KText).val()));
+                        }
+                    }
+                    if (($(FaseC_R15Text).val() != 0) && ($(FaseC_R60Text).val() != 0)) {
+                        $(FaseC_KText).val(($(FaseC_R60Text).val() / $(FaseC_R15Text).val()));
+                        if ($(FaseC_KText).val() != 0) {
+                            MostrarResultadoEn($(FaseC_KText).val(), $(FaseC_KText));
+                            $(FaseC_EstadoText).val(AsignaEstado($(FaseC_KText).val()));
+                        }
+                    }
+                }
+
+            }
+
+
+            for (i = 0; i < @ViewBag.nroDerivacion; i++) {
+
+                llenarTablaTab3();
+
+            }
+
+            function llenarTablaTab3() {
+
+                var nombreNroDerivacion = "Sub_MTFRT[" + i + "].NroDerivacion";
+                var idNroDerivacion = "Sub_MTFRT_NroDerivacion" + i;
+                var NroDerivacionText = "#" + idNroDerivacion;
+
+                var nombreFaseAAntes = "Sub_MTFRT[" + i + "].FaseAAntes";
+                var idFaseAAntes = "Sub_MTFRT_FaseAAntes" + i;
+                var FaseAAntesText = "#" + idFaseAAntes;
+
+                var nombreFaseADespues = "Sub_MTFRT[" + i + "].FaseADespues";
+                var idFaseADespues = "Sub_MTFRT_FaseADespues" + i;
+                var FaseADespuesText = "#" + idFaseADespues;
+
+                var nombreFaseBAntes = "Sub_MTFRT[" + i + "].FaseBAntes";
+                var idFaseBAntes = "Sub_MTFRT_FaseBAntes" + i;
+                var FaseBAntesText = "#" + idFaseBAntes;
+
+                var nombreFaseBDespues = "Sub_MTFRT[" + i + "].FaseBDespues";
+                var idFaseBDespues = "Sub_MTFRT_FaseBDespues" + i;
+                var FaseBDespuesText = "#" + idFaseBDespues;
+
+                var nombreFaseCAntes = "Sub_MTFRT[" + i + "].FaseCAntes";
+                var idFaseCAntes = "Sub_MTFRT_FaseCAntes" + i;
+                var FaseCAntesText = "#" + idFaseCAntes;
+
+                var nombreFaseCDespues = "Sub_MTFRT[" + i + "].FaseCDespues";
+                var idFaseCDespues = "Sub_MTFRT_FaseCDespues" + i;
+                var FaseCDespuesText = "#" + idFaseCDespues;
+
+                var nombreValorTeorico = "Sub_MTFRT[" + i + "].ValorTeorico";
+                var idValorTeorico = "Sub_MTFRT_ValorTeorico" + i;
+                var ValorTeoricoText = "#" + idValorTeorico;
+
+                var nombrePorcDesviacion = "Sub_MTFRT[" + i + "].PorcDesviacion";
+                var idPorcDesviacion = "Sub_MTFRT_PorcDesviacion" + i;
+                var PorcDesviacionText = "#" + idPorcDesviacion;
+
+                var inputId_RelacTransf = '<input class="id_MRT" type="hidden" name="Sub_MTFRT[' + i + '].Id_RelacTransf" >';
+                var inputId_MttoTFuerza = '<input class="id_MTFRT" type="hidden" name="Sub_MTFRT[' + i + '].Id_MttoTFuerza" >';
+
+                var NroDerivacion = '<td><input text name="' + nombreNroDerivacion + '" id="' + idNroDerivacion + '" class="form-control"></text></td>';  //value="' +  i +'"
+                var FaseAAntes = '<td><input text name="' + nombreFaseAAntes + '" id="' + idFaseAAntes + '" class="form-control"></text></td>';
+                var FaseADespues = '<td><input text name="' + nombreFaseADespues + '" id="' + idFaseADespues + '" class="form-control"></text></td>';
+                var FaseBAntes = '<td><input text name="' + nombreFaseBAntes + '" id="' + idFaseBAntes + '" class="form-control"></text></td>';
+                var FaseBDespues = '<td><input text name="' + nombreFaseBDespues + '" id="' + idFaseBDespues + '" class="form-control"></text></td>';
+                var FaseCAntes = '<td><input text name="' + nombreFaseCAntes + '" id="' + idFaseCAntes + '" class="form-control"></text></td>';
+                var FaseCDespues = '<td><input text name="' + nombreFaseCDespues + '" id="' + idFaseCDespues + '" class="form-control"></text></td>';
+                var ValorTeorico = '<td><input text name="' + nombreValorTeorico + '" id="' + idValorTeorico + '" class="form-control"></text></td>';
+                var PorcDesviacion = '<td><input text name="' + nombrePorcDesviacion + '" id="' + idPorcDesviacion + '" class="form-control"></text></td>';
+
+                $("#TablaSub_MTFRT tbody").append('<tr>' + NroDerivacion + FaseAAntes + FaseADespues + FaseBAntes + FaseBDespues + FaseCAntes + FaseCDespues + ValorTeorico + PorcDesviacion + inputId_RelacTransf + inputId_MttoTFuerza + '</tr>');
+
+                $(NroDerivacionText).attr("disabled", true);
+                $(NroDerivacionText).val(i + 1);
+
+
+                $(FaseAAntesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseADespuesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseBAntesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseBDespuesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseCAntesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseCDespuesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(ValorTeoricoText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+
+                function calcPorcDesv() {
+                    if ($(ValorTeoricoText).val() != 0) {
+                        $(PorcDesviacionText).val((($(ValorTeoricoText).val() - maximoValor()) / $(ValorTeoricoText).val()) * 100);
+                        if ($(PorcDesviacionText).val() > 5) {
+                            alertify.alert('Error', `El porciento de desviación para estos indicadores es de ${$(PorcDesviacionText).val()}% y debe ser menor al 5.00%. Se calcula de la siguiente forma: ((valTeorico - mayorValor) / valTeorico) * 100.`);
+                        }
+                    }
+                }
+
+                function maximoValor() {
+
+                    // Obtener los valores de los input
+                    let val1 = parseFloat($(FaseAAntesText).val());
+                    let val2 = parseFloat($(FaseADespuesText).val());
+                    let val3 = parseFloat($(FaseBAntesText).val());
+                    let val4 = parseFloat($(FaseBDespuesText).val());
+                    let val5 = parseFloat($(FaseCAntesText).val());
+                    let val6 = parseFloat($(FaseCDespuesText).val());
+
+                    // Encontrar el mayor número
+                    let max = val1;
+                    if (val2 > max) {
+                        max = val2;
+                    }
+                    if (val3 > max) {
+                        max = val3;
+                    }
+                    if (val4 > max) {
+                        max = val4;
+                    }
+                    if (val5 > max) {
+                        max = val5;
+                    }
+                    if (val6 > max) {
+                        max = val6;
+                    }
+
+                    // Devolver valor
+                    return max
+                }
+            }
+
+
+            let contador = 1;
+            for (i = 0; i < (@ViewBag.nroDerivacion + 6); i++) {
+
+                llenarTablaTab4();
+
+            }
+
+            function llenarTablaTab4() {
+
+                var nombreNroDeriv = "Sub_MTFRO[" + i + "].NroDeriv";
+                var idNroDeriv = "Sub_MTFRO_NroDeriv" + i;
+                var NroDerivText = "#" + idNroDeriv;
+
+                var nombreNivelVoltaje = "Sub_MTFRO[" + i + "].NivelVoltaje";
+                var idNivelVoltaje = "Sub_MTFRO_NivelVoltaje" + i;
+                var NivelVoltajeText = "#" + idNivelVoltaje;
+
+                var nombreFaseAAntes = "Sub_MTFRO[" + i + "].FaseAAntes";
+                var idFaseAAntes = "Sub_MTFRO_FaseAAntes" + i;
+                var FaseAAntesText = "#" + idFaseAAntes;
+
+                var nombreFaseADespues = "Sub_MTFRO[" + i + "].FaseADespues";
+                var idFaseADespues = "Sub_MTFRO_FaseADespues" + i;
+                var FaseADespuesText = "#" + idFaseADespues;
+
+                var nombreFaseBAntes = "Sub_MTFRO[" + i + "].FaseBAntes";
+                var idFaseBAntes = "Sub_MTFRO_FaseBAntes" + i;
+                var FaseBAntesText = "#" + idFaseBAntes;
+
+                var nombreFaseBDespues = "Sub_MTFRO[" + i + "].FaseBDespues";
+                var idFaseBDespues = "Sub_MTFRO_FaseBDespues" + i;
+                var FaseBDespuesText = "#" + idFaseBDespues;
+
+                var nombreFaseCAntes = "Sub_MTFRO[" + i + "].FaseCAntes";
+                var idFaseCAntes = "Sub_MTFRO_FaseCAntes" + i;
+                var FaseCAntesText = "#" + idFaseCAntes;
+
+                var nombreFaseCDespues = "Sub_MTFRO[" + i + "].FaseCDespues";
+                var idFaseCDespues = "Sub_MTFRO_FaseCDespues" + i;
+                var FaseCDespuesText = "#" + idFaseCDespues;
+
+                var nombrePorcientoDesviacion = "Sub_MTFRO[" + i + "].PorcientoDesviacion";
+                var idPorcientoDesviacion = "Sub_MTFRO_PorcientoDesviacion" + i;
+                var PorcientoDesviacionText = "#" + idPorcientoDesviacion;
+
+                var inputId_ResistOhmica = '<input class="id_MRT" type="hidden" name="Sub_MTFRO[' + i + '].Id_ResistOhmica" >';
+                var inputId_MttoTFuerza = '<input class="id_MTFRT" type="hidden" name="Sub_MTFRO[' + i + '].Id_MttoTFuerza" >';
+                var inputNivelVoltaje = '<td><input type="hidden" name="' + nombreNivelVoltaje + '" id="' + idNivelVoltaje + '" class="form-control"></text></td>';
+
+                var NroDeriv = '<td><input text name="' + nombreNroDeriv + '" id="' + idNroDeriv + '" class="form-control"></text></td>';  //value="' +  i +'"
+                var FaseAAntes = '<td><input text name="' + nombreFaseAAntes + '" id="' + idFaseAAntes + '" class="form-control"></text></td>';
+                var FaseADespues = '<td><input text name="' + nombreFaseADespues + '" id="' + idFaseADespues + '" class="form-control"></text></td>';
+                var FaseBAntes = '<td><input text name="' + nombreFaseBAntes + '" id="' + idFaseBAntes + '" class="form-control"></text></td>';
+                var FaseBDespues = '<td><input text name="' + nombreFaseBDespues + '" id="' + idFaseBDespues + '" class="form-control"></text></td>';
+                var FaseCAntes = '<td><input text name="' + nombreFaseCAntes + '" id="' + idFaseCAntes + '" class="form-control"></text></td>';
+                var FaseCDespues = '<td><input text name="' + nombreFaseCDespues + '" id="' + idFaseCDespues + '" class="form-control"></text></td>';
+                var PorcientoDesviacion = '<td><input text name="' + nombrePorcientoDesviacion + '" id="' + idPorcientoDesviacion + '" class="form-control"></text></td>';
+
+                $("#TablaSub_MTFRO tbody").append('<tr>' + NroDeriv + FaseAAntes + FaseADespues + FaseBAntes + FaseBDespues + FaseCAntes + FaseCDespues + PorcientoDesviacion + inputId_ResistOhmica + inputId_MttoTFuerza + inputNivelVoltaje + '</tr>');
+
+                if (i < @ViewBag.nroDerivacion) {
+                    $(NroDerivText).attr("disabled", true);
+                    $(NroDerivText).val(i + 1);
+                    $(NivelVoltajeText).val("Primario");
+                } else if (i >= @ViewBag.nroDerivacion && (i < (@ViewBag.nroDerivacion + 5))) {
+                    $(NroDerivText).attr("disabled", true);
+                    $(NroDerivText).val(contador++);
+                    $(NivelVoltajeText).val("Secundario");
+                } else {
+                    $(NroDerivText).attr("disabled", true);
+                    $(NroDerivText).val(1);
+                    $(NivelVoltajeText).val("Terciario");
+                }
+
+
+                $(FaseAAntesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseADespuesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseBAntesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseBDespuesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseCAntesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+                $(FaseCDespuesText).change(function () {
+
+                    calcPorcDesv();
+
+                });
+
+
+                function calcPorcDesv() {
+                    if (maximoValor() != 0) {
+                        $(PorcientoDesviacionText).val(((maximoValor() - minimoValor()) / maximoValor()) * 100);
+                        if ($(PorcientoDesviacionText).val() > 2) {
+                            alertify.alert('Error', `El porciento de desviación para estos indicadores es de ${$(PorcientoDesviacionText).val()}% y debe ser menor al 2.00%. Se calcula de la siguiente forma: (( mayor - menor ) / mayor) * 100.`);
+                        }
+                    }
+                }
+
+                function maximoValor() {
+
+                    // Obtener los valores de los input
+                    let val1 = parseFloat($(FaseAAntesText).val());
+                    let val2 = parseFloat($(FaseADespuesText).val());
+                    let val3 = parseFloat($(FaseBAntesText).val());
+                    let val4 = parseFloat($(FaseBDespuesText).val());
+                    let val5 = parseFloat($(FaseCAntesText).val());
+                    let val6 = parseFloat($(FaseCDespuesText).val());
+
+                    // Encontrar el mayor número
+                    let max = val1;
+                    if (val2 > max) {
+                        max = val2;
+                    }
+                    if (val3 > max) {
+                        max = val3;
+                    }
+                    if (val4 > max) {
+                        max = val4;
+                    }
+                    if (val5 > max) {
+                        max = val5;
+                    }
+                    if (val6 > max) {
+                        max = val6;
+                    }
+
+                    // Devolver valor
+                    return max
+                }
+
+                function minimoValor() {
+
+                    // Obtener los valores de los input
+                    let val1 = parseFloat($(FaseAAntesText).val());
+                    let val2 = parseFloat($(FaseADespuesText).val());
+                    let val3 = parseFloat($(FaseBAntesText).val());
+                    let val4 = parseFloat($(FaseBDespuesText).val());
+                    let val5 = parseFloat($(FaseCAntesText).val());
+                    let val6 = parseFloat($(FaseCDespuesText).val());
+
+                    // Encontrar el mayor número
+                    let min = val1;
+                    if (val2 < min) {
+                        min = val2;
+                    }
+                    if (val3 < min) {
+                        min = val3;
+                    }
+                    if (val4 < min) {
+                        min = val4;
+                    }
+                    if (val5 < min) {
+                        min = val5;
+                    }
+                    if (val6 < min) {
+                        min = val6;
+                    }
+
+                    // Devolver valor
+                    return min
+                }
+            }
+
+            //Colores del estado
+            function MostrarResultadoEn(resultado, elemento) {
+                if (resultado != "") {
+                    if (resultado <= 1) {
+                        elemento.css("background-color", "red");
+                    }
+                    else if (resultado > 1 && resultado <= 1.25) {
+                        elemento.css("background-color", "orange");
+                    }
+                    else if (resultado > 1.25 && resultado <= 2) {
+                        elemento.css("background-color", "lightgreen");
+                    }
+                    else {
+                        elemento.css("background-color", "green");
+                    }
+                }
+            }
+
+            // Texto del estado
+            function AsignaEstado(valor) {
+                if (valor <= 1) {
+                    return ("Peligroso");
+                } else if ((valor > 1) && (valor <= 1.25)) {
+                    return ("Discutible");
+                } else if ((valor > 1.25) && (valor <= 2)) {
+                    return ("Bueno");
+                } else if (valor > 2) {
+                    return ("Excelente");
+                } else {
+                    return ("");
+                }
+            }
+
+            $("#_insertarTDEnrrolladoAction").on('click', function () {
+                let seccion = $("#Sub_MTFTDE_Seccion").val();
+                let esquema = $("#Sub_MTFTDE_Esquema").val();
+                let capacitancia = $("#Sub_MTFTDE_Capacitancia").val();
+                let tangenteDelta = $("#Sub_MTFTDE_TangenteDelta").val();
+
+                let datosValidos = true;
+
+                if ((seccion == "" || seccion == null) &&
+                    (esquema == "" || esquema == null) &&
+                    (capacitancia == "" || capacitancia == null || capacitancia == 0) &&
+                    (tangenteDelta == "" || tangenteDelta == null || tangenteDelta == 0)) {
+                    datosValidos = false;
+                }
+
+                if (!datosValidos) {
+                    App.alert({
+                        container: "#bootstrap_alerts_TDEnrrollado", // alerts parent container(by default placed after the page breadcrumbs)
+                        place: "prepend", // append or prepent in container
+                        type: "danger",  // alert's type
+                        message: "Debe escribir al menos un valor.",  // alert's message
+                        close: 1, // make alert closable
+                        reset: 1, // close all previouse alerts first
+                        focus: 1, // auto scroll to the alert after shown
+                        closeInSeconds: 5,//, // auto close after defined seconds
+                        icon: "fa fa-danger" // put icon before the message
+                    });
+                } else {
+                    $.ajax({
+                        cache: false,
+                        dataType: 'json',
+                        url: baseUrl + "Sub_MttoTFuerza/InsertarTDEnrrollado",
+                        data: { idMTF: idMttoTF, sec: seccion, esq: esquema, cap: capacitancia, tanD: tangenteDelta },
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            $("#TablaTDEnrrollado").jqxGrid('updatebounddata');
+                            App.alert({
+                                container: "#bootstrap_alerts_TDEnrrollado", // alerts parent container(by default placed after the page breadcrumbs)
+                                place: "prepend", // append or prepent in container
+                                type: "success",  // alert's type
+                                message: "La información se guardó correctamente.",  // alert's message
+                                close: 1, // make alert closable
+                                reset: 1, // close all previouse alerts first
+                                focus: 1, // auto scroll to the alert after shown
+                                closeInSeconds: 5,//, // auto close after defined seconds
+                                icon: "fa fa-success" // put icon before the message
+                            });
+                            $("#Sub_MTFTDE_Seccion").val("");
+                            $("#Sub_MTFTDE_Esquema").val("");
+                            $("#Sub_MTFTDE_Capacitancia").val("");
+                            $("#Sub_MTFTDE_TangenteDelta").val("");
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            switch (jqXHR.status) {
+                                case 400:
+                                    App.alert({
+                                        container: "#bootstrap_alerts_TDEnrrollado", // alerts parent container(by default placed after the page breadcrumbs)
+                                        place: "prepend", // append or prepent in container
+                                        type: "danger",  // alert's type
+                                        message: "Ocurrió un error al insertar la Tangente Delta Enrrollado.",  // alert's message
+                                        close: 1, // make alert closable
+                                        reset: 1, // close all previouse alerts first
+                                        focus: 1, // auto scroll to the alert after shown
+                                        closeInSeconds: 5,//, // auto close after defined seconds
+                                        icon: "fa fa-danger" // put icon before the message
+                                    });
+                                    break;
+                                default:
+                            }
+                        }
+                    });
+
+                }
+            });
+
+            $("#_insertarTDBushingsAction").on('click', function () {
+                let seccion = $("#Sub_MTFTDB_Seccion").val();
+                let esquema = $("#Sub_MTFTDB_Esquema").val();
+                let capacitancia = $("#Sub_MTFTDB_Capacitancia").val();
+                let tangenteDelta = $("#Sub_MTFTDB_TanDelta").val();
+
+                let datosValidos = true;
+
+                if ((seccion == "" || seccion == null) &&
+                    (esquema == "" || esquema == null) &&
+                    (capacitancia == "" || capacitancia == null || capacitancia == 0) &&
+                    (tangenteDelta == "" || tangenteDelta == null || tangenteDelta == 0)) {
+                    datosValidos = false;
+                }
+
+                if (!datosValidos) {
+                    App.alert({
+                        container: "#bootstrap_alerts_TDBushings", // alerts parent container(by default placed after the page breadcrumbs)
+                        place: "prepend", // append or prepent in container
+                        type: "danger",  // alert's type
+                        message: "Debe escribir al menos un valor.",  // alert's message
+                        close: 1, // make alert closable
+                        reset: 1, // close all previouse alerts first
+                        focus: 1, // auto scroll to the alert after shown
+                        closeInSeconds: 5,//, // auto close after defined seconds
+                        icon: "fa fa-danger" // put icon before the message
+                    });
+                } else {
+                    $.ajax({
+                        cache: false,
+                        dataType: 'json',
+                        url: baseUrl + "Sub_MttoTFuerza/InsertarTDBushings",
+                        data: { idMTF: idMttoTF, sec: seccion, esq: esquema, cap: capacitancia, tanD: tangenteDelta },
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            $("#TablaTDBushings").jqxGrid('updatebounddata');
+                            App.alert({
+                                container: "#bootstrap_alerts_TDBushings", // alerts parent container(by default placed after the page breadcrumbs)
+                                place: "prepend", // append or prepent in container
+                                type: "success",  // alert's type
+                                message: "La información se guardó correctamente.",  // alert's message
+                                close: 1, // make alert closable
+                                reset: 1, // close all previouse alerts first
+                                focus: 1, // auto scroll to the alert after shown
+                                closeInSeconds: 5,//, // auto close after defined seconds
+                                icon: "fa fa-success" // put icon before the message
+                            });
+                            $("#Sub_MTFTDB_Seccion").val("");
+                            $("#Sub_MTFTDB_Esquema").val("");
+                            $("#Sub_MTFTDB_Capacitancia").val("");
+                            $("#Sub_MTFTDB_TanDelta").val("");
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            switch (jqXHR.status) {
+                                case 400:
+                                    App.alert({
+                                        container: "#bootstrap_alerts_TDBushings", // alerts parent container(by default placed after the page breadcrumbs)
+                                        place: "prepend", // append or prepent in container
+                                        type: "danger",  // alert's type
+                                        message: "Ocurrió un error al insertar la Tangente Delta Bushings.",  // alert's message
+                                        close: 1, // make alert closable
+                                        reset: 1, // close all previouse alerts first
+                                        focus: 1, // auto scroll to the alert after shown
+                                        closeInSeconds: 5,//, // auto close after defined seconds
+                                        icon: "fa fa-danger" // put icon before the message
+                                    });
+                                    break;
+                                default:
+                            }
+                            //commit(false);
+                        }
+                    });
+
+                }
+            });
+
+            // Calculos para el % desviancion dentro de la corriente exitacion
+
+            $("#Sub_MTFCE_A_0").change(function () {
+
+                calcPorcDesvCE();
+
+            });
+            $("#Sub_MTFCE_B_0").change(function () {
+
+                calcPorcDesvCE();
+
+            });
+            $("#Sub_MTFCE_C_0").change(function () {
+
+                calcPorcDesvCE();
+
+            });
+
+
+            function calcPorcDesvCE() {
+                let a = 0;
+                let b=  0;
+                let c = 0;
+                let mayor;
+                let menor;
+
+                if ($("#Sub_MTFCE_A_0").val() != 0) {
+                    a = parseFloat($("#Sub_MTFCE_A_0").val());
+                } 
+
+                if ($("#Sub_MTFCE_B_0").val() != 0) {
+                    b = parseFloat($("#Sub_MTFCE_B_0").val());
+                } 
+
+                if ($("#Sub_MTFCE_C_0").val() != 0) {
+                    c = parseFloat($("#Sub_MTFCE_C_0").val());
+                } 
+
+                mayor = calcMayor(a, b, c);
+                menor = calcMenor(a, b, c);
+
+                if (((mayor + menor) / 2) != 0) {
+                    $('#Sub_MTFCE_PorcientoDesviacion').val(((mayor - menor) / ((mayor + menor) / 2)) * 100);
+                } else {
+                    $('#Sub_MTFCE_PorcientoDesviacion').val(((mayor - menor) / ((mayor + menor) / 2)) * 100);
+                    alertify.alert('Error', `El cálculo del porciento de desviación tiene el valor 0 como denominador, verifique los valores. Fórmula ((mayor - menor) / ((mayor + menor) / 2)) * 100 .`); 
+                }
+                
+            }
+
+            function calcMayor(a, b, c) {
+                let mayor;
+                if ((a >= b) && (a >= c)) {
+                    mayor = a;
+                } else if ((b >= a) && (b >= c)) {
+                    mayor = b;
+                } else {
+                    mayor = c;
+                }
+                return mayor;
+            }
+
+            function calcMenor(a, b, c) {
+                let menor;
+                if ((a <= b) && (a <= c)) {
+                    menor = a;
+                } else if ((b <= a) && (b <= c)) {
+                    menor = b;
+                } else {
+                    menor = c;
+                }
+                return menor;
+            }
+
+            $("#_insertarCorrienteExitAction").on('click', function () {
+                let tap = $("#Sub_MTFCE_Tap").val();
+                let a = $("#Sub_MTFCE_A_0").val();
+                let b = $("#Sub_MTFCE_B_0").val();
+                let c = $("#Sub_MTFCE_C_0").val();
+                let porcDesv = $("#Sub_MTFCE_PorcientoDesviacion").val();
+
+                let datosValidos = true;
+
+                if ((tap == 0 || tap == null) &&
+                    (a == 0 || a == null) &&
+                    (b == 0 || b == null) &&
+                    (c == 0 || c == null) &&
+                    (porcDesv == 0 || c == null)) {
+                    datosValidos = false;
+                }
+
+                if (!datosValidos) {
+                    App.alert({
+                        container: "#bootstrap_alerts_CorrienteExit", // alerts parent container(by default placed after the page breadcrumbs)
+                        place: "prepend", // append or prepent in container
+                        type: "danger",  // alert's type
+                        message: "Debe escribir al menos un valor.",  // alert's message
+                        close: 1, // make alert closable
+                        reset: 1, // close all previouse alerts first
+                        focus: 1, // auto scroll to the alert after shown
+                        closeInSeconds: 5,//, // auto close after defined seconds
+                        icon: "fa fa-danger" // put icon before the message
+                    });
+                } else {
+                    $.ajax({
+                        cache: false,
+                        dataType: 'json',
+                        url: baseUrl + "Sub_MttoTFuerza/InsertarCorrienteExit",
+                        data: { idMTF: idMttoTF, tap: tap, a: a, b: b, c: c, porcDesv: porcDesv },
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            $("#TablaCorrienteExit").jqxGrid('updatebounddata');
+                            App.alert({
+                                container: "#bootstrap_alerts_CorrienteExit", // alerts parent container(by default placed after the page breadcrumbs)
+                                place: "prepend", // append or prepent in container
+                                type: "success",  // alert's type
+                                message: "La información se guardó correctamente.",  // alert's message
+                                close: 1, // make alert closable
+                                reset: 1, // close all previouse alerts first
+                                focus: 1, // auto scroll to the alert after shown
+                                closeInSeconds: 5,//, // auto close after defined seconds
+                                icon: "fa fa-success" // put icon before the message
+                            });
+                            $("#Sub_MTFCE_Tap").val("");
+                            $("#Sub_MTFCE_A_0").val("");
+                            $("#Sub_MTFCE_B_0").val("");
+                            $("#Sub_MTFCE_C_0").val("");
+                            $("#Sub_MTFCE_PorcientoDesviacion").val("");
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            switch (jqXHR.status) {
+                                case 400:
+                                    App.alert({
+                                        container: "#bootstrap_alerts_CorrienteExit", // alerts parent container(by default placed after the page breadcrumbs)
+                                        place: "prepend", // append or prepent in container
+                                        type: "danger",  // alert's type
+                                        message: "Ocurrió un error al insertar la Corriente Exitación.",  // alert's message
+                                        close: 1, // make alert closable
+                                        reset: 1, // close all previouse alerts first
+                                        focus: 1, // auto scroll to the alert after shown
+                                        closeInSeconds: 5,//, // auto close after defined seconds
+                                        icon: "fa fa-danger" // put icon before the message
+                                    });
+                                    break;
+                                default:
+                            }
+                            //commit(false);
+                        }
+                    });
+
+                }
+            });
+
+            let tP = @ViewBag.tensionPrimaria;
+            let tS = @ViewBag.tensionSecundaria;
+            let tT = @ViewBag.tensionTerciaria;
+
+            $("#form").submit(function () {
+
+                //---------Habilitando los campos necesarios que estaban desabilitados-------//
+                $("#codSub").removeAttr('disabled');
+                $("#Sub_MTF_tipoMantenimiento").removeAttr('disabled');
+                $("#Sub_MTF_RevisadoPor").removeAttr('disabled');
+                $("#Sub_MTF_Fecha").removeAttr('disabled');
+
+                for (var i = 0; i < @ViewBag.LugarMedicion; i++) {
+                    $("#Sub_MTFAE_LugarMedicion" + i).removeAttr("disabled");
+                }
+
+                for (var i = 0; i < 2; i++) {
+                    $("#Sub_MTFAB_TipoBushing" + i).removeAttr("disabled");
+                }
+
+                for (var i = 0; i < @ViewBag.nroDerivacion; i++) {
+                    $("#Sub_MTFRT_NroDerivacion" + i).removeAttr("disabled");
+                }
+
+                 for (var i = 0; i < (@ViewBag.nroDerivacion + 6); i++) {
+                    $("#Sub_MTFRO_NroDeriv" + i).removeAttr("disabled");
+                }
+
+                //-----------Valores a enviar-------------//
+
+                // Valores extras de Sub_MttoTFuerzaAislamEnrollado
+                $(".id_MAE").each(function (indice, valuie) { $(this).val(0); });
+                $(".id_MTFAE").each(function (indice, valuie) { $(this).val(idMttoTF); });
+                $(".tipoT").each(function (indice, valuie) { $(this).val(''); });
+
+                // Valores extras de Sub_MttoTFuerzaAislamBushings
+                $(".id_MAB").each(function (indice, valuie) { $(this).val(0); });
+                $(".id_MTFAB").each(function (indice, valuie) { $(this).val(idMttoTF); });
+
+                // Valores extras de Sub_MttoTFuerzaTangenteDeltaEnrollado
+                $('#Sub_MTFTDE_Id_MttoTFuerza').val(idMttoTF);
+
+                // Valores extras de Sub_MttoTFuerzaTangenteBushings
+                $('#Sub_MTFTDB_Id_MttoTFuerza').val(idMttoTF);
+
+                // Valores extras de Sub_MttoTFuerzaPresionBushings
+                $('#Sub_MTFPB_Id_MttoTFuerza').val(idMttoTF);
+
+                // Valores extras de Sub_MttoTFuerzaRelacTransf
+                $(".id_MRT").each(function (indice, valuie) { $(this).val(0); });
+                $(".id_MTFRT").each(function (indice, valuie) { $(this).val(idMttoTF); });
+
+                // Valores extras de Sub_MttoTFuerzaRelacTransf
+                $(".id_MRT").each(function (indice, valuie) { $(this).val(0); });
+                $(".id_MTFRT").each(function (indice, valuie) { $(this).val(idMttoTF); });
+
+                $('#Sub_MTF_Fecha').val(finalFecha);
+                $('#Id_TFuerza').val(idTF);
+                $('#Id_MttoTFuerza').val(idMttoTF);
+                $('#VoltajeP').val(tP);
+                $('#VoltajeS').val(tS);
+                $('#VoltajeT').val(tT);
+                //$("#Sub_MBEI_Id_InstrumentoMedicion option:selected").val(10);
+                return true;
+            });
+
+        });
+    </script>
+
+    <script src="~/Scripts/js/jsTablaTDBushings.js"></script>
+    <script src="~/Scripts/js/jsTablaTDEnrrollado.js"></script>
+    <script src="~/Scripts/js/jsTablaCorrienteExit.js"></script>
+}

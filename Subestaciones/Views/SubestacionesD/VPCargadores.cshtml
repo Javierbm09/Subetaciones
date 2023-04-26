@@ -1,0 +1,42 @@
+﻿@model List<Subestaciones.Models.Clases.BancoCargadores>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+        </div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body" id="TablaResumen">
+        <table id="datatable_Cargadores" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Tipo cargador</th>
+                    <th>Corriente</th>
+                    <th>Tensión</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @item.tipoCargador
+
+                        </td>
+
+                        <td>
+                            @item.corriente
+                        </td>
+
+                        <td>
+                            @item.volCD
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

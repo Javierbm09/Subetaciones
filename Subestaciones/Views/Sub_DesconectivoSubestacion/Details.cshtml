@@ -1,0 +1,42 @@
+﻿@model Subestaciones.Models.Sub_DesconectivoSubestacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sub_DesconectivoSubestacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sub_RedCorrienteAlterna.NombreServicioCA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sub_RedCorrienteAlterna.NombreServicioCA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TensionNominal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TensionNominal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrienteNominal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrienteNominal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

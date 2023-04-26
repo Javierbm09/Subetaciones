@@ -1,0 +1,96 @@
+﻿@model Subestaciones.Models.Sub_CelajeSubDistInterruptor
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Sub_CelajeSubDistInterruptor</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Salidero)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Salidero)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NAceite)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NAceite)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Pintura)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Pintura)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.cuentaOP)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.cuentaOP)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.estadoBateria)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.estadoBateria)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.candadoGabinete)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.candadoGabinete)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.tipoInterruptor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tipoInterruptor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.id_EAdministrativa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_EAdministrativa)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

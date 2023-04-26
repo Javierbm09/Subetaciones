@@ -1,0 +1,161 @@
+﻿@model Subestaciones.Models.NomencladorBaterias
+
+@{ViewBag.Title = "Nomenclador bater&iacute;as";}
+
+@section pagetitle{
+    <div class="page-title">
+        <h1>Detalle tipos de bater&iacute;as</h1>
+    </div>
+}
+
+
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE CONTENT BODY -->
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- BEGIN PAGE BREADCRUMBS -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","NomencladorBaterias")">Nomenclador bater&iacute;as</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Detalles del tipo de cargador</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMBS -->
+        <!-- BEGIN PAGE CONTENT INNER -->
+        <div class="page-content-inner">
+            <div class="row">
+                <div class="col-md-12">
+                   <div class="portlet box blue">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>Detalles del tipo de bater&iacute;  "@Html.DisplayFor(model => model.TipoBateria)"
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.AntiForgeryToken()
+
+                                <!-- BEGIN FORM-->
+                                <div class="horizontal-form">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TipoBateria, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.TipoBateria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.TipoBateria, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.CapacidadBateria, htmlAttributes: new { @class = "control-label" })
+                                                    @Html.EditorFor(model => model.CapacidadBateria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.CapacidadBateria, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.TensionBateria, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.TensionBateria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.TensionBateria, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.ClaseBateria, htmlAttributes: new { @class = "control-label " })
+                                                    @Html.EditorFor(model => model.ClaseBateria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.ClaseBateria, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-actions right">
+                                            <a class="btn btn-primary" href="@Url.Action("Index")"><i class="fa fa-list"></i>Listado</a>
+                                            <a class="btn btn-warning" href="@Url.Action("Edit", new { id = Model.IdBateria })"><i class="fa fa-edit"></i>Editar</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE CONTENT INNER -->
+    </div>
+</div>
+<!-- END PAGE CONTENT BODY -->
+<!-- END CONTENT BODY -->
+@section styles{
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+}
+
+@section script{
+    <script src="~/Scripts/assets/global/plugins/select2/js/select2.full.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
+
+
+}
+@*@{
+                      ViewBag.Title = "Detalle Batería";
+    }
+
+    <h2>Detalles Barras</h2>
+
+    <div>
+        <h4>Detalles de la barra @Html.DisplayFor(model => model.TipoBateria)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoBateria)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TipoBateria)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CapacidadBateria)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CapacidadBateria)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TensionBateria)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TensionBateria)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ClaseBateria)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ClaseBateria)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.IdBateria }) |
+        @Html.ActionLink("Volver al listado", "Index")
+    </p>*@

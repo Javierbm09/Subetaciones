@@ -1,0 +1,200 @@
+﻿@model Subestaciones.Models.ES_TransformadorPotencial
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>ES_TransformadorPotencial</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.id_Voltaje_Primario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_Voltaje_Primario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Cant_Devanado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cant_Devanado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Fase)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fase)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.id_Plantilla)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.id_Plantilla)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ubicado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ubicado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CodSub)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CodSub)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tipo_Equipo_Primario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tipo_Equipo_Primario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Elemento_Electrico)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Elemento_Electrico)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_EAdministrativa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_EAdministrativa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumAccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Fabricante)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fabricante)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tipo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Inventario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Inventario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InPrimaria)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InPrimaria)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InTrabajoPrim)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InTrabajoPrim)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InSecundaria)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InSecundaria)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Frecuencia)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Frecuencia)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AnnoFab)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AnnoFab)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaInstalado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaInstalado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Peso)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Peso)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.VoltajeNominal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.VoltajeNominal)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,256 @@
+﻿@model Subestaciones.Models.Sub_PruebaAceiteAGDisueltos
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Sub_PruebaAceiteAGDisueltos</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CodigoSub)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CodigoSub)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_EAdministrativa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_EAdministrativa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumAccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumAccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RealizadoenLaboraorio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RealizadoenLaboraorio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NumeroControl)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NumeroControl)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaSeleccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaSeleccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaRecepcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaRecepcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaInicio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaTerminacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaTerminacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MuestreoSegProc)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MuestreoSegProc)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MuestreadoPor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MuestreadoPor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EjecutadoPor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EjecutadoPor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RevisadoPor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RevisadoPor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ResulSegunNormas)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ResulSegunNormas)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Observaciones)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ResNro)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ResNro)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EmitidoPor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EmitidoPor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CargoEmitidoPor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CargoEmitidoPor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MetodoEnsayo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MetodoEnsayo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NormaMuestreo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NormaMuestreo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.H2Hidrogeno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.H2Hidrogeno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CH4Metano)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CH4Metano)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.C2H6Etano)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.C2H6Etano)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.C2H4Etileno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.C2H4Etileno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.C2H2Acetileno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.C2H2Acetileno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.COMonoxidoCarbono)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.COMonoxidoCarbono)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TempAceite)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TempAceite)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CO2DioxidoCarbono)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CO2DioxidoCarbono)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
